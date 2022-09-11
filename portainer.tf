@@ -21,15 +21,50 @@ resource "helm_release" "portainer" {
   ]
 }
 
-resource "kubernetes_manifest" "traefik_middleware_ip" {
-  manifest = yamldecode(templatefile("manifests/middleware-ip.tftpl", {
-    namespace       = "portainer"
-    whitelisted_ips = var.whitelisted_ips
-  }))
+resource "kubernetes_manifest" "portainer_ingress" {
+  manifest = {
+    apiVersion = "traefik.containo.us/v1alpha1"
+    kind       = "IngressRoute"
+    metadata = {
+      name : "portainer"
+      namespace : "portainer"
+    }
+    spec = {
+      entryPoints = ["websecure"]
+      routes = [
+        {
+          match = "Host(`portainer.${var.domain}`)"
+          kind  = "Rule"
+          middlewares = [
+            {
+              name = "middleware-ip"
+            }
+          ]
+          services = [
+            {
+              name = "portainer"
+              kind = "Service"
+              port = 9000
+            }
+          ]
+        }
+      ]
+    }
+  }
 }
 
-resource "kubernetes_manifest" "portainer_ingress" {
-  manifest = yamldecode(templatefile("manifests/ir-portainer.tftpl", {
-    domain = var.domain
-  }))
+resource "kubernetes_manifest" "traefik_middleware_ip" {
+  manifest = {
+    apiVersion = "traefik.containo.us/v1alpha1"
+    kind       = "Middleware"
+    metadata = {
+      name : "middleware-ip"
+      namespace : "portainer"
+    }
+    spec = {
+      ipWhiteList = {
+        sourceRange = var.whitelisted_ips
+      }
+    }
+  }
 }

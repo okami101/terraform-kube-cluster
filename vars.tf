@@ -13,3 +13,11 @@ variable "nfs_server" {
 variable "nfs_path" {
   type = string
 }
+
+variable "cert_group_name" {
+  type = string
+}
+
+variable "hetzner_dns_api_token" {
+  type = string
+}
