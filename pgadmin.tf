@@ -54,7 +54,7 @@ resource "kubernetes_deployment" "pgadmin" {
         volume {
           name = "pgadmin-data"
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim.pgadmin.metadata[0].name
+            claim_name = "pgadmin-data"
           }
         }
       }

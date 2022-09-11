@@ -1,0 +1,27 @@
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/registry
+http:
+  addr: :5000
+  headers:
+    X-Content-Type-Options: [nosniff]
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+notifications:
+  endpoints:
+    - name: alistener
+      url: http://webhook-receiver.flux-system/hook/5b6283ebf3424e755ad167fd85c8fc0e2d0e599a3dbd6ac5c23249037997c4ad
+      headers:
+        Authorization: [Bearer df7d7e61e1e9bbbf1b40afba5599995e90af5332]
+      timeout: 500ms
+      threshold: 5
+      backoff: 1s

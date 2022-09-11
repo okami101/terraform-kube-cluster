@@ -77,7 +77,7 @@ resource "kubernetes_cron_job" "mysql_backup" {
             volume {
               name = "backup"
               persistent_volume_claim {
-                claim_name = kubernetes_persistent_volume_claim.mysql_backup.metadata[0].name
+                claim_name = "mysql-backup"
               }
             }
 

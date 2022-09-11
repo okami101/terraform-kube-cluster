@@ -82,7 +82,7 @@ resource "kubernetes_cron_job" "postgres_backup" {
             volume {
               name = "backup"
               persistent_volume_claim {
-                claim_name = kubernetes_persistent_volume_claim.postgres_backup.metadata[0].name
+                claim_name = "postgres-backup"
               }
             }
 
