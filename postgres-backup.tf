@@ -1,18 +1,18 @@
-resource "kubernetes_config_map" "mysql_backup_script" {
+resource "kubernetes_config_map" "postgres_backup_script" {
   metadata {
     name      = "backup-script"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    namespace = kubernetes_namespace.postgres.metadata[0].name
   }
 
   data = {
-    "backup.sh" = file("scripts/mysql-backup.sh")
+    "backup.sh" = file("scripts/postgres-backup.sh")
   }
 }
 
-resource "kubernetes_persistent_volume_claim" "mysql_backup" {
+resource "kubernetes_persistent_volume_claim" "postgres_backup" {
   metadata {
-    name      = "mysql-backup"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    name      = "postgres-backup"
+    namespace = kubernetes_namespace.postgres.metadata[0].name
   }
   spec {
     access_modes = ["ReadWriteMany"]
@@ -24,10 +24,10 @@ resource "kubernetes_persistent_volume_claim" "mysql_backup" {
   }
 }
 
-resource "kubernetes_cron_job" "mysql_backup" {
+resource "kubernetes_cron_job" "postgres_backup" {
   metadata {
     name      = "backup"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    namespace = kubernetes_namespace.postgres.metadata[0].name
   }
   spec {
     schedule = "0 */1 * * *"
@@ -40,25 +40,30 @@ resource "kubernetes_cron_job" "mysql_backup" {
             restart_policy = "OnFailure"
             container {
               name  = "backup"
-              image = "mysql:8"
+              image = "postgres:14"
 
               env {
-                name = "MYSQL_ROOT_PASSWORD"
+                name = "PG_PASSWORD"
                 value_from {
                   secret_key_ref {
-                    name = kubernetes_secret.mysql_secret.metadata[0].name
-                    key  = "mysql-root-password"
+                    name = kubernetes_secret.postgres_secret.metadata[0].name
+                    key  = "pgsql-password"
                   }
                 }
               }
 
               env {
-                name  = "MYSQL_HOST"
-                value = kubernetes_service.mysql.metadata[0].name
+                name  = "PG_USER"
+                value = var.pgsql_user
               }
 
               env {
-                name  = "MYSQL_DUMP_DIRECTORY"
+                name  = "PG_HOST"
+                value = kubernetes_service.postgres.metadata[0].name
+              }
+
+              env {
+                name  = "PG_DUMP_DIRECTORY"
                 value = "/opt/backup"
               }
 
@@ -77,14 +82,14 @@ resource "kubernetes_cron_job" "mysql_backup" {
             volume {
               name = "backup"
               persistent_volume_claim {
-                claim_name = kubernetes_persistent_volume_claim.mysql_backup.metadata[0].name
+                claim_name = kubernetes_persistent_volume_claim.postgres_backup.metadata[0].name
               }
             }
 
             volume {
               name = "backup-script"
               config_map {
-                name         = kubernetes_config_map.mysql_backup_script.metadata[0].name
+                name         = kubernetes_config_map.postgres_backup_script.metadata[0].name
                 default_mode = "0744"
               }
             }
