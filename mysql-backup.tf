@@ -52,6 +52,16 @@ resource "kubernetes_cron_job" "backup" {
                 }
               }
 
+              env {
+                name  = "MYSQL_HOST"
+                value = kubernetes_service.mysql.metadata[0].name
+              }
+
+              env {
+                name  = "MYSQL_DUMP_DIRECTORY"
+                value = "/opt/backup"
+              }
+
               command = ["/usr/local/bin/backup.sh"]
 
               volume_mount {

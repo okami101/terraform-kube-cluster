@@ -10,7 +10,7 @@ resource "kubernetes_secret" "mysql_secret" {
     namespace = kubernetes_namespace.mysql.metadata[0].name
   }
   data = {
-    "mysql-root-password" : var.mysql_password
+    "mysql-root-password" = var.mysql_password
   }
 }
 

@@ -50,6 +50,26 @@ variable "mysql_password" {
   type = string
 }
 
+variable "pgsql_user" {
+  type = string
+}
+
 variable "pgsql_password" {
+  type = string
+}
+
+variable "pgsql_replication_password" {
+  type = string
+}
+
+variable "pgadmin_default_email" {
+  type = string
+}
+
+variable "pgadmin_default_password" {
+  type = string
+}
+
+variable "grafana_db_password" {
   type = string
 }
