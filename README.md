@@ -6,7 +6,9 @@ helm repo add portainer https://helm.traefik.io/traefik
 helm repo add portainer https://portainer.github.io/k8s
 helm repo add jetstack https://charts.jetstack.io
 helm repo add cert-manager-webhook-hetzner https://vadimkim.github.io/cert-manager-webhook-hetzner
+helm repo add openebs https://openebs.github.io/charts
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.9.1/cert-manager.crds.yaml
 

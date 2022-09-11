@@ -33,3 +33,15 @@ variable "zone_name" {
 variable "basic_http_auth" {
   type = string
 }
+
+variable "smtp_host" {
+  type = string
+}
+
+variable "smtp_user" {
+  type = string
+}
+
+variable "smtp_password" {
+  type = string
+}
