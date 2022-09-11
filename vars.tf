@@ -45,3 +45,11 @@ variable "smtp_user" {
 variable "smtp_password" {
   type = string
 }
+
+variable "mysql_password" {
+  type = string
+}
+
+variable "pgsql_password" {
+  type = string
+}

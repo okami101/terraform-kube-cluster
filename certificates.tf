@@ -25,7 +25,7 @@ resource "kubernetes_secret" "hetzner_secret" {
   }
 
   data = {
-    api-key = var.hetzner_dns_api_key
+    "api-key" = var.hetzner_dns_api_key
   }
 }
 
