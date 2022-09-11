@@ -9,7 +9,7 @@ resource "helm_release" "portainer" {
   version = "1.0.34"
 
   name      = "portainer"
-  namespace = "portainer"
+  namespace = kubernetes_namespace.portainer.metadata[0].name
 
   set {
     name  = "service.type"
@@ -27,7 +27,7 @@ resource "kubernetes_manifest" "portainer_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name : "portainer"
-      namespace : "portainer"
+      namespace : kubernetes_namespace.portainer.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -37,7 +37,7 @@ resource "kubernetes_manifest" "portainer_ingress" {
           kind  = "Rule"
           middlewares = [
             {
-              name = "middleware-ip"
+              name = kubernetes_manifest.portainer_middleware_ip.manifest.metadata.name
             }
           ]
           services = [
@@ -53,13 +53,13 @@ resource "kubernetes_manifest" "portainer_ingress" {
   }
 }
 
-resource "kubernetes_manifest" "traefik_middleware_ip" {
+resource "kubernetes_manifest" "portainer_middleware_ip" {
   manifest = {
     apiVersion = "traefik.containo.us/v1alpha1"
     kind       = "Middleware"
     metadata = {
       name : "middleware-ip"
-      namespace : "portainer"
+      namespace : kubernetes_namespace.portainer.metadata[0].name
     }
     spec = {
       ipWhiteList = {
