@@ -1,0 +1,39 @@
+deployment:
+  kind: DaemonSet
+
+ingressRoute:
+  dashboard:
+    enabled: false
+
+ports:
+  ssh:
+    port: 2222
+    expose: true
+    exposedPort: 22
+    protocol: TCP
+  web:
+    redirectTo: websecure
+  websecure:
+    tls:
+      enabled: true
+
+logs:
+  access:
+    enabled: true
+
+metrics:
+  prometheus:
+    entryPoint: metrics
+
+service:
+  externalIPs:
+    - 10.0.0.10
+    - 10.0.0.11
+
+additionalArguments:
+  - --tracing.jaeger=true
+  - --tracing.jaeger.samplingServerURL=http://jaeger-agent.tracing:5778/sampling
+  - --tracing.jaeger.localAgentHostPort=jaeger-agent.tracing:6831
+  - --entryPoints.websecure.forwardedHeaders.insecure
+  - --entryPoints.websecure.proxyProtocol.insecure
+  - --serversTransport.insecureSkipVerify=true

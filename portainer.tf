@@ -1,4 +1,9 @@
-# helm repo add portainer https://portainer.github.io/k8s
+resource "kubernetes_namespace" "portainer" {
+  metadata {
+    name = "portainer"
+  }
+}
+
 resource "helm_release" "portainer" {
   chart   = "portainer/portainer"
   version = "1.0.34"
@@ -10,6 +15,10 @@ resource "helm_release" "portainer" {
     name  = "service.type"
     value = "ClusterIP"
   }
+
+  depends_on = [
+    helm_release.nfs_provisioner
+  ]
 }
 
 resource "kubernetes_manifest" "traefik_middleware_ip" {
