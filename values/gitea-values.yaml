@@ -1,0 +1,79 @@
+image:
+  rootless: true
+
+gitea:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+postgresql:
+  enabled: false
+
+memcached:
+  enabled: false
+
+statefulset:
+  env:
+    - name: ENV_TO_INI__SERVER__DOMAIN
+      value: gitea.${domain}
+    - name: ENV_TO_INI__SERVER__SSH_DOMAIN
+      value: gitea.${domain}
+    - name: ENV_TO_INI__SERVER__ROOT_URL
+      value: https://gitea.${domain}
+    - name: ENV_TO_INI__DATABASE__DB_TYPE
+      value: postgres
+    - name: ENV_TO_INI__DATABASE__HOST
+      value: db.postgres
+    - name: ENV_TO_INI__DATABASE__NAME
+      value: gitea
+    - name: ENV_TO_INI__DATABASE__USER
+      value: gitea
+    - name: ENV_TO_INI__DATABASE__PASSWD
+      value: ${db_password}
+    - name: ENV_TO_INI__INDEXER__ISSUE_INDEXER_TYPE
+      value: elasticsearch
+    - name: ENV_TO_INI__INDEXER__ISSUE_INDEXER_CONN_STR
+      value: http://db.elastic:9200
+    - name: ENV_TO_INI__INDEXER__REPO_INDEXER_ENABLED
+      value: "true"
+    - name: ENV_TO_INI__INDEXER__REPO_INDEXER_TYPE
+      value: elasticsearch
+    - name: ENV_TO_INI__INDEXER__REPO_INDEXER_CONN_STR
+      value: http://db.elastic:9200
+    - name: ENV_TO_INI__CACHE__ADAPTER
+      value: redis
+    - name: ENV_TO_INI__CACHE__HOST
+      value: "redis://db.redis:6379/0"
+    - name: ENV_TO_INI__SESSION__PROVIDER
+      value: redis
+    - name: ENV_TO_INI__SESSION__PROVIDER_CONFIG
+      value: "redis://db.redis:6379/0"
+    - name: ENV_TO_INI__QUEUE__TYPE
+      value: redis
+    - name: ENV_TO_INI__QUEUE__CONN_STR
+      value: "redis://db.redis:6379/0"
+    - name: ENV_TO_INI__MAILER__ENABLED
+      value: "true"
+    - name: ENV_TO_INI__MAILER__FROM
+      value: gitea@${domain}
+    - name: ENV_TO_INI__MAILER__HOST
+      value: ${smtp_host}
+    - name: ENV_TO_INI__MAILER__USER
+      value: ${smtp_user}
+    - name: ENV_TO_INI__MAILER__PASSWD
+      value: ${smtp_password}
+    - name: ENV_TO_INI__SERVICE__DISABLE_REGISTRATION
+      value: "true"
+    - name: ENV_TO_INI__REPOSITORY__DEFAULT_BRANCH
+      value: main
+    - name: ENV_TO_INI__METRICS__ENABLED_ISSUE_BY_REPOSITORY
+      value: "true"
+    - name: ENV_TO_INI__METRICS__ENABLED_ISSUE_BY_LABEL
+      value: "true"
+    - name: ENV_TO_INI__WEBHOOK__ALLOWED_HOST_LIST
+      value: "*"
+
+tolerations:
+  - key: node-role.kubernetes.io/runner
+    operator: Exists

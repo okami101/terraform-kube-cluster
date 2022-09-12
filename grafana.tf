@@ -67,7 +67,7 @@ resource "helm_release" "grafana" {
 
   set {
     name  = "env.GF_SMTP_FROM_ADDRESS"
-    value = "noreply@${var.domain}"
+    value = "grafana@${var.domain}"
   }
 
   set {

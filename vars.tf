@@ -89,3 +89,31 @@ variable "rabbitmq_default_user" {
 variable "rabbitmq_default_password" {
   type = string
 }
+
+variable "gitea_db_password" {
+  type = string
+}
+
+variable "concourse_db_password" {
+  type = string
+}
+
+variable "concourse_user" {
+  type = string
+}
+
+variable "concourse_password" {
+  type = string
+}
+
+variable "gitea_admin_username" {
+  type = string
+}
+
+variable "gitea_admin_password" {
+  type = string
+}
+
+variable "gitea_admin_email" {
+  type = string
+}

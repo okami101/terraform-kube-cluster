@@ -1,0 +1,19 @@
+provisionDataStore:
+  cassandra: false
+
+storage:
+  type: elasticsearch
+  elasticsearch:
+    host: db.elastic
+
+query:
+  serviceMonitor:
+    enabled: true
+
+collector:
+  serviceMonitor:
+    enabled: true
+
+agent:
+  serviceMonitor:
+    enabled: true

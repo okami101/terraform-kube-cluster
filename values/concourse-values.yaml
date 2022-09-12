@@ -1,0 +1,55 @@
+imageTag: "7.8.2"
+
+concourse:
+  web:
+    postgres:
+      host: db.postgres
+      database: concourse
+
+    localAuth:
+      enabled: true
+
+    auth:
+      cookieSecure: true
+
+    prometheus:
+      enabled: true
+
+      serviceMonitor:
+        enabled: true
+
+  worker:
+    runtime: containerd
+    # containerd:
+    #   dnsServers:
+    #     - 8.8.8.8
+    #     - 8.8.4.4
+
+web:
+  enabled: true
+
+  tolerations:
+    - key: node-role.kubernetes.io/master
+      operator: Exists
+
+worker:
+  enabled: true
+
+  replicas: 1
+  minAvailable: 0
+
+  tolerations:
+    - key: node-role.kubernetes.io/runner
+      operator: Exists
+
+persistence:
+  enabled: true
+
+  worker:
+    storageClass: openebs-hostpath
+
+postgresql:
+  enabled: false
+
+secrets:
+  postgresUser: concourse
