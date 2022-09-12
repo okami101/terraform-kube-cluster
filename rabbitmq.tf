@@ -82,6 +82,9 @@ resource "kubernetes_service" "rabbitmq" {
   metadata {
     name      = "queue"
     namespace = kubernetes_namespace.rabbitmq.metadata[0].name
+    labels = {
+      app = "rabbitmq"
+    }
   }
   spec {
     selector = {
@@ -143,7 +146,7 @@ resource "kubernetes_manifest" "rabbitmq_service_monitor" {
     spec = {
       endpoints = [
         {
-          targetPort = "metrics"
+          port = "metrics"
         }
       ]
       selector = {

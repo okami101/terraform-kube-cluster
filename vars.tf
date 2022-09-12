@@ -50,6 +50,10 @@ variable "mysql_password" {
   type = string
 }
 
+variable "mysql_exporter_password" {
+  type = string
+}
+
 variable "pgsql_user" {
   type = string
 }

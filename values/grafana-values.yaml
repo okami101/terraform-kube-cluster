@@ -1,0 +1,16 @@
+initChownData:
+  enabled: false
+
+persistence:
+  enabled: true
+
+serviceMonitor:
+  enabled: true
+
+sidecar:
+  dashboards:
+    enabled: true
+
+tolerations:
+  - key: node-role.kubernetes.io/monitor
+    operator: Exists

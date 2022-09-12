@@ -5,35 +5,9 @@ resource "helm_release" "grafana" {
   name      = "grafana"
   namespace = kubernetes_namespace.monitoring.metadata[0].name
 
-  set {
-    name  = "initChownData.enabled"
-    value = false
-  }
-
-  set {
-    name  = "persistence.enabled"
-    value = true
-  }
-
-  set {
-    name  = "serviceMonitor.enabled"
-    value = true
-  }
-
-  set {
-    name  = "sidecar.dashboards.enabled"
-    value = true
-  }
-
-  set {
-    name  = "tolerations[0].key"
-    value = "node-role.kubernetes.io/monitor"
-  }
-
-  set {
-    name  = "tolerations[0].operator"
-    value = "Exists"
-  }
+  values = [
+    file("values/grafana-values.yaml")
+  ]
 
   set {
     name  = "env.GF_SERVER_DOMAIN"
