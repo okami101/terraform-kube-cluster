@@ -67,7 +67,7 @@ resource "kubernetes_manifest" "gitea_ingress" {
 resource "kubernetes_manifest" "gitea_ingress_ssh" {
   manifest = {
     apiVersion = "traefik.containo.us/v1alpha1"
-    kind       = "IngressRoute"
+    kind       = "IngressRouteTCP"
     metadata = {
       name      = "gitea-ssh"
       namespace = kubernetes_namespace.gitea.metadata[0].name
@@ -77,11 +77,9 @@ resource "kubernetes_manifest" "gitea_ingress_ssh" {
       routes = [
         {
           match = "HostSNI(`*`)"
-          kind  = "Rule"
           services = [
             {
               name = "gitea-ssh"
-              kind = "Service"
               port = 22
             }
           ]
