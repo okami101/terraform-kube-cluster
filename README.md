@@ -2,13 +2,17 @@
 
 ```sh
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
-helm repo add portainer https://helm.traefik.io/traefik
+helm repo add traefik https://helm.traefik.io/traefik
 helm repo add portainer https://portainer.github.io/k8s
 helm repo add jetstack https://charts.jetstack.io
 helm repo add cert-manager-webhook-hetzner https://vadimkim.github.io/cert-manager-webhook-hetzner
 helm repo add openebs https://openebs.github.io/charts
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
+helm repo add minio https://charts.min.io/
+helm repo add gitea-charts https://dl.gitea.io/charts/
+helm repo add concourse https://concourse-charts.storage.googleapis.com/
 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.9.1/cert-manager.crds.yaml
 

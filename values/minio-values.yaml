@@ -1,0 +1,15 @@
+mode: distributed
+
+replicas: 2
+
+tolerations:
+  - key: node-role.kubernetes.io/data
+    operator: Exists
+
+resources:
+  requests:
+    memory: 1Gi
+
+metrics:
+  serviceMonitor:
+    enabled: true

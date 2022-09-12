@@ -73,3 +73,11 @@ variable "pgadmin_default_password" {
 variable "grafana_db_password" {
   type = string
 }
+
+variable "minio_user" {
+  type = string
+}
+
+variable "minio_password" {
+  type = string
+}

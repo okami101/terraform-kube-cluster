@@ -1,0 +1,17 @@
+loki:
+  auth_enabled: false
+  commonConfig:
+    replication_factor: 1
+  storage:
+    type: filesystem
+
+singleBinary:
+  tolerations:
+    - key: node-role.kubernetes.io/monitor
+      operator: Exists
+  persistence:
+    storageClass: openebs-hostpath
+
+monitoring:
+  selfMonitoring:
+    enabled: false
