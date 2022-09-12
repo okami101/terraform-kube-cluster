@@ -81,3 +81,11 @@ variable "minio_user" {
 variable "minio_password" {
   type = string
 }
+
+variable "rabbitmq_default_user" {
+  type = string
+}
+
+variable "rabbitmq_default_password" {
+  type = string
+}

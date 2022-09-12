@@ -30,11 +30,11 @@ resource "kubernetes_stateful_set" "rabbitmq" {
           image_pull_policy = "Always"
           env {
             name  = "RABBITMQ_DEFAULT_USER"
-            value = "rabbitmq"
+            value = var.rabbitmq_default_user
           }
           env {
             name  = "RABBITMQ_DEFAULT_PASS"
-            value = "rabbitmq"
+            value = var.rabbitmq_default_password
           }
           port {
             container_port = 5672
