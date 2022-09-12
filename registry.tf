@@ -134,8 +134,8 @@ resource "kubernetes_manifest" "registry_ingress" {
     apiVersion = "traefik.containo.us/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
-      name : "registry"
-      namespace : kubernetes_namespace.registry.metadata[0].name
+      name      = "registry"
+      namespace = kubernetes_namespace.registry.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -166,8 +166,8 @@ resource "kubernetes_manifest" "registry_ui_ingress" {
     apiVersion = "traefik.containo.us/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
-      name : "registry-ui"
-      namespace : kubernetes_namespace.registry.metadata[0].name
+      name      = "registry-ui"
+      namespace = kubernetes_namespace.registry.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -198,8 +198,8 @@ resource "kubernetes_manifest" "registry_middleware_auth" {
     apiVersion = "traefik.containo.us/v1alpha1"
     kind       = "Middleware"
     metadata = {
-      name : "middleware-auth"
-      namespace : kubernetes_namespace.registry.metadata[0].name
+      name      = "middleware-auth"
+      namespace = kubernetes_namespace.registry.metadata[0].name
     }
     spec = {
       basicAuth = {

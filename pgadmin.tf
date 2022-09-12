@@ -83,8 +83,8 @@ resource "kubernetes_manifest" "pgadmin_ingress" {
     apiVersion = "traefik.containo.us/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
-      name : "pgadmin"
-      namespace : kubernetes_namespace.postgres.metadata[0].name
+      name      = "pgadmin"
+      namespace = kubernetes_namespace.postgres.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]

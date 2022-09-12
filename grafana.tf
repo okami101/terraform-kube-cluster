@@ -111,8 +111,8 @@ resource "kubernetes_manifest" "grafana_ingress" {
     apiVersion = "traefik.containo.us/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
-      name : "grafana"
-      namespace : kubernetes_namespace.monitoring.metadata[0].name
+      name      = "grafana"
+      namespace = kubernetes_namespace.monitoring.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]

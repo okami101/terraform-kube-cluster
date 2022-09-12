@@ -26,8 +26,8 @@ resource "kubernetes_manifest" "portainer_ingress" {
     apiVersion = "traefik.containo.us/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
-      name : "portainer"
-      namespace : kubernetes_namespace.portainer.metadata[0].name
+      name      = "portainer"
+      namespace = kubernetes_namespace.portainer.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -58,8 +58,8 @@ resource "kubernetes_manifest" "portainer_middleware_ip" {
     apiVersion = "traefik.containo.us/v1alpha1"
     kind       = "Middleware"
     metadata = {
-      name : "middleware-ip"
-      namespace : kubernetes_namespace.portainer.metadata[0].name
+      name      = "middleware-ip"
+      namespace = kubernetes_namespace.portainer.metadata[0].name
     }
     spec = {
       ipWhiteList = {

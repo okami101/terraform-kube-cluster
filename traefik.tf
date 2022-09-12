@@ -21,8 +21,8 @@ resource "kubernetes_manifest" "traefik_ingress" {
     apiVersion = "traefik.containo.us/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
-      name : "traefik"
-      namespace : kubernetes_namespace.traefik.metadata[0].name
+      name      = "traefik"
+      namespace = kubernetes_namespace.traefik.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -52,8 +52,8 @@ resource "kubernetes_manifest" "traefik_middleware_auth" {
     apiVersion = "traefik.containo.us/v1alpha1"
     kind       = "Middleware"
     metadata = {
-      name : "middleware-auth"
-      namespace : kubernetes_namespace.traefik.metadata[0].name
+      name      = "middleware-auth"
+      namespace = kubernetes_namespace.traefik.metadata[0].name
     }
     spec = {
       basicAuth = {
@@ -79,13 +79,13 @@ resource "kubernetes_manifest" "traefik_service_monitor" {
     apiVersion = "monitoring.coreos.com/v1"
     kind       = "ServiceMonitor"
     metadata = {
-      name : "metrics"
-      namespace : kubernetes_namespace.traefik.metadata[0].name
+      name      = "metrics"
+      namespace = kubernetes_namespace.traefik.metadata[0].name
     }
     spec = {
       endpoints = [
         {
-          targetPort : 9100
+          targetPort = 9100
         }
       ]
       selector = {
