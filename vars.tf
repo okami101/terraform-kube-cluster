@@ -121,3 +121,15 @@ variable "gitea_admin_password" {
 variable "gitea_admin_email" {
   type = string
 }
+
+variable "redmine_db_password" {
+  type = string
+}
+
+variable "redmine_secret_key_base" {
+  type = string
+}
+
+variable "matomo_db_password" {
+  type = string
+}

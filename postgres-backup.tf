@@ -32,10 +32,15 @@ resource "kubernetes_cron_job" "postgres_backup" {
   spec {
     schedule = "0 */1 * * *"
     job_template {
-      metadata {}
+      metadata {
+        name = "backup"
+      }
       spec {
         template {
-          metadata {}
+
+          metadata {
+            name = "backup"
+          }
           spec {
             restart_policy = "OnFailure"
             container {
