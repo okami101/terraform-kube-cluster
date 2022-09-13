@@ -32,3 +32,30 @@ kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-oper
 # grafana password
 kg secret -n monitoring grafana -o yaml
 ```
+
+## FluxCD
+
+First add private key as deployment key to the repo.
+
+```sh
+flux bootstrap git --url=ssh://git@gitea.okami101.io/okami101/flux-source --branch=main --components-extra=image-reflector-controller,image-automation-controller --private-key-file=keys/id_cluster --toleration-keys=node-role.kubernetes.io/runner
+
+# [optional] backup old sealed key if needed
+kubectl get secret -n flux-system -l sealedsecrets.bitnami.com/sealed-secrets-key -o yaml > main.key
+
+# generate kubeseal manifests to the repo
+flux create source helm sealed-secrets --interval=1h --url=https://bitnami-labs.github.io/sealed-secrets --export >> sealed-secrets.yaml
+flux create helmrelease sealed-secrets --interval=1h --release-name=sealed-secrets-controller --target-namespace=flux-system --source=HelmRepository/sealed-secrets --chart=sealed-secrets --chart-version=">=2.6.0" --crds=CreateReplace --export >> sealed-secrets.yaml
+# the push and all done
+
+# [optional] restore sealed key after delete current key if needed
+kubectl apply -f main.key
+kubectl delete pod -n flux-system -l app.kubernetes.io/name=sealed-secrets
+
+# get public key
+kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller-namespace=flux-system > pub-sealed-secrets.pem
+
+# activate monitoring
+flux create source git flux-monitoring --interval=30m --url=https://github.com/fluxcd/flux2 --branch=main --export >> flux-monitoring.yaml
+flux create kustomization monitoring-config --interval=1h --prune=true --source=flux-monitoring --path="./manifests/monitoring/monitoring-config" --health-check-timeout=1m --export >> flux-monitoring.yaml
+```
