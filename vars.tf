@@ -2,6 +2,10 @@ variable "domain" {
   type = string
 }
 
+variable "image_pull_secret_namespaces" {
+  type = list(string)
+}
+
 variable "whitelisted_ips" {
   type = list(string)
 }
@@ -30,7 +34,11 @@ variable "zone_name" {
   type = string
 }
 
-variable "basic_http_auth" {
+variable "http_basic_username" {
+  type = string
+}
+
+variable "http_basic_password" {
   type = string
 }
 

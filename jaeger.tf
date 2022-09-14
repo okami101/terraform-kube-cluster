@@ -71,6 +71,6 @@ resource "kubernetes_secret" "jaeger_auth_secret" {
   }
 
   data = {
-    "users" = var.basic_http_auth
+    "users" = local.http_basic_auth
   }
 }

@@ -216,6 +216,33 @@ resource "kubernetes_secret" "registry_auth_secret" {
   }
 
   data = {
-    "users" = var.basic_http_auth
+    "users" = local.http_basic_auth
+  }
+}
+
+resource "kubernetes_namespace" "image_pull_secret_namespaces" {
+  for_each = toset(var.image_pull_secret_namespaces)
+  metadata {
+    name = each.value
+  }
+}
+
+resource "kubernetes_secret" "image_pull_secrets" {
+  for_each = toset(var.image_pull_secret_namespaces)
+  metadata {
+    name      = "dockerconfigjson"
+    namespace = each.value
+  }
+
+  type = "kubernetes.io/dockerconfigjson"
+
+  data = {
+    ".dockerconfigjson" = jsonencode({
+      auths = {
+        "registry.${var.domain}" = {
+          auth = base64encode("${var.http_basic_username}:${var.http_basic_password}")
+        }
+      }
+    })
   }
 }
