@@ -11,7 +11,9 @@ resource "kubernetes_config_map" "registry_config" {
   }
 
   data = {
-    "config.yml" = file("configs/registry-config.yml")
+    "config.yml" = templatefile("configs/registry-config.tftpl", {
+      endpoints = var.registry_endpoints
+    })
   }
 }
 

@@ -6,6 +6,14 @@ variable "image_pull_secret_namespaces" {
   type = list(string)
 }
 
+variable "registry_endpoints" {
+  type = list(object({
+    name  = string
+    url   = string
+    token = string
+  }))
+}
+
 variable "whitelisted_ips" {
   type = list(string)
 }
