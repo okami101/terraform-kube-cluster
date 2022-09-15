@@ -31,28 +31,8 @@ statefulset:
       value: gitea
     - name: ENV_TO_INI__DATABASE__PASSWD
       value: ${db_password}
-    - name: ENV_TO_INI__INDEXER__ISSUE_INDEXER_TYPE
-      value: elasticsearch
-    - name: ENV_TO_INI__INDEXER__ISSUE_INDEXER_CONN_STR
-      value: http://db.elastic:9200
     - name: ENV_TO_INI__INDEXER__REPO_INDEXER_ENABLED
       value: "true"
-    - name: ENV_TO_INI__INDEXER__REPO_INDEXER_TYPE
-      value: elasticsearch
-    - name: ENV_TO_INI__INDEXER__REPO_INDEXER_CONN_STR
-      value: http://db.elastic:9200
-    - name: ENV_TO_INI__CACHE__ADAPTER
-      value: redis
-    - name: ENV_TO_INI__CACHE__HOST
-      value: "redis://db.redis:6379/0"
-    - name: ENV_TO_INI__SESSION__PROVIDER
-      value: redis
-    - name: ENV_TO_INI__SESSION__PROVIDER_CONFIG
-      value: "redis://db.redis:6379/0"
-    - name: ENV_TO_INI__QUEUE__TYPE
-      value: redis
-    - name: ENV_TO_INI__QUEUE__CONN_STR
-      value: "redis://db.redis:6379/0"
     - name: ENV_TO_INI__MAILER__ENABLED
       value: "true"
     - name: ENV_TO_INI__MAILER__FROM
