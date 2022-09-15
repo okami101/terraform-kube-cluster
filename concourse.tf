@@ -62,3 +62,53 @@ resource "kubernetes_manifest" "concourse_ingress" {
     }
   }
 }
+
+resource "kubernetes_secret" "concourse_registry" {
+  metadata {
+    name      = "registry"
+    namespace = "concourse-main"
+  }
+
+  data = {
+    name     = "registry.${var.domain}"
+    username = var.http_basic_username
+    password = var.http_basic_password
+  }
+
+  depends_on = [
+    helm_release.concourse
+  ]
+}
+
+resource "kubernetes_secret" "concourse_webhook" {
+  metadata {
+    name      = "webhook-token"
+    namespace = "concourse-main"
+  }
+
+  data = {
+    value = var.concourse_webhook_token
+  }
+
+  depends_on = [
+    helm_release.concourse
+  ]
+}
+
+resource "kubernetes_secret" "concourse_s3" {
+  metadata {
+    name      = "s3"
+    namespace = "concourse-main"
+  }
+
+  data = {
+    endpoint          = "s3.${var.domain}"
+    bucket            = var.concourse_bucket
+    access-key-id     = var.concourse_access_key_id
+    secret-access-key = var.concourse_secret_access_key
+  }
+
+  depends_on = [
+    helm_release.concourse
+  ]
+}
