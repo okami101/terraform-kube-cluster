@@ -95,3 +95,21 @@ resource "kubernetes_service" "elasticsearch" {
     }
   }
 }
+
+resource "helm_release" "elasticsearch-exporter" {
+  chart   = "prometheus-community/prometheus-elasticsearch-exporter"
+  version = "4.14.0"
+
+  name      = "elasticsearch-exporter"
+  namespace = kubernetes_namespace.elastic.metadata[0].name
+
+  set {
+    name  = "es.uri"
+    value = "http://${kubernetes_service.elasticsearch.metadata[0].name}:9200"
+  }
+
+  set {
+    name  = "serviceMonitor.enabled"
+    value = "true"
+  }
+}

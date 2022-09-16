@@ -143,3 +143,31 @@ resource "kubernetes_service" "mysql" {
     }
   }
 }
+
+resource "helm_release" "mysql-exporter" {
+  chart   = "prometheus-community/prometheus-mysql-exporter"
+  version = "1.9.0"
+
+  name      = "mysql-exporter"
+  namespace = kubernetes_namespace.mysql.metadata[0].name
+
+  set {
+    name  = "mysql.host"
+    value = kubernetes_service.mysql.metadata[0].name
+  }
+
+  set {
+    name  = "mysql.user"
+    value = "exporter"
+  }
+
+  set {
+    name  = "mysql.pass"
+    value = var.mysql_exporter_password
+  }
+
+  set {
+    name  = "serviceMonitor.enabled"
+    value = "true"
+  }
+}

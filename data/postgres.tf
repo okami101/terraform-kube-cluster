@@ -378,3 +378,26 @@ resource "kubernetes_service" "postgres_ro" {
     }
   }
 }
+
+resource "helm_release" "postgres-exporter" {
+  chart   = "prometheus-community/prometheus-postgres-exporter"
+  version = "3.1.3"
+
+  name      = "postgres-exporter"
+  namespace = kubernetes_namespace.postgres.metadata[0].name
+
+  set {
+    name  = "config.datasourceSecret.name"
+    value = "postgres-secret"
+  }
+
+  set {
+    name  = "config.datasourceSecret.key"
+    value = "datasources"
+  }
+
+  set {
+    name  = "serviceMonitor.enabled"
+    value = "true"
+  }
+}

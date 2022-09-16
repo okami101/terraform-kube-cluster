@@ -15,10 +15,6 @@ resource "helm_release" "portainer" {
     name  = "service.type"
     value = "ClusterIP"
   }
-
-  depends_on = [
-    helm_release.nfs_provisioner
-  ]
 }
 
 resource "kubernetes_manifest" "portainer_ingress" {

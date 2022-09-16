@@ -64,3 +64,21 @@ resource "kubernetes_service" "redis" {
     }
   }
 }
+
+resource "helm_release" "redis-exporter" {
+  chart   = "prometheus-community/prometheus-redis-exporter"
+  version = "5.1.0"
+
+  name      = "redis-exporter"
+  namespace = kubernetes_namespace.redis.metadata[0].name
+
+  set {
+    name  = "redisAddress"
+    value = "redis://${kubernetes_service.redis.metadata[0].name}:6379"
+  }
+
+  set {
+    name  = "serviceMonitor.enabled"
+    value = "true"
+  }
+}

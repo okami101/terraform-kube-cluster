@@ -71,6 +71,6 @@ resource "kubernetes_secret" "prometheus_auth_secret" {
   }
 
   data = {
-    "users" = local.http_basic_auth
+    "users" = var.http_basic_auth
   }
 }
