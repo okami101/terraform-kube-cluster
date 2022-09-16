@@ -13,14 +13,8 @@ terraform {
       version = "3.1.1"
     }
   }
-}
 
-provider "kubernetes" {
-  config_path = "~/.kube/config"
-}
-
-provider "helm" {
-  kubernetes {
-    config_path = "~/.kube/config"
+  backend "kubernetes" {
+    secret_suffix = "state"
   }
 }
