@@ -21,7 +21,3 @@ variable "smtp_password" {
 variable "grafana_db_password" {
   type = string
 }
-
-variable "mysql_exporter_password" {
-  type = string
-}

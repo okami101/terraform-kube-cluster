@@ -1,3 +1,13 @@
+module "ingress" {
+  source              = "./ingress"
+  domain              = var.domain
+  http_basic_auth     = local.http_basic_auth
+  cert_group_name     = var.cert_group_name
+  hetzner_dns_api_key = var.hetzner_dns_api_key
+  acme_email          = var.acme_email
+  zone_name           = var.zone_name
+}
+
 module "data" {
   source                     = "./data"
   domain                     = var.domain
@@ -13,27 +23,25 @@ module "data" {
   minio_password             = var.minio_password
   rabbitmq_default_user      = var.rabbitmq_default_user
   rabbitmq_default_password  = var.rabbitmq_default_password
+
+  depends_on = [
+    helm_release.nfs_provisioner,
+    helm_release.openebs_provisioner,
+  ]
 }
 
 module "monitoring" {
-  source                  = "./monitoring"
-  domain                  = var.domain
-  http_basic_auth         = local.http_basic_auth
-  smtp_host               = var.smtp_host
-  smtp_user               = var.smtp_user
-  smtp_password           = var.smtp_password
-  grafana_db_password     = var.grafana_db_password
-  mysql_exporter_password = var.mysql_exporter_password
-}
-
-module "ingress" {
-  source              = "./ingress"
+  source              = "./monitoring"
   domain              = var.domain
   http_basic_auth     = local.http_basic_auth
-  cert_group_name     = var.cert_group_name
-  hetzner_dns_api_key = var.hetzner_dns_api_key
-  acme_email          = var.acme_email
-  zone_name           = var.zone_name
+  smtp_host           = var.smtp_host
+  smtp_user           = var.smtp_user
+  smtp_password       = var.smtp_password
+  grafana_db_password = var.grafana_db_password
+
+  depends_on = [
+    module.data
+  ]
 }
 
 module "build" {
@@ -58,6 +66,10 @@ module "build" {
   concourse_secret_access_key  = var.concourse_secret_access_key
   concourse_bucket             = var.concourse_bucket
   concourse_webhook_token      = var.concourse_webhook_token
+
+  depends_on = [
+    module.data
+  ]
 }
 
 module "tools" {
@@ -68,4 +80,8 @@ module "tools" {
   redmine_secret_key_base = var.redmine_secret_key_base
   matomo_db_password      = var.matomo_db_password
   whitelisted_ips         = var.whitelisted_ips
+
+  depends_on = [
+    module.data
+  ]
 }
