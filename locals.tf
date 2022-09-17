@@ -11,4 +11,23 @@ resource "null_resource" "encrypted_admin_password" {
 
 locals {
   http_basic_auth = "${var.http_basic_username}:${null_resource.encrypted_admin_password.triggers.pw}"
+
+  pgsql_db_init = [
+    {
+      username = "grafana"
+      password = var.grafana_db_password
+    },
+    {
+      username = "gitea"
+      password = var.gitea_db_password
+    },
+    {
+      username = "concourse"
+      password = var.concourse_db_password
+    },
+    {
+      username = "redmine"
+      password = var.redmine_db_password
+    },
+  ]
 }

@@ -247,4 +247,8 @@ resource "kubernetes_secret" "image_pull_secrets" {
       }
     })
   }
+
+  depends_on = [
+    kubernetes_namespace.image_pull_secret_namespaces
+  ]
 }

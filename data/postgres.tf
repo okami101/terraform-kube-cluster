@@ -23,8 +23,11 @@ resource "kubernetes_config_map" "postgres_config" {
   }
 
   data = {
-    "postgres.conf"                      = file("configs/postgres.conf")
-    "pg_hba.conf"                        = file("configs/pg_hba.conf")
+    "postgres.conf" = file("configs/postgres.conf")
+    "pg_hba.conf"   = file("configs/pg_hba.conf")
+    "db_init.sql" = templatefile("scripts/db_init.tftpl", {
+      pgsql_db_init = var.pgsql_db_init
+    })
     "primary_create_replication_role.sh" = file("scripts/primary_create_replication_role.sh")
     "copy_primary_data_to_replica.sh"    = file("scripts/copy_primary_data_to_replica.sh")
   }
@@ -133,6 +136,12 @@ resource "kubernetes_stateful_set" "postgresql" {
             name       = "base-config"
             mount_path = "/docker-entrypoint-initdb.d/primary_create_replication_role.sh"
             sub_path   = "primary_create_replication_role.sh"
+          }
+
+          volume_mount {
+            name       = "base-config"
+            mount_path = "/docker-entrypoint-initdb.d/db_init.sql"
+            sub_path   = "db_init.sql"
           }
 
           volume_mount {

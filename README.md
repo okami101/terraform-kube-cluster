@@ -16,7 +16,9 @@ For proper install, it should be used on top of [Terraform Hcloud K0S](https://g
 
 ### Prepare
 
-You firstly need to install some helm charts as well as CRDs.
+You firstly need a working NFS serveur into nfs_server:nfs_path address. Test it with `sudo mount -t nfs nfs_server:nfs_path nfs-test` on some worker.
+
+Next you need to install some helm charts as well as CRDs.
 
 ```sh
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner

@@ -23,6 +23,7 @@ module "data" {
   minio_password             = var.minio_password
   rabbitmq_default_user      = var.rabbitmq_default_user
   rabbitmq_default_password  = var.rabbitmq_default_password
+  pgsql_db_init              = local.pgsql_db_init
 
   depends_on = [
     helm_release.nfs_provisioner,
@@ -68,7 +69,8 @@ module "build" {
   concourse_webhook_token      = var.concourse_webhook_token
 
   depends_on = [
-    module.data
+    module.data,
+    module.monitoring,
   ]
 }
 
@@ -82,6 +84,7 @@ module "tools" {
   whitelisted_ips         = var.whitelisted_ips
 
   depends_on = [
-    module.data
+    module.data,
+    module.monitoring,
   ]
 }

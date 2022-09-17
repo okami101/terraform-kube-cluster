@@ -34,6 +34,13 @@ variable "pgadmin_default_password" {
   type = string
 }
 
+variable "pgsql_db_init" {
+  type = list(object({
+    username = string
+    password = string
+  }))
+}
+
 variable "minio_user" {
   type = string
 }
