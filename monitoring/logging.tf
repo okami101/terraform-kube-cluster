@@ -6,7 +6,7 @@ resource "kubernetes_namespace" "logging" {
 
 resource "helm_release" "loki" {
   chart   = "grafana/loki"
-  version = "3.0.3"
+  version = "3.0.7"
 
   name      = "loki"
   namespace = kubernetes_namespace.logging.metadata[0].name
@@ -22,7 +22,7 @@ resource "helm_release" "loki" {
 
 resource "helm_release" "promtail" {
   chart   = "grafana/promtail"
-  version = "6.3.1"
+  version = "6.4.0"
 
   name      = "promtail"
   namespace = kubernetes_namespace.logging.metadata[0].name
