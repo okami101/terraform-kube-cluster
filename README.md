@@ -92,16 +92,4 @@ flux create source git flux-monitoring --interval=30m --url=https://github.com/f
 flux create kustomization monitoring-config --interval=1h --prune=true --source=flux-monitoring --path="./manifests/monitoring/monitoring-config" --health-check-timeout=1m --export >> flux-monitoring.yaml
 
 # commit, push the repo and check reconcile
-
-# create webhook token for quicker sync
-TOKEN=$(head -c 12 /dev/urandom | shasum | cut -d ' ' -f1)
-echo $TOKEN
-kubectl -n flux-system create secret generic webhook-token --from-literal=token=$TOKEN
-
-# then generate receiver manifests and push
-
-# show webhook urls for registry and gitea
-kubectl -n flux-system get receiver
-
-# then add webhook urls in gitea for flux project (manual), then registry with registry_endpoints variable in this terraform project.
 ```
