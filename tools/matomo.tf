@@ -22,7 +22,7 @@ resource "kubernetes_persistent_volume_claim_v1" "matomo_data" {
   }
   spec {
     access_modes       = ["ReadWriteOnce"]
-    storage_class_name = "openebs-hostpath"
+    storage_class_name = "local-path"
     resources {
       requests = {
         storage = "1Gi"

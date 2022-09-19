@@ -100,7 +100,7 @@ resource "kubernetes_persistent_volume_claim_v1" "registry_data" {
   }
   spec {
     access_modes       = ["ReadWriteOnce"]
-    storage_class_name = "openebs-hostpath"
+    storage_class_name = "local-path"
     resources {
       requests = {
         storage = "20Gi"

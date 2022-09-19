@@ -178,7 +178,7 @@ resource "kubernetes_stateful_set_v1" "postgresql" {
       }
       spec {
         access_modes       = ["ReadWriteOnce"]
-        storage_class_name = "openebs-hostpath"
+        storage_class_name = "local-path"
         resources {
           requests = {
             storage = "8Gi"
@@ -329,7 +329,7 @@ resource "kubernetes_stateful_set_v1" "postgresql_replica" {
       }
       spec {
         access_modes       = ["ReadWriteOnce"]
-        storage_class_name = "openebs-hostpath"
+        storage_class_name = "local-path"
         resources {
           requests = {
             storage = "8Gi"

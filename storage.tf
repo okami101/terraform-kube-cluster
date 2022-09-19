@@ -19,17 +19,3 @@ resource "helm_release" "nfs_provisioner" {
     value = true
   }
 }
-
-resource "kubernetes_namespace_v1" "openebs" {
-  metadata {
-    name = "openebs"
-  }
-}
-
-resource "helm_release" "openebs_provisioner" {
-  chart   = "openebs/openebs"
-  version = "3.3.1"
-
-  name      = "openebs"
-  namespace = kubernetes_namespace_v1.openebs.metadata[0].name
-}

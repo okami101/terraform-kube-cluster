@@ -117,7 +117,7 @@ resource "kubernetes_stateful_set_v1" "mysql" {
       }
       spec {
         access_modes       = ["ReadWriteOnce"]
-        storage_class_name = "openebs-hostpath"
+        storage_class_name = "local-path"
         resources {
           requests = {
             storage = "8Gi"

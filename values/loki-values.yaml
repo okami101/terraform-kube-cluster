@@ -10,7 +10,7 @@ singleBinary:
     - key: node-role.kubernetes.io/monitor
       operator: Exists
   persistence:
-    storageClass: openebs-hostpath
+    storageClass: local-path
 
 monitoring:
   selfMonitoring:

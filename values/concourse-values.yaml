@@ -46,7 +46,7 @@ persistence:
   enabled: true
 
   worker:
-    storageClass: openebs-hostpath
+    storageClass: local-path
 
 postgresql:
   enabled: false
