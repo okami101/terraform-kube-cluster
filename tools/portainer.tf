@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "portainer" {
+resource "kubernetes_namespace_v1" "portainer" {
   metadata {
     name = "portainer"
   }
@@ -9,7 +9,7 @@ resource "helm_release" "portainer" {
   version = "1.0.35"
 
   name      = "portainer"
-  namespace = kubernetes_namespace.portainer.metadata[0].name
+  namespace = kubernetes_namespace_v1.portainer.metadata[0].name
 
   set {
     name  = "service.type"
@@ -23,7 +23,7 @@ resource "kubernetes_manifest" "portainer_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "portainer"
-      namespace = kubernetes_namespace.portainer.metadata[0].name
+      namespace = kubernetes_namespace_v1.portainer.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -55,7 +55,7 @@ resource "kubernetes_manifest" "portainer_middleware_ip" {
     kind       = "Middleware"
     metadata = {
       name      = "middleware-ip"
-      namespace = kubernetes_namespace.portainer.metadata[0].name
+      namespace = kubernetes_namespace_v1.portainer.metadata[0].name
     }
     spec = {
       ipWhiteList = {

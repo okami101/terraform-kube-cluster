@@ -1,7 +1,7 @@
-resource "kubernetes_persistent_volume_claim" "pgadmin" {
+resource "kubernetes_persistent_volume_claim_v1" "pgadmin" {
   metadata {
     name      = "pgadmin-data"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
     access_modes = ["ReadWriteMany"]
@@ -13,10 +13,10 @@ resource "kubernetes_persistent_volume_claim" "pgadmin" {
   }
 }
 
-resource "kubernetes_deployment" "pgadmin" {
+resource "kubernetes_deployment_v1" "pgadmin" {
   metadata {
     name      = "pgadmin"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
     selector {
@@ -62,10 +62,10 @@ resource "kubernetes_deployment" "pgadmin" {
   }
 }
 
-resource "kubernetes_service" "pgadmin" {
+resource "kubernetes_service_v1" "pgadmin" {
   metadata {
     name      = "pgadmin"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
     selector = {
@@ -84,7 +84,7 @@ resource "kubernetes_manifest" "pgadmin_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "pgadmin"
-      namespace = kubernetes_namespace.postgres.metadata[0].name
+      namespace = kubernetes_namespace_v1.postgres.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -94,7 +94,7 @@ resource "kubernetes_manifest" "pgadmin_ingress" {
           kind  = "Rule"
           services = [
             {
-              name = kubernetes_service.pgadmin.metadata[0].name
+              name = kubernetes_service_v1.pgadmin.metadata[0].name
               kind = "Service"
               port = 80
             }

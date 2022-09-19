@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "traefik" {
+resource "kubernetes_namespace_v1" "traefik" {
   metadata {
     name = "traefik"
   }
@@ -9,7 +9,7 @@ resource "helm_release" "traefik" {
   version = "10.24.3"
 
   name      = "traefik"
-  namespace = kubernetes_namespace.traefik.metadata[0].name
+  namespace = kubernetes_namespace_v1.traefik.metadata[0].name
 
   values = [
     file("values/traefik-values.yaml")
@@ -22,7 +22,7 @@ resource "kubernetes_manifest" "traefik_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "traefik"
-      namespace = kubernetes_namespace.traefik.metadata[0].name
+      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -53,20 +53,20 @@ resource "kubernetes_manifest" "traefik_middleware_auth" {
     kind       = "Middleware"
     metadata = {
       name      = "middleware-auth"
-      namespace = kubernetes_namespace.traefik.metadata[0].name
+      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
     }
     spec = {
       basicAuth = {
-        secret = kubernetes_secret.traefik_auth_secret.metadata[0].name
+        secret = kubernetes_secret_v1.traefik_auth_secret.metadata[0].name
       }
     }
   }
 }
 
-resource "kubernetes_secret" "traefik_auth_secret" {
+resource "kubernetes_secret_v1" "traefik_auth_secret" {
   metadata {
     name      = "auth-secret"
-    namespace = kubernetes_namespace.traefik.metadata[0].name
+    namespace = kubernetes_namespace_v1.traefik.metadata[0].name
   }
 
   data = {
@@ -80,7 +80,7 @@ resource "kubernetes_manifest" "traefik_service_monitor" {
     kind       = "ServiceMonitor"
     metadata = {
       name      = "metrics"
-      namespace = kubernetes_namespace.traefik.metadata[0].name
+      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
     }
     spec = {
       endpoints = [

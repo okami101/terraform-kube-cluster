@@ -3,7 +3,7 @@ resource "helm_release" "grafana" {
   version = "6.38.3"
 
   name      = "grafana"
-  namespace = kubernetes_namespace.monitoring.metadata[0].name
+  namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
 
   values = [
     file("values/grafana-values.yaml")
@@ -90,7 +90,7 @@ resource "kubernetes_manifest" "grafana_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "grafana"
-      namespace = kubernetes_namespace.monitoring.metadata[0].name
+      namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]

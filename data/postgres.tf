@@ -1,25 +1,25 @@
-resource "kubernetes_namespace" "postgres" {
+resource "kubernetes_namespace_v1" "postgres" {
   metadata {
     name = "postgres"
   }
 }
 
-resource "kubernetes_secret" "postgres_secret" {
+resource "kubernetes_secret_v1" "postgres_secret" {
   metadata {
     name      = "postgres-secret"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   data = {
     "pgsql-password"             = var.pgsql_password
     "pgsql-replication-password" = var.pgsql_replication_password
-    "datasources"                = "postgresql://${var.pgsql_user}:${urlencode(var.pgsql_password)}@${kubernetes_service.postgres.metadata[0].name}?sslmode=disable,postgresql://${var.pgsql_user}:${urlencode(var.pgsql_password)}@${kubernetes_service.postgres_replica.metadata[0].name}?sslmode=disable"
+    "datasources"                = "postgresql://${var.pgsql_user}:${urlencode(var.pgsql_password)}@${kubernetes_service_v1.postgres.metadata[0].name}?sslmode=disable,postgresql://${var.pgsql_user}:${urlencode(var.pgsql_password)}@${kubernetes_service_v1.postgres_replica.metadata[0].name}?sslmode=disable"
   }
 }
 
-resource "kubernetes_config_map" "postgres_config" {
+resource "kubernetes_config_map_v1" "postgres_config" {
   metadata {
     name      = "postgres-config"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
 
   data = {
@@ -33,10 +33,10 @@ resource "kubernetes_config_map" "postgres_config" {
   }
 }
 
-resource "kubernetes_stateful_set" "postgresql" {
+resource "kubernetes_stateful_set_v1" "postgresql" {
   metadata {
     name      = "postgresql"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
     service_name = "postgresql"
@@ -69,7 +69,7 @@ resource "kubernetes_stateful_set" "postgresql" {
             name = "POSTGRES_PASSWORD"
             value_from {
               secret_key_ref {
-                name = kubernetes_secret.postgres_secret.metadata[0].name
+                name = kubernetes_secret_v1.postgres_secret.metadata[0].name
                 key  = "pgsql-password"
               }
             }
@@ -89,7 +89,7 @@ resource "kubernetes_stateful_set" "postgresql" {
             name = "POSTGRES_REPLICATION_PASSWORD"
             value_from {
               secret_key_ref {
-                name = kubernetes_secret.postgres_secret.metadata[0].name
+                name = kubernetes_secret_v1.postgres_secret.metadata[0].name
                 key  = "pgsql-replication-password"
               }
             }
@@ -189,10 +189,10 @@ resource "kubernetes_stateful_set" "postgresql" {
   }
 }
 
-resource "kubernetes_stateful_set" "postgresql_replica" {
+resource "kubernetes_stateful_set_v1" "postgresql_replica" {
   metadata {
     name      = "postgresql-replica"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
     service_name = "postgresql-replica"
@@ -218,7 +218,7 @@ resource "kubernetes_stateful_set" "postgresql_replica" {
             name = "PGPASSWORD"
             value_from {
               secret_key_ref {
-                name = kubernetes_secret.postgres_secret.metadata[0].name
+                name = kubernetes_secret_v1.postgres_secret.metadata[0].name
                 key  = "pgsql-replication-password"
               }
             }
@@ -226,7 +226,7 @@ resource "kubernetes_stateful_set" "postgresql_replica" {
 
           env {
             name  = "PRIMARY_HOST_NAME"
-            value = kubernetes_service.postgres.metadata[0].name
+            value = kubernetes_service_v1.postgres.metadata[0].name
           }
 
           command = [
@@ -340,10 +340,10 @@ resource "kubernetes_stateful_set" "postgresql_replica" {
   }
 }
 
-resource "kubernetes_service" "postgres" {
+resource "kubernetes_service_v1" "postgres" {
   metadata {
     name      = "db"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
     selector = {
@@ -356,10 +356,10 @@ resource "kubernetes_service" "postgres" {
   }
 }
 
-resource "kubernetes_service" "postgres_replica" {
+resource "kubernetes_service_v1" "postgres_replica" {
   metadata {
     name      = "db-replica"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
     selector = {
@@ -372,10 +372,10 @@ resource "kubernetes_service" "postgres_replica" {
   }
 }
 
-resource "kubernetes_service" "postgres_ro" {
+resource "kubernetes_service_v1" "postgres_ro" {
   metadata {
     name      = "db-ro"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
     selector = {
@@ -393,7 +393,7 @@ resource "helm_release" "postgres-exporter" {
   version = "3.1.3"
 
   name      = "postgres-exporter"
-  namespace = kubernetes_namespace.postgres.metadata[0].name
+  namespace = kubernetes_namespace_v1.postgres.metadata[0].name
 
   set {
     name  = "config.datasourceSecret.name"
@@ -408,5 +408,10 @@ resource "helm_release" "postgres-exporter" {
   set {
     name  = "serviceMonitor.enabled"
     value = "true"
+  }
+
+  set {
+    name  = "rbac.pspEnabled"
+    value = "false"
   }
 }

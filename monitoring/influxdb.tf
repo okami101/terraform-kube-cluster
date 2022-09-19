@@ -1,7 +1,7 @@
-resource "kubernetes_stateful_set" "influxdb" {
+resource "kubernetes_stateful_set_v1" "influxdb" {
   metadata {
     name      = "influxdb"
-    namespace = kubernetes_namespace.monitoring.metadata[0].name
+    namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
   }
   spec {
     selector {
@@ -35,10 +35,10 @@ resource "kubernetes_stateful_set" "influxdb" {
   }
 }
 
-resource "kubernetes_service" "influxdb" {
+resource "kubernetes_service_v1" "influxdb" {
   metadata {
     name      = "influxdb"
-    namespace = kubernetes_namespace.monitoring.metadata[0].name
+    namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
   }
   spec {
     selector = {

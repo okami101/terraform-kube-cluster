@@ -1,7 +1,7 @@
-resource "kubernetes_deployment" "phpmyadmin" {
+resource "kubernetes_deployment_v1" "phpmyadmin" {
   metadata {
     name      = "phpmyadmin"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
   spec {
     selector {
@@ -24,7 +24,7 @@ resource "kubernetes_deployment" "phpmyadmin" {
             name = "MYSQL_ROOT_PASSWORD"
             value_from {
               secret_key_ref {
-                name = kubernetes_secret.mysql_secret.metadata[0].name
+                name = kubernetes_secret_v1.mysql_secret.metadata[0].name
                 key  = "mysql-root-password"
               }
             }
@@ -32,7 +32,7 @@ resource "kubernetes_deployment" "phpmyadmin" {
 
           env {
             name  = "PMA_HOST"
-            value = kubernetes_service.mysql.metadata[0].name
+            value = kubernetes_service_v1.mysql.metadata[0].name
           }
 
           env {
@@ -72,10 +72,10 @@ resource "kubernetes_deployment" "phpmyadmin" {
   }
 }
 
-resource "kubernetes_service" "phpmyadmin" {
+resource "kubernetes_service_v1" "phpmyadmin" {
   metadata {
     name      = "phpmyadmin"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
   spec {
     selector = {
@@ -94,7 +94,7 @@ resource "kubernetes_manifest" "phpmyadmin" {
     kind       = "IngressRoute"
     metadata = {
       name      = "phpmyadmin"
-      namespace = kubernetes_namespace.mysql.metadata[0].name
+      namespace = kubernetes_namespace_v1.mysql.metadata[0].name
     }
     spec = {
       entryPoints = [
@@ -107,7 +107,7 @@ resource "kubernetes_manifest" "phpmyadmin" {
           services = [
             {
               kind = "Service"
-              name = kubernetes_service.phpmyadmin.metadata[0].name
+              name = kubernetes_service_v1.phpmyadmin.metadata[0].name
               port = 80
             },
           ]

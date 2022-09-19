@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "concourse" {
+resource "kubernetes_namespace_v1" "concourse" {
   metadata {
     name = "concourse"
   }
@@ -9,7 +9,7 @@ resource "helm_release" "concourse" {
   version = "17.0.31"
 
   name      = "concourse"
-  namespace = kubernetes_namespace.concourse.metadata[0].name
+  namespace = kubernetes_namespace_v1.concourse.metadata[0].name
 
   values = [
     file("values/concourse-values.yaml")
@@ -42,7 +42,7 @@ resource "kubernetes_manifest" "concourse_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "concourse"
-      namespace = kubernetes_namespace.concourse.metadata[0].name
+      namespace = kubernetes_namespace_v1.concourse.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -63,7 +63,7 @@ resource "kubernetes_manifest" "concourse_ingress" {
   }
 }
 
-resource "kubernetes_secret" "concourse_registry" {
+resource "kubernetes_secret_v1" "concourse_registry" {
   metadata {
     name      = "registry"
     namespace = "concourse-main"
@@ -80,7 +80,7 @@ resource "kubernetes_secret" "concourse_registry" {
   ]
 }
 
-resource "kubernetes_secret" "concourse_webhook" {
+resource "kubernetes_secret_v1" "concourse_webhook" {
   metadata {
     name      = "webhook-token"
     namespace = "concourse-main"
@@ -95,7 +95,7 @@ resource "kubernetes_secret" "concourse_webhook" {
   ]
 }
 
-resource "kubernetes_secret" "concourse_s3" {
+resource "kubernetes_secret_v1" "concourse_s3" {
   metadata {
     name      = "s3"
     namespace = "concourse-main"

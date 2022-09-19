@@ -1,13 +1,13 @@
-resource "kubernetes_namespace" "redis" {
+resource "kubernetes_namespace_v1" "redis" {
   metadata {
     name = "redis"
   }
 }
 
-resource "kubernetes_stateful_set" "redis" {
+resource "kubernetes_stateful_set_v1" "redis" {
   metadata {
     name      = "redis"
-    namespace = kubernetes_namespace.redis.metadata[0].name
+    namespace = kubernetes_namespace_v1.redis.metadata[0].name
   }
 
   spec {
@@ -49,10 +49,10 @@ resource "kubernetes_stateful_set" "redis" {
   }
 }
 
-resource "kubernetes_service" "redis" {
+resource "kubernetes_service_v1" "redis" {
   metadata {
     name      = "db"
-    namespace = kubernetes_namespace.redis.metadata[0].name
+    namespace = kubernetes_namespace_v1.redis.metadata[0].name
   }
   spec {
     selector = {
@@ -70,15 +70,20 @@ resource "helm_release" "redis-exporter" {
   version = "5.1.0"
 
   name      = "redis-exporter"
-  namespace = kubernetes_namespace.redis.metadata[0].name
+  namespace = kubernetes_namespace_v1.redis.metadata[0].name
 
   set {
     name  = "redisAddress"
-    value = "redis://${kubernetes_service.redis.metadata[0].name}:6379"
+    value = "redis://${kubernetes_service_v1.redis.metadata[0].name}:6379"
   }
 
   set {
     name  = "serviceMonitor.enabled"
     value = "true"
+  }
+
+  set {
+    name  = "rbac.pspEnabled"
+    value = "false"
   }
 }

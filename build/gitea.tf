@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "gitea" {
+resource "kubernetes_namespace_v1" "gitea" {
   metadata {
     name = "gitea"
   }
@@ -9,7 +9,7 @@ resource "helm_release" "gitea" {
   version = "6.0.1"
 
   name      = "gitea"
-  namespace = kubernetes_namespace.gitea.metadata[0].name
+  namespace = kubernetes_namespace_v1.gitea.metadata[0].name
 
   values = [
     templatefile("values/gitea-values.yaml", {
@@ -43,7 +43,7 @@ resource "kubernetes_manifest" "gitea_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "gitea-http"
-      namespace = kubernetes_namespace.gitea.metadata[0].name
+      namespace = kubernetes_namespace_v1.gitea.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -70,7 +70,7 @@ resource "kubernetes_manifest" "gitea_ingress_ssh" {
     kind       = "IngressRouteTCP"
     metadata = {
       name      = "gitea-ssh"
-      namespace = kubernetes_namespace.gitea.metadata[0].name
+      namespace = kubernetes_namespace_v1.gitea.metadata[0].name
     }
     spec = {
       entryPoints = ["ssh"]

@@ -1,7 +1,7 @@
-resource "kubernetes_config_map" "postgres_backup_script" {
+resource "kubernetes_config_map_v1" "postgres_backup_script" {
   metadata {
     name      = "backup-script"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
 
   data = {
@@ -9,10 +9,10 @@ resource "kubernetes_config_map" "postgres_backup_script" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim" "postgres_backup" {
+resource "kubernetes_persistent_volume_claim_v1" "postgres_backup" {
   metadata {
     name      = "postgres-backup"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
     access_modes = ["ReadWriteMany"]
@@ -24,10 +24,10 @@ resource "kubernetes_persistent_volume_claim" "postgres_backup" {
   }
 }
 
-resource "kubernetes_cron_job" "postgres_backup" {
+resource "kubernetes_cron_job_v1" "postgres_backup" {
   metadata {
     name      = "backup"
-    namespace = kubernetes_namespace.postgres.metadata[0].name
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
     schedule = "0 */1 * * *"
@@ -51,7 +51,7 @@ resource "kubernetes_cron_job" "postgres_backup" {
                 name = "PG_PASSWORD"
                 value_from {
                   secret_key_ref {
-                    name = kubernetes_secret.postgres_secret.metadata[0].name
+                    name = kubernetes_secret_v1.postgres_secret.metadata[0].name
                     key  = "pgsql-password"
                   }
                 }
@@ -64,7 +64,7 @@ resource "kubernetes_cron_job" "postgres_backup" {
 
               env {
                 name  = "PG_HOST"
-                value = kubernetes_service.postgres.metadata[0].name
+                value = kubernetes_service_v1.postgres.metadata[0].name
               }
 
               env {
@@ -94,7 +94,7 @@ resource "kubernetes_cron_job" "postgres_backup" {
             volume {
               name = "backup-script"
               config_map {
-                name         = kubernetes_config_map.postgres_backup_script.metadata[0].name
+                name         = kubernetes_config_map_v1.postgres_backup_script.metadata[0].name
                 default_mode = "0744"
               }
             }

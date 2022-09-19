@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "cert_manager" {
+resource "kubernetes_namespace_v1" "cert_manager" {
   metadata {
     name = "cert-manager"
   }
@@ -9,7 +9,7 @@ resource "helm_release" "cert_manager" {
   version = "1.9.1"
 
   name      = "cert-manager"
-  namespace = kubernetes_namespace.cert_manager.metadata[0].name
+  namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name
 
   set {
     name  = "prometheus.servicemonitor.enabled"
@@ -22,7 +22,7 @@ resource "helm_release" "cert_manager_webhook_hetzner" {
   version = "1.1.0"
 
   name      = "cert-manager-webhook-hetzner"
-  namespace = kubernetes_namespace.cert_manager.metadata[0].name
+  namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name
 
   set {
     name  = "groupName"

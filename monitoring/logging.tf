@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "logging" {
+resource "kubernetes_namespace_v1" "logging" {
   metadata {
     name = "logging"
   }
@@ -9,7 +9,7 @@ resource "helm_release" "loki" {
   version = "3.0.7"
 
   name      = "loki"
-  namespace = kubernetes_namespace.logging.metadata[0].name
+  namespace = kubernetes_namespace_v1.logging.metadata[0].name
 
   values = [
     file("values/loki-values.yaml")
@@ -25,7 +25,7 @@ resource "helm_release" "promtail" {
   version = "6.4.0"
 
   name      = "promtail"
-  namespace = kubernetes_namespace.logging.metadata[0].name
+  namespace = kubernetes_namespace_v1.logging.metadata[0].name
 
   values = [
     file("values/promtail-values.yaml")

@@ -18,10 +18,10 @@ resource "kubernetes_manifest" "default_tls_store" {
   }
 }
 
-resource "kubernetes_secret" "hetzner_secret" {
+resource "kubernetes_secret_v1" "hetzner_secret" {
   metadata {
     name      = "hetzner-secret"
-    namespace = kubernetes_namespace.cert_manager.metadata[0].name
+    namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name
   }
 
   data = {
@@ -49,7 +49,7 @@ resource "kubernetes_manifest" "letsencrypt_production_issuer" {
               webhook = {
                 config = {
                   apiUrl     = "https://dns.hetzner.com/api/v1"
-                  secretName = kubernetes_secret.hetzner_secret.metadata[0].name
+                  secretName = kubernetes_secret_v1.hetzner_secret.metadata[0].name
                   zoneName   = var.zone_name
                 }
                 groupName  = var.cert_group_name

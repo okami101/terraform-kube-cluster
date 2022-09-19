@@ -1,23 +1,23 @@
-resource "kubernetes_namespace" "mysql" {
+resource "kubernetes_namespace_v1" "mysql" {
   metadata {
     name = "mysql"
   }
 }
 
-resource "kubernetes_secret" "mysql_secret" {
+resource "kubernetes_secret_v1" "mysql_secret" {
   metadata {
     name      = "mysql-secret"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
   data = {
     "mysql-root-password" = var.mysql_password
   }
 }
 
-resource "kubernetes_config_map" "mysql_config" {
+resource "kubernetes_config_map_v1" "mysql_config" {
   metadata {
     name      = "mysql-config"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
 
   data = {
@@ -25,10 +25,10 @@ resource "kubernetes_config_map" "mysql_config" {
   }
 }
 
-resource "kubernetes_stateful_set" "mysql" {
+resource "kubernetes_stateful_set_v1" "mysql" {
   metadata {
     name      = "mysql"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
 
   spec {
@@ -53,7 +53,7 @@ resource "kubernetes_stateful_set" "mysql" {
             name = "MYSQL_ROOT_PASSWORD"
             value_from {
               secret_key_ref {
-                name = kubernetes_secret.mysql_secret.metadata[0].name
+                name = kubernetes_secret_v1.mysql_secret.metadata[0].name
                 key  = "mysql-root-password"
               }
             }
@@ -128,10 +128,10 @@ resource "kubernetes_stateful_set" "mysql" {
   }
 }
 
-resource "kubernetes_service" "mysql" {
+resource "kubernetes_service_v1" "mysql" {
   metadata {
     name      = "db"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
   spec {
     selector = {
@@ -149,11 +149,11 @@ resource "helm_release" "mysql-exporter" {
   version = "1.9.0"
 
   name      = "mysql-exporter"
-  namespace = kubernetes_namespace.mysql.metadata[0].name
+  namespace = kubernetes_namespace_v1.mysql.metadata[0].name
 
   set {
     name  = "mysql.host"
-    value = kubernetes_service.mysql.metadata[0].name
+    value = kubernetes_service_v1.mysql.metadata[0].name
   }
 
   set {

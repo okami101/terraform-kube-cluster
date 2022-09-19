@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "tracing" {
+resource "kubernetes_namespace_v1" "tracing" {
   metadata {
     name = "tracing"
   }
@@ -9,7 +9,7 @@ resource "helm_release" "jaeger" {
   version = "0.61.0"
 
   name      = "jaeger"
-  namespace = kubernetes_namespace.tracing.metadata[0].name
+  namespace = kubernetes_namespace_v1.tracing.metadata[0].name
 
   values = [
     file("values/jaeger-values.yaml")
@@ -22,7 +22,7 @@ resource "kubernetes_manifest" "jaeger_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "jaeger"
-      namespace = kubernetes_namespace.tracing.metadata[0].name
+      namespace = kubernetes_namespace_v1.tracing.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -54,20 +54,20 @@ resource "kubernetes_manifest" "jaeger_middleware_auth" {
     kind       = "Middleware"
     metadata = {
       name      = "middleware-auth"
-      namespace = kubernetes_namespace.tracing.metadata[0].name
+      namespace = kubernetes_namespace_v1.tracing.metadata[0].name
     }
     spec = {
       basicAuth = {
-        secret = kubernetes_secret.jaeger_auth_secret.metadata[0].name
+        secret = kubernetes_secret_v1.jaeger_auth_secret.metadata[0].name
       }
     }
   }
 }
 
-resource "kubernetes_secret" "jaeger_auth_secret" {
+resource "kubernetes_secret_v1" "jaeger_auth_secret" {
   metadata {
     name      = "auth-secret"
-    namespace = kubernetes_namespace.tracing.metadata[0].name
+    namespace = kubernetes_namespace_v1.tracing.metadata[0].name
   }
 
   data = {

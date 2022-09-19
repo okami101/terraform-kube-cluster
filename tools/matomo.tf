@@ -1,13 +1,13 @@
-resource "kubernetes_namespace" "matomo" {
+resource "kubernetes_namespace_v1" "matomo" {
   metadata {
     name = "matomo"
   }
 }
 
-resource "kubernetes_secret" "matomo_secret" {
+resource "kubernetes_secret_v1" "matomo_secret" {
   metadata {
     name      = "matomo-secret"
-    namespace = kubernetes_namespace.matomo.metadata[0].name
+    namespace = kubernetes_namespace_v1.matomo.metadata[0].name
   }
 
   data = {
@@ -15,10 +15,10 @@ resource "kubernetes_secret" "matomo_secret" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim" "matomo_data" {
+resource "kubernetes_persistent_volume_claim_v1" "matomo_data" {
   metadata {
     name      = "matomo-data"
-    namespace = kubernetes_namespace.matomo.metadata[0].name
+    namespace = kubernetes_namespace_v1.matomo.metadata[0].name
   }
   spec {
     access_modes       = ["ReadWriteOnce"]
@@ -31,10 +31,10 @@ resource "kubernetes_persistent_volume_claim" "matomo_data" {
   }
 }
 
-resource "kubernetes_deployment" "matomo" {
+resource "kubernetes_deployment_v1" "matomo" {
   metadata {
     name      = "matomo"
-    namespace = kubernetes_namespace.matomo.metadata[0].name
+    namespace = kubernetes_namespace_v1.matomo.metadata[0].name
   }
   spec {
     selector {
@@ -97,10 +97,10 @@ resource "kubernetes_deployment" "matomo" {
   }
 }
 
-resource "kubernetes_service" "matomo" {
+resource "kubernetes_service_v1" "matomo" {
   metadata {
     name      = "matomo"
-    namespace = kubernetes_namespace.matomo.metadata[0].name
+    namespace = kubernetes_namespace_v1.matomo.metadata[0].name
   }
   spec {
     selector = {
@@ -118,7 +118,7 @@ resource "kubernetes_manifest" "matomo_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "matomo"
-      namespace = kubernetes_namespace.matomo.metadata[0].name
+      namespace = kubernetes_namespace_v1.matomo.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -139,10 +139,10 @@ resource "kubernetes_manifest" "matomo_ingress" {
   }
 }
 
-resource "kubernetes_cron_job" "matomo_archive" {
+resource "kubernetes_cron_job_v1" "matomo_archive" {
   metadata {
     name      = "archive"
-    namespace = kubernetes_namespace.matomo.metadata[0].name
+    namespace = kubernetes_namespace_v1.matomo.metadata[0].name
   }
   spec {
     schedule = "5 * * * *"

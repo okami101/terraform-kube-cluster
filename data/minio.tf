@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "minio" {
+resource "kubernetes_namespace_v1" "minio" {
   metadata {
     name = "minio"
   }
@@ -9,7 +9,7 @@ resource "helm_release" "minio" {
   version = "4.0.14"
 
   name      = "minio"
-  namespace = kubernetes_namespace.minio.metadata[0].name
+  namespace = kubernetes_namespace_v1.minio.metadata[0].name
 
   values = [
     file("values/minio-values.yaml")
@@ -32,7 +32,7 @@ resource "kubernetes_manifest" "s3_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "s3"
-      namespace = kubernetes_namespace.minio.metadata[0].name
+      namespace = kubernetes_namespace_v1.minio.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -59,7 +59,7 @@ resource "kubernetes_manifest" "minio_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "minio"
-      namespace = kubernetes_namespace.minio.metadata[0].name
+      namespace = kubernetes_namespace_v1.minio.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]

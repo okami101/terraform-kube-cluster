@@ -1,13 +1,13 @@
-resource "kubernetes_namespace" "rabbitmq" {
+resource "kubernetes_namespace_v1" "rabbitmq" {
   metadata {
     name = "rabbitmq"
   }
 }
 
-resource "kubernetes_stateful_set" "rabbitmq" {
+resource "kubernetes_stateful_set_v1" "rabbitmq" {
   metadata {
     name      = "rabbitmq"
-    namespace = kubernetes_namespace.rabbitmq.metadata[0].name
+    namespace = kubernetes_namespace_v1.rabbitmq.metadata[0].name
   }
   spec {
     selector {
@@ -62,10 +62,10 @@ resource "kubernetes_stateful_set" "rabbitmq" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim" "rabbitmq_data" {
+resource "kubernetes_persistent_volume_claim_v1" "rabbitmq_data" {
   metadata {
     name      = "rabbitmq-data"
-    namespace = kubernetes_namespace.rabbitmq.metadata[0].name
+    namespace = kubernetes_namespace_v1.rabbitmq.metadata[0].name
   }
   spec {
     access_modes       = ["ReadWriteOnce"]
@@ -78,10 +78,10 @@ resource "kubernetes_persistent_volume_claim" "rabbitmq_data" {
   }
 }
 
-resource "kubernetes_service" "rabbitmq" {
+resource "kubernetes_service_v1" "rabbitmq" {
   metadata {
     name      = "queue"
-    namespace = kubernetes_namespace.rabbitmq.metadata[0].name
+    namespace = kubernetes_namespace_v1.rabbitmq.metadata[0].name
     labels = {
       app = "rabbitmq"
     }
@@ -114,7 +114,7 @@ resource "kubernetes_manifest" "rabbitmq_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "rabbitmq"
-      namespace = kubernetes_namespace.rabbitmq.metadata[0].name
+      namespace = kubernetes_namespace_v1.rabbitmq.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -124,7 +124,7 @@ resource "kubernetes_manifest" "rabbitmq_ingress" {
           kind  = "Rule"
           services = [
             {
-              name = kubernetes_service.rabbitmq.metadata[0].name
+              name = kubernetes_service_v1.rabbitmq.metadata[0].name
               kind = "Service"
               port = 15672
             }
@@ -141,7 +141,7 @@ resource "kubernetes_manifest" "rabbitmq_service_monitor" {
     kind       = "ServiceMonitor"
     metadata = {
       name      = "metrics"
-      namespace = kubernetes_namespace.rabbitmq.metadata[0].name
+      namespace = kubernetes_namespace_v1.rabbitmq.metadata[0].name
     }
     spec = {
       endpoints = [

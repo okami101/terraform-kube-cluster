@@ -20,7 +20,7 @@ resource "helm_release" "nfs_provisioner" {
   }
 }
 
-resource "kubernetes_namespace" "openebs" {
+resource "kubernetes_namespace_v1" "openebs" {
   metadata {
     name = "openebs"
   }
@@ -31,5 +31,5 @@ resource "helm_release" "openebs_provisioner" {
   version = "3.3.1"
 
   name      = "openebs"
-  namespace = kubernetes_namespace.openebs.metadata[0].name
+  namespace = kubernetes_namespace_v1.openebs.metadata[0].name
 }

@@ -1,13 +1,13 @@
-resource "kubernetes_namespace" "elastic" {
+resource "kubernetes_namespace_v1" "elastic" {
   metadata {
     name = "elastic"
   }
 }
 
-resource "kubernetes_stateful_set" "elasticsearch" {
+resource "kubernetes_stateful_set_v1" "elasticsearch" {
   metadata {
     name      = "elasticsearch"
-    namespace = kubernetes_namespace.elastic.metadata[0].name
+    namespace = kubernetes_namespace_v1.elastic.metadata[0].name
   }
   spec {
     selector {
@@ -74,10 +74,10 @@ resource "kubernetes_stateful_set" "elasticsearch" {
   }
 }
 
-resource "kubernetes_service" "elasticsearch" {
+resource "kubernetes_service_v1" "elasticsearch" {
   metadata {
     name      = "db"
-    namespace = kubernetes_namespace.elastic.metadata[0].name
+    namespace = kubernetes_namespace_v1.elastic.metadata[0].name
   }
   spec {
     selector = {
@@ -101,11 +101,11 @@ resource "helm_release" "elasticsearch-exporter" {
   version = "4.14.0"
 
   name      = "elasticsearch-exporter"
-  namespace = kubernetes_namespace.elastic.metadata[0].name
+  namespace = kubernetes_namespace_v1.elastic.metadata[0].name
 
   set {
     name  = "es.uri"
-    value = "http://${kubernetes_service.elasticsearch.metadata[0].name}:9200"
+    value = "http://${kubernetes_service_v1.elasticsearch.metadata[0].name}:9200"
   }
 
   set {

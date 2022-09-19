@@ -1,13 +1,13 @@
-resource "kubernetes_namespace" "registry" {
+resource "kubernetes_namespace_v1" "registry" {
   metadata {
     name = "registry"
   }
 }
 
-resource "kubernetes_config_map" "registry_config" {
+resource "kubernetes_config_map_v1" "registry_config" {
   metadata {
     name      = "registry-config"
-    namespace = kubernetes_namespace.registry.metadata[0].name
+    namespace = kubernetes_namespace_v1.registry.metadata[0].name
   }
 
   data = {
@@ -17,10 +17,10 @@ resource "kubernetes_config_map" "registry_config" {
   }
 }
 
-resource "kubernetes_deployment" "registry" {
+resource "kubernetes_deployment_v1" "registry" {
   metadata {
     name      = "registry"
-    namespace = kubernetes_namespace.registry.metadata[0].name
+    namespace = kubernetes_namespace_v1.registry.metadata[0].name
   }
   spec {
     selector {
@@ -81,7 +81,7 @@ resource "kubernetes_deployment" "registry" {
         volume {
           name = "registry-config"
           config_map {
-            name = kubernetes_config_map.registry_config.metadata[0].name
+            name = kubernetes_config_map_v1.registry_config.metadata[0].name
           }
         }
         toleration {
@@ -93,10 +93,10 @@ resource "kubernetes_deployment" "registry" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim" "registry_data" {
+resource "kubernetes_persistent_volume_claim_v1" "registry_data" {
   metadata {
     name      = "registry-data"
-    namespace = kubernetes_namespace.registry.metadata[0].name
+    namespace = kubernetes_namespace_v1.registry.metadata[0].name
   }
   spec {
     access_modes       = ["ReadWriteOnce"]
@@ -109,10 +109,10 @@ resource "kubernetes_persistent_volume_claim" "registry_data" {
   }
 }
 
-resource "kubernetes_service" "registry" {
+resource "kubernetes_service_v1" "registry" {
   metadata {
     name      = "hub"
-    namespace = kubernetes_namespace.registry.metadata[0].name
+    namespace = kubernetes_namespace_v1.registry.metadata[0].name
   }
   spec {
     selector = {
@@ -137,7 +137,7 @@ resource "kubernetes_manifest" "registry_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "registry"
-      namespace = kubernetes_namespace.registry.metadata[0].name
+      namespace = kubernetes_namespace_v1.registry.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -152,7 +152,7 @@ resource "kubernetes_manifest" "registry_ingress" {
           ]
           services = [
             {
-              name = kubernetes_service.registry.metadata[0].name
+              name = kubernetes_service_v1.registry.metadata[0].name
               kind = "Service"
               port = 5000
             }
@@ -169,7 +169,7 @@ resource "kubernetes_manifest" "registry_ui_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "registry-ui"
-      namespace = kubernetes_namespace.registry.metadata[0].name
+      namespace = kubernetes_namespace_v1.registry.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -184,7 +184,7 @@ resource "kubernetes_manifest" "registry_ui_ingress" {
           ]
           services = [
             {
-              name = kubernetes_service.registry.metadata[0].name
+              name = kubernetes_service_v1.registry.metadata[0].name
               kind = "Service"
               port = 80
             }
@@ -201,20 +201,20 @@ resource "kubernetes_manifest" "registry_middleware_auth" {
     kind       = "Middleware"
     metadata = {
       name      = "middleware-auth"
-      namespace = kubernetes_namespace.registry.metadata[0].name
+      namespace = kubernetes_namespace_v1.registry.metadata[0].name
     }
     spec = {
       basicAuth = {
-        secret = kubernetes_secret.registry_auth_secret.metadata[0].name
+        secret = kubernetes_secret_v1.registry_auth_secret.metadata[0].name
       }
     }
   }
 }
 
-resource "kubernetes_secret" "registry_auth_secret" {
+resource "kubernetes_secret_v1" "registry_auth_secret" {
   metadata {
     name      = "auth-secret"
-    namespace = kubernetes_namespace.registry.metadata[0].name
+    namespace = kubernetes_namespace_v1.registry.metadata[0].name
   }
 
   data = {
@@ -222,14 +222,14 @@ resource "kubernetes_secret" "registry_auth_secret" {
   }
 }
 
-resource "kubernetes_namespace" "image_pull_secret_namespaces" {
+resource "kubernetes_namespace_v1" "image_pull_secret_namespaces" {
   for_each = toset(var.image_pull_secret_namespaces)
   metadata {
     name = each.value
   }
 }
 
-resource "kubernetes_secret" "image_pull_secrets" {
+resource "kubernetes_secret_v1" "image_pull_secrets" {
   for_each = toset(var.image_pull_secret_namespaces)
   metadata {
     name      = "dockerconfigjson"
@@ -249,6 +249,6 @@ resource "kubernetes_secret" "image_pull_secrets" {
   }
 
   depends_on = [
-    kubernetes_namespace.image_pull_secret_namespaces
+    kubernetes_namespace_v1.image_pull_secret_namespaces
   ]
 }

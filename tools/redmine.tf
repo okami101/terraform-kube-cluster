@@ -1,13 +1,13 @@
-resource "kubernetes_namespace" "redmine" {
+resource "kubernetes_namespace_v1" "redmine" {
   metadata {
     name = "redmine"
   }
 }
 
-resource "kubernetes_secret" "redmine_secret" {
+resource "kubernetes_secret_v1" "redmine_secret" {
   metadata {
     name      = "redmine-secret"
-    namespace = kubernetes_namespace.redmine.metadata[0].name
+    namespace = kubernetes_namespace_v1.redmine.metadata[0].name
   }
 
   data = {
@@ -16,10 +16,10 @@ resource "kubernetes_secret" "redmine_secret" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim" "redmine_data" {
+resource "kubernetes_persistent_volume_claim_v1" "redmine_data" {
   metadata {
     name      = "redmine-data"
-    namespace = kubernetes_namespace.redmine.metadata[0].name
+    namespace = kubernetes_namespace_v1.redmine.metadata[0].name
   }
   spec {
     access_modes = ["ReadWriteMany"]
@@ -31,10 +31,10 @@ resource "kubernetes_persistent_volume_claim" "redmine_data" {
   }
 }
 
-resource "kubernetes_deployment" "redmine" {
+resource "kubernetes_deployment_v1" "redmine" {
   metadata {
     name      = "redmine"
-    namespace = kubernetes_namespace.redmine.metadata[0].name
+    namespace = kubernetes_namespace_v1.redmine.metadata[0].name
   }
   spec {
     selector {
@@ -117,10 +117,10 @@ resource "kubernetes_deployment" "redmine" {
   }
 }
 
-resource "kubernetes_service" "redmine" {
+resource "kubernetes_service_v1" "redmine" {
   metadata {
     name      = "redmine"
-    namespace = kubernetes_namespace.redmine.metadata[0].name
+    namespace = kubernetes_namespace_v1.redmine.metadata[0].name
   }
   spec {
     selector = {
@@ -138,7 +138,7 @@ resource "kubernetes_manifest" "redmine_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "redmine"
-      namespace = kubernetes_namespace.redmine.metadata[0].name
+      namespace = kubernetes_namespace_v1.redmine.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]

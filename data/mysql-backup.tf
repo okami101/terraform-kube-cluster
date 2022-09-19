@@ -1,7 +1,7 @@
-resource "kubernetes_config_map" "mysql_backup_script" {
+resource "kubernetes_config_map_v1" "mysql_backup_script" {
   metadata {
     name      = "backup-script"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
 
   data = {
@@ -9,10 +9,10 @@ resource "kubernetes_config_map" "mysql_backup_script" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim" "mysql_backup" {
+resource "kubernetes_persistent_volume_claim_v1" "mysql_backup" {
   metadata {
     name      = "mysql-backup"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
   spec {
     access_modes = ["ReadWriteMany"]
@@ -24,10 +24,10 @@ resource "kubernetes_persistent_volume_claim" "mysql_backup" {
   }
 }
 
-resource "kubernetes_cron_job" "mysql_backup" {
+resource "kubernetes_cron_job_v1" "mysql_backup" {
   metadata {
     name      = "backup"
-    namespace = kubernetes_namespace.mysql.metadata[0].name
+    namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
   spec {
     schedule = "0 */1 * * *"
@@ -50,7 +50,7 @@ resource "kubernetes_cron_job" "mysql_backup" {
                 name = "MYSQL_ROOT_PASSWORD"
                 value_from {
                   secret_key_ref {
-                    name = kubernetes_secret.mysql_secret.metadata[0].name
+                    name = kubernetes_secret_v1.mysql_secret.metadata[0].name
                     key  = "mysql-root-password"
                   }
                 }
@@ -58,7 +58,7 @@ resource "kubernetes_cron_job" "mysql_backup" {
 
               env {
                 name  = "MYSQL_HOST"
-                value = kubernetes_service.mysql.metadata[0].name
+                value = kubernetes_service_v1.mysql.metadata[0].name
               }
 
               env {
@@ -88,7 +88,7 @@ resource "kubernetes_cron_job" "mysql_backup" {
             volume {
               name = "backup-script"
               config_map {
-                name         = kubernetes_config_map.mysql_backup_script.metadata[0].name
+                name         = kubernetes_config_map_v1.mysql_backup_script.metadata[0].name
                 default_mode = "0744"
               }
             }

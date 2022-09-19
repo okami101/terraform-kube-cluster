@@ -1,23 +1,23 @@
-resource "kubernetes_namespace" "test" {
+resource "kubernetes_namespace_v1" "test" {
   metadata {
     name = "test"
   }
 }
 
-resource "kubernetes_config_map" "postgres_test_config" {
+resource "kubernetes_config_map_v1" "postgres_test_config" {
   metadata {
     name      = "postgres-config"
-    namespace = kubernetes_namespace.test.metadata[0].name
+    namespace = kubernetes_namespace_v1.test.metadata[0].name
   }
   data = {
     "db-test-init.sh" = file("scripts/db-test-init.sh")
   }
 }
 
-resource "kubernetes_deployment" "postgres_test" {
+resource "kubernetes_deployment_v1" "postgres_test" {
   metadata {
     name      = "postgres"
-    namespace = kubernetes_namespace.test.metadata[0].name
+    namespace = kubernetes_namespace_v1.test.metadata[0].name
   }
   spec {
     selector {
@@ -75,10 +75,10 @@ resource "kubernetes_deployment" "postgres_test" {
   }
 }
 
-resource "kubernetes_service" "postgres_test" {
+resource "kubernetes_service_v1" "postgres_test" {
   metadata {
     name      = "postgres"
-    namespace = kubernetes_namespace.test.metadata[0].name
+    namespace = kubernetes_namespace_v1.test.metadata[0].name
   }
   spec {
     selector = {

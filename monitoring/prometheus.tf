@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "monitoring" {
+resource "kubernetes_namespace_v1" "monitoring" {
   metadata {
     name = "monitoring"
   }
@@ -9,7 +9,7 @@ resource "helm_release" "kube_prometheus_stack" {
   version = "40.0.2"
 
   name      = "kube-prometheus-stack"
-  namespace = kubernetes_namespace.monitoring.metadata[0].name
+  namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
 
   values = [
     file("values/prometheus-stack-values.yaml")
@@ -22,7 +22,7 @@ resource "kubernetes_manifest" "prometheus_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "prometheus"
-      namespace = kubernetes_namespace.monitoring.metadata[0].name
+      namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
     }
     spec = {
       entryPoints = ["websecure"]
@@ -54,20 +54,20 @@ resource "kubernetes_manifest" "prometheus_middleware_auth" {
     kind       = "Middleware"
     metadata = {
       name      = "middleware-auth"
-      namespace = kubernetes_namespace.monitoring.metadata[0].name
+      namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
     }
     spec = {
       basicAuth = {
-        secret = kubernetes_secret.prometheus_auth_secret.metadata[0].name
+        secret = kubernetes_secret_v1.prometheus_auth_secret.metadata[0].name
       }
     }
   }
 }
 
-resource "kubernetes_secret" "prometheus_auth_secret" {
+resource "kubernetes_secret_v1" "prometheus_auth_secret" {
   metadata {
     name      = "auth-secret"
-    namespace = kubernetes_namespace.monitoring.metadata[0].name
+    namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
   }
 
   data = {
