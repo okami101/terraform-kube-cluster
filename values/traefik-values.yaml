@@ -27,8 +27,8 @@ metrics:
 
 service:
   externalIPs:
-    - 10.0.0.10
-    - 10.0.0.11
+    - 10.0.1.1
+    - 10.0.1.2
 
 additionalArguments:
   - --tracing.jaeger=true

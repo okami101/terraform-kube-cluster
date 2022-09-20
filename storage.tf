@@ -13,9 +13,4 @@ resource "helm_release" "nfs_provisioner" {
     name  = "nfs.path"
     value = var.nfs_path
   }
-
-  set {
-    name  = "storageClass.defaultClass"
-    value = false
-  }
 }
