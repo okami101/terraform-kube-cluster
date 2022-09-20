@@ -13,3 +13,6 @@ resources:
 metrics:
   serviceMonitor:
     enabled: true
+
+persistence:
+  storageClass: nfs-client

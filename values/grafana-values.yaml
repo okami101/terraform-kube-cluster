@@ -3,6 +3,7 @@ initChownData:
 
 persistence:
   enabled: true
+  storageClass: nfs-client
 
 serviceMonitor:
   enabled: true

@@ -16,6 +16,6 @@ resource "helm_release" "nfs_provisioner" {
 
   set {
     name  = "storageClass.defaultClass"
-    value = true
+    value = false
   }
 }

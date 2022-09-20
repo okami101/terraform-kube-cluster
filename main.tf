@@ -27,7 +27,6 @@ module "data" {
 
   depends_on = [
     helm_release.nfs_provisioner,
-    helm_release.openebs_provisioner,
   ]
 }
 

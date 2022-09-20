@@ -54,6 +54,9 @@ statefulset:
     - name: ENV_TO_INI__WEBHOOK__ALLOWED_HOST_LIST
       value: "*"
 
+persistence:
+  storageClass: nfs-client
+
 tolerations:
   - key: node-role.kubernetes.io/runner
     operator: Exists
