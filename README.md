@@ -33,6 +33,7 @@ helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
 helm repo add minio https://charts.min.io/
 helm repo add gitea-charts https://dl.gitea.io/charts/
 helm repo add concourse https://concourse-charts.storage.googleapis.com/
+helm repo add velero https://vmware-tanzu.github.io/helm-charts/
 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.9.1/cert-manager.crds.yaml
 
@@ -112,6 +113,6 @@ gcloud projects add-iam-policy-binding okami101 --member serviceAccount:velero@o
 gsutil iam ch serviceAccount:velero@okami101.iam.gserviceaccount.com:objectAdmin gs://okami101-k3s-backup
 
 gcloud iam service-accounts keys create credentials-velero --iam-account velero@okami101.iam.gserviceaccount.com
-
-velero install --use-restic --provider gcp --bucket okami101-k3s-backup --plugins velero/velero-plugin-for-gcp:v1.5.0 --secret-file ./credentials-velero
 ```
+
+Then we can use `credentials-velero` as iam credentials by setting `velero_credentials_file_path`.

@@ -165,3 +165,11 @@ variable "concourse_secret_access_key" {
 variable "concourse_webhook_token" {
   type = string
 }
+
+variable "velero_bucket" {
+  type = string
+}
+
+variable "velero_credentials_file_path" {
+  type = string
+}

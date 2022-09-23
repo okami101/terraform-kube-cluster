@@ -74,13 +74,15 @@ module "build" {
 }
 
 module "tools" {
-  source                  = "./tools"
-  domain                  = var.domain
-  http_basic_auth         = local.http_basic_auth
-  redmine_db_password     = var.redmine_db_password
-  redmine_secret_key_base = var.redmine_secret_key_base
-  matomo_db_password      = var.matomo_db_password
-  whitelisted_ips         = var.whitelisted_ips
+  source                       = "./tools"
+  domain                       = var.domain
+  http_basic_auth              = local.http_basic_auth
+  redmine_db_password          = var.redmine_db_password
+  redmine_secret_key_base      = var.redmine_secret_key_base
+  matomo_db_password           = var.matomo_db_password
+  whitelisted_ips              = var.whitelisted_ips
+  velero_bucket                = var.velero_bucket
+  velero_credentials_file_path = var.velero_credentials_file_path
 
   depends_on = [
     module.data,

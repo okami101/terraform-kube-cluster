@@ -21,3 +21,11 @@ variable "matomo_db_password" {
 variable "whitelisted_ips" {
   type = list(string)
 }
+
+variable "velero_bucket" {
+  type = string
+}
+
+variable "velero_credentials_file_path" {
+  type = string
+}
