@@ -1,6 +1,6 @@
-mode: distributed
+mode: standalone
 
-replicas: 2
+replicas: 1
 
 tolerations:
   - key: node-role.kubernetes.io/data
@@ -16,3 +16,6 @@ metrics:
 
 persistence:
   storageClass: nfs-client
+
+podAnnotations:
+  backup.velero.io/backup-volumes: export

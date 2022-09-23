@@ -48,6 +48,9 @@ resource "kubernetes_deployment_v1" "redmine" {
         labels = {
           app = "redmine"
         }
+        annotations = {
+          "backup.velero.io/backup-volumes" = "redmine-data"
+        }
       }
       spec {
         container {

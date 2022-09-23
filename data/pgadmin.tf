@@ -30,6 +30,9 @@ resource "kubernetes_deployment_v1" "pgadmin" {
         labels = {
           app = "pgadmin"
         }
+        annotations = {
+          "backup.velero.io/backup-volumes" = "pgadmin-data"
+        }
       }
       spec {
         container {

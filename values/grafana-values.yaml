@@ -15,3 +15,6 @@ sidecar:
 tolerations:
   - key: node-role.kubernetes.io/monitor
     operator: Exists
+
+annotations:
+  backup.velero.io/backup-volumes: storage

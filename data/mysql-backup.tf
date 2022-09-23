@@ -40,6 +40,9 @@ resource "kubernetes_cron_job_v1" "mysql_backup" {
         template {
           metadata {
             name = "backup"
+            annotations = {
+              "backup.velero.io/backup-volumes" = "backup"
+            }
           }
           spec {
             restart_policy = "OnFailure"

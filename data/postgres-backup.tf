@@ -41,6 +41,9 @@ resource "kubernetes_cron_job_v1" "postgres_backup" {
 
           metadata {
             name = "backup"
+            annotations = {
+              "backup.velero.io/backup-volumes" = "backup"
+            }
           }
           spec {
             restart_policy = "OnFailure"

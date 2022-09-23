@@ -15,6 +15,16 @@ resource "helm_release" "portainer" {
     name  = "service.type"
     value = "ClusterIP"
   }
+
+  set {
+    name  = "persistence.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "persistence.storageClass"
+    value = "nfs-client"
+  }
 }
 
 resource "kubernetes_manifest" "portainer_ingress" {
