@@ -16,6 +16,5 @@ metrics:
 
 persistence:
   storageClass: nfs-client
-
-podAnnotations:
-  backup.velero.io/backup-volumes: export
+# podAnnotations:
+#   backup.velero.io/backup-volumes: export

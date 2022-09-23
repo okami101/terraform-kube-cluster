@@ -3,7 +3,7 @@ initChownData:
 
 persistence:
   enabled: true
-  storageClass: nfs-client
+  storageClassName: nfs-client
 
 serviceMonitor:
   enabled: true
@@ -16,5 +16,5 @@ tolerations:
   - key: node-role.kubernetes.io/monitor
     operator: Exists
 
-annotations:
+podAnnotations:
   backup.velero.io/backup-volumes: storage

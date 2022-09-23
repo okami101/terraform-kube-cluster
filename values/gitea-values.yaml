@@ -6,8 +6,8 @@ gitea:
     enabled: true
     serviceMonitor:
       enabled: true
-  podAnnotations:
-    backup.velero.io/backup-volumes: data
+  # podAnnotations:
+  #   backup.velero.io/backup-volumes: data
 
 postgresql:
   enabled: false
