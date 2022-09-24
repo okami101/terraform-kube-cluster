@@ -116,3 +116,17 @@ gcloud iam service-accounts keys create credentials-velero --iam-account velero@
 ```
 
 Then we can use `credentials-velero` as iam credentials by setting `velero_credentials_file_path`.
+
+```sh
+# every hours < 1 day
+velero schedule create hourly-okami --schedule="@every 1h" --ttl 24h0m0s
+
+# every days < 7 days
+velero schedule create daily-okami --schedule="@every 24h" --ttl 168h0m0s
+
+# every weeks < 30 days
+velero schedule create weekly-okami --schedule="@every 168h" --ttl 720h0m0s
+
+# every months < 90 days
+velero schedule create monthly-okami --schedule="@every 720h" --ttl 2160h0m0s
+```
