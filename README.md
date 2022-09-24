@@ -130,3 +130,18 @@ velero schedule create weekly-okami --schedule="@every 168h" --ttl 720h0m0s
 # every months < 90 days
 velero schedule create monthly-okami --schedule="@every 720h" --ttl 2160h0m0s
 ```
+
+## Grafana Dashboards
+
+| ID    | App          |
+| ----- | ------------ |
+| 16829 | Velero       |
+| 7036  | Concourse    |
+| 4475  | Traefik      |
+| 14055 | Loki         |
+| 13502 | Minio        |
+| 14191 | Elasticseach |
+| 14114 | Postgresql   |
+| 14057 | MySQL        |
+| 10991 | RabbitMQ     |
+| 763   | Reddis       |
