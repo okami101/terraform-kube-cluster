@@ -1,6 +1,6 @@
 #!/bin/sh
 
-find $PG_DUMP_DIRECTORY/dump* -mtime +1 -exec rm {} \;
+find $PG_DUMP_DIRECTORY/dump* -mtime +0 -exec rm {} \;
 
 export PGPASSWORD="$PG_PASSWORD"
 

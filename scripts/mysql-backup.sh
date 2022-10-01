@@ -1,6 +1,6 @@
 #!/bin/sh
 
-find $MYSQL_DUMP_DIRECTORY/dump* -mtime +1 -exec rm {} \;
+find $MYSQL_DUMP_DIRECTORY/dump* -mtime +0 -exec rm {} \;
 
 fileDt=$(date '+%Y_%m_%d_%H_%M_%S');
 backUpFilePath="$MYSQL_DUMP_DIRECTORY/dump_$fileDt.gz"
