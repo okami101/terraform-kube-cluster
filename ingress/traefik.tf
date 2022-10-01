@@ -14,11 +14,6 @@ resource "helm_release" "traefik" {
   values = [
     file("values/traefik-values.yaml")
   ]
-
-  set {
-    name  = "service.externalIPs"
-    value = "{${join(",", var.load_balanced_node_ips)}}"
-  }
 }
 
 resource "kubernetes_manifest" "traefik_ingress" {
