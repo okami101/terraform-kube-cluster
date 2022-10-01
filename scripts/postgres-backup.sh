@@ -4,7 +4,7 @@ find $PG_DUMP_DIRECTORY/dump* -mtime +1 -exec rm {} \;
 
 export PGPASSWORD="$PG_PASSWORD"
 
-fileDt=$(date '+%d_%m_%Y_%H_%M_%S');
+fileDt=$(date '+%Y_%m_%d_%H_%M_%S');
 backUpFilePath="$PG_DUMP_DIRECTORY/dump_$fileDt.gz"
 pg_dumpall -h $PG_HOST -U $PG_USER -c | gzip > $backUpFilePath
 if [ $? -ne 0 ]; then
