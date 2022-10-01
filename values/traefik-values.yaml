@@ -25,11 +25,6 @@ metrics:
   prometheus:
     entryPoint: metrics
 
-service:
-  externalIPs:
-    - 10.0.1.1
-    - 10.0.1.2
-
 additionalArguments:
   - --tracing.jaeger=true
   - --tracing.jaeger.samplingServerURL=http://jaeger-agent.tracing:5778/sampling

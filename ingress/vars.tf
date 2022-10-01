@@ -21,3 +21,7 @@ variable "acme_email" {
 variable "zone_name" {
   type = string
 }
+
+variable "load_balanced_node_ips" {
+  type = list(string)
+}
