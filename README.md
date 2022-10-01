@@ -35,6 +35,8 @@ helm repo add gitea-charts https://dl.gitea.io/charts/
 helm repo add concourse https://concourse-charts.storage.googleapis.com/
 helm repo add velero https://vmware-tanzu.github.io/helm-charts/
 
+kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/latest/download/system-upgrade-controller.yaml
+
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.9.1/cert-manager.crds.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.8/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
