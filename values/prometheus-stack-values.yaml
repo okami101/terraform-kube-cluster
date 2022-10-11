@@ -1,5 +1,14 @@
+prometheusOperator:
+  image:
+    tag: v0.60.1
+  prometheusConfigReloader:
+    image:
+      tag: v0.60.1
+
 prometheus:
   prometheusSpec:
+    image:
+      tag: v2.39.1
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     storageSpec:
