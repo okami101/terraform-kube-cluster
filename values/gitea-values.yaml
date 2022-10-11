@@ -1,6 +1,3 @@
-image:
-  rootless: true
-
 gitea:
   metrics:
     enabled: true
@@ -8,53 +5,41 @@ gitea:
       enabled: true
   podAnnotations:
     backup.velero.io/backup-volumes: data
+  config:
+    server:
+      SSH_PORT: 22
+      SSH_LISTEN_PORT: 11022
+      DOMAIN: gitea.${domain}
+      ROOT_URL: https://gitea.${domain}
+    database:
+      DB_TYPE: postgres
+      HOST: db.postgres
+      NAME: gitea
+      USER: gitea
+      PASSWD: ${db_password}
+    indexer:
+      REPO_INDEXER_ENABLED: true
+    mailer:
+      ENABLED: true
+      FROM: gitea@${domain}
+      HOST: ${smtp_host}
+      USER: ${smtp_user}
+      PASSWD: ${smtp_password}
+    service:
+      DISABLE_REGISTRATION: true
+    repository:
+      DEFAULT_BRANCH: main
+    metrics:
+      ENABLED_ISSUE_BY_REPOSITORY: true
+      ENABLED_ISSUE_BY_LABEL: true
+    webhook:
+      ALLOWED_HOST_LIST: "*"
 
 postgresql:
   enabled: false
 
 memcached:
   enabled: false
-
-statefulset:
-  env:
-    - name: ENV_TO_INI__SERVER__DOMAIN
-      value: gitea.${domain}
-    - name: ENV_TO_INI__SERVER__SSH_DOMAIN
-      value: gitea.${domain}
-    - name: ENV_TO_INI__SERVER__ROOT_URL
-      value: https://gitea.${domain}
-    - name: ENV_TO_INI__DATABASE__DB_TYPE
-      value: postgres
-    - name: ENV_TO_INI__DATABASE__HOST
-      value: db.postgres
-    - name: ENV_TO_INI__DATABASE__NAME
-      value: gitea
-    - name: ENV_TO_INI__DATABASE__USER
-      value: gitea
-    - name: ENV_TO_INI__DATABASE__PASSWD
-      value: ${db_password}
-    - name: ENV_TO_INI__INDEXER__REPO_INDEXER_ENABLED
-      value: "true"
-    - name: ENV_TO_INI__MAILER__ENABLED
-      value: "true"
-    - name: ENV_TO_INI__MAILER__FROM
-      value: gitea@${domain}
-    - name: ENV_TO_INI__MAILER__HOST
-      value: ${smtp_host}
-    - name: ENV_TO_INI__MAILER__USER
-      value: ${smtp_user}
-    - name: ENV_TO_INI__MAILER__PASSWD
-      value: ${smtp_password}
-    - name: ENV_TO_INI__SERVICE__DISABLE_REGISTRATION
-      value: "true"
-    - name: ENV_TO_INI__REPOSITORY__DEFAULT_BRANCH
-      value: main
-    - name: ENV_TO_INI__METRICS__ENABLED_ISSUE_BY_REPOSITORY
-      value: "true"
-    - name: ENV_TO_INI__METRICS__ENABLED_ISSUE_BY_LABEL
-      value: "true"
-    - name: ENV_TO_INI__WEBHOOK__ALLOWED_HOST_LIST
-      value: "*"
 
 persistence:
   storageClass: nfs-client
