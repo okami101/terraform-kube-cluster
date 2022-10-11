@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "velero" {
 
 resource "helm_release" "velero" {
   chart   = "velero/velero"
-  version = "2.31.8"
+  version = "2.31.9"
 
   name      = "velero"
   namespace = kubernetes_namespace_v1.velero.metadata[0].name
