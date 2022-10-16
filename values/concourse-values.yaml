@@ -1,5 +1,3 @@
-imageTag: "7.8.2"
-
 concourse:
   web:
     postgres:
@@ -20,10 +18,6 @@ concourse:
 
   worker:
     runtime: containerd
-    # containerd:
-    #   dnsServers:
-    #     - 8.8.8.8
-    #     - 8.8.4.4
 
 web:
   enabled: true
