@@ -24,3 +24,6 @@ monitoring:
 
     grafanaAgent:
       installOperator: false
+
+test:
+  enabled: false

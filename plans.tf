@@ -27,7 +27,7 @@ resource "kubernetes_manifest" "server_plan" {
       upgrade = {
         image = "rancher/k3s-upgrade"
       }
-      channel = "https://update.k3s.io/v1-release/channels/latest"
+      channel = "https://update.k3s.io/v1-release/channels/stable"
     }
   }
 }
@@ -65,7 +65,7 @@ resource "kubernetes_manifest" "agent_plan" {
       upgrade = {
         image = "rancher/k3s-upgrade"
       }
-      channel = "https://update.k3s.io/v1-release/channels/latest"
+      channel = "https://update.k3s.io/v1-release/channels/stable"
     }
   }
 }
