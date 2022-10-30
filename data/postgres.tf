@@ -55,7 +55,7 @@ resource "kubernetes_stateful_set_v1" "postgresql" {
       spec {
         container {
           name              = "postgres"
-          image             = "postgres:14"
+          image             = "postgres:15"
           image_pull_policy = "Always"
 
           args = [
@@ -211,7 +211,7 @@ resource "kubernetes_stateful_set_v1" "postgresql_replica" {
       spec {
         init_container {
           name              = "setup-replica-data-directory"
-          image             = "postgres:14"
+          image             = "postgres:15"
           image_pull_policy = "Always"
 
           env {
@@ -248,7 +248,7 @@ resource "kubernetes_stateful_set_v1" "postgresql_replica" {
         }
         container {
           name              = "postgres"
-          image             = "postgres:14"
+          image             = "postgres:15"
           image_pull_policy = "Always"
 
           args = [

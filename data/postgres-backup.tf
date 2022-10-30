@@ -50,7 +50,7 @@ resource "kubernetes_deployment_v1" "postgres_backup" {
       spec {
         container {
           name  = "backup"
-          image = "postgres:14"
+          image = "postgres:15"
 
           env {
             name = "PG_PASSWORD"

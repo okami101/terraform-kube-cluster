@@ -34,7 +34,7 @@ resource "kubernetes_deployment_v1" "postgres_test" {
       spec {
         container {
           name              = "postgres"
-          image             = "postgres:14"
+          image             = "postgres:15"
           image_pull_policy = "Always"
           env {
             name  = "POSTGRES_USER"
