@@ -73,27 +73,3 @@ resource "kubernetes_secret_v1" "traefik_auth_secret" {
     "users" = var.http_basic_auth
   }
 }
-
-resource "kubernetes_manifest" "traefik_service_monitor" {
-  manifest = {
-    apiVersion = "monitoring.coreos.com/v1"
-    kind       = "ServiceMonitor"
-    metadata = {
-      name      = "metrics"
-      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
-    }
-    spec = {
-      endpoints = [
-        {
-          targetPort = 9100
-        }
-      ]
-      selector = {
-        matchLabels = {
-          "app.kubernetes.io/name"     = "traefik"
-          "app.kubernetes.io/instance" = "traefik"
-        }
-      }
-    }
-  }
-}
