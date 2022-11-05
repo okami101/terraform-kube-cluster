@@ -21,6 +21,7 @@ You firstly need a working NFS serveur into nfs_server:nfs_path address. Test it
 Next you need to install some helm charts as well as CRDs.
 
 ```sh
+helm repo add kubereboot https://kubereboot.github.io/charts
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
 helm repo add traefik https://helm.traefik.io/traefik
 helm repo add portainer https://portainer.github.io/k8s
