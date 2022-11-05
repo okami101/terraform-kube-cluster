@@ -5,6 +5,11 @@ resource "helm_release" "kubereboot" {
   name = "kured"
 
   set {
+    name  = "configuration.period"
+    value = "1m"
+  }
+
+  set {
     name  = "tolerations[0].effect"
     value = "NoSchedule"
   }
