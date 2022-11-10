@@ -1,3 +1,5 @@
+tag: 1.39
+
 provisionDataStore:
   cassandra: false
 
