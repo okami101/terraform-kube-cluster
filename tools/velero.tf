@@ -78,4 +78,7 @@ resource "kubernetes_manifest" "velero_schedules" {
       }
     }
   }
+  depends_on = [
+    helm_release.velero,
+  ]
 }
