@@ -120,20 +120,6 @@ gcloud iam service-accounts keys create credentials-velero --iam-account velero@
 
 Then we can use `credentials-velero` as iam credentials by setting `velero_credentials_file_path`.
 
-```sh
-# every hours < 1 day
-velero schedule create hourly-okami --schedule="0 */1 * * *" --ttl 24h0m0s
-
-# every days < 7 days
-velero schedule create daily-okami --schedule="15 0 * * *" --ttl 168h0m0s
-
-# every weeks < 30 days
-velero schedule create weekly-okami --schedule="30 0 * * 1" --ttl 720h0m0s
-
-# every months < 90 days
-velero schedule create monthly-okami --schedule="45 0 1 * *" --ttl 2160h0m0s
-```
-
 ## Grafana Dashboards
 
 | ID    | App          |
