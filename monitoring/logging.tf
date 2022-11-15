@@ -22,7 +22,7 @@ resource "helm_release" "loki" {
 
 resource "helm_release" "promtail" {
   chart   = "grafana/promtail"
-  version = "6.6.1"
+  version = "6.6.2"
 
   name      = "promtail"
   namespace = kubernetes_namespace_v1.logging.metadata[0].name

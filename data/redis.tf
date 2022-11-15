@@ -67,7 +67,7 @@ resource "kubernetes_service_v1" "redis" {
 
 resource "helm_release" "redis-exporter" {
   chart   = "prometheus-community/prometheus-redis-exporter"
-  version = "5.2.1"
+  version = "5.3.0"
 
   name      = "redis-exporter"
   namespace = kubernetes_namespace_v1.redis.metadata[0].name
