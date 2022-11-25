@@ -390,7 +390,7 @@ resource "kubernetes_service_v1" "postgres_ro" {
 
 resource "helm_release" "postgres-exporter" {
   chart   = "prometheus-community/prometheus-postgres-exporter"
-  version = "3.3.0"
+  version = "3.1.5"
 
   name      = "postgres-exporter"
   namespace = kubernetes_namespace_v1.postgres.metadata[0].name
