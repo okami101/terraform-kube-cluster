@@ -146,7 +146,7 @@ resource "kubernetes_service_v1" "mysql" {
 
 resource "helm_release" "mysql-exporter" {
   chart   = "prometheus-community/prometheus-mysql-exporter"
-  version = "1.10.0"
+  version = "1.11.1"
 
   name      = "mysql-exporter"
   namespace = kubernetes_namespace_v1.mysql.metadata[0].name

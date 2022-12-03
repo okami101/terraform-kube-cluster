@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "concourse" {
 
 resource "helm_release" "concourse" {
   chart   = "concourse/concourse"
-  version = "17.0.37"
+  version = "17.1.0"
 
   name      = "concourse"
   namespace = kubernetes_namespace_v1.concourse.metadata[0].name

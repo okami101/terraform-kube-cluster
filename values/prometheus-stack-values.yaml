@@ -1,5 +1,7 @@
 prometheus:
   prometheusSpec:
+    retention: 15d
+    retentionSize: 5GB
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     storageSpec:
