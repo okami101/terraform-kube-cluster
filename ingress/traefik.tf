@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "traefik" {
 
 resource "helm_release" "traefik" {
   chart   = "traefik/traefik"
-  version = "20.6.0"
+  version = "20.8.0"
 
   name      = "traefik"
   namespace = kubernetes_namespace_v1.traefik.metadata[0].name

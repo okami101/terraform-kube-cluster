@@ -1,6 +1,6 @@
 resource "helm_release" "grafana" {
   chart   = "grafana/grafana"
-  version = "6.44.11"
+  version = "6.47.1"
 
   name      = "grafana"
   namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
