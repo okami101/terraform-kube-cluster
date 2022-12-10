@@ -146,7 +146,7 @@ variable "redmine_secret_key_base" {
   type = string
 }
 
-variable "matomo_db_password" {
+variable "umami_db_password" {
   type = string
 }
 

@@ -8,7 +8,7 @@ This Terraform project is intended to be used as a template for deploying an opi
 * UI web managers, as Portainer, PHPMyAdmin, PgAdmin
 * Self-hosted S3 with Minio and some DB backup cronjobs
 * Complete CI solution with Gitea and Concourse, as well as custom private docker registry
-* Some additional tools for my own needs (matomo and redmine)
+* Some additional tools for my own needs (umami and redmine)
 
 For proper install, it should be used on top of [Terraform Hcloud K0S](https://github.com/adr1enbe4udou1n/terraform-hcloud-k0s).
 
