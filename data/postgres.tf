@@ -390,15 +390,10 @@ resource "kubernetes_service_v1" "postgres_ro" {
 
 resource "helm_release" "postgres-exporter" {
   chart   = "prometheus-community/prometheus-postgres-exporter"
-  version = "3.3.0"
+  version = "4.0.0"
 
   name      = "postgres-exporter"
   namespace = kubernetes_namespace_v1.postgres.metadata[0].name
-
-  set {
-    name  = "image.tag"
-    value = "v0.10.1"
-  }
 
   set {
     name  = "config.datasourceSecret.name"
