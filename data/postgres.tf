@@ -396,6 +396,11 @@ resource "helm_release" "postgres-exporter" {
   namespace = kubernetes_namespace_v1.postgres.metadata[0].name
 
   set {
+    name  = "image.tag"
+    value = "v0.10.1"
+  }
+
+  set {
     name  = "config.datasourceSecret.name"
     value = "postgres-secret"
   }
