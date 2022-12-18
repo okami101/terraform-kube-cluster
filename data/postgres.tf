@@ -12,7 +12,7 @@ resource "kubernetes_secret_v1" "postgres_secret" {
   data = {
     "pgsql-password"             = var.pgsql_password
     "pgsql-replication-password" = var.pgsql_replication_password
-    "datasources"                = "postgresql://${var.pgsql_user}:${urlencode(var.pgsql_password)}@${kubernetes_service_v1.postgres.metadata[0].name}?sslmode=disable,postgresql://${var.pgsql_user}:${urlencode(var.pgsql_password)}@${kubernetes_service_v1.postgres_replica.metadata[0].name}?sslmode=disable"
+    "datasources"                = "postgresql://${var.pgsql_user}:${urlencode(var.pgsql_password)}@${kubernetes_service_v1.postgres.metadata[0].name}?sslmode=disable"
   }
 }
 
@@ -394,11 +394,6 @@ resource "helm_release" "postgres-exporter" {
 
   name      = "postgres-exporter"
   namespace = kubernetes_namespace_v1.postgres.metadata[0].name
-
-  set {
-    name  = "image.tag"
-    value = "v0.10.1"
-  }
 
   set {
     name  = "config.datasourceSecret.name"
