@@ -8,6 +8,13 @@ initContainers:
       - mountPath: /target
         name: plugins
 
+deployNodeAgent: true
+
+nodeAgent:
+  tolerations:
+    - effect: NoSchedule
+      operator: Exists
+
 metrics:
   serviceMonitor:
     enabled: true
