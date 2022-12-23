@@ -1,0 +1,18 @@
+config:
+  helmRegistries:
+    registryNames:
+      - prometheus-community
+      - traefik
+      - portainer
+      - cert-manager
+      - cert-manager-webhook-hetzner
+      - jaegertracing
+      - grafana
+      - minio-official
+      - gitea
+      - concourse
+      - vmware-tanzu
+      - sstarcher
+      - kured
+      - bitnami-labs
+      - nfs-subdir-external-provisioner

@@ -8,13 +8,6 @@ initContainers:
       - mountPath: /target
         name: plugins
 
-deployRestic: true
-
-restic:
-  tolerations:
-    - effect: NoSchedule
-      operator: Exists
-
 metrics:
   serviceMonitor:
     enabled: true

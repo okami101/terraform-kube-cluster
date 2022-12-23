@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "monitoring" {
 
 resource "helm_release" "kube_prometheus_stack" {
   chart   = "prometheus-community/kube-prometheus-stack"
-  version = "43.1.1"
+  version = "43.1.3"
 
   name      = "kube-prometheus-stack"
   namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
@@ -81,6 +81,10 @@ resource "helm_release" "helm_exporter" {
 
   name      = "helm-exporter"
   namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
+
+  values = [
+    file("values/helm-exporter-values.yaml")
+  ]
 
   set {
     name  = "serviceMonitor.create"
