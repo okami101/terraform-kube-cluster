@@ -388,7 +388,7 @@ resource "kubernetes_service_v1" "postgres_ro" {
   }
 }
 
-resource "helm_release" "postgres-exporter" {
+resource "helm_release" "postgres_exporter" {
   chart   = "prometheus-community/prometheus-postgres-exporter"
   version = "4.0.0"
 

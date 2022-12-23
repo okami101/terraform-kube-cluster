@@ -144,7 +144,7 @@ resource "kubernetes_service_v1" "mysql" {
   }
 }
 
-resource "helm_release" "mysql-exporter" {
+resource "helm_release" "mysql_exporter" {
   chart   = "prometheus-community/prometheus-mysql-exporter"
   version = "1.11.1"
 

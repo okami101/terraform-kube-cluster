@@ -74,3 +74,16 @@ resource "kubernetes_secret_v1" "prometheus_auth_secret" {
     "users" = var.http_basic_auth
   }
 }
+
+resource "helm_release" "helm_exporter" {
+  chart   = "sstarcher/helm-exporter"
+  version = "1.2.3"
+
+  name      = "helm-exporter"
+  namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
+
+  set {
+    name  = "serviceMonitor.create"
+    value = "true"
+  }
+}
