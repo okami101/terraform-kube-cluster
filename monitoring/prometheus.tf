@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "monitoring" {
 
 resource "helm_release" "kube_prometheus_stack" {
   chart   = "prometheus-community/kube-prometheus-stack"
-  version = "43.1.3"
+  version = "43.1.4"
 
   name      = "kube-prometheus-stack"
   namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
@@ -77,7 +77,7 @@ resource "kubernetes_secret_v1" "prometheus_auth_secret" {
 
 resource "helm_release" "helm_exporter" {
   chart   = "sstarcher/helm-exporter"
-  version = "1.2.3"
+  version = "1.2.3+4dc0dfc"
 
   name      = "helm-exporter"
   namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
