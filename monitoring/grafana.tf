@@ -26,7 +26,7 @@ resource "helm_release" "grafana" {
 
   set {
     name  = "env.GF_SMTP_HOST"
-    value = var.smtp_host
+    value = "${var.smtp_host}:${var.smtp_port}"
   }
 
   set {

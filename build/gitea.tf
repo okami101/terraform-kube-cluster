@@ -16,6 +16,7 @@ resource "helm_release" "gitea" {
       domain        = var.domain,
       db_password   = var.gitea_db_password,
       smtp_host     = var.smtp_host,
+      smtp_port     = var.smtp_port,
       smtp_user     = var.smtp_user,
       smtp_password = var.smtp_password,
     })

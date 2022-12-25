@@ -54,6 +54,10 @@ variable "smtp_host" {
   type = string
 }
 
+variable "smtp_port" {
+  type = number
+}
+
 variable "smtp_user" {
   type = string
 }
@@ -147,6 +151,10 @@ variable "redmine_secret_key_base" {
 }
 
 variable "umami_db_password" {
+  type = string
+}
+
+variable "n8n_db_password" {
   type = string
 }
 

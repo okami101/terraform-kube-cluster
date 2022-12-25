@@ -22,7 +22,7 @@ gitea:
     mailer:
       ENABLED: true
       FROM: gitea@${domain}
-      HOST: ${smtp_host}
+      HOST: ${smtp_host}:${smtp_port}
       USER: ${smtp_user}
       PASSWD: ${smtp_password}
     service:

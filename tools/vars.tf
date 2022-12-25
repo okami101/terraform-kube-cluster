@@ -18,6 +18,10 @@ variable "umami_db_password" {
   type = string
 }
 
+variable "n8n_db_password" {
+  type = string
+}
+
 variable "whitelisted_ips" {
   type = list(string)
 }
@@ -27,5 +31,21 @@ variable "velero_bucket" {
 }
 
 variable "velero_credentials_file_path" {
+  type = string
+}
+
+variable "smtp_host" {
+  type = string
+}
+
+variable "smtp_port" {
+  type = number
+}
+
+variable "smtp_user" {
+  type = string
+}
+
+variable "smtp_password" {
   type = string
 }

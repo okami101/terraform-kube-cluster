@@ -35,6 +35,7 @@ module "monitoring" {
   domain              = var.domain
   http_basic_auth     = local.http_basic_auth
   smtp_host           = var.smtp_host
+  smtp_port           = var.smtp_port
   smtp_user           = var.smtp_user
   smtp_password       = var.smtp_password
   grafana_db_password = var.grafana_db_password
@@ -57,6 +58,7 @@ module "build" {
   image_pull_secret_namespaces = var.image_pull_secret_namespaces
   registry_endpoints           = var.registry_endpoints
   smtp_host                    = var.smtp_host
+  smtp_port                    = var.smtp_port
   smtp_user                    = var.smtp_user
   smtp_password                = var.smtp_password
   concourse_db_password        = var.concourse_db_password
@@ -80,9 +82,14 @@ module "tools" {
   redmine_db_password          = var.redmine_db_password
   redmine_secret_key_base      = var.redmine_secret_key_base
   umami_db_password            = var.umami_db_password
+  n8n_db_password              = var.n8n_db_password
   whitelisted_ips              = var.whitelisted_ips
   velero_bucket                = var.velero_bucket
   velero_credentials_file_path = var.velero_credentials_file_path
+  smtp_host                    = var.smtp_host
+  smtp_port                    = var.smtp_port
+  smtp_user                    = var.smtp_user
+  smtp_password                = var.smtp_password
 
   depends_on = [
     module.data,
