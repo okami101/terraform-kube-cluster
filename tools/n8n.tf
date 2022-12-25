@@ -172,11 +172,6 @@ resource "kubernetes_manifest" "n8n_ingress" {
         {
           match = "Host(`n8n.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [
-            {
-              name = kubernetes_manifest.n8n_middleware_auth.manifest.metadata.name
-            }
-          ]
           services = [
             {
               name = "n8n"
@@ -187,32 +182,5 @@ resource "kubernetes_manifest" "n8n_ingress" {
         }
       ]
     }
-  }
-}
-
-resource "kubernetes_manifest" "n8n_middleware_auth" {
-  manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
-    kind       = "Middleware"
-    metadata = {
-      name      = "middleware-auth"
-      namespace = kubernetes_namespace_v1.n8n.metadata[0].name
-    }
-    spec = {
-      basicAuth = {
-        secret = kubernetes_secret_v1.n8n_auth_secret.metadata[0].name
-      }
-    }
-  }
-}
-
-resource "kubernetes_secret_v1" "n8n_auth_secret" {
-  metadata {
-    name      = "auth-secret"
-    namespace = kubernetes_namespace_v1.n8n.metadata[0].name
-  }
-
-  data = {
-    "users" = var.http_basic_auth
   }
 }
