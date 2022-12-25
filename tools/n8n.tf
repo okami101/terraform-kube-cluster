@@ -47,6 +47,9 @@ resource "kubernetes_deployment_v1" "n8n" {
         labels = {
           app = "n8n"
         }
+        annotations = {
+          "backup.velero.io/backup-volumes" = "n8n-data"
+        }
       }
       spec {
         container {
