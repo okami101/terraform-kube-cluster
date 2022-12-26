@@ -11,7 +11,7 @@ resource "kubernetes_secret_v1" "umami_secret" {
   }
 
   data = {
-    database-url = "postgresql://umami:${urlencode(var.umami_db_password)}@db.postgres:5432/umami"
+    database-url = "postgresql://umami:${urlencode(var.umami_db_password)}@db.postgres/umami"
   }
 }
 

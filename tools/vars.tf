@@ -22,6 +22,14 @@ variable "n8n_db_password" {
   type = string
 }
 
+variable "nocodb_db_password" {
+  type = string
+}
+
+variable "nocodb_jwt_secret" {
+  type = string
+}
+
 variable "whitelisted_ips" {
   type = list(string)
 }

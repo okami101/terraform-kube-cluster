@@ -37,5 +37,9 @@ locals {
       username = "n8n"
       password = var.n8n_db_password
     },
+    {
+      username = "nocodb"
+      password = var.nocodb_db_password
+    },
   ]
 }
