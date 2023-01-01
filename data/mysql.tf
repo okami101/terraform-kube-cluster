@@ -46,9 +46,9 @@ resource "kubernetes_stateful_set_v1" "mysql" {
       }
       spec {
         container {
-          name  = "mysql"
-          image = "mysql:8"
-
+          name              = "mysql"
+          image             = "mysql:8"
+          image_pull_policy = "Always"
           env {
             name = "MYSQL_ROOT_PASSWORD"
             value_from {
