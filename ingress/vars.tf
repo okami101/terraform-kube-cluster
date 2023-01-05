@@ -21,3 +21,7 @@ variable "acme_email" {
 variable "zone_name" {
   type = string
 }
+
+variable "traefik_hub_agent_token" {
+  type = string
+}
