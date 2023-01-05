@@ -1,12 +1,11 @@
 module "ingress" {
-  source                  = "./ingress"
-  domain                  = var.domain
-  http_basic_auth         = local.http_basic_auth
-  cert_group_name         = var.cert_group_name
-  hetzner_dns_api_key     = var.hetzner_dns_api_key
-  acme_email              = var.acme_email
-  zone_name               = var.zone_name
-  traefik_hub_agent_token = var.traefik_hub_agent_token
+  source              = "./ingress"
+  domain              = var.domain
+  http_basic_auth     = local.http_basic_auth
+  cert_group_name     = var.cert_group_name
+  hetzner_dns_api_key = var.hetzner_dns_api_key
+  acme_email          = var.acme_email
+  zone_name           = var.zone_name
 }
 
 module "data" {

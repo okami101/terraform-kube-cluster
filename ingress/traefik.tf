@@ -16,19 +16,6 @@ resource "helm_release" "traefik" {
   ]
 }
 
-resource "helm_release" "traefik_hub_agent" {
-  chart   = "traefik/hub-agent"
-  version = "1.2.1"
-
-  name      = "hub-agent"
-  namespace = kubernetes_namespace_v1.traefik.metadata[0].name
-
-  set {
-    name  = "token"
-    value = var.traefik_hub_agent_token
-  }
-}
-
 resource "kubernetes_manifest" "traefik_ingress" {
   manifest = {
     apiVersion = "traefik.containo.us/v1alpha1"

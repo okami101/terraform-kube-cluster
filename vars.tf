@@ -193,7 +193,3 @@ variable "velero_bucket" {
 variable "velero_credentials_file_path" {
   type = string
 }
-
-variable "traefik_hub_agent_token" {
-  type = string
-}
