@@ -166,10 +166,6 @@ variable "nocodb_db_password" {
   type = string
 }
 
-variable "couchdb_password" {
-  type = string
-}
-
 variable "nocodb_jwt_secret" {
   type = string
 }

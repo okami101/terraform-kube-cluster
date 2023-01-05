@@ -10,10 +10,6 @@ variable "redis_password" {
   type = string
 }
 
-variable "couchdb_password" {
-  type = string
-}
-
 variable "mysql_password" {
   type = string
 }

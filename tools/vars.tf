@@ -10,10 +10,6 @@ variable "redis_password" {
   type = string
 }
 
-variable "couchdb_password" {
-  type = string
-}
-
 variable "redmine_db_password" {
   type = string
 }
