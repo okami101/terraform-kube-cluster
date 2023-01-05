@@ -1,9 +1,0 @@
-clusterSize: 2
-
-persistentVolume:
-  enabled: true
-  storageClass: local-path
-
-tolerations:
-  - key: node-role.kubernetes.io/data
-    operator: Exists
