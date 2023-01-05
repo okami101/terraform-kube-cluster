@@ -6,6 +6,14 @@ variable "http_basic_auth" {
   type = string
 }
 
+variable "redis_password" {
+  type = string
+}
+
+variable "couchdb_password" {
+  type = string
+}
+
 variable "mysql_password" {
   type = string
 }

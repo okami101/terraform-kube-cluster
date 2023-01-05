@@ -154,11 +154,19 @@ variable "umami_db_password" {
   type = string
 }
 
+variable "redis_password" {
+  type = string
+}
+
 variable "n8n_db_password" {
   type = string
 }
 
 variable "nocodb_db_password" {
+  type = string
+}
+
+variable "couchdb_password" {
   type = string
 }
 

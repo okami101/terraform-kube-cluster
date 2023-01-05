@@ -31,6 +31,11 @@ resource "kubernetes_stateful_set_v1" "redis" {
           port {
             container_port = 6379
           }
+          args = [
+            "redis-server",
+            "--requirepass",
+            var.redis_password,
+          ]
           volume_mount {
             name       = "redis-data"
             mount_path = "/data"

@@ -12,6 +12,8 @@ module "data" {
   source                     = "./data"
   domain                     = var.domain
   http_basic_auth            = local.http_basic_auth
+  redis_password             = var.redis_password
+  couchdb_password           = var.couchdb_password
   mysql_password             = var.mysql_password
   mysql_exporter_password    = var.mysql_exporter_password
   pgsql_user                 = var.pgsql_user
@@ -79,6 +81,10 @@ module "tools" {
   source                       = "./tools"
   domain                       = var.domain
   http_basic_auth              = local.http_basic_auth
+  redis_password               = var.redis_password
+  couchdb_password             = var.couchdb_password
+  minio_user                   = var.minio_user
+  minio_password               = var.minio_password
   redmine_db_password          = var.redmine_db_password
   redmine_secret_key_base      = var.redmine_secret_key_base
   umami_db_password            = var.umami_db_password

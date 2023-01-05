@@ -6,6 +6,14 @@ variable "http_basic_auth" {
   type = string
 }
 
+variable "redis_password" {
+  type = string
+}
+
+variable "couchdb_password" {
+  type = string
+}
+
 variable "redmine_db_password" {
   type = string
 }
@@ -55,5 +63,13 @@ variable "smtp_user" {
 }
 
 variable "smtp_password" {
+  type = string
+}
+
+variable "minio_user" {
+  type = string
+}
+
+variable "minio_password" {
   type = string
 }
