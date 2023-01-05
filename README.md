@@ -36,6 +36,8 @@ helm repo add gitea-charts https://dl.gitea.io/charts/
 helm repo add concourse https://concourse-charts.storage.googleapis.com/
 helm repo add velero https://vmware-tanzu.github.io/helm-charts/
 helm repo add sstarcher https://shanestarcher.com/helm-charts/
+helm repo add couchdb https://apache.github.io/couchdb-helm
+helm repo add budibase https://budibase.github.io/budibase/
 
 kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/latest/download/system-upgrade-controller.yaml
 
