@@ -20,6 +20,6 @@ services:
     url: "http://admin:${couchdb_password}@couchdb-couchdb.couchdb:5984"
   objectStore:
     minio: false
-    url: "https://minio.${domain}"
+    url: "https://s3.${domain}"
     accessKey: ${minio_user}
     secretKey: ${minio_password}
