@@ -28,13 +28,22 @@ resource "kubernetes_stateful_set_v1" "redis" {
           name              = "redis"
           image             = "redis:7"
           image_pull_policy = "Always"
+          env {
+            name = "REDIS_PASSWORD"
+            value_from {
+              secret_key_ref {
+                name = kubernetes_secret_v1.redis_secret.metadata[0].name
+                key  = "redis-password"
+              }
+            }
+          }
           port {
             container_port = 6379
           }
           args = [
             "redis-server",
             "--requirepass",
-            var.redis_password,
+            "$(REDIS_PASSWORD)",
           ]
           volume_mount {
             name       = "redis-data"
@@ -51,6 +60,16 @@ resource "kubernetes_stateful_set_v1" "redis" {
         }
       }
     }
+  }
+}
+
+resource "kubernetes_secret_v1" "redis_secret" {
+  metadata {
+    name      = "redis-secret"
+    namespace = kubernetes_namespace_v1.redis.metadata[0].name
+  }
+  data = {
+    "redis-password" = var.redis_password
   }
 }
 
