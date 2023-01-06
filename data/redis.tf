@@ -107,7 +107,17 @@ resource "helm_release" "redis_exporter" {
   }
 
   set {
-    name  = "rbac.pspEnabled"
-    value = "false"
+    name  = "auth.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "auth.secret.name"
+    value = kubernetes_secret_v1.redis_secret.metadata[0].name
+  }
+
+  set {
+    name  = "auth.secret.key"
+    value = "redis-password"
   }
 }
