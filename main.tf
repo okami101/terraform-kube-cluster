@@ -13,6 +13,7 @@ module "data" {
   domain                     = var.domain
   http_basic_auth            = local.http_basic_auth
   redis_password             = var.redis_password
+  mongo_password             = var.mongo_password
   mysql_password             = var.mysql_password
   mysql_exporter_password    = var.mysql_exporter_password
   pgsql_user                 = var.pgsql_user

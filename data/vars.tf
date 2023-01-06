@@ -10,6 +10,10 @@ variable "redis_password" {
   type = string
 }
 
+variable "mongo_password" {
+  type = string
+}
+
 variable "mysql_password" {
   type = string
 }
