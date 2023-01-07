@@ -12,6 +12,15 @@ This Terraform project is intended to be used as a template for deploying an opi
 
 For proper install, it should be used on top of [Terraform Hcloud K0S](https://github.com/adr1enbe4udou1n/terraform-hcloud-k0s).
 
+Give some labels after installation in order to identify node roles properly.
+
+```sh
+kubectl label nodes kube-data-01 node-role.kubernetes.io/data=true
+kubectl label nodes kube-data-02 node-role.kubernetes.io/data=true
+kubectl label nodes kube-monitor-01 node-role.kubernetes.io/monitor=true
+kubectl label nodes kube-runner-01 node-role.kubernetes.io/runner=true
+```
+
 ## Usage
 
 ### Prepare
