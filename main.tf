@@ -6,12 +6,12 @@ module "ingress" {
   hetzner_dns_api_key = var.hetzner_dns_api_key
   acme_email          = var.acme_email
   zone_name           = var.zone_name
+  whitelisted_ips     = var.whitelisted_ips
 }
 
 module "data" {
   source                     = "./data"
   domain                     = var.domain
-  http_basic_auth            = local.http_basic_auth
   redis_password             = var.redis_password
   mongo_password             = var.mongo_password
   mysql_password             = var.mysql_password
@@ -35,7 +35,6 @@ module "data" {
 module "monitoring" {
   source              = "./monitoring"
   domain              = var.domain
-  http_basic_auth     = local.http_basic_auth
   smtp_host           = var.smtp_host
   smtp_port           = var.smtp_port
   smtp_user           = var.smtp_user
@@ -50,7 +49,6 @@ module "monitoring" {
 module "build" {
   source                       = "./build"
   domain                       = var.domain
-  http_basic_auth              = local.http_basic_auth
   http_basic_username          = var.http_basic_username
   http_basic_password          = var.http_basic_password
   gitea_db_password            = var.gitea_db_password
@@ -80,7 +78,6 @@ module "build" {
 module "tools" {
   source                       = "./tools"
   domain                       = var.domain
-  http_basic_auth              = local.http_basic_auth
   redis_password               = var.redis_password
   minio_user                   = var.minio_user
   minio_password               = var.minio_password
@@ -90,7 +87,6 @@ module "tools" {
   n8n_db_password              = var.n8n_db_password
   nocodb_db_password           = var.nocodb_db_password
   nocodb_jwt_secret            = var.nocodb_jwt_secret
-  whitelisted_ips              = var.whitelisted_ips
   velero_bucket                = var.velero_bucket
   velero_credentials_file_path = var.velero_credentials_file_path
   smtp_host                    = var.smtp_host

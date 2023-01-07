@@ -147,7 +147,8 @@ resource "kubernetes_manifest" "registry_ingress" {
           kind  = "Rule"
           middlewares = [
             {
-              name = kubernetes_manifest.registry_middleware_auth.manifest.metadata.name
+              namespace = "traefik"
+              name      = "middleware-auth"
             }
           ]
           services = [
@@ -179,7 +180,8 @@ resource "kubernetes_manifest" "registry_ui_ingress" {
           kind  = "Rule"
           middlewares = [
             {
-              name = kubernetes_manifest.registry_middleware_auth.manifest.metadata.name
+              namespace = "traefik"
+              name      = "middleware-auth"
             }
           ]
           services = [
@@ -192,33 +194,6 @@ resource "kubernetes_manifest" "registry_ui_ingress" {
         }
       ]
     }
-  }
-}
-
-resource "kubernetes_manifest" "registry_middleware_auth" {
-  manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
-    kind       = "Middleware"
-    metadata = {
-      name      = "middleware-auth"
-      namespace = kubernetes_namespace_v1.registry.metadata[0].name
-    }
-    spec = {
-      basicAuth = {
-        secret = kubernetes_secret_v1.registry_auth_secret.metadata[0].name
-      }
-    }
-  }
-}
-
-resource "kubernetes_secret_v1" "registry_auth_secret" {
-  metadata {
-    name      = "auth-secret"
-    namespace = kubernetes_namespace_v1.registry.metadata[0].name
-  }
-
-  data = {
-    "users" = var.http_basic_auth
   }
 }
 

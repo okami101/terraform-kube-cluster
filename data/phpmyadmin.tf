@@ -102,8 +102,14 @@ resource "kubernetes_manifest" "phpmyadmin" {
       ]
       routes = [
         {
-          kind  = "Rule"
           match = "Host(`pma.${var.domain}`)"
+          kind  = "Rule"
+          middlewares = [
+            {
+              namespace = "traefik"
+              name      = "middleware-ip"
+            }
+          ]
           services = [
             {
               kind = "Service"

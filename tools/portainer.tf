@@ -43,7 +43,8 @@ resource "kubernetes_manifest" "portainer_ingress" {
           kind  = "Rule"
           middlewares = [
             {
-              name = kubernetes_manifest.portainer_middleware_ip.manifest.metadata.name
+              namespace = "traefik"
+              name      = "middleware-ip"
             }
           ]
           services = [
@@ -55,22 +56,6 @@ resource "kubernetes_manifest" "portainer_ingress" {
           ]
         }
       ]
-    }
-  }
-}
-
-resource "kubernetes_manifest" "portainer_middleware_ip" {
-  manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
-    kind       = "Middleware"
-    metadata = {
-      name      = "middleware-ip"
-      namespace = kubernetes_namespace_v1.portainer.metadata[0].name
-    }
-    spec = {
-      ipWhiteList = {
-        sourceRange = var.whitelisted_ips
-      }
     }
   }
 }

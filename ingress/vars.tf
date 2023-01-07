@@ -21,3 +21,7 @@ variable "acme_email" {
 variable "zone_name" {
   type = string
 }
+
+variable "whitelisted_ips" {
+  type = list(string)
+}

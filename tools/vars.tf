@@ -2,10 +2,6 @@ variable "domain" {
   type = string
 }
 
-variable "http_basic_auth" {
-  type = string
-}
-
 variable "redis_password" {
   type = string
 }
@@ -32,10 +28,6 @@ variable "nocodb_db_password" {
 
 variable "nocodb_jwt_secret" {
   type = string
-}
-
-variable "whitelisted_ips" {
-  type = list(string)
 }
 
 variable "velero_bucket" {

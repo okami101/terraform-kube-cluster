@@ -16,34 +16,14 @@ resource "helm_release" "traefik" {
   ]
 }
 
-resource "kubernetes_manifest" "traefik_ingress" {
-  manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
-    kind       = "IngressRoute"
-    metadata = {
-      name      = "traefik"
-      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
-    }
-    spec = {
-      entryPoints = ["websecure"]
-      routes = [
-        {
-          match = "Host(`traefik.${var.domain}`)"
-          kind  = "Rule"
-          middlewares = [
-            {
-              name = kubernetes_manifest.traefik_middleware_auth.manifest.metadata.name
-            }
-          ]
-          services = [
-            {
-              name = "api@internal"
-              kind = "TraefikService"
-            }
-          ]
-        }
-      ]
-    }
+resource "kubernetes_secret_v1" "traefik_auth_secret" {
+  metadata {
+    name      = "auth-secret"
+    namespace = kubernetes_namespace_v1.traefik.metadata[0].name
+  }
+
+  data = {
+    "users" = var.http_basic_auth
   }
 }
 
@@ -63,13 +43,49 @@ resource "kubernetes_manifest" "traefik_middleware_auth" {
   }
 }
 
-resource "kubernetes_secret_v1" "traefik_auth_secret" {
-  metadata {
-    name      = "auth-secret"
-    namespace = kubernetes_namespace_v1.traefik.metadata[0].name
+resource "kubernetes_manifest" "traefik_middleware_ip" {
+  manifest = {
+    apiVersion = "traefik.containo.us/v1alpha1"
+    kind       = "Middleware"
+    metadata = {
+      name      = "middleware-ip"
+      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
+    }
+    spec = {
+      ipWhiteList = {
+        sourceRange = var.whitelisted_ips
+      }
+    }
   }
+}
 
-  data = {
-    "users" = var.http_basic_auth
+resource "kubernetes_manifest" "traefik_ingress" {
+  manifest = {
+    apiVersion = "traefik.containo.us/v1alpha1"
+    kind       = "IngressRoute"
+    metadata = {
+      name      = "traefik"
+      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
+    }
+    spec = {
+      entryPoints = ["websecure"]
+      routes = [
+        {
+          match = "Host(`traefik.${var.domain}`)"
+          kind  = "Rule"
+          middlewares = [
+            {
+              name = "middleware-auth"
+            }
+          ]
+          services = [
+            {
+              name = "api@internal"
+              kind = "TraefikService"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

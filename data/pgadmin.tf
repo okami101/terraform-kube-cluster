@@ -96,6 +96,12 @@ resource "kubernetes_manifest" "pgadmin_ingress" {
         {
           match = "Host(`pga.${var.domain}`)"
           kind  = "Rule"
+          middlewares = [
+            {
+              namespace = "traefik"
+              name      = "middleware-ip"
+            }
+          ]
           services = [
             {
               name = kubernetes_service_v1.pgadmin.metadata[0].name

@@ -2,10 +2,6 @@ variable "domain" {
   type = string
 }
 
-variable "http_basic_auth" {
-  type = string
-}
-
 variable "smtp_host" {
   type = string
 }
