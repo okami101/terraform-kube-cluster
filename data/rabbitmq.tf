@@ -122,6 +122,12 @@ resource "kubernetes_manifest" "rabbitmq_ingress" {
         {
           match = "Host(`rmq.${var.domain}`)"
           kind  = "Rule"
+          middlewares = [
+            {
+              namespace = "traefik"
+              name      = "middleware-ip"
+            }
+          ]
           services = [
             {
               name = kubernetes_service_v1.rabbitmq.metadata[0].name
