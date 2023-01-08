@@ -112,17 +112,12 @@ flux create kustomization monitoring-config --interval=1h --prune=true --source=
 ## Backup
 
 ```sh
-gsutil mb gs://okami101-k3s-backup/
+gsutil mb gs://okami101-backup/
 gcloud config list
 
 gcloud iam service-accounts create velero --display-name "Velero service account"
-gcloud iam service-accounts list
 
-gcloud iam roles create velero.server --project okami101 --title "Velero Server" --permissions storage.objects.create,storage.objects.delete,storage.objects.get,storage.objects.list
-
-gcloud projects add-iam-policy-binding okami101 --member serviceAccount:velero@okami101.iam.gserviceaccount.com --role projects/okami101/roles/velero.server
-
-gsutil iam ch serviceAccount:velero@okami101.iam.gserviceaccount.com:objectAdmin gs://okami101-k3s-backup
+gsutil iam ch serviceAccount:velero@okami101.iam.gserviceaccount.com:objectAdmin gs://okami101-backup
 
 gcloud iam service-accounts keys create credentials-velero --iam-account velero@okami101.iam.gserviceaccount.com
 ```
