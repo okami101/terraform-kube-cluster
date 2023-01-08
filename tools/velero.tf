@@ -22,18 +22,7 @@ resource "helm_release" "velero" {
 
   set {
     name  = "credentials.existingSecret"
-    value = "gcp-credentials"
-  }
-}
-
-resource "kubernetes_secret_v1" "gcp_credentials" {
-  metadata {
-    name      = "gcp-credentials"
-    namespace = kubernetes_namespace_v1.velero.metadata[0].name
-  }
-
-  data = {
-    cloud = file(var.velero_credentials_file_path)
+    value = "cloud-credentials"
   }
 }
 

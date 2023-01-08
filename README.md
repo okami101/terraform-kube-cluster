@@ -119,6 +119,8 @@ gcloud iam service-accounts create velero --display-name "Velero service account
 gsutil iam ch serviceAccount:velero@okami101.iam.gserviceaccount.com:objectAdmin gs://okami101-backup
 
 gcloud iam service-accounts keys create credentials-velero --iam-account velero@okami101.iam.gserviceaccount.com
+
+kubectl create secret generic cloud-credentials --from-file cloud=credentials-velero --namespace velero
 ```
 
 Then we can use `credentials-velero` as iam credentials by setting `velero_credentials_file_path`.

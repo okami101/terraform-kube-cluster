@@ -193,7 +193,3 @@ variable "concourse_webhook_token" {
 variable "velero_bucket" {
   type = string
 }
-
-variable "velero_credentials_file_path" {
-  type = string
-}

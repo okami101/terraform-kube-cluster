@@ -34,10 +34,6 @@ variable "velero_bucket" {
   type = string
 }
 
-variable "velero_credentials_file_path" {
-  type = string
-}
-
 variable "smtp_host" {
   type = string
 }

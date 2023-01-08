@@ -76,23 +76,22 @@ module "build" {
 }
 
 module "tools" {
-  source                       = "./tools"
-  domain                       = var.domain
-  redis_password               = var.redis_password
-  minio_user                   = var.minio_user
-  minio_password               = var.minio_password
-  redmine_db_password          = var.redmine_db_password
-  redmine_secret_key_base      = var.redmine_secret_key_base
-  umami_db_password            = var.umami_db_password
-  n8n_db_password              = var.n8n_db_password
-  nocodb_db_password           = var.nocodb_db_password
-  nocodb_jwt_secret            = var.nocodb_jwt_secret
-  velero_bucket                = var.velero_bucket
-  velero_credentials_file_path = var.velero_credentials_file_path
-  smtp_host                    = var.smtp_host
-  smtp_port                    = var.smtp_port
-  smtp_user                    = var.smtp_user
-  smtp_password                = var.smtp_password
+  source                  = "./tools"
+  domain                  = var.domain
+  redis_password          = var.redis_password
+  minio_user              = var.minio_user
+  minio_password          = var.minio_password
+  redmine_db_password     = var.redmine_db_password
+  redmine_secret_key_base = var.redmine_secret_key_base
+  umami_db_password       = var.umami_db_password
+  n8n_db_password         = var.n8n_db_password
+  nocodb_db_password      = var.nocodb_db_password
+  nocodb_jwt_secret       = var.nocodb_jwt_secret
+  velero_bucket           = var.velero_bucket
+  smtp_host               = var.smtp_host
+  smtp_port               = var.smtp_port
+  smtp_user               = var.smtp_user
+  smtp_password           = var.smtp_password
 
   depends_on = [
     module.data,
