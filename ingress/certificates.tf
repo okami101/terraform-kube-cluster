@@ -82,6 +82,9 @@ resource "kubernetes_manifest" "default_certificate" {
         name = kubernetes_manifest.letsencrypt_production_issuer.manifest.metadata.name
       }
       secretName = local.certificate_secret_name
+      privateKey = {
+        rotationPolicy = "Always"
+      }
     }
   }
 }
