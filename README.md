@@ -113,7 +113,6 @@ flux create kustomization monitoring-config --interval=1h --prune=true --source=
 
 ```sh
 gsutil mb gs://okami101-backup/
-gcloud config list
 
 gcloud iam service-accounts create velero --display-name "Velero service account"
 
