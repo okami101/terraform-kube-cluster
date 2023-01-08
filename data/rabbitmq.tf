@@ -47,32 +47,24 @@ resource "kubernetes_stateful_set_v1" "rabbitmq" {
             mount_path = "/var/lib/rabbitmq"
           }
         }
-        volume {
-          name = "rabbitmq-data"
-          persistent_volume_claim {
-            claim_name = "rabbitmq-data"
-          }
-        }
         toleration {
           key      = "node-role.kubernetes.io/data"
           operator = "Exists"
         }
       }
     }
-  }
-}
-
-resource "kubernetes_persistent_volume_claim_v1" "rabbitmq_data" {
-  metadata {
-    name      = "rabbitmq-data"
-    namespace = kubernetes_namespace_v1.rabbitmq.metadata[0].name
-  }
-  spec {
-    access_modes       = ["ReadWriteOnce"]
-    storage_class_name = "local-path"
-    resources {
-      requests = {
-        storage = "1Gi"
+    volume_claim_template {
+      metadata {
+        name = "rabbitmq-data"
+      }
+      spec {
+        access_modes       = ["ReadWriteOnce"]
+        storage_class_name = "local-path"
+        resources {
+          requests = {
+            storage = "1Gi"
+          }
+        }
       }
     }
   }
