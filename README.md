@@ -118,7 +118,7 @@ gcloud config list
 gcloud iam service-accounts create velero --display-name "Velero service account"
 gcloud iam service-accounts list
 
-gcloud iam roles create velero.server --project okami101 --title "Velero Server" --permissions compute.disks.get,compute.disks.create,compute.disks.createSnapshot,compute.snapshots.get,compute.snapshots.create,compute.snapshots.useReadOnly,compute.snapshots.delete,compute.zones.get,storage.objects.create,storage.objects.delete,storage.objects.get,storage.objects.list
+gcloud iam roles create velero.server --project okami101 --title "Velero Server" --permissions storage.objects.create,storage.objects.delete,storage.objects.get,storage.objects.list
 
 gcloud projects add-iam-policy-binding okami101 --member serviceAccount:velero@okami101.iam.gserviceaccount.com --role projects/okami101/roles/velero.server
 
