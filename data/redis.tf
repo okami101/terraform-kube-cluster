@@ -120,4 +120,14 @@ resource "helm_release" "redis_exporter" {
     name  = "auth.secret.key"
     value = "redis-password"
   }
+
+  set {
+    name  = "tolerations[0].key"
+    value = "node-role.kubernetes.io/monitor"
+  }
+
+  set {
+    name  = "tolerations[0].operator"
+    value = "Exists"
+  }
 }

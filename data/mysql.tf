@@ -170,4 +170,14 @@ resource "helm_release" "mysql_exporter" {
     name  = "serviceMonitor.enabled"
     value = "true"
   }
+
+  set {
+    name  = "tolerations[0].key"
+    value = "node-role.kubernetes.io/monitor"
+  }
+
+  set {
+    name  = "tolerations[0].operator"
+    value = "Exists"
+  }
 }

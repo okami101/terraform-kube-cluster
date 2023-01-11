@@ -16,3 +16,6 @@ config:
       - kured
       - bitnami-labs
       - nfs-subdir-external-provisioner
+tolerations:
+  - key: "node-role.kubernetes.io/monitor"
+    operator: "Exists"
