@@ -18,14 +18,6 @@ variable "whitelisted_ips" {
   type = list(string)
 }
 
-variable "nfs_server" {
-  type = string
-}
-
-variable "nfs_path" {
-  type = string
-}
-
 variable "cert_group_name" {
   type = string
 }

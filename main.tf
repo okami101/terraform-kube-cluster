@@ -26,10 +26,6 @@ module "data" {
   rabbitmq_default_user      = var.rabbitmq_default_user
   rabbitmq_default_password  = var.rabbitmq_default_password
   pgsql_db_init              = local.pgsql_db_init
-
-  depends_on = [
-    helm_release.nfs_provisioner,
-  ]
 }
 
 module "monitoring" {
