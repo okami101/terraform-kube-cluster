@@ -87,7 +87,6 @@ module "tools" {
   n8n_db_password         = var.n8n_db_password
   nocodb_db_password      = var.nocodb_db_password
   nocodb_jwt_secret       = var.nocodb_jwt_secret
-  velero_bucket           = var.velero_bucket
   smtp_host               = var.smtp_host
   smtp_port               = var.smtp_port
   smtp_user               = var.smtp_user

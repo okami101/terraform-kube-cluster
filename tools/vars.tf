@@ -30,10 +30,6 @@ variable "nocodb_jwt_secret" {
   type = string
 }
 
-variable "velero_bucket" {
-  type = string
-}
-
 variable "smtp_host" {
   type = string
 }

@@ -42,7 +42,6 @@ helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
 helm repo add minio https://charts.min.io/
 helm repo add gitea-charts https://dl.gitea.io/charts/
 helm repo add concourse https://concourse-charts.storage.googleapis.com/
-helm repo add velero https://vmware-tanzu.github.io/helm-charts/
 helm repo add sstarcher https://shanestarcher.com/helm-charts/
 
 kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/latest/download/system-upgrade-controller.yaml
@@ -109,27 +108,10 @@ flux create kustomization monitoring-config --interval=1h --prune=true --source=
 # commit, push the repo and check reconcile
 ```
 
-## Backup
-
-```sh
-gsutil mb gs://okami101-backup/
-
-gcloud iam service-accounts create velero --display-name "Velero service account"
-
-gsutil iam ch serviceAccount:velero@okami101.iam.gserviceaccount.com:objectAdmin gs://okami101-backup
-
-gcloud iam service-accounts keys create credentials-velero --iam-account velero@okami101.iam.gserviceaccount.com
-
-kubectl create secret generic cloud-credentials --from-file cloud=credentials-velero --namespace velero
-```
-
-Then we can use `credentials-velero` as iam credentials by setting `velero_credentials_file_path`.
-
 ## Grafana Dashboards
 
 | ID    | App          |
 | ----- | ------------ |
-| 16829 | Velero       |
 | 7036  | Concourse    |
 | 4475  | Traefik      |
 | 14055 | Loki         |
