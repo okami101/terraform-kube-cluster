@@ -99,11 +99,6 @@ resource "kubernetes_cron_job_v1" "postgres_backup" {
                 default_mode = "0744"
               }
             }
-
-            toleration {
-              key      = "node-role.kubernetes.io/data"
-              operator = "Exists"
-            }
           }
         }
       }
