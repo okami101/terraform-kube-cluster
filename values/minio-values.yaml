@@ -2,10 +2,6 @@ mode: standalone
 
 replicas: 1
 
-tolerations:
-  - key: node-role.kubernetes.io/data
-    operator: Exists
-
 resources:
   requests:
     memory: 1Gi
@@ -15,7 +11,5 @@ metrics:
     enabled: true
 
 persistence:
-  storageClass: nfs-client
-
-podAnnotations:
-  backup.velero.io/backup-volumes: export
+  storageClass: longhorn
+  size: 1Gi

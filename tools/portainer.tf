@@ -23,7 +23,7 @@ resource "helm_release" "portainer" {
 
   set {
     name  = "persistence.storageClass"
-    value = "nfs-client"
+    value = "longhorn"
   }
 }
 

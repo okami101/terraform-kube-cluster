@@ -22,7 +22,7 @@ resource "kubernetes_persistent_volume_claim_v1" "n8n" {
   }
   spec {
     access_modes       = ["ReadWriteMany"]
-    storage_class_name = "nfs-client"
+    storage_class_name = "longhorn"
     resources {
       requests = {
         storage = "128Mi"
@@ -46,9 +46,6 @@ resource "kubernetes_deployment_v1" "n8n" {
       metadata {
         labels = {
           app = "n8n"
-        }
-        annotations = {
-          "backup.velero.io/backup-volumes" = "n8n-data"
         }
       }
       spec {

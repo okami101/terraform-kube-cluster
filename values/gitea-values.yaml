@@ -6,8 +6,6 @@ gitea:
     enabled: true
     serviceMonitor:
       enabled: true
-  podAnnotations:
-    backup.velero.io/backup-volumes: data
   config:
     server:
       SSH_PORT: 22
@@ -45,8 +43,4 @@ memcached:
   enabled: false
 
 persistence:
-  storageClass: nfs-client
-
-tolerations:
-  - key: node-role.kubernetes.io/runner
-    operator: Exists
+  storageClass: longhorn

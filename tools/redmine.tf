@@ -23,7 +23,7 @@ resource "kubernetes_persistent_volume_claim_v1" "redmine_data" {
   }
   spec {
     access_modes       = ["ReadWriteMany"]
-    storage_class_name = "nfs-client"
+    storage_class_name = "longhorn"
     resources {
       requests = {
         storage = "1Gi"
@@ -47,9 +47,6 @@ resource "kubernetes_deployment_v1" "redmine" {
       metadata {
         labels = {
           app = "redmine"
-        }
-        annotations = {
-          "backup.velero.io/backup-volumes" = "redmine-data"
         }
       }
       spec {

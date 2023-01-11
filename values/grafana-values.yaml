@@ -3,7 +3,7 @@ initChownData:
 
 persistence:
   enabled: true
-  storageClassName: nfs-client
+  storageClassName: longhorn
 
 serviceMonitor:
   enabled: true
@@ -11,10 +11,3 @@ serviceMonitor:
 sidecar:
   dashboards:
     enabled: true
-
-tolerations:
-  - key: node-role.kubernetes.io/monitor
-    operator: Exists
-
-podAnnotations:
-  backup.velero.io/backup-volumes: storage

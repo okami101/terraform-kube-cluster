@@ -16,7 +16,7 @@ resource "kubernetes_persistent_volume_claim_v1" "mysql_backup" {
   }
   spec {
     access_modes       = ["ReadWriteMany"]
-    storage_class_name = "nfs-client"
+    storage_class_name = "longhorn"
     resources {
       requests = {
         storage = "8Gi"
