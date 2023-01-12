@@ -50,6 +50,10 @@ resource "kubernetes_deployment_v1" "umami" {
             container_port = 3000
           }
         }
+        toleration {
+          key      = "node-role.kubernetes.io/master"
+          operator = "Exists"
+        }
       }
     }
   }
