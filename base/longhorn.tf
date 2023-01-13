@@ -53,3 +53,26 @@ resource "kubernetes_manifest" "longhorn_ingress" {
     }
   }
 }
+
+resource "kubernetes_manifest" "longhorn_service_monitor" {
+  manifest = {
+    apiVersion = "monitoring.coreos.com/v1"
+    kind       = "ServiceMonitor"
+    metadata = {
+      name      = "metrics"
+      namespace = kubernetes_namespace_v1.longhorn.metadata[0].name
+    }
+    spec = {
+      endpoints = [
+        {
+          port = "manager"
+        }
+      ]
+      selector = {
+        matchLabels = {
+          app = "longhorn-manager"
+        }
+      }
+    }
+  }
+}

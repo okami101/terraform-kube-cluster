@@ -110,6 +110,7 @@ flux create kustomization monitoring-config --interval=1h --prune=true --source=
 
 | ID    | App          |
 | ----- | ------------ |
+| 13032 | Longhorn     |
 | 7036  | Concourse    |
 | 4475  | Traefik      |
 | 14055 | Loki         |
