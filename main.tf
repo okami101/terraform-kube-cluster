@@ -1,5 +1,5 @@
-module "ingress" {
-  source              = "./ingress"
+module "base" {
+  source              = "./base"
   domain              = var.domain
   http_basic_auth     = local.http_basic_auth
   cert_group_name     = var.cert_group_name
@@ -26,6 +26,10 @@ module "data" {
   rabbitmq_default_user      = var.rabbitmq_default_user
   rabbitmq_default_password  = var.rabbitmq_default_password
   pgsql_db_init              = local.pgsql_db_init
+
+  depends_on = [
+    module.base
+  ]
 }
 
 module "monitoring" {
