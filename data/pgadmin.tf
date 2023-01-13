@@ -32,6 +32,12 @@ resource "kubernetes_deployment_v1" "pgadmin" {
         }
       }
       spec {
+        security_context {
+          run_as_user            = 5050
+          run_as_group           = 5050
+          fs_group               = 5050
+          fs_group_change_policy = "OnRootMismatch"
+        }
         container {
           name  = "pgadmin"
           image = "dpage/pgadmin4:latest"
