@@ -26,6 +26,9 @@ web:
     - key: node-role.kubernetes.io/master
       operator: Exists
 
+  nodeSelector:
+    node-role.kubernetes.io/master: "true"
+
 worker:
   enabled: true
 

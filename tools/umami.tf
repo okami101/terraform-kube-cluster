@@ -54,6 +54,9 @@ resource "kubernetes_deployment_v1" "umami" {
           key      = "node-role.kubernetes.io/master"
           operator = "Exists"
         }
+        node_selector = {
+          "node-role.kubernetes.io/master" = "true"
+        }
       }
     }
   }
