@@ -15,7 +15,7 @@ resource "kubernetes_persistent_volume_claim_v1" "mysql_backup" {
     namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
   spec {
-    access_modes       = ["ReadWriteOnce"]
+    access_modes       = ["ReadWriteMany"]
     storage_class_name = "longhorn"
     resources {
       requests = {
