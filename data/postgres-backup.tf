@@ -31,7 +31,7 @@ resource "kubernetes_cron_job_v1" "postgres_backup" {
     namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
-    schedule = "0 */1 * * *"
+    schedule = "0 * * * *"
     job_template {
       metadata {
         name = "backup"
