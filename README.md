@@ -28,6 +28,7 @@ kubectl label nodes kube-runner-01 node-role.kubernetes.io/runner=true
 Next you need to install some helm charts as well as CRDs.
 
 ```sh
+# add repos
 helm repo add kubereboot https://kubereboot.github.io/charts
 helm repo add longhorn https://charts.longhorn.io
 helm repo add traefik https://helm.traefik.io/traefik
@@ -42,9 +43,15 @@ helm repo add gitea-charts https://dl.gitea.io/charts/
 helm repo add concourse https://concourse-charts.storage.googleapis.com/
 helm repo add sstarcher https://shanestarcher.com/helm-charts/
 
+# add csi drivers
+kubectl apply -f -n kube-system create secret generic hcloud --from-literal=token=xxx
+kubectl apply -f https://raw.githubusercontent.com/hetznercloud/csi-driver/v2.1.0/deploy/kubernetes/hcloud-csi.yml
+
+# automatic upgrade
 kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/latest/download/system-upgrade-controller.yaml
 
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.10.1/cert-manager.crds.yaml
+# install CRDs
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.crds.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.9/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
 kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.9/docs/content/reference/dynamic-configuration/kubernetes-crd-rbac.yml
