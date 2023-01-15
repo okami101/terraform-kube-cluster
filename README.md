@@ -46,6 +46,7 @@ helm repo add sstarcher https://shanestarcher.com/helm-charts/
 # add csi drivers
 kubectl -n kube-system create secret generic hcloud --from-literal=token=xxx
 kubectl apply -f https://raw.githubusercontent.com/hetznercloud/csi-driver/v2.1.0/deploy/kubernetes/hcloud-csi.yml
+kubectl patch sc hcloud-volumes -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 
 # automatic upgrade
 kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/latest/download/system-upgrade-controller.yaml
