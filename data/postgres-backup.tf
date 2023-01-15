@@ -27,7 +27,7 @@ resource "kubernetes_persistent_volume_claim_v1" "postgres_backup" {
 
 resource "kubernetes_cron_job_v1" "postgres_backup" {
   metadata {
-    name      = "backup"
+    name      = "postgres-backup"
     namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {

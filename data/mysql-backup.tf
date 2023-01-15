@@ -27,7 +27,7 @@ resource "kubernetes_persistent_volume_claim_v1" "mysql_backup" {
 
 resource "kubernetes_cron_job_v1" "mysql_backup" {
   metadata {
-    name      = "backup"
+    name      = "mysql-backup"
     namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
   spec {
