@@ -44,7 +44,7 @@ helm repo add concourse https://concourse-charts.storage.googleapis.com/
 helm repo add sstarcher https://shanestarcher.com/helm-charts/
 
 # add csi drivers
-kubectl apply -n kube-system create secret generic hcloud --from-literal=token=xxx
+kubectl -n kube-system create secret generic hcloud --from-literal=token=xxx
 kubectl apply -f https://raw.githubusercontent.com/hetznercloud/csi-driver/v2.1.0/deploy/kubernetes/hcloud-csi.yml
 
 # automatic upgrade
