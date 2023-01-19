@@ -5,8 +5,9 @@ resource "kubernetes_namespace_v1" "concourse" {
 }
 
 resource "helm_release" "concourse" {
-  chart   = "concourse/concourse"
-  version = "17.1.0"
+  chart      = "concourse"
+  version    = "17.1.0"
+  repository = "https://concourse-charts.storage.googleapis.com"
 
   name      = "concourse"
   namespace = kubernetes_namespace_v1.concourse.metadata[0].name

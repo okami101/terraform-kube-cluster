@@ -5,8 +5,9 @@ resource "kubernetes_namespace_v1" "longhorn" {
 }
 
 resource "helm_release" "longhorn" {
-  chart   = "longhorn/longhorn"
-  version = "1.4.0"
+  chart      = "longhorn"
+  version    = "1.4.0"
+  repository = "https://charts.longhorn.io"
 
   name      = "longhorn"
   namespace = kubernetes_namespace_v1.longhorn.metadata[0].name

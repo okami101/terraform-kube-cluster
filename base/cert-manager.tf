@@ -5,8 +5,9 @@ resource "kubernetes_namespace_v1" "cert_manager" {
 }
 
 resource "helm_release" "cert_manager" {
-  chart   = "jetstack/cert-manager"
-  version = "v1.11.0"
+  chart      = "cert-manager"
+  version    = "v1.11.0"
+  repository = "https://charts.jetstack.io"
 
   name      = "cert-manager"
   namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name
@@ -48,8 +49,9 @@ resource "helm_release" "cert_manager" {
 }
 
 resource "helm_release" "cert_manager_webhook_hetzner" {
-  chart   = "cert-manager-webhook-hetzner/cert-manager-webhook-hetzner"
-  version = "1.1.0"
+  chart      = "cert-manager-webhook-hetzner"
+  version    = "1.1.0"
+  repository = "https://vadimkim.github.io/cert-manager-webhook-hetzner"
 
   name      = "cert-manager-webhook-hetzner"
   namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name

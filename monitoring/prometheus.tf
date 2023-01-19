@@ -5,8 +5,9 @@ resource "kubernetes_namespace_v1" "monitoring" {
 }
 
 resource "helm_release" "kube_prometheus_stack" {
-  chart   = "prometheus-community/kube-prometheus-stack"
-  version = "44.2.1"
+  chart      = "kube-prometheus-stack"
+  version    = "44.2.1"
+  repository = "https://prometheus-community.github.io/helm-charts"
 
   name      = "kube-prometheus-stack"
   namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
@@ -50,8 +51,9 @@ resource "kubernetes_manifest" "prometheus_ingress" {
 }
 
 resource "helm_release" "helm_exporter" {
-  chart   = "sstarcher/helm-exporter"
-  version = "1.2.3+4dc0dfc"
+  chart      = "helm-exporter"
+  version    = "1.2.3+4dc0dfc"
+  repository = "https://shanestarcher.com/helm-charts"
 
   name      = "helm-exporter"
   namespace = kubernetes_namespace_v1.monitoring.metadata[0].name

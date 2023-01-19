@@ -5,8 +5,9 @@ resource "kubernetes_namespace_v1" "portainer" {
 }
 
 resource "helm_release" "portainer" {
-  chart   = "portainer/portainer"
-  version = "1.0.38"
+  chart      = "portainer"
+  version    = "1.0.38"
+  repository = "https://portainer.github.io/k8s"
 
   name      = "portainer"
   namespace = kubernetes_namespace_v1.portainer.metadata[0].name
