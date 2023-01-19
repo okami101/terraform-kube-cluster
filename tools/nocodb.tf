@@ -54,6 +54,16 @@ resource "kubernetes_deployment_v1" "nocodb" {
           name              = "nocodb"
           image             = "nocodb/nocodb:latest"
           image_pull_policy = "Always"
+          resources {
+            requests = {
+              cpu    = "100m"
+              memory = "256Mi"
+            }
+            limits = {
+              cpu    = "1000m"
+              memory = "256Mi"
+            }
+          }
           env {
             name = "DATABASE_URL"
             value_from {

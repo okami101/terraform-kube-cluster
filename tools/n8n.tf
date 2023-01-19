@@ -53,6 +53,16 @@ resource "kubernetes_deployment_v1" "n8n" {
           name              = "n8n"
           image             = "n8nio/n8n"
           image_pull_policy = "Always"
+          resources {
+            requests = {
+              cpu    = "100m"
+              memory = "128Mi"
+            }
+            limits = {
+              cpu    = "1000m"
+              memory = "128Mi"
+            }
+          }
           env {
             name  = "N8N_PROTOCOL"
             value = "https"

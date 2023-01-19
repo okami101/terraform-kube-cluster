@@ -37,6 +37,16 @@ resource "kubernetes_deployment_v1" "umami" {
           name              = "umami"
           image             = "docker.umami.dev/umami-software/umami:postgresql-latest"
           image_pull_policy = "Always"
+          resources {
+            requests = {
+              cpu    = "100m"
+              memory = "128Mi"
+            }
+            limits = {
+              cpu    = "100m"
+              memory = "256Mi"
+            }
+          }
           env {
             name = "DATABASE_URL"
             value_from {

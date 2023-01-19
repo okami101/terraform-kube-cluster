@@ -25,6 +25,26 @@ resource "helm_release" "portainer" {
     name  = "persistence.storageClass"
     value = "longhorn"
   }
+
+  set {
+    name  = "resources.requests.cpu"
+    value = "100m"
+  }
+
+  set {
+    name  = "resources.requests.memory"
+    value = "32Mi"
+  }
+
+  set {
+    name  = "resources.limits.cpu"
+    value = "100m"
+  }
+
+  set {
+    name  = "resources.limits.memory"
+    value = "32Mi"
+  }
 }
 
 resource "kubernetes_manifest" "portainer_ingress" {

@@ -39,6 +39,16 @@ resource "kubernetes_deployment_v1" "registry" {
           name              = "registry"
           image             = "registry:2"
           image_pull_policy = "Always"
+          resources {
+            requests = {
+              cpu    = "100m"
+              memory = "64Mi"
+            }
+            limits = {
+              cpu    = "100m"
+              memory = "64Mi"
+            }
+          }
           env {
             name  = "REGISTRY_STORAGE_DELETE_ENABLED"
             value = "true"

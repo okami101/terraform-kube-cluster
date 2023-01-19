@@ -18,8 +18,17 @@ resource "kubernetes_deployment_v1" "phpmyadmin" {
       spec {
         container {
           name  = "phpmyadmin"
-          image = "phpmyadmin/phpmyadmin"
-
+          image = "phpmyadmin/phpmyadmin:latest"
+          resources {
+            requests = {
+              cpu    = "100m"
+              memory = "128Mi"
+            }
+            limits = {
+              cpu    = "500m"
+              memory = "256Mi"
+            }
+          }
           env {
             name = "MYSQL_ROOT_PASSWORD"
             value_from {
