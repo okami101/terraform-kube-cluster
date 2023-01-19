@@ -28,6 +28,16 @@ resource "kubernetes_stateful_set_v1" "redis" {
           name              = "redis"
           image             = "redis:7"
           image_pull_policy = "Always"
+          resources {
+            requests = {
+              cpu    = "100m"
+              memory = "64Mi"
+            }
+            limits = {
+              cpu    = "1000m"
+              memory = "64Mi"
+            }
+          }
           env {
             name = "REDIS_PASSWORD"
             value_from {
