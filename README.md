@@ -31,12 +31,10 @@ Next you need to install some helm charts as well as CRDs.
 # add repos
 helm repo add kubereboot https://kubereboot.github.io/charts
 helm repo add longhorn https://charts.longhorn.io
-helm repo add traefik https://helm.traefik.io/traefik
 helm repo add portainer https://portainer.github.io/k8s
 helm repo add jetstack https://charts.jetstack.io
 helm repo add cert-manager-webhook-hetzner https://vadimkim.github.io/cert-manager-webhook-hetzner
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo add grafana https://grafana.github.io/helm-charts
 helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
 helm repo add minio https://charts.min.io/
 helm repo add gitea-charts https://dl.gitea.io/charts/
