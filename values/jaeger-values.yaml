@@ -9,10 +9,16 @@ storage:
 query:
   serviceMonitor:
     enabled: true
+  tolerations:
+    - key: "node-role.kubernetes.io/master"
+      operator: "Exists"
 
 collector:
   serviceMonitor:
     enabled: true
+  tolerations:
+    - key: "node-role.kubernetes.io/data"
+      operator: "Exists"
 
 agent:
   serviceMonitor:
