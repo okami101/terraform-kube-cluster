@@ -133,6 +133,11 @@ resource "kubernetes_deployment_v1" "mongo_express" {
             container_port = 8081
           }
         }
+
+        toleration {
+          key      = "node-role.kubernetes.io/data"
+          operator = "Exists"
+        }
       }
     }
   }
