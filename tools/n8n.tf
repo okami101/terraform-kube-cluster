@@ -56,11 +56,11 @@ resource "kubernetes_deployment_v1" "n8n" {
           resources {
             requests = {
               cpu    = "100m"
-              memory = "128Mi"
+              memory = "256Mi"
             }
             limits = {
               cpu    = "1000m"
-              memory = "128Mi"
+              memory = "256Mi"
             }
           }
           env {
