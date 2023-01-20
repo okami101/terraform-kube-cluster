@@ -42,11 +42,11 @@ resource "kubernetes_deployment_v1" "registry" {
           resources {
             requests = {
               cpu    = "100m"
-              memory = "64Mi"
+              memory = "128Mi"
             }
             limits = {
-              cpu    = "100m"
-              memory = "64Mi"
+              cpu    = "500m"
+              memory = "128Mi"
             }
           }
           env {
