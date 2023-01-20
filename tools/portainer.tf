@@ -34,7 +34,7 @@ resource "helm_release" "portainer" {
 
   set {
     name  = "resources.requests.memory"
-    value = "32Mi"
+    value = "64Mi"
   }
 
   set {
@@ -44,7 +44,7 @@ resource "helm_release" "portainer" {
 
   set {
     name  = "resources.limits.memory"
-    value = "32Mi"
+    value = "64Mi"
   }
 }
 
