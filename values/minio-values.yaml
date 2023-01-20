@@ -4,7 +4,7 @@ replicas: 1
 
 resources:
   requests:
-    memory: 1Gi
+    memory: 256Mi
 
 metrics:
   serviceMonitor:

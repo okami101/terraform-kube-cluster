@@ -40,10 +40,10 @@ resource "kubernetes_deployment_v1" "umami" {
           resources {
             requests = {
               cpu    = "100m"
-              memory = "128Mi"
+              memory = "256Mi"
             }
             limits = {
-              cpu    = "100m"
+              cpu    = "500m"
               memory = "256Mi"
             }
           }

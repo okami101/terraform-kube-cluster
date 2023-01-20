@@ -22,7 +22,7 @@ resource "kubernetes_deployment_v1" "phpmyadmin" {
           resources {
             requests = {
               cpu    = "100m"
-              memory = "128Mi"
+              memory = "256Mi"
             }
             limits = {
               cpu    = "500m"
