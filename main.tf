@@ -91,4 +91,9 @@ module "tools" {
   smtp_port               = var.smtp_port
   smtp_user               = var.smtp_user
   smtp_password           = var.smtp_password
+
+  depends_on = [
+    module.data,
+    module.monitoring,
+  ]
 }
