@@ -18,6 +18,16 @@ resource "helm_release" "longhorn" {
   }
 
   set {
+    name  = "longhornDriver.tolerations[0].key"
+    value = "node-role.kubernetes.io/data"
+  }
+
+  set {
+    name  = "longhornDriver.tolerations[0].operator"
+    value = "Exists"
+  }
+
+  set {
     name  = "longhornUI.tolerations[0].key"
     value = "node-role.kubernetes.io/data"
   }
