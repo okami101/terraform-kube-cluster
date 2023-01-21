@@ -34,17 +34,17 @@ resource "helm_release" "portainer" {
 
   set {
     name  = "resources.requests.memory"
-    value = "64Mi"
+    value = "128Mi"
   }
 
   set {
     name  = "resources.limits.cpu"
-    value = "100m"
+    value = "1000m"
   }
 
   set {
     name  = "resources.limits.memory"
-    value = "64Mi"
+    value = "128Mi"
   }
 }
 
