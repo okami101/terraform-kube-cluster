@@ -26,6 +26,36 @@ resource "helm_release" "longhorn" {
     name  = "longhornUI.tolerations[0].operator"
     value = "Exists"
   }
+
+  set {
+    name  = "longhornRecoveryBackend.tolerations[0].key"
+    value = "node-role.kubernetes.io/data"
+  }
+
+  set {
+    name  = "longhornRecoveryBackend.tolerations[0].operator"
+    value = "Exists"
+  }
+
+  set {
+    name  = "longhornAdmissionWebhook.tolerations[0].key"
+    value = "node-role.kubernetes.io/data"
+  }
+
+  set {
+    name  = "longhornAdmissionWebhook.tolerations[0].operator"
+    value = "Exists"
+  }
+
+  set {
+    name  = "longhornConversionWebhook.tolerations[0].key"
+    value = "node-role.kubernetes.io/data"
+  }
+
+  set {
+    name  = "longhornConversionWebhook.tolerations[0].operator"
+    value = "Exists"
+  }
 }
 
 resource "kubernetes_manifest" "longhorn_ingress" {
