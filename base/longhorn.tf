@@ -16,6 +16,16 @@ resource "helm_release" "longhorn" {
     name  = "persistence.defaultClass"
     value = "false"
   }
+
+  set {
+    name  = "longhornUI.tolerations[0].key"
+    value = "node-role.kubernetes.io/data"
+  }
+
+  set {
+    name  = "longhornUI.tolerations[0].operator"
+    value = "Exists"
+  }
 }
 
 resource "kubernetes_manifest" "longhorn_ingress" {
