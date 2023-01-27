@@ -1,6 +1,6 @@
 resource "helm_release" "grafana" {
   chart      = "grafana"
-  version    = "6.50.4"
+  version    = "6.50.5"
   repository = "https://grafana.github.io/helm-charts"
 
   name      = "grafana"
