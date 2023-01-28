@@ -37,6 +37,9 @@ resource "kubernetes_deployment_v1" "n8n" {
     namespace = kubernetes_namespace_v1.n8n.metadata[0].name
   }
   spec {
+    strategy {
+      type = "Recreate"
+    }
     selector {
       match_labels = {
         app = "n8n"

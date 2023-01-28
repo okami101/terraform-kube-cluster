@@ -38,6 +38,9 @@ resource "kubernetes_deployment_v1" "redmine" {
     namespace = kubernetes_namespace_v1.redmine.metadata[0].name
   }
   spec {
+    strategy {
+      type = "Recreate"
+    }
     selector {
       match_labels = {
         app = "redmine"

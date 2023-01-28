@@ -23,6 +23,9 @@ resource "kubernetes_deployment_v1" "registry" {
     namespace = kubernetes_namespace_v1.registry.metadata[0].name
   }
   spec {
+    strategy {
+      type = "Recreate"
+    }
     selector {
       match_labels = {
         app = "registry"

@@ -20,6 +20,9 @@ resource "kubernetes_deployment_v1" "pgadmin" {
     namespace = kubernetes_namespace_v1.postgres.metadata[0].name
   }
   spec {
+    strategy {
+      type = "Recreate"
+    }
     selector {
       match_labels = {
         app = "pgadmin"

@@ -38,6 +38,9 @@ resource "kubernetes_deployment_v1" "nocodb" {
     namespace = kubernetes_namespace_v1.nocodb.metadata[0].name
   }
   spec {
+    strategy {
+      type = "Recreate"
+    }
     selector {
       match_labels = {
         app = "nocodb"
