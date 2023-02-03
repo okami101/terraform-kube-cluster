@@ -5,6 +5,9 @@ persistence:
   enabled: true
   storageClassName: longhorn
 
+deploymentStrategy:
+  type: Recreate
+
 serviceMonitor:
   enabled: true
 
