@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "minio" {
 
 resource "helm_release" "minio" {
   chart      = "minio"
-  version    = "5.0.4"
+  version    = "5.0.5"
   repository = "https://charts.min.io"
 
   name      = "minio"

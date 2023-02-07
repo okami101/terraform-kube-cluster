@@ -13,3 +13,6 @@ metrics:
 persistence:
   storageClass: longhorn
   size: 1Gi
+
+DeploymentUpdate:
+  type: Recreate

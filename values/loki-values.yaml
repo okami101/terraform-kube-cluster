@@ -9,6 +9,7 @@ loki:
       type: local
 
 singleBinary:
+  replicas: 1
   tolerations:
     - key: node-role.kubernetes.io/monitor
       operator: Exists
