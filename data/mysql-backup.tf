@@ -31,7 +31,7 @@ resource "kubernetes_cron_job_v1" "mysql_backup" {
     namespace = kubernetes_namespace_v1.mysql.metadata[0].name
   }
   spec {
-    schedule = "0 * * * *"
+    schedule = "0 */8 * * *"
     job_template {
       metadata {
         name = "backup"
