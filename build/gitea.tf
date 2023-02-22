@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "gitea" {
 
 resource "helm_release" "gitea" {
   chart      = "gitea"
-  version    = "7.0.2"
+  version    = "7.0.4"
   repository = "https://dl.gitea.io/charts"
 
   name      = "gitea"
