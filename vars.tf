@@ -150,6 +150,14 @@ variable "umami_db_password" {
   type = string
 }
 
+variable "plausible_db_password" {
+  type = string
+}
+
+variable "plausible_secret_key_base" {
+  type = string
+}
+
 variable "redis_password" {
   type = string
 }

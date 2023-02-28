@@ -34,6 +34,10 @@ locals {
       password = var.umami_db_password
     },
     {
+      username = "plausible"
+      password = var.plausible_db_password
+    },
+    {
       username = "n8n"
       password = var.n8n_db_password
     },
