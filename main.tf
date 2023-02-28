@@ -26,6 +26,10 @@ module "data" {
   rabbitmq_default_user      = var.rabbitmq_default_user
   rabbitmq_default_password  = var.rabbitmq_default_password
   pgsql_db_init              = local.pgsql_db_init
+
+  depends_on = [
+    module.base
+  ]
 }
 
 module "monitoring" {
@@ -36,6 +40,10 @@ module "monitoring" {
   smtp_user           = var.smtp_user
   smtp_password       = var.smtp_password
   grafana_db_password = var.grafana_db_password
+
+  depends_on = [
+    module.data
+  ]
 }
 
 module "build" {
@@ -60,24 +68,32 @@ module "build" {
   concourse_secret_access_key  = var.concourse_secret_access_key
   concourse_bucket             = var.concourse_bucket
   concourse_webhook_token      = var.concourse_webhook_token
+
+  depends_on = [
+    module.data,
+    module.monitoring,
+  ]
 }
 
 module "tools" {
-  source                    = "./tools"
-  domain                    = var.domain
-  redis_password            = var.redis_password
-  minio_user                = var.minio_user
-  minio_password            = var.minio_password
-  redmine_db_password       = var.redmine_db_password
-  redmine_secret_key_base   = var.redmine_secret_key_base
-  umami_db_password         = var.umami_db_password
-  plausible_db_password     = var.plausible_db_password
-  plausible_secret_key_base = var.plausible_secret_key_base
-  n8n_db_password           = var.n8n_db_password
-  nocodb_db_password        = var.nocodb_db_password
-  nocodb_jwt_secret         = var.nocodb_jwt_secret
-  smtp_host                 = var.smtp_host
-  smtp_port                 = var.smtp_port
-  smtp_user                 = var.smtp_user
-  smtp_password             = var.smtp_password
+  source                  = "./tools"
+  domain                  = var.domain
+  redis_password          = var.redis_password
+  minio_user              = var.minio_user
+  minio_password          = var.minio_password
+  redmine_db_password     = var.redmine_db_password
+  redmine_secret_key_base = var.redmine_secret_key_base
+  umami_db_password       = var.umami_db_password
+  n8n_db_password         = var.n8n_db_password
+  nocodb_db_password      = var.nocodb_db_password
+  nocodb_jwt_secret       = var.nocodb_jwt_secret
+  smtp_host               = var.smtp_host
+  smtp_port               = var.smtp_port
+  smtp_user               = var.smtp_user
+  smtp_password           = var.smtp_password
+
+  depends_on = [
+    module.data,
+    module.monitoring,
+  ]
 }
