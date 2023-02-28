@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "logging" {
 
 resource "helm_release" "loki" {
   chart      = "loki"
-  version    = "4.7.0"
+  version    = "4.8.0"
   repository = "https://grafana.github.io/helm-charts"
 
   name      = "loki"

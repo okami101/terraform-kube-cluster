@@ -26,10 +26,6 @@ module "data" {
   rabbitmq_default_user      = var.rabbitmq_default_user
   rabbitmq_default_password  = var.rabbitmq_default_password
   pgsql_db_init              = local.pgsql_db_init
-
-  depends_on = [
-    module.base
-  ]
 }
 
 module "monitoring" {
@@ -40,10 +36,6 @@ module "monitoring" {
   smtp_user           = var.smtp_user
   smtp_password       = var.smtp_password
   grafana_db_password = var.grafana_db_password
-
-  depends_on = [
-    module.data
-  ]
 }
 
 module "build" {
@@ -68,11 +60,6 @@ module "build" {
   concourse_secret_access_key  = var.concourse_secret_access_key
   concourse_bucket             = var.concourse_bucket
   concourse_webhook_token      = var.concourse_webhook_token
-
-  depends_on = [
-    module.data,
-    module.monitoring,
-  ]
 }
 
 module "tools" {
@@ -91,9 +78,4 @@ module "tools" {
   smtp_port               = var.smtp_port
   smtp_user               = var.smtp_user
   smtp_password           = var.smtp_password
-
-  depends_on = [
-    module.data,
-    module.monitoring,
-  ]
 }

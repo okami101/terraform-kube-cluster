@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "tracing" {
 
 resource "helm_release" "jaeger" {
   chart      = "jaeger"
-  version    = "0.67.2"
+  version    = "0.67.3"
   repository = "https://jaegertracing.github.io/helm-charts"
 
   name      = "jaeger"
