@@ -23,7 +23,7 @@ resource "helm_release" "loki" {
 
 resource "helm_release" "promtail" {
   chart      = "promtail"
-  version    = "6.9.0"
+  version    = "6.9.2"
   repository = "https://grafana.github.io/helm-charts"
 
   name      = "promtail"
