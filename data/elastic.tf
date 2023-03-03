@@ -26,7 +26,7 @@ resource "kubernetes_stateful_set_v1" "elasticsearch" {
       spec {
         container {
           name              = "elasticsearch"
-          image             = "elasticsearch:7.17.6"
+          image             = "elasticsearch:7.17.9"
           image_pull_policy = "Always"
           env {
             name  = "xpack.security.enabled"
