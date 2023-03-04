@@ -79,10 +79,6 @@ resource "helm_release" "grafana" {
     name  = "env.GF_REMOTE_CACHE_CONNSTR"
     value = "addr=db.redis"
   }
-
-  depends_on = [
-    helm_release.kube_prometheus_stack,
-  ]
 }
 
 resource "kubernetes_manifest" "grafana_ingress" {
