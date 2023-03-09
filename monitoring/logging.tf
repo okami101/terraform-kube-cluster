@@ -15,15 +15,11 @@ resource "helm_release" "loki" {
   values = [
     file("values/loki-values.yaml")
   ]
-
-  depends_on = [
-    helm_release.kube_prometheus_stack,
-  ]
 }
 
 resource "helm_release" "promtail" {
   chart      = "promtail"
-  version    = "6.9.2"
+  version    = "6.9.3"
   repository = "https://grafana.github.io/helm-charts"
 
   name      = "promtail"
@@ -31,9 +27,5 @@ resource "helm_release" "promtail" {
 
   values = [
     file("values/promtail-values.yaml")
-  ]
-
-  depends_on = [
-    helm_release.loki,
   ]
 }

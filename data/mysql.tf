@@ -146,7 +146,7 @@ resource "kubernetes_service_v1" "mysql" {
 
 resource "helm_release" "mysql_exporter" {
   chart      = "prometheus-mysql-exporter"
-  version    = "1.12.1"
+  version    = "1.13.0"
   repository = "https://prometheus-community.github.io/helm-charts"
 
   name      = "mysql-exporter"

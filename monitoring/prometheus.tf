@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "monitoring" {
 
 resource "helm_release" "kube_prometheus_stack" {
   chart      = "kube-prometheus-stack"
-  version    = "45.5.0"
+  version    = "45.7.1"
   repository = "https://prometheus-community.github.io/helm-charts"
 
   name      = "kube-prometheus-stack"
@@ -52,7 +52,7 @@ resource "kubernetes_manifest" "prometheus_ingress" {
 
 resource "helm_release" "helm_exporter" {
   chart      = "helm-exporter"
-  version    = "1.2.4+c4edcdf"
+  version    = "1.2.5+1cbc9c5"
   repository = "https://shanestarcher.com/helm-charts"
 
   name      = "helm-exporter"
