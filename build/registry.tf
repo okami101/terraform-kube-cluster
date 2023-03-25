@@ -210,13 +210,6 @@ resource "kubernetes_manifest" "registry_ui_ingress" {
   }
 }
 
-resource "kubernetes_namespace_v1" "image_pull_secret_namespaces" {
-  for_each = toset(var.image_pull_secret_namespaces)
-  metadata {
-    name = each.value
-  }
-}
-
 resource "kubernetes_secret_v1" "image_pull_secrets" {
   for_each = toset(var.image_pull_secret_namespaces)
   metadata {
@@ -235,8 +228,4 @@ resource "kubernetes_secret_v1" "image_pull_secrets" {
       }
     })
   }
-
-  depends_on = [
-    kubernetes_namespace_v1.image_pull_secret_namespaces
-  ]
 }
