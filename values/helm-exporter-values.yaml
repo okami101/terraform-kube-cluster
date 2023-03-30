@@ -11,10 +11,10 @@ config:
       - minio-official
       - gitea
       - concourse
-      - vmware-tanzu
       - sstarcher
       - kured
       - bitnami-labs
+      - longhorn
       - nfs-subdir-external-provisioner
 tolerations:
   - key: "node-role.kubernetes.io/monitor"
