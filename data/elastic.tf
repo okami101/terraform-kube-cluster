@@ -98,7 +98,7 @@ resource "kubernetes_service_v1" "elasticsearch" {
 
 resource "helm_release" "elasticsearch_exporter" {
   chart      = "prometheus-elasticsearch-exporter"
-  version    = "5.0.0"
+  version    = "5.1.0"
   repository = "https://prometheus-community.github.io/helm-charts"
 
   name      = "elasticsearch-exporter"
