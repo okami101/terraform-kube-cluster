@@ -2,6 +2,10 @@ loki:
   auth_enabled: false
   commonConfig:
     replication_factor: 1
+  compactor:
+    retention_enabled: true
+  limits_config:
+    retention_period: 24h
   storage:
     type: filesystem
   rulerConfig:
