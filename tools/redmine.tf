@@ -123,7 +123,7 @@ resource "kubernetes_deployment_v1" "redmine" {
         volume {
           name = "redmine-data"
           persistent_volume_claim {
-            claim_name = "redmine-data"
+            claim_name = kubernetes_persistent_volume_claim_v1.redmine_data.metadata[0].name
           }
         }
       }

@@ -120,7 +120,7 @@ resource "kubernetes_deployment_v1" "nocodb" {
         volume {
           name = "nocodb-data"
           persistent_volume_claim {
-            claim_name = "nocodb-data"
+            claim_name = kubernetes_persistent_volume_claim_v1.nocodb.metadata[0].name
           }
         }
       }

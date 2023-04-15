@@ -147,7 +147,7 @@ resource "kubernetes_deployment_v1" "n8n" {
         volume {
           name = "n8n-data"
           persistent_volume_claim {
-            claim_name = "n8n-data"
+            claim_name = kubernetes_persistent_volume_claim_v1.n8n.metadata[0].name
           }
         }
       }

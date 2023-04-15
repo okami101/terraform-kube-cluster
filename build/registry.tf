@@ -88,7 +88,7 @@ resource "kubernetes_deployment_v1" "registry" {
         volume {
           name = "registry-data"
           persistent_volume_claim {
-            claim_name = "registry-data"
+            claim_name = kubernetes_persistent_volume_claim_v1.registry_data.metadata[0].name
           }
         }
         volume {
