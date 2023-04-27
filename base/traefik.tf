@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "traefik" {
 
 resource "helm_release" "traefik" {
   chart      = "traefik"
-  version    = "22.1.0"
+  version    = "23.0.0"
   repository = "https://traefik.github.io/charts"
 
   name      = "traefik"
@@ -30,7 +30,7 @@ resource "kubernetes_secret_v1" "traefik_auth_secret" {
 
 resource "kubernetes_manifest" "traefik_middleware_auth" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "Middleware"
     metadata = {
       name      = "middleware-auth"
@@ -46,7 +46,7 @@ resource "kubernetes_manifest" "traefik_middleware_auth" {
 
 resource "kubernetes_manifest" "traefik_middleware_ip" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "Middleware"
     metadata = {
       name      = "middleware-ip"
@@ -62,7 +62,7 @@ resource "kubernetes_manifest" "traefik_middleware_ip" {
 
 resource "kubernetes_manifest" "traefik_ingress" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
       name      = "traefik"

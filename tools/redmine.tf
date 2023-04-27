@@ -148,7 +148,7 @@ resource "kubernetes_service_v1" "redmine" {
 
 resource "kubernetes_manifest" "redmine_ingress" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
       name      = "redmine"

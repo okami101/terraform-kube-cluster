@@ -177,7 +177,7 @@ resource "kubernetes_service_v1" "mongo_express" {
 
 resource "kubernetes_manifest" "mongo_ingress" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
       name      = "mongo"

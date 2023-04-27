@@ -146,7 +146,7 @@ resource "kubernetes_service_v1" "registry" {
 
 resource "kubernetes_manifest" "registry_ingress" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
       name      = "registry"
@@ -179,7 +179,7 @@ resource "kubernetes_manifest" "registry_ingress" {
 
 resource "kubernetes_manifest" "registry_ui_ingress" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
       name      = "registry-ui"

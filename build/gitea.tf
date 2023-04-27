@@ -41,7 +41,7 @@ resource "helm_release" "gitea" {
 
 resource "kubernetes_manifest" "gitea_ingress" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
       name      = "gitea-http"
@@ -68,7 +68,7 @@ resource "kubernetes_manifest" "gitea_ingress" {
 
 resource "kubernetes_manifest" "gitea_ingress_ssh" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "IngressRouteTCP"
     metadata = {
       name      = "gitea-ssh"

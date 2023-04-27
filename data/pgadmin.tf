@@ -100,7 +100,7 @@ resource "kubernetes_service_v1" "pgadmin" {
 
 resource "kubernetes_manifest" "pgadmin_ingress" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
       name      = "pgadmin"

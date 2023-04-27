@@ -50,7 +50,7 @@ resource "helm_release" "portainer" {
 
 resource "kubernetes_manifest" "portainer_ingress" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
       name      = "portainer"

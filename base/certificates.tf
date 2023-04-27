@@ -4,7 +4,7 @@ locals {
 
 resource "kubernetes_manifest" "default_tls_store" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "TLSStore"
     metadata = {
       name      = "default"

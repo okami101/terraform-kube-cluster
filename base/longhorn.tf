@@ -70,7 +70,7 @@ resource "helm_release" "longhorn" {
 
 resource "kubernetes_manifest" "longhorn_ingress" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
       name      = "longhorn"

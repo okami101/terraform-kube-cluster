@@ -173,7 +173,7 @@ resource "kubernetes_service_v1" "n8n" {
 
 resource "kubernetes_manifest" "n8n_ingress" {
   manifest = {
-    apiVersion = "traefik.containo.us/v1alpha1"
+    apiVersion = "traefik.io/v1alpha1"
     kind       = "IngressRoute"
     metadata = {
       name      = "n8n"
