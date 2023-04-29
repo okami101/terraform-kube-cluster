@@ -1,4 +1,0 @@
-%{ for db in pgsql_db_init ~}
-CREATE ROLE ${db.username} WITH LOGIN PASSWORD '${db.password}';
-CREATE DATABASE ${db.username} WITH OWNER = ${db.username};
-%{ endfor ~}
