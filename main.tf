@@ -21,8 +21,6 @@ module "data" {
   pgsql_replication_password = var.pgsql_replication_password
   pgadmin_default_email      = var.pgadmin_default_email
   pgadmin_default_password   = var.pgadmin_default_password
-  minio_user                 = var.minio_user
-  minio_password             = var.minio_password
   rabbitmq_default_user      = var.rabbitmq_default_user
   rabbitmq_default_password  = var.rabbitmq_default_password
   pgsql_db_init              = local.pgsql_db_init
@@ -56,9 +54,6 @@ module "build" {
   concourse_db_password        = var.concourse_db_password
   concourse_user               = var.concourse_user
   concourse_password           = var.concourse_password
-  concourse_access_key_id      = var.concourse_access_key_id
-  concourse_secret_access_key  = var.concourse_secret_access_key
-  concourse_bucket             = var.concourse_bucket
   concourse_webhook_token      = var.concourse_webhook_token
 }
 
@@ -66,8 +61,6 @@ module "tools" {
   source                  = "./tools"
   domain                  = var.domain
   redis_password          = var.redis_password
-  minio_user              = var.minio_user
-  minio_password          = var.minio_password
   redmine_db_password     = var.redmine_db_password
   redmine_secret_key_base = var.redmine_secret_key_base
   umami_db_password       = var.umami_db_password

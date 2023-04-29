@@ -8,14 +8,11 @@ config:
       - cert-manager-webhook-hetzner
       - jaegertracing
       - grafana
-      - minio-official
       - gitea
       - concourse
       - sstarcher
       - kured
-      - bitnami-labs
       - longhorn
-      - nfs-subdir-external-provisioner
 tolerations:
   - key: "node-role.kubernetes.io/monitor"
     operator: "Exists"

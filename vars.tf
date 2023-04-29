@@ -94,14 +94,6 @@ variable "grafana_db_password" {
   type = string
 }
 
-variable "minio_user" {
-  type = string
-}
-
-variable "minio_password" {
-  type = string
-}
-
 variable "rabbitmq_default_user" {
   type = string
 }
@@ -123,6 +115,10 @@ variable "concourse_user" {
 }
 
 variable "concourse_password" {
+  type = string
+}
+
+variable "concourse_webhook_token" {
   type = string
 }
 
@@ -163,21 +159,5 @@ variable "nocodb_db_password" {
 }
 
 variable "nocodb_jwt_secret" {
-  type = string
-}
-
-variable "concourse_bucket" {
-  type = string
-}
-
-variable "concourse_access_key_id" {
-  type = string
-}
-
-variable "concourse_secret_access_key" {
-  type = string
-}
-
-variable "concourse_webhook_token" {
   type = string
 }

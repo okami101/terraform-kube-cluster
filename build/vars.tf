@@ -66,18 +66,6 @@ variable "concourse_password" {
   type = string
 }
 
-variable "concourse_bucket" {
-  type = string
-}
-
-variable "concourse_access_key_id" {
-  type = string
-}
-
-variable "concourse_secret_access_key" {
-  type = string
-}
-
 variable "concourse_webhook_token" {
   type = string
 }

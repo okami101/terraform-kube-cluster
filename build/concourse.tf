@@ -95,21 +95,3 @@ resource "kubernetes_secret_v1" "concourse_webhook" {
     helm_release.concourse
   ]
 }
-
-resource "kubernetes_secret_v1" "concourse_s3" {
-  metadata {
-    name      = "s3"
-    namespace = "concourse-main"
-  }
-
-  data = {
-    endpoint          = "s3.${var.domain}"
-    bucket            = var.concourse_bucket
-    access-key-id     = var.concourse_access_key_id
-    secret-access-key = var.concourse_secret_access_key
-  }
-
-  depends_on = [
-    helm_release.concourse
-  ]
-}

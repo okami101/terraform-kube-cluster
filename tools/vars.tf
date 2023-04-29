@@ -45,11 +45,3 @@ variable "smtp_user" {
 variable "smtp_password" {
   type = string
 }
-
-variable "minio_user" {
-  type = string
-}
-
-variable "minio_password" {
-  type = string
-}

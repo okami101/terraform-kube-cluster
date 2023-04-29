@@ -45,14 +45,6 @@ variable "pgsql_db_init" {
   }))
 }
 
-variable "minio_user" {
-  type = string
-}
-
-variable "minio_password" {
-  type = string
-}
-
 variable "rabbitmq_default_user" {
   type = string
 }
