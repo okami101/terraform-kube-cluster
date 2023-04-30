@@ -1,21 +1,5 @@
 locals {
-  certificate_secret_name = "default-certificate"
-}
-
-resource "kubernetes_manifest" "default_tls_store" {
-  manifest = {
-    apiVersion = "traefik.io/v1alpha1"
-    kind       = "TLSStore"
-    metadata = {
-      name      = "default"
-      namespace = "default"
-    }
-    spec = {
-      defaultCertificate = {
-        secretName = local.certificate_secret_name
-      }
-    }
-  }
+  certificate_secret_name = "tls-cert"
 }
 
 resource "kubernetes_secret_v1" "hetzner_secret" {
@@ -63,13 +47,13 @@ resource "kubernetes_manifest" "letsencrypt_production_issuer" {
   }
 }
 
-resource "kubernetes_manifest" "default_certificate" {
+resource "kubernetes_manifest" "tls_certificate" {
   manifest = {
     apiVersion = "cert-manager.io/v1"
     kind       = "Certificate"
     metadata = {
       name      = "default-certificate"
-      namespace = "default"
+      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
     }
     spec = {
       commonName = var.domain
