@@ -4,21 +4,22 @@ resource "kubernetes_namespace_v1" "test" {
   }
 }
 
-resource "kubernetes_deployment_v1" "postgres_test" {
+resource "kubernetes_stateful_set_v1" "postgres_test" {
   metadata {
-    name      = "postgres"
+    name      = "postgresql"
     namespace = kubernetes_namespace_v1.test.metadata[0].name
   }
   spec {
+    service_name = "postgresql"
     selector {
       match_labels = {
-        app = "postgres"
+        app = "postgresql"
       }
     }
     template {
       metadata {
         labels = {
-          app = "postgres"
+          app = "postgresql"
         }
       }
       spec {
@@ -46,6 +47,21 @@ resource "kubernetes_deployment_v1" "postgres_test" {
         toleration {
           key      = "node-role.kubernetes.io/runner"
           operator = "Exists"
+        }
+      }
+    }
+
+    volume_claim_template {
+      metadata {
+        name = "postgresql-data"
+      }
+      spec {
+        access_modes       = ["ReadWriteOnce"]
+        storage_class_name = "local-path"
+        resources {
+          requests = {
+            storage = "8Gi"
+          }
         }
       }
     }
