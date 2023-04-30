@@ -75,7 +75,7 @@ resource "kubernetes_service_v1" "postgres_test" {
   }
   spec {
     selector = {
-      app = "postgres"
+      app = "postgresql"
     }
     port {
       port        = 5432
