@@ -214,7 +214,7 @@ resource "kubernetes_manifest" "mongo_ingress" {
 
 resource "helm_release" "mongodb_exporter" {
   chart      = "prometheus-mongodb-exporter"
-  version    = "3.1.2"
+  version    = "3.1.3"
   repository = "https://prometheus-community.github.io/helm-charts"
 
   name      = "mongodb-exporter"
