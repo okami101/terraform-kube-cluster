@@ -55,6 +55,17 @@ resource "kubernetes_stateful_set_v1" "postgresql" {
           image             = "postgres:15"
           image_pull_policy = "Always"
 
+          resources {
+            requests = {
+              cpu    = "500m"
+              memory = "2Gi"
+            }
+            limits = {
+              cpu    = "2"
+              memory = "2Gi"
+            }
+          }
+
           args = [
             "-c",
             "config_file=/etc/postgres.conf",
@@ -241,6 +252,17 @@ resource "kubernetes_stateful_set_v1" "postgresql_replica" {
           name              = "postgres"
           image             = "postgres:15"
           image_pull_policy = "Always"
+
+          resources {
+            requests = {
+              cpu    = "500m"
+              memory = "2Gi"
+            }
+            limits = {
+              cpu    = "2"
+              memory = "2Gi"
+            }
+          }
 
           args = [
             "-c",
