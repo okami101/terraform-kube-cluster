@@ -30,7 +30,7 @@ Next you need to install some helm charts as well as CRDs.
 ```sh
 # add csi drivers
 kubectl -n kube-system create secret generic hcloud --from-literal=token=xxx
-kubectl apply -f https://raw.githubusercontent.com/hetznercloud/csi-driver/v2.1.0/deploy/kubernetes/hcloud-csi.yml
+kubectl apply -f https://raw.githubusercontent.com/hetznercloud/csi-driver/v2.3.2/deploy/kubernetes/hcloud-csi.yml
 kubectl patch sc hcloud-volumes -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 
 # automatic upgrade
