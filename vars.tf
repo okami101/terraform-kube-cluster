@@ -2,18 +2,6 @@ variable "domain" {
   type = string
 }
 
-variable "image_pull_secret_namespaces" {
-  type = list(string)
-}
-
-variable "flux_receiver_hook" {
-  type = string
-}
-
-variable "flux_receiver_token" {
-  type = string
-}
-
 variable "whitelisted_ips" {
   type = list(string)
 }
@@ -160,4 +148,18 @@ variable "nocodb_db_password" {
 
 variable "nocodb_jwt_secret" {
   type = string
+}
+
+variable "image_pull_secret_namespaces" {
+  type = list(string)
+}
+
+variable "flux_receiver_hook" {
+  type    = string
+  default = null
+}
+
+variable "flux_receiver_token" {
+  type    = string
+  default = null
 }
