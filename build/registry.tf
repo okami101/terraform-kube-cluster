@@ -12,7 +12,13 @@ resource "kubernetes_config_map_v1" "registry_config" {
 
   data = {
     "config.yml" = templatefile("configs/registry-config.tftpl", {
-      endpoints = var.registry_endpoints
+      endpoints = [
+        {
+          name  = "flux"
+          url   = "http://webhook-receiver.flux-system/hook/${var.flux_receiver_hook}"
+          token = var.flux_receiver_token
+        }
+      ]
     })
   }
 }

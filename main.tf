@@ -46,7 +46,8 @@ module "build" {
   gitea_admin_password         = var.gitea_admin_password
   gitea_admin_email            = var.gitea_admin_email
   image_pull_secret_namespaces = var.image_pull_secret_namespaces
-  registry_endpoints           = var.registry_endpoints
+  flux_receiver_hook           = var.flux_receiver_hook
+  flux_receiver_token          = var.flux_receiver_token
   smtp_host                    = var.smtp_host
   smtp_port                    = var.smtp_port
   smtp_user                    = var.smtp_user
