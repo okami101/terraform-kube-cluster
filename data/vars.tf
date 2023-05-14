@@ -38,13 +38,6 @@ variable "pgadmin_default_password" {
   type = string
 }
 
-variable "pgsql_db_init" {
-  type = list(object({
-    username = string
-    password = string
-  }))
-}
-
 variable "rabbitmq_default_user" {
   type = string
 }

@@ -43,7 +43,7 @@ variable "smtp_host" {
 }
 
 variable "smtp_port" {
-  type = number
+  type = string
 }
 
 variable "smtp_user" {

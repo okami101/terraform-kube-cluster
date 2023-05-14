@@ -1,7 +1,7 @@
 resource "null_resource" "encrypted_admin_password" {
   triggers = {
-    orig = var.http_basic_password
-    pw   = bcrypt(var.http_basic_password)
+    orig = data.kubernetes_secret_v1.vars.data["http_basic_password"]
+    pw   = bcrypt(data.kubernetes_secret_v1.vars.data["http_basic_password"])
   }
 
   lifecycle {
@@ -10,36 +10,5 @@ resource "null_resource" "encrypted_admin_password" {
 }
 
 locals {
-  http_basic_auth = "${var.http_basic_username}:${null_resource.encrypted_admin_password.triggers.pw}"
-
-  pgsql_db_init = [
-    {
-      username = "grafana"
-      password = var.grafana_db_password
-    },
-    {
-      username = "gitea"
-      password = var.gitea_db_password
-    },
-    {
-      username = "concourse"
-      password = var.concourse_db_password
-    },
-    {
-      username = "redmine"
-      password = var.redmine_db_password
-    },
-    {
-      username = "umami"
-      password = var.umami_db_password
-    },
-    {
-      username = "n8n"
-      password = var.n8n_db_password
-    },
-    {
-      username = "nocodb"
-      password = var.nocodb_db_password
-    },
-  ]
+  http_basic_auth = "${data.kubernetes_config_map_v1.vars.data["http_basic_username"]}:${null_resource.encrypted_admin_password.triggers.pw}"
 }

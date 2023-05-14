@@ -1,75 +1,74 @@
 module "base" {
   source              = "./base"
-  domain              = var.domain
+  domain              = data.kubernetes_config_map_v1.vars.data["domain"]
   http_basic_auth     = local.http_basic_auth
-  cert_group_name     = var.cert_group_name
-  hetzner_dns_api_key = var.hetzner_dns_api_key
-  acme_email          = var.acme_email
-  zone_name           = var.zone_name
-  whitelisted_ips     = var.whitelisted_ips
+  cert_group_name     = data.kubernetes_config_map_v1.vars.data["cert_group_name"]
+  hetzner_dns_api_key = data.kubernetes_secret_v1.vars.data["hetzner_dns_api_key"]
+  acme_email          = data.kubernetes_config_map_v1.vars.data["acme_email"]
+  zone_name           = data.kubernetes_config_map_v1.vars.data["zone_name"]
+  whitelisted_ips     = jsondecode(data.kubernetes_secret_v1.vars.data["whitelisted_ips"])
 }
 
 module "data" {
   source                     = "./data"
-  domain                     = var.domain
-  redis_password             = var.redis_password
-  mongo_password             = var.mongo_password
-  mysql_password             = var.mysql_password
-  mysql_exporter_password    = var.mysql_exporter_password
-  pgsql_user                 = var.pgsql_user
-  pgsql_password             = var.pgsql_password
-  pgsql_replication_password = var.pgsql_replication_password
-  pgadmin_default_email      = var.pgadmin_default_email
-  pgadmin_default_password   = var.pgadmin_default_password
-  rabbitmq_default_user      = var.rabbitmq_default_user
-  rabbitmq_default_password  = var.rabbitmq_default_password
-  pgsql_db_init              = local.pgsql_db_init
+  domain                     = data.kubernetes_config_map_v1.vars.data["domain"]
+  redis_password             = data.kubernetes_secret_v1.vars.data["redis_password"]
+  mongo_password             = data.kubernetes_secret_v1.vars.data["mongo_password"]
+  mysql_password             = data.kubernetes_secret_v1.vars.data["mysql_password"]
+  mysql_exporter_password    = data.kubernetes_secret_v1.vars.data["mysql_exporter_password"]
+  pgsql_user                 = data.kubernetes_config_map_v1.vars.data["pgsql_user"]
+  pgsql_password             = data.kubernetes_secret_v1.vars.data["pgsql_password"]
+  pgsql_replication_password = data.kubernetes_secret_v1.vars.data["pgsql_replication_password"]
+  pgadmin_default_email      = data.kubernetes_config_map_v1.vars.data["pgadmin_default_email"]
+  pgadmin_default_password   = data.kubernetes_secret_v1.vars.data["pgadmin_default_password"]
+  rabbitmq_default_user      = data.kubernetes_config_map_v1.vars.data["rabbitmq_default_user"]
+  rabbitmq_default_password  = data.kubernetes_secret_v1.vars.data["rabbitmq_default_password"]
 }
 
 module "monitoring" {
   source              = "./monitoring"
-  domain              = var.domain
-  smtp_host           = var.smtp_host
-  smtp_port           = var.smtp_port
-  smtp_user           = var.smtp_user
-  smtp_password       = var.smtp_password
-  grafana_db_password = var.grafana_db_password
+  domain              = data.kubernetes_config_map_v1.vars.data["domain"]
+  smtp_host           = data.kubernetes_config_map_v1.vars.data["smtp_host"]
+  smtp_port           = data.kubernetes_config_map_v1.vars.data["smtp_port"]
+  smtp_user           = data.kubernetes_config_map_v1.vars.data["smtp_user"]
+  smtp_password       = data.kubernetes_secret_v1.vars.data["smtp_password"]
+  grafana_db_password = data.kubernetes_secret_v1.vars.data["grafana_db_password"]
 }
 
 module "build" {
   source                       = "./build"
-  domain                       = var.domain
-  http_basic_username          = var.http_basic_username
-  http_basic_password          = var.http_basic_password
-  gitea_db_password            = var.gitea_db_password
-  gitea_admin_username         = var.gitea_admin_username
-  gitea_admin_password         = var.gitea_admin_password
-  gitea_admin_email            = var.gitea_admin_email
-  image_pull_secret_namespaces = var.image_pull_secret_namespaces
-  flux_receiver_hook           = var.flux_receiver_hook
-  flux_receiver_token          = var.flux_receiver_token
-  smtp_host                    = var.smtp_host
-  smtp_port                    = var.smtp_port
-  smtp_user                    = var.smtp_user
-  smtp_password                = var.smtp_password
-  concourse_db_password        = var.concourse_db_password
-  concourse_user               = var.concourse_user
-  concourse_password           = var.concourse_password
-  concourse_webhook_token      = var.concourse_webhook_token
+  domain                       = data.kubernetes_config_map_v1.vars.data["domain"]
+  http_basic_username          = data.kubernetes_config_map_v1.vars.data["http_basic_username"]
+  http_basic_password          = data.kubernetes_secret_v1.vars.data["http_basic_password"]
+  gitea_db_password            = data.kubernetes_secret_v1.vars.data["gitea_db_password"]
+  gitea_admin_username         = data.kubernetes_config_map_v1.vars.data["gitea_admin_username"]
+  gitea_admin_password         = data.kubernetes_secret_v1.vars.data["gitea_admin_password"]
+  gitea_admin_email            = data.kubernetes_config_map_v1.vars.data["gitea_admin_email"]
+  image_pull_secret_namespaces = jsondecode(data.kubernetes_config_map_v1.vars.data["image_pull_secret_namespaces"])
+  flux_receiver_hook           = data.kubernetes_secret_v1.vars.data["flux_receiver_hook"]
+  flux_receiver_token          = data.kubernetes_secret_v1.vars.data["flux_receiver_token"]
+  smtp_host                    = data.kubernetes_config_map_v1.vars.data["smtp_host"]
+  smtp_port                    = data.kubernetes_config_map_v1.vars.data["smtp_port"]
+  smtp_user                    = data.kubernetes_config_map_v1.vars.data["smtp_user"]
+  smtp_password                = data.kubernetes_secret_v1.vars.data["smtp_password"]
+  concourse_db_password        = data.kubernetes_secret_v1.vars.data["concourse_db_password"]
+  concourse_user               = data.kubernetes_config_map_v1.vars.data["concourse_user"]
+  concourse_password           = data.kubernetes_secret_v1.vars.data["concourse_password"]
+  concourse_webhook_token      = data.kubernetes_secret_v1.vars.data["concourse_webhook_token"]
 }
 
 module "tools" {
   source                  = "./tools"
-  domain                  = var.domain
-  redis_password          = var.redis_password
-  redmine_db_password     = var.redmine_db_password
-  redmine_secret_key_base = var.redmine_secret_key_base
-  umami_db_password       = var.umami_db_password
-  n8n_db_password         = var.n8n_db_password
-  nocodb_db_password      = var.nocodb_db_password
-  nocodb_jwt_secret       = var.nocodb_jwt_secret
-  smtp_host               = var.smtp_host
-  smtp_port               = var.smtp_port
-  smtp_user               = var.smtp_user
-  smtp_password           = var.smtp_password
+  domain                  = data.kubernetes_config_map_v1.vars.data["domain"]
+  redis_password          = data.kubernetes_secret_v1.vars.data["redis_password"]
+  redmine_db_password     = data.kubernetes_secret_v1.vars.data["redmine_db_password"]
+  redmine_secret_key_base = data.kubernetes_secret_v1.vars.data["redmine_secret_key_base"]
+  umami_db_password       = data.kubernetes_secret_v1.vars.data["umami_db_password"]
+  n8n_db_password         = data.kubernetes_secret_v1.vars.data["n8n_db_password"]
+  nocodb_db_password      = data.kubernetes_secret_v1.vars.data["nocodb_db_password"]
+  nocodb_jwt_secret       = data.kubernetes_secret_v1.vars.data["nocodb_jwt_secret"]
+  smtp_host               = data.kubernetes_config_map_v1.vars.data["smtp_host"]
+  smtp_port               = data.kubernetes_config_map_v1.vars.data["smtp_port"]
+  smtp_user               = data.kubernetes_config_map_v1.vars.data["smtp_user"]
+  smtp_password           = data.kubernetes_secret_v1.vars.data["smtp_password"]
 }
