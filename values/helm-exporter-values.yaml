@@ -13,6 +13,7 @@ config:
       - sstarcher
       - kured
       - longhorn
+      - bitnami-labs
 tolerations:
   - key: "node-role.kubernetes.io/monitor"
     operator: "Exists"
