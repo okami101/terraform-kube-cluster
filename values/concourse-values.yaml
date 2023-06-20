@@ -23,11 +23,8 @@ web:
   enabled: true
 
   tolerations:
-    - key: node-role.kubernetes.io/master
+    - key: node-role.kubernetes.io/runner
       operator: Exists
-
-  nodeSelector:
-    node-role.kubernetes.io/master: "true"
 
 worker:
   enabled: true

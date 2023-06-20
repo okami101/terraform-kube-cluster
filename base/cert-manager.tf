@@ -18,28 +18,13 @@ resource "helm_release" "cert_manager" {
   }
 
   set {
-    name  = "tolerations[0].key"
-    value = "node-role.kubernetes.io/master"
-  }
-
-  set {
     name  = "tolerations[0].operator"
     value = "Exists"
   }
 
   set {
-    name  = "webhook.tolerations[0].key"
-    value = "node-role.kubernetes.io/master"
-  }
-
-  set {
     name  = "webhook.tolerations[0].operator"
     value = "Exists"
-  }
-
-  set {
-    name  = "cainjector.tolerations[0].key"
-    value = "node-role.kubernetes.io/master"
   }
 
   set {
@@ -59,11 +44,6 @@ resource "helm_release" "cert_manager_webhook_hetzner" {
   set {
     name  = "groupName"
     value = var.cert_group_name
-  }
-
-  set {
-    name  = "tolerations[0].key"
-    value = "node-role.kubernetes.io/master"
   }
 
   set {

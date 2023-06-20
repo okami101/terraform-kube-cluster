@@ -10,7 +10,7 @@ query:
   serviceMonitor:
     enabled: true
   tolerations:
-    - key: "node-role.kubernetes.io/master"
+    - key: "node-role.kubernetes.io/data"
       operator: "Exists"
 
 collector:
