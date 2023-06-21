@@ -90,7 +90,7 @@ resource "kubernetes_manifest" "grafana_ingress" {
       namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
     }
     spec = {
-      entryPoints = ["websecure"]
+      entryPoints = ["web"]
       routes = [
         {
           match = "Host(`grafana.${var.domain}`)"

@@ -74,7 +74,7 @@ resource "kubernetes_manifest" "traefik_ingress" {
       namespace = kubernetes_namespace_v1.traefik.metadata[0].name
     }
     spec = {
-      entryPoints = ["websecure"]
+      entryPoints = ["web"]
       routes = [
         {
           match = "Host(`traefik.${var.domain}`)"

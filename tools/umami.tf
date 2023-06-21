@@ -90,7 +90,7 @@ resource "kubernetes_manifest" "umami_ingress" {
       namespace = kubernetes_namespace_v1.umami.metadata[0].name
     }
     spec = {
-      entryPoints = ["websecure"]
+      entryPoints = ["web"]
       routes = [
         {
           match = "Host(`umami.${var.domain}`)"

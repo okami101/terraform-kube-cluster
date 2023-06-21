@@ -12,14 +12,10 @@ ports:
     exposedPort: 22
     protocol: TCP
   web:
-    redirectTo: websecure
-  websecure:
     forwardedHeaders:
       insecure: true
     proxyProtocol:
       insecure: true
-    tls:
-      enabled: true
 
 logs:
   access:
