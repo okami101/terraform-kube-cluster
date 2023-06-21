@@ -15,11 +15,6 @@ resource "helm_release" "traefik" {
   values = [
     file("values/traefik-values.yaml")
   ]
-
-  set {
-    name  = "tlsStore.default.defaultCertificate.secretName"
-    value = local.certificate_secret_name
-  }
 }
 
 resource "kubernetes_secret_v1" "traefik_auth_secret" {
