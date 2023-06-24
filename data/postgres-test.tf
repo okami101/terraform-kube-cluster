@@ -42,6 +42,11 @@ resource "kubernetes_stateful_set_v1" "postgres_test" {
           port {
             container_port = 5432
           }
+
+          volume_mount {
+            name       = "postgresql-data"
+            mount_path = "/var/lib/postgresql/data"
+          }
         }
 
         toleration {
