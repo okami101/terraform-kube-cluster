@@ -1,12 +1,8 @@
 module "base" {
-  source              = "./base"
-  domain              = data.kubernetes_config_map_v1.vars.data["domain"]
-  http_basic_auth     = local.http_basic_auth
-  cert_group_name     = data.kubernetes_config_map_v1.vars.data["cert_group_name"]
-  hetzner_dns_api_key = data.kubernetes_secret_v1.vars.data["hetzner_dns_api_key"]
-  acme_email          = data.kubernetes_config_map_v1.vars.data["acme_email"]
-  zone_name           = data.kubernetes_config_map_v1.vars.data["zone_name"]
-  whitelisted_ips     = jsondecode(data.kubernetes_secret_v1.vars.data["whitelisted_ips"])
+  source          = "./base"
+  domain          = data.kubernetes_config_map_v1.vars.data["domain"]
+  http_basic_auth = local.http_basic_auth
+  whitelisted_ips = jsondecode(data.kubernetes_secret_v1.vars.data["whitelisted_ips"])
 }
 
 module "data" {
