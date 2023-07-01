@@ -6,7 +6,6 @@ This Terraform project is intended to be used as a template for deploying an opi
 * Ingress routing via Traefik (load balanced mode) and certificates managed by cert-manager
 * Many types of DB, including Redis, MySQL, PostgresSQL (cluster mode), Elasticseach
 * UI web managers, as Portainer, PHPMyAdmin, PgAdmin
-* Self-hosted S3 with Minio and some DB backup cronjobs
 * Complete CI solution with Gitea and Concourse, as well as custom private docker registry
 * Some additional tools for my own needs (umami and redmine)
 
