@@ -69,3 +69,19 @@ variable "concourse_password" {
 variable "concourse_webhook_token" {
   type = string
 }
+
+variable "flux_git_url" {
+  type = string
+}
+
+variable "flux_git_branch" {
+  type = string
+}
+
+variable "flux_ssh_username" {
+  type = string
+}
+
+variable "flux_ssh_private_key" {
+  type = string
+}

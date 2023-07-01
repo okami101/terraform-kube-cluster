@@ -55,6 +55,10 @@ module "build" {
   concourse_user               = data.kubernetes_config_map_v1.vars.data["concourse_user"]
   concourse_password           = data.kubernetes_secret_v1.vars.data["concourse_password"]
   concourse_webhook_token      = data.kubernetes_secret_v1.vars.data["concourse_webhook_token"]
+  flux_git_url                 = data.kubernetes_config_map_v1.vars.data["flux_git_url"]
+  flux_git_branch              = data.kubernetes_config_map_v1.vars.data["flux_git_branch"]
+  flux_ssh_username            = data.kubernetes_config_map_v1.vars.data["flux_ssh_username"]
+  flux_ssh_private_key         = data.kubernetes_secret_v1.vars.data["flux_ssh_private_key"]
 }
 
 module "tools" {

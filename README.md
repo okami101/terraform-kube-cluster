@@ -69,9 +69,6 @@ CD solution is not included in this project, I prefer to install it via the dedi
 Firstly, add the deployment key to the target repo (`keys/id_cluster.pub` for next case). Then :
 
 ```sh
-# bootstrap fluxcd
-flux bootstrap git --url=ssh://git@gitea.okami101.io/okami101/flux-source --branch=main --components-extra=image-reflector-controller,image-automation-controller --private-key-file=keys/id_cluster --toleration-keys=node-role.kubernetes.io/runner
-
 # [optional] backup old sealed key if needed
 kubectl get secret -n flux-system -l sealedsecrets.bitnami.com/sealed-secrets-key -o yaml > main.key
 
