@@ -55,6 +55,11 @@ module "build" {
   flux_git_branch              = data.kubernetes_config_map_v1.vars.data["flux_git_branch"]
   flux_ssh_username            = data.kubernetes_config_map_v1.vars.data["flux_ssh_username"]
   flux_ssh_private_key         = data.kubernetes_secret_v1.vars.data["flux_ssh_private_key"]
+  s3_endpoint                  = data.kubernetes_config_map_v1.vars.data["s3_endpoint"]
+  s3_region                    = data.kubernetes_config_map_v1.vars.data["s3_region"]
+  s3_bucket                    = data.kubernetes_config_map_v1.vars.data["s3_bucket"]
+  s3_access_key                = data.kubernetes_secret_v1.vars.data["s3_access_key"]
+  s3_secret_key                = data.kubernetes_secret_v1.vars.data["s3_secret_key"]
 }
 
 module "tools" {

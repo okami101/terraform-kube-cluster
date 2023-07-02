@@ -5,8 +5,12 @@ log:
 storage:
   cache:
     blobdescriptor: inmemory
-  filesystem:
-    rootdirectory: /var/lib/registry
+  s3:
+    region: ${s3_region}
+    bucket: ${s3_bucket}
+    accesskey: ${s3_access_key}
+    secretkey: ${s3_secret_key}
+    regionendpoint: ${s3_endpoint}
 http:
   addr: :5000
   headers:

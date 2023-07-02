@@ -12,6 +12,11 @@ resource "kubernetes_config_map_v1" "registry_config" {
 
   data = {
     "config.yml" = templatefile("configs/registry-config.tftpl", {
+      s3_endpoint   = var.s3_endpoint
+      s3_region     = var.s3_region
+      s3_bucket     = var.s3_bucket
+      s3_access_key = var.s3_access_key
+      s3_secret_key = var.s3_secret_key
       endpoints = var.flux_receiver_hook == null ? [] : [
         {
           name  = "flux"
@@ -51,11 +56,11 @@ resource "kubernetes_deployment_v1" "registry" {
           resources {
             requests = {
               cpu    = "100m"
-              memory = "128Mi"
+              memory = "256Mi"
             }
             limits = {
               cpu    = "500m"
-              memory = "128Mi"
+              memory = "256Mi"
             }
           }
           env {
@@ -64,10 +69,6 @@ resource "kubernetes_deployment_v1" "registry" {
           }
           port {
             container_port = 5000
-          }
-          volume_mount {
-            name       = "registry-data"
-            mount_path = "/var/lib/registry"
           }
           volume_mount {
             name       = "registry-config"
@@ -92,37 +93,15 @@ resource "kubernetes_deployment_v1" "registry" {
           }
         }
         volume {
-          name = "registry-data"
-          persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim_v1.registry_data.metadata[0].name
-          }
-        }
-        volume {
           name = "registry-config"
           config_map {
             name = kubernetes_config_map_v1.registry_config.metadata[0].name
           }
         }
         toleration {
-          key      = "node-role.kubernetes.io/master"
+          key      = "node-role.kubernetes.io/data"
           operator = "Exists"
         }
-      }
-    }
-  }
-}
-
-resource "kubernetes_persistent_volume_claim_v1" "registry_data" {
-  metadata {
-    name      = "registry-data"
-    namespace = kubernetes_namespace_v1.registry.metadata[0].name
-  }
-  spec {
-    access_modes       = ["ReadWriteOnce"]
-    storage_class_name = "local-path"
-    resources {
-      requests = {
-        storage = "20Gi"
       }
     }
   }
