@@ -1,0 +1,17 @@
+tempo:
+  storage:
+    trace:
+      backend: s3
+      s3:
+        bucket: ${bucket}
+        endpoint: ${endpoint}
+        region: ${region}
+        access_key: ${access_key}
+        secret_key: ${secret_key}
+
+serviceMonitor:
+  enabled: true
+
+tolerations:
+  - key: node-role.kubernetes.io/monitor
+    operator: Exists

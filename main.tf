@@ -29,6 +29,11 @@ module "monitoring" {
   smtp_user           = data.kubernetes_config_map_v1.vars.data["smtp_user"]
   smtp_password       = data.kubernetes_secret_v1.vars.data["smtp_password"]
   grafana_db_password = data.kubernetes_secret_v1.vars.data["grafana_db_password"]
+  s3_endpoint         = data.kubernetes_config_map_v1.vars.data["s3_endpoint"]
+  s3_region           = data.kubernetes_config_map_v1.vars.data["s3_region"]
+  s3_bucket           = data.kubernetes_config_map_v1.vars.data["s3_bucket"]
+  s3_access_key       = data.kubernetes_secret_v1.vars.data["s3_access_key"]
+  s3_secret_key       = data.kubernetes_secret_v1.vars.data["s3_secret_key"]
 }
 
 module "build" {
