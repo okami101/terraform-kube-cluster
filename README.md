@@ -2,7 +2,7 @@
 
 This Terraform project is intended to be used as a template for deploying an opinionated Kubernetes cluster. It's used by my own Okami101 cluster. It provides :
 
-* Complete monitoring (Kube Prometheus Stack), logging (Loki), tracing (Jaeger)
+* Complete monitoring (Kube Prometheus Stack), logging (Loki), tracing (Tempo)
 * Ingress routing via Traefik (load balanced mode) and certificates managed by cert-manager
 * Many types of DB, including Redis, MySQL, PostgresSQL (cluster mode), Elasticseach
 * UI web managers, as Portainer, PHPMyAdmin, PgAdmin
@@ -33,7 +33,7 @@ kubectl apply -f https://raw.githubusercontent.com/hetznercloud/csi-driver/v2.3.
 kubectl patch sc hcloud-volumes -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 
 # automatic upgrade
-kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/latest/download/system-upgrade-controller.yaml
+kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/download/v0.11.0/system-upgrade-controller.yaml
 
 # install CRDs
 kubectl apply --server-side --force-conflicts -k https://github.com/traefik/traefik-helm-chart/traefik/crds/

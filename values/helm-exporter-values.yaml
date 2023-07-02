@@ -3,7 +3,6 @@ config:
     registryNames:
       - prometheus-community
       - traefik
-      - jaegertracing
       - grafana
       - gitea
       - concourse

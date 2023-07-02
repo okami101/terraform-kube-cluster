@@ -29,11 +29,6 @@ metrics:
 hub:
   enabled: true
 
-tracing:
-  jaeger:
-    samplingServerURL: http://jaeger-agent.tracing:5778/sampling
-    localAgentHostPort: jaeger-agent.tracing:6831
-
 providers:
   kubernetesCRD:
     allowCrossNamespace: true
