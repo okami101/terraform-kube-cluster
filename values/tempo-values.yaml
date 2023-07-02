@@ -8,6 +8,9 @@ tempo:
         region: ${region}
         access_key: ${access_key}
         secret_key: ${secret_key}
+  receivers:
+    zipkin:
+      endpoint: 0.0.0.0:9411
 
 serviceMonitor:
   enabled: true
