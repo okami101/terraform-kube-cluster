@@ -88,6 +88,10 @@ resource "kubernetes_deployment_v1" "registry" {
             name  = "SINGLE_REGISTRY"
             value = "true"
           }
+          env {
+            name  = "NGINX_PROXY_PASS_URL"
+            value = "http://localhost:5000"
+          }
           port {
             container_port = 80
           }
@@ -135,39 +139,6 @@ resource "kubernetes_manifest" "registry_ingress" {
     kind       = "IngressRoute"
     metadata = {
       name      = "registry"
-      namespace = kubernetes_namespace_v1.registry.metadata[0].name
-    }
-    spec = {
-      entryPoints = ["web"]
-      routes = [
-        {
-          match = "Host(`registry.${var.domain}`)  && PathPrefix(`/v2`)"
-          kind  = "Rule"
-          middlewares = [
-            {
-              namespace = "traefik"
-              name      = "middleware-auth"
-            }
-          ]
-          services = [
-            {
-              name = kubernetes_service_v1.registry.metadata[0].name
-              kind = "Service"
-              port = 5000
-            }
-          ]
-        }
-      ]
-    }
-  }
-}
-
-resource "kubernetes_manifest" "registry_ui_ingress" {
-  manifest = {
-    apiVersion = "traefik.io/v1alpha1"
-    kind       = "IngressRoute"
-    metadata = {
-      name      = "registry-ui"
       namespace = kubernetes_namespace_v1.registry.metadata[0].name
     }
     spec = {
