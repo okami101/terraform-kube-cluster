@@ -20,6 +20,11 @@ ports:
 logs:
   access:
     enabled: true
+    format: json
+    fields:
+      headers:
+        names:
+          X-B3-TraceId: keep
 
 metrics:
   prometheus:
@@ -28,6 +33,13 @@ metrics:
 
 hub:
   enabled: true
+
+# tracing:
+#   zipkin:
+#     httpEndpoint: http://tempo.tracing:9411/api/v2/spans
+#     sameSpan: true
+#     id128Bit: true
+#     sampleRate: 1.0
 
 providers:
   kubernetesCRD:
