@@ -16,6 +16,7 @@ ports:
       insecure: true
     proxyProtocol:
       insecure: true
+  websecure: null
 
 logs:
   access:
