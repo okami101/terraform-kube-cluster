@@ -4,6 +4,7 @@ prometheus:
     retentionSize: 5GB
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
+    enableRemoteWriteReceiver: true
     storageSpec:
       volumeClaimTemplate:
         spec:

@@ -11,6 +11,9 @@ tempo:
   receivers:
     zipkin:
       endpoint: 0.0.0.0:9411
+  metricsGenerator:
+    enabled: true
+    remoteWriteUrl: http://prometheus-operated.monitoring:9090/api/v1/write
 
 serviceMonitor:
   enabled: true
