@@ -13,8 +13,4 @@ terraform {
       version = ">3.1"
     }
   }
-
-  backend "kubernetes" {
-    secret_suffix = "state"
-  }
 }
