@@ -1,0 +1,37 @@
+persistence:
+  defaultClass: false
+
+longhornDriver:
+  tolerations:
+    - key: "node-role.kubernetes.io/data"
+      operator: "Exists"
+  nodeSelector:
+    node-role.kubernetes.io/data: "true"
+
+longhornUI:
+  tolerations:
+    - key: "node-role.kubernetes.io/data"
+      operator: "Exists"
+  nodeSelector:
+    node-role.kubernetes.io/data: "true"
+
+longhornRecoveryBackend:
+  tolerations:
+    - key: "node-role.kubernetes.io/data"
+      operator: "Exists"
+  nodeSelector:
+    node-role.kubernetes.io/data: "true"
+
+longhornAdmissionWebhook:
+  tolerations:
+    - key: "node-role.kubernetes.io/data"
+      operator: "Exists"
+  nodeSelector:
+    node-role.kubernetes.io/data: "true"
+
+longhornConversionWebhook:
+  tolerations:
+    - key: "node-role.kubernetes.io/data"
+      operator: "Exists"
+  nodeSelector:
+    node-role.kubernetes.io/data: "true"

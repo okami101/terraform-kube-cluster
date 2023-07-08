@@ -12,60 +12,9 @@ resource "helm_release" "longhorn" {
   name      = "longhorn"
   namespace = kubernetes_namespace_v1.longhorn.metadata[0].name
 
-  set {
-    name  = "persistence.defaultClass"
-    value = "false"
-  }
-
-  set {
-    name  = "longhornDriver.tolerations[0].key"
-    value = "node-role.kubernetes.io/data"
-  }
-
-  set {
-    name  = "longhornDriver.tolerations[0].operator"
-    value = "Exists"
-  }
-
-  set {
-    name  = "longhornUI.tolerations[0].key"
-    value = "node-role.kubernetes.io/data"
-  }
-
-  set {
-    name  = "longhornUI.tolerations[0].operator"
-    value = "Exists"
-  }
-
-  set {
-    name  = "longhornRecoveryBackend.tolerations[0].key"
-    value = "node-role.kubernetes.io/data"
-  }
-
-  set {
-    name  = "longhornRecoveryBackend.tolerations[0].operator"
-    value = "Exists"
-  }
-
-  set {
-    name  = "longhornAdmissionWebhook.tolerations[0].key"
-    value = "node-role.kubernetes.io/data"
-  }
-
-  set {
-    name  = "longhornAdmissionWebhook.tolerations[0].operator"
-    value = "Exists"
-  }
-
-  set {
-    name  = "longhornConversionWebhook.tolerations[0].key"
-    value = "node-role.kubernetes.io/data"
-  }
-
-  set {
-    name  = "longhornConversionWebhook.tolerations[0].operator"
-    value = "Exists"
-  }
+  values = [
+    file("values/longhorn-values.yaml")
+  ]
 }
 
 resource "kubernetes_manifest" "longhorn_ingress" {
