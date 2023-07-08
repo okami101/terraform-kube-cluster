@@ -25,6 +25,8 @@ web:
   tolerations:
     - key: node-role.kubernetes.io/runner
       operator: Exists
+  nodeSelector:
+    node-role.kubernetes.io/runner: "true"
 
 worker:
   enabled: true
@@ -35,6 +37,8 @@ worker:
   tolerations:
     - key: node-role.kubernetes.io/runner
       operator: Exists
+  nodeSelector:
+    node-role.kubernetes.io/runner: "true"
 
 persistence:
   enabled: true
