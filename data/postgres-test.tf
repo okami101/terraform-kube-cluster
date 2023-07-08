@@ -53,6 +53,9 @@ resource "kubernetes_stateful_set_v1" "postgres_test" {
           key      = "node-role.kubernetes.io/runner"
           operator = "Exists"
         }
+        node_selector = {
+          "node-role.kubernetes.io/runner" = "true"
+        }
       }
     }
 

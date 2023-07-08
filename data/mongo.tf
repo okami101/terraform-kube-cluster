@@ -70,6 +70,9 @@ resource "kubernetes_stateful_set_v1" "mongo" {
           key      = "node-role.kubernetes.io/data"
           operator = "Exists"
         }
+        node_selector = {
+          "node-role.kubernetes.io/data" = "true"
+        }
       }
     }
     volume_claim_template {
@@ -137,6 +140,9 @@ resource "kubernetes_deployment_v1" "mongo_express" {
         toleration {
           key      = "node-role.kubernetes.io/data"
           operator = "Exists"
+        }
+        node_selector = {
+          "node-role.kubernetes.io/data" = "true"
         }
       }
     }

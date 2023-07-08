@@ -76,6 +76,9 @@ resource "kubernetes_deployment_v1" "phpmyadmin" {
           key      = "node-role.kubernetes.io/data"
           operator = "Exists"
         }
+        node_selector = {
+          "node-role.kubernetes.io/data" = "true"
+        }
       }
     }
   }

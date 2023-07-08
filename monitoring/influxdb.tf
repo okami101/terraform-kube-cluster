@@ -30,6 +30,9 @@ resource "kubernetes_stateful_set_v1" "influxdb" {
           key      = "node-role.kubernetes.io/monitor"
           operator = "Exists"
         }
+        node_selector = {
+          "node-role.kubernetes.io/data" = "monitor"
+        }
       }
     }
   }

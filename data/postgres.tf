@@ -171,6 +171,9 @@ resource "kubernetes_stateful_set_v1" "postgresql" {
           key      = "node-role.kubernetes.io/data"
           operator = "Exists"
         }
+        node_selector = {
+          "node-role.kubernetes.io/data" = "true"
+        }
       }
     }
 
@@ -332,6 +335,9 @@ resource "kubernetes_stateful_set_v1" "postgresql_replica" {
         toleration {
           key      = "node-role.kubernetes.io/data"
           operator = "Exists"
+        }
+        node_selector = {
+          "node-role.kubernetes.io/data" = "true"
         }
       }
     }
