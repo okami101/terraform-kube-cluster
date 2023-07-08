@@ -226,23 +226,9 @@ resource "helm_release" "mongodb_exporter" {
   name      = "mongodb-exporter"
   namespace = kubernetes_namespace_v1.mongo.metadata[0].name
 
-  set {
-    name  = "mongodb.uri"
-    value = local.mongo_url
-  }
-
-  set {
-    name  = "serviceMonitor.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "tolerations[0].key"
-    value = "node-role.kubernetes.io/monitor"
-  }
-
-  set {
-    name  = "tolerations[0].operator"
-    value = "Exists"
-  }
+  values = [
+    templatefile("values/mongodb-exporter-values.yaml", {
+      mongodb_uri : local.mongo_url
+    })
+  ]
 }

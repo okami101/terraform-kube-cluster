@@ -1,0 +1,17 @@
+redisAddress: ${redis_address}
+
+serviceMonitor:
+  enabled: true
+
+auth:
+  enabled: true
+  secret:
+    name: redis-secret
+    key: redis-password
+
+tolerations:
+  - key: "node-role.kubernetes.io/data"
+    operator: "Exists"
+
+nodeSelector:
+  node-role.kubernetes.io/data: "true"

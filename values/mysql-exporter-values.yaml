@@ -1,0 +1,14 @@
+mysql:
+  host: ${mysql.host}
+  user: ${mysql.user}
+  pass: ${mysql.pass}
+
+serviceMonitor:
+  enabled: true
+
+tolerations:
+  - key: "node-role.kubernetes.io/data"
+    operator: "Exists"
+
+nodeSelector:
+  node-role.kubernetes.io/data: "true"

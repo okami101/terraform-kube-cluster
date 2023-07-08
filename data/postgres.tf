@@ -415,28 +415,7 @@ resource "helm_release" "postgres_exporter" {
   name      = "postgres-exporter"
   namespace = kubernetes_namespace_v1.postgres.metadata[0].name
 
-  set {
-    name  = "config.datasourceSecret.name"
-    value = "postgres-secret"
-  }
-
-  set {
-    name  = "config.datasourceSecret.key"
-    value = "datasources"
-  }
-
-  set {
-    name  = "serviceMonitor.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "tolerations[0].key"
-    value = "node-role.kubernetes.io/monitor"
-  }
-
-  set {
-    name  = "tolerations[0].operator"
-    value = "Exists"
-  }
+  values = [
+    file("values/postgres-exporter-values.yaml")
+  ]
 }

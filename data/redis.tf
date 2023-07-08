@@ -110,38 +110,9 @@ resource "helm_release" "redis_exporter" {
   name      = "redis-exporter"
   namespace = kubernetes_namespace_v1.redis.metadata[0].name
 
-  set {
-    name  = "redisAddress"
-    value = "redis://${kubernetes_service_v1.redis.metadata[0].name}:6379"
-  }
-
-  set {
-    name  = "serviceMonitor.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "auth.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "auth.secret.name"
-    value = kubernetes_secret_v1.redis_secret.metadata[0].name
-  }
-
-  set {
-    name  = "auth.secret.key"
-    value = "redis-password"
-  }
-
-  set {
-    name  = "tolerations[0].key"
-    value = "node-role.kubernetes.io/monitor"
-  }
-
-  set {
-    name  = "tolerations[0].operator"
-    value = "Exists"
-  }
+  values = [
+    templatefile("values/redis-exporter-values.yaml", {
+      redis_address = "redis://${kubernetes_service_v1.redis.metadata[0].name}:6379"
+    })
+  ]
 }
