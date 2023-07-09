@@ -1,6 +1,6 @@
 resource "helm_release" "kubereboot" {
   chart      = "kured"
-  version    = "4.6.0"
+  version    = var.chart_kured_version
   repository = "https://kubereboot.github.io/charts"
 
   name = "kured"

@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "concourse" {
 
 resource "helm_release" "concourse" {
   chart      = "concourse"
-  version    = "17.1.1"
+  version    = var.chart_concourse_version
   repository = "https://concourse-charts.storage.googleapis.com"
 
   name      = "concourse"

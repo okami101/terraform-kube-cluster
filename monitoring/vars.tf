@@ -45,3 +45,28 @@ variable "s3_secret_key" {
   type      = string
   sensitive = true
 }
+
+
+variable "chart_grafana_version" {
+  type = string
+}
+
+variable "chart_loki_version" {
+  type = string
+}
+
+variable "chart_promtail_version" {
+  type = string
+}
+
+variable "chart_kube_prometheus_stack_version" {
+  type = string
+}
+
+variable "chart_tempo_version" {
+  type = string
+}
+
+variable "chart_helm_exporter_version" {
+  type = string
+}

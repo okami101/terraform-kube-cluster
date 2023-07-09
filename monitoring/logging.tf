@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "logging" {
 
 resource "helm_release" "loki" {
   chart      = "loki"
-  version    = "5.8.9"
+  version    = var.chart_loki_version
   repository = "https://grafana.github.io/helm-charts"
 
   name      = "loki"
@@ -19,7 +19,7 @@ resource "helm_release" "loki" {
 
 resource "helm_release" "promtail" {
   chart      = "promtail"
-  version    = "6.11.5"
+  version    = var.chart_promtail_version
   repository = "https://grafana.github.io/helm-charts"
 
   name      = "promtail"

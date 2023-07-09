@@ -116,3 +116,11 @@ variable "s3_secret_key" {
   type      = string
   sensitive = true
 }
+
+variable "chart_concourse_version" {
+  type = string
+}
+
+variable "chart_gitea_version" {
+  type = string
+}

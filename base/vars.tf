@@ -11,3 +11,15 @@ variable "whitelisted_ips" {
   type      = list(string)
   sensitive = true
 }
+
+variable "chart_longhorn_version" {
+  type = string
+}
+
+variable "chart_kured_version" {
+  type = string
+}
+
+variable "chart_traefik_version" {
+  type = string
+}

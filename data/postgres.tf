@@ -409,7 +409,7 @@ resource "kubernetes_service_v1" "postgres_ro" {
 
 resource "helm_release" "postgres_exporter" {
   chart      = "prometheus-postgres-exporter"
-  version    = "4.6.0"
+  version    = var.chart_prometheus_postgres_exporter_version
   repository = "https://prometheus-community.github.io/helm-charts"
 
   name      = "postgres-exporter"

@@ -104,7 +104,7 @@ resource "kubernetes_service_v1" "redis" {
 
 resource "helm_release" "redis_exporter" {
   chart      = "prometheus-redis-exporter"
-  version    = "5.3.2"
+  version    = var.chart_prometheus_redis_exporter_version
   repository = "https://prometheus-community.github.io/helm-charts"
 
   name      = "redis-exporter"
