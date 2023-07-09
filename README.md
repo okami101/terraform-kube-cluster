@@ -52,48 +52,6 @@ kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-oper
 kubectl apply -f https://raw.githubusercontent.com/bitnami-labs/sealed-secrets/main/helm/sealed-secrets/crds/bitnami.com_sealedsecrets.yaml
 ```
 
-### Deploy
-
-Prepare all variables from `vars.tf`, then :
-
-```sh
-terraform init
-terraform apply
-```
-
-## FluxCD
-
-CD solution is not included in this project, I prefer to install it via the dedicated CLI, as the Terraform version is really too much cumbersome for my taste.
-
-Firstly, add the deployment key to the target repo (`keys/id_cluster.pub` for next case). Then :
-
-```sh
-# [optional] backup old sealed key if needed
-kubectl get secret -n flux-system -l sealedsecrets.bitnami.com/sealed-secrets-key -o yaml > main.key
-
-# clone the above repo locally
-git clone git@gitea.okami101.io/okami101/flux-source.git
-
-# generate kubeseal manifests to the repo
-flux create source helm sealed-secrets --interval=1h --url=https://bitnami-labs.github.io/sealed-secrets --export >> sealed-secrets.yaml
-flux create helmrelease sealed-secrets --interval=1h --release-name=sealed-secrets-controller --target-namespace=flux-system --source=HelmRepository/sealed-secrets --chart=sealed-secrets --chart-version=">=2.6.0" --crds=CreateReplace --export >> sealed-secrets.yaml
-
-# commit, push the repo and check reconcile
-
-# [optional] restore sealed key after delete current key if needed
-kubectl apply -f main.key
-kubectl delete pod -n flux-system -l app.kubernetes.io/name=sealed-secrets
-
-# get public key
-kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller-namespace=flux-system > pub-sealed-secrets.pem
-
-# activate monitoring
-flux create source git flux-monitoring --interval=30m --url=https://github.com/fluxcd/flux2 --branch=main --export >> flux-monitoring.yaml
-flux create kustomization monitoring-config --interval=1h --prune=true --source=flux-monitoring --path="./manifests/monitoring/monitoring-config" --health-check-timeout=1m --export >> flux-monitoring.yaml
-
-# commit, push the repo and check reconcile
-```
-
 ## Grafana Dashboards
 
 | ID    | App          |
