@@ -7,7 +7,7 @@ resource "helm_release" "grafana" {
   namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
 
   values = [
-    file("values/grafana-values.yaml")
+    file("${path.module}/values/grafana-values.yaml")
   ]
 
   set {

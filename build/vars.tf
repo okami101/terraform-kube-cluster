@@ -7,7 +7,8 @@ variable "http_basic_username" {
 }
 
 variable "http_basic_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "image_pull_secret_namespaces" {
@@ -19,11 +20,13 @@ variable "flux_receiver_hook" {
 }
 
 variable "flux_receiver_token" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "gitea_db_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "gitea_admin_username" {
@@ -31,7 +34,8 @@ variable "gitea_admin_username" {
 }
 
 variable "gitea_admin_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "gitea_admin_email" {
@@ -51,11 +55,13 @@ variable "smtp_user" {
 }
 
 variable "smtp_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "concourse_db_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "concourse_user" {
@@ -63,11 +69,13 @@ variable "concourse_user" {
 }
 
 variable "concourse_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "concourse_webhook_token" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "flux_git_url" {
@@ -83,7 +91,8 @@ variable "flux_ssh_username" {
 }
 
 variable "flux_ssh_private_key" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "s3_endpoint" {
@@ -99,9 +108,11 @@ variable "s3_bucket" {
 }
 
 variable "s3_access_key" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "s3_secret_key" {
-  type = string
+  type      = string
+  sensitive = true
 }

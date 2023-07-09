@@ -3,31 +3,38 @@ variable "domain" {
 }
 
 variable "redis_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "redmine_db_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "redmine_secret_key_base" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "umami_db_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "n8n_db_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "nocodb_db_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "nocodb_jwt_secret" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "smtp_host" {
@@ -43,5 +50,6 @@ variable "smtp_user" {
 }
 
 variable "smtp_password" {
-  type = string
+  type      = string
+  sensitive = true
 }

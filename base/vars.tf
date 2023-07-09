@@ -3,9 +3,11 @@ variable "domain" {
 }
 
 variable "http_basic_auth" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "whitelisted_ips" {
-  type = list(string)
+  type      = list(string)
+  sensitive = true
 }

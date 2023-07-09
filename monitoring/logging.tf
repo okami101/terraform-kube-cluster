@@ -13,7 +13,7 @@ resource "helm_release" "loki" {
   namespace = kubernetes_namespace_v1.logging.metadata[0].name
 
   values = [
-    file("values/loki-values.yaml")
+    file("${path.module}/values/loki-values.yaml")
   ]
 }
 
@@ -26,6 +26,6 @@ resource "helm_release" "promtail" {
   namespace = kubernetes_namespace_v1.logging.metadata[0].name
 
   values = [
-    file("values/promtail-values.yaml")
+    file("${path.module}/values/promtail-values.yaml")
   ]
 }

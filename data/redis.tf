@@ -111,7 +111,7 @@ resource "helm_release" "redis_exporter" {
   namespace = kubernetes_namespace_v1.redis.metadata[0].name
 
   values = [
-    templatefile("values/redis-exporter-values.yaml", {
+    templatefile("${path.module}/values/redis-exporter-values.yaml", {
       redis_address = "redis://${kubernetes_service_v1.redis.metadata[0].name}:6379"
     })
   ]

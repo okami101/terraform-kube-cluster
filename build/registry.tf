@@ -11,7 +11,7 @@ resource "kubernetes_config_map_v1" "registry_config" {
   }
 
   data = {
-    "config.yml" = templatefile("configs/registry-config.tftpl", {
+    "config.yml" = templatefile("${path.module}/configs/registry-config.tftpl", {
       s3_endpoint   = var.s3_endpoint
       s3_region     = var.s3_region
       s3_bucket     = var.s3_bucket

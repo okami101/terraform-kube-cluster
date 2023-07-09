@@ -13,7 +13,7 @@ resource "helm_release" "tempo" {
   namespace = kubernetes_namespace_v1.tracing.metadata[0].name
 
   values = [
-    templatefile("values/tempo-values.yaml", {
+    templatefile("${path.module}/values/tempo-values.yaml", {
       bucket : var.s3_bucket
       endpoint : var.s3_endpoint
       region : var.s3_region

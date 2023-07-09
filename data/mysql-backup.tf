@@ -5,7 +5,7 @@ resource "kubernetes_config_map_v1" "mysql_backup_script" {
   }
 
   data = {
-    "backup.sh" = file("scripts/mysql-backup.sh")
+    "backup.sh" = file("${path.module}/scripts/mysql-backup.sh")
   }
 }
 

@@ -13,7 +13,7 @@ resource "helm_release" "kube_prometheus_stack" {
   namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
 
   values = [
-    file("values/prometheus-stack-values.yaml")
+    file("${path.module}/values/prometheus-stack-values.yaml")
   ]
 }
 
@@ -59,7 +59,7 @@ resource "helm_release" "helm_exporter" {
   namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
 
   values = [
-    file("values/helm-exporter-values.yaml")
+    file("${path.module}/values/helm-exporter-values.yaml")
   ]
 
   set {

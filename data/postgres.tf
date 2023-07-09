@@ -23,10 +23,10 @@ resource "kubernetes_config_map_v1" "postgres_config" {
   }
 
   data = {
-    "postgres.conf"                      = file("configs/postgres.conf")
-    "pg_hba.conf"                        = file("configs/pg_hba.conf")
-    "primary_create_replication_role.sh" = file("scripts/primary_create_replication_role.sh")
-    "copy_primary_data_to_replica.sh"    = file("scripts/copy_primary_data_to_replica.sh")
+    "postgres.conf"                      = file("${path.module}/configs/postgres.conf")
+    "pg_hba.conf"                        = file("${path.module}/configs/pg_hba.conf")
+    "primary_create_replication_role.sh" = file("${path.module}/scripts/primary_create_replication_role.sh")
+    "copy_primary_data_to_replica.sh"    = file("${path.module}/scripts/copy_primary_data_to_replica.sh")
   }
 }
 
@@ -416,6 +416,6 @@ resource "helm_release" "postgres_exporter" {
   namespace = kubernetes_namespace_v1.postgres.metadata[0].name
 
   values = [
-    file("values/postgres-exporter-values.yaml")
+    file("${path.module}/values/postgres-exporter-values.yaml")
   ]
 }

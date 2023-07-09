@@ -15,11 +15,13 @@ variable "smtp_user" {
 }
 
 variable "smtp_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "grafana_db_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "s3_endpoint" {
@@ -35,9 +37,11 @@ variable "s3_bucket" {
 }
 
 variable "s3_access_key" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "s3_secret_key" {
-  type = string
+  type      = string
+  sensitive = true
 }

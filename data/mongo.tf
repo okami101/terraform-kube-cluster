@@ -227,7 +227,7 @@ resource "helm_release" "mongodb_exporter" {
   namespace = kubernetes_namespace_v1.mongo.metadata[0].name
 
   values = [
-    templatefile("values/mongodb-exporter-values.yaml", {
+    templatefile("${path.module}/values/mongodb-exporter-values.yaml", {
       mongodb_uri : local.mongo_url
     })
   ]

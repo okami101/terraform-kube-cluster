@@ -3,19 +3,23 @@ variable "domain" {
 }
 
 variable "redis_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "mongo_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "mysql_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "mysql_exporter_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "pgsql_user" {
@@ -23,11 +27,13 @@ variable "pgsql_user" {
 }
 
 variable "pgsql_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "pgsql_replication_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "pgadmin_default_email" {
@@ -35,7 +41,8 @@ variable "pgadmin_default_email" {
 }
 
 variable "pgadmin_default_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "rabbitmq_default_user" {
@@ -43,5 +50,6 @@ variable "rabbitmq_default_user" {
 }
 
 variable "rabbitmq_default_password" {
-  type = string
+  type      = string
+  sensitive = true
 }

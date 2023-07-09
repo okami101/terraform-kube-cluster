@@ -21,7 +21,7 @@ resource "kubernetes_config_map_v1" "mysql_config" {
   }
 
   data = {
-    "mysqld.cnf" = file("configs/mysqld.cnf")
+    "mysqld.cnf" = file("${path.module}/configs/mysqld.cnf")
   }
 }
 
@@ -156,7 +156,7 @@ resource "helm_release" "mysql_exporter" {
   namespace = kubernetes_namespace_v1.mysql.metadata[0].name
 
   values = [
-    templatefile("values/postgres-exporter-values.yaml", {
+    templatefile("${path.module}/values/postgres-exporter-values.yaml", {
       host = kubernetes_service_v1.mysql.metadata[0].name
       user = "exporter"
       pass = var.mysql_exporter_password

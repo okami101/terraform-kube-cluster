@@ -13,7 +13,7 @@ resource "helm_release" "traefik" {
   namespace = kubernetes_namespace_v1.traefik.metadata[0].name
 
   values = [
-    file("values/traefik-values.yaml")
+    file("${path.module}/values/traefik-values.yaml")
   ]
 }
 

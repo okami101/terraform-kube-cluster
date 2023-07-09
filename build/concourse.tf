@@ -13,7 +13,7 @@ resource "helm_release" "concourse" {
   namespace = kubernetes_namespace_v1.concourse.metadata[0].name
 
   values = [
-    file("values/concourse-values.yaml")
+    file("${path.module}/values/concourse-values.yaml")
   ]
 
   set {
