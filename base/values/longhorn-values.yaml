@@ -16,22 +16,10 @@ longhornUI:
     node-role.kubernetes.io/data: "true"
 
 longhornRecoveryBackend:
-  tolerations:
-    - key: "node-role.kubernetes.io/data"
-      operator: "Exists"
-  nodeSelector:
-    node-role.kubernetes.io/data: "true"
+  replicas: 0
 
 longhornAdmissionWebhook:
-  tolerations:
-    - key: "node-role.kubernetes.io/data"
-      operator: "Exists"
-  nodeSelector:
-    node-role.kubernetes.io/data: "true"
+  replicas: 0
 
 longhornConversionWebhook:
-  tolerations:
-    - key: "node-role.kubernetes.io/data"
-      operator: "Exists"
-  nodeSelector:
-    node-role.kubernetes.io/data: "true"
+  replicas: 0
