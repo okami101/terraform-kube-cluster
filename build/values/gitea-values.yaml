@@ -38,6 +38,3 @@ postgresql:
 
 memcached:
   enabled: false
-
-persistence:
-  existingClaim: ${pvc_name}
