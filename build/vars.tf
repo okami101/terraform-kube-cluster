@@ -42,6 +42,10 @@ variable "gitea_admin_email" {
   type = string
 }
 
+variable "gitea_pvc_size" {
+  type = string
+}
+
 variable "smtp_host" {
   type = string
 }

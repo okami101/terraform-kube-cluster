@@ -17,6 +17,10 @@ variable "redmine_secret_key_base" {
   sensitive = true
 }
 
+variable "redmine_pvc_size" {
+  type = string
+}
+
 variable "umami_db_password" {
   type      = string
   sensitive = true
@@ -27,6 +31,10 @@ variable "n8n_db_password" {
   sensitive = true
 }
 
+variable "n8n_pvc_size" {
+  type = string
+}
+
 variable "nocodb_db_password" {
   type      = string
   sensitive = true
@@ -35,6 +43,10 @@ variable "nocodb_db_password" {
 variable "nocodb_jwt_secret" {
   type      = string
   sensitive = true
+}
+
+variable "nocodb_pvc_size" {
+  type = string
 }
 
 variable "smtp_host" {

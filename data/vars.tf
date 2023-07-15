@@ -22,6 +22,10 @@ variable "mysql_exporter_password" {
   sensitive = true
 }
 
+variable "mysql_backup_pvc_size" {
+  type = string
+}
+
 variable "pgsql_user" {
   type = string
 }
@@ -36,6 +40,10 @@ variable "pgsql_replication_password" {
   sensitive = true
 }
 
+variable "pgsql_backup_pvc_size" {
+  type = string
+}
+
 variable "pgadmin_default_email" {
   type = string
 }
@@ -43,6 +51,10 @@ variable "pgadmin_default_email" {
 variable "pgadmin_default_password" {
   type      = string
   sensitive = true
+}
+
+variable "pgadmin_pvc_size" {
+  type = string
 }
 
 variable "rabbitmq_default_user" {

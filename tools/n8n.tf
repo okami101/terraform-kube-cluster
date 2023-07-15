@@ -25,7 +25,7 @@ resource "kubernetes_persistent_volume_claim_v1" "n8n" {
     storage_class_name = "longhorn"
     resources {
       requests = {
-        storage = "128Mi"
+        storage = var.n8n_pvc_size
       }
     }
   }

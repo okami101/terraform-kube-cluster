@@ -19,7 +19,7 @@ resource "kubernetes_persistent_volume_claim_v1" "mysql_backup" {
     storage_class_name = "longhorn"
     resources {
       requests = {
-        storage = "8Gi"
+        storage = var.mysql_backup_pvc_size
       }
     }
   }

@@ -26,7 +26,7 @@ resource "kubernetes_persistent_volume_claim_v1" "nocodb" {
     storage_class_name = "longhorn"
     resources {
       requests = {
-        storage = "128Mi"
+        storage = var.nocodb_pvc_size
       }
     }
   }

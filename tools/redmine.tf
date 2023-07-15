@@ -26,7 +26,7 @@ resource "kubernetes_persistent_volume_claim_v1" "redmine_data" {
     storage_class_name = "longhorn"
     resources {
       requests = {
-        storage = "1Gi"
+        storage = var.redmine_pvc_size
       }
     }
   }

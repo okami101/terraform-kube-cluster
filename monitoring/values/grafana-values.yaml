@@ -4,6 +4,7 @@ initChownData:
 persistence:
   enabled: true
   storageClassName: longhorn
+  size: ${persistence_size}
 
 deploymentStrategy:
   type: Recreate

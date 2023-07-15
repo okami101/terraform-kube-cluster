@@ -8,7 +8,7 @@ resource "kubernetes_persistent_volume_claim_v1" "pgadmin" {
     storage_class_name = "longhorn"
     resources {
       requests = {
-        storage = "128Mi"
+        storage = var.pgadmin_pvc_size
       }
     }
   }

@@ -41,3 +41,4 @@ memcached:
 
 persistence:
   storageClass: longhorn
+  size: ${persistence_size}
