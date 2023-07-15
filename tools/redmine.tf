@@ -16,22 +16,6 @@ resource "kubernetes_secret_v1" "redmine_secret" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim_v1" "redmine_data" {
-  metadata {
-    name      = "redmine-data"
-    namespace = kubernetes_namespace_v1.redmine.metadata[0].name
-  }
-  spec {
-    access_modes       = ["ReadWriteOnce"]
-    storage_class_name = "longhorn"
-    resources {
-      requests = {
-        storage = var.redmine_pvc_size
-      }
-    }
-  }
-}
-
 resource "kubernetes_deployment_v1" "redmine" {
   metadata {
     name      = "redmine"
@@ -123,7 +107,7 @@ resource "kubernetes_deployment_v1" "redmine" {
         volume {
           name = "redmine-data"
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim_v1.redmine_data.metadata[0].name
+            claim_name = var.redmine_pvc_name
           }
         }
       }

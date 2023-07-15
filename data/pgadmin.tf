@@ -1,19 +1,3 @@
-resource "kubernetes_persistent_volume_claim_v1" "pgadmin" {
-  metadata {
-    name      = "pgadmin-data"
-    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
-  }
-  spec {
-    access_modes       = ["ReadWriteOnce"]
-    storage_class_name = "longhorn"
-    resources {
-      requests = {
-        storage = var.pgadmin_pvc_size
-      }
-    }
-  }
-}
-
 resource "kubernetes_deployment_v1" "pgadmin" {
   metadata {
     name      = "pgadmin"
@@ -74,7 +58,7 @@ resource "kubernetes_deployment_v1" "pgadmin" {
         volume {
           name = "pgadmin-data"
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim_v1.pgadmin.metadata[0].name
+            claim_name = var.pgadmin_pvc_name
           }
         }
       }

@@ -8,7 +8,7 @@ resource "helm_release" "grafana" {
 
   values = [
     templatefile("${path.module}/values/grafana-values.yaml", {
-      persistence_size = var.grafana_pvc_size,
+      pvc_name = var.grafana_pvc_name,
     })
   ]
 

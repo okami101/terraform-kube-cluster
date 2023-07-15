@@ -17,7 +17,7 @@ variable "redmine_secret_key_base" {
   sensitive = true
 }
 
-variable "redmine_pvc_size" {
+variable "redmine_pvc_name" {
   type = string
 }
 
@@ -31,7 +31,7 @@ variable "n8n_db_password" {
   sensitive = true
 }
 
-variable "n8n_pvc_size" {
+variable "n8n_pvc_name" {
   type = string
 }
 
@@ -45,7 +45,7 @@ variable "nocodb_jwt_secret" {
   sensitive = true
 }
 
-variable "nocodb_pvc_size" {
+variable "nocodb_pvc_name" {
   type = string
 }
 

@@ -15,22 +15,6 @@ resource "kubernetes_secret_v1" "n8n_secret" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim_v1" "n8n" {
-  metadata {
-    name      = "n8n-data"
-    namespace = kubernetes_namespace_v1.n8n.metadata[0].name
-  }
-  spec {
-    access_modes       = ["ReadWriteOnce"]
-    storage_class_name = "longhorn"
-    resources {
-      requests = {
-        storage = var.n8n_pvc_size
-      }
-    }
-  }
-}
-
 resource "kubernetes_deployment_v1" "n8n" {
   metadata {
     name      = "n8n"
@@ -147,7 +131,7 @@ resource "kubernetes_deployment_v1" "n8n" {
         volume {
           name = "n8n-data"
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim_v1.n8n.metadata[0].name
+            claim_name = var.n8n_pvc_name
           }
         }
       }

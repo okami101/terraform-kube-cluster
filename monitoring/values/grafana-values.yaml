@@ -3,8 +3,7 @@ initChownData:
 
 persistence:
   enabled: true
-  storageClassName: longhorn
-  size: ${persistence_size}
+  existingClaim: ${pvc_name}
 
 deploymentStrategy:
   type: Recreate

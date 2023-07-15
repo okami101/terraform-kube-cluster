@@ -16,22 +16,6 @@ resource "kubernetes_secret_v1" "nocodb_secret" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim_v1" "nocodb" {
-  metadata {
-    name      = "nocodb-data"
-    namespace = kubernetes_namespace_v1.nocodb.metadata[0].name
-  }
-  spec {
-    access_modes       = ["ReadWriteOnce"]
-    storage_class_name = "longhorn"
-    resources {
-      requests = {
-        storage = var.nocodb_pvc_size
-      }
-    }
-  }
-}
-
 resource "kubernetes_deployment_v1" "nocodb" {
   metadata {
     name      = "nocodb"
@@ -120,7 +104,7 @@ resource "kubernetes_deployment_v1" "nocodb" {
         volume {
           name = "nocodb-data"
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim_v1.nocodb.metadata[0].name
+            claim_name = var.nocodb_pvc_name
           }
         }
       }

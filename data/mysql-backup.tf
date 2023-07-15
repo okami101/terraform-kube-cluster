@@ -9,22 +9,6 @@ resource "kubernetes_config_map_v1" "mysql_backup_script" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim_v1" "mysql_backup" {
-  metadata {
-    name      = "mysql-backup"
-    namespace = kubernetes_namespace_v1.mysql.metadata[0].name
-  }
-  spec {
-    access_modes       = ["ReadWriteMany"]
-    storage_class_name = "longhorn"
-    resources {
-      requests = {
-        storage = var.mysql_backup_pvc_size
-      }
-    }
-  }
-}
-
 resource "kubernetes_cron_job_v1" "mysql_backup" {
   metadata {
     name      = "mysql-backup"
@@ -82,7 +66,7 @@ resource "kubernetes_cron_job_v1" "mysql_backup" {
             volume {
               name = "backup"
               persistent_volume_claim {
-                claim_name = kubernetes_persistent_volume_claim_v1.mysql_backup.metadata[0].name
+                claim_name = var.mysql_backup_pvc_name
               }
             }
 

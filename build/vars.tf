@@ -42,7 +42,7 @@ variable "gitea_admin_email" {
   type = string
 }
 
-variable "gitea_pvc_size" {
+variable "gitea_pvc_name" {
   type = string
 }
 

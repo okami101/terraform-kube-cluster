@@ -22,7 +22,7 @@ variable "mysql_exporter_password" {
   sensitive = true
 }
 
-variable "mysql_backup_pvc_size" {
+variable "mysql_backup_pvc_name" {
   type = string
 }
 
@@ -40,7 +40,7 @@ variable "pgsql_replication_password" {
   sensitive = true
 }
 
-variable "pgsql_backup_pvc_size" {
+variable "pgsql_backup_pvc_name" {
   type = string
 }
 
@@ -53,7 +53,7 @@ variable "pgadmin_default_password" {
   sensitive = true
 }
 
-variable "pgadmin_pvc_size" {
+variable "pgadmin_pvc_name" {
   type = string
 }
 

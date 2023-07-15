@@ -24,7 +24,7 @@ variable "grafana_db_password" {
   sensitive = true
 }
 
-variable "grafana_pvc_size" {
+variable "grafana_pvc_name" {
   type = string
 }
 

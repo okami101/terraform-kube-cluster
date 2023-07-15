@@ -40,5 +40,4 @@ memcached:
   enabled: false
 
 persistence:
-  storageClass: longhorn
-  size: ${persistence_size}
+  existingClaim: ${pvc_name}
