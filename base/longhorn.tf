@@ -12,9 +12,10 @@ resource "helm_release" "longhorn" {
   name      = "longhorn"
   namespace = kubernetes_namespace_v1.longhorn.metadata[0].name
 
-  values = [
-    file("${path.module}/values/longhorn-values.yaml")
-  ]
+  set {
+    name  = "persistence.defaultClass"
+    value = "false"
+  }
 }
 
 resource "kubernetes_manifest" "longhorn_ingress" {
