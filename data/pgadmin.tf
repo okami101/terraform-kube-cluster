@@ -29,14 +29,8 @@ resource "kubernetes_deployment_v1" "pgadmin" {
           name  = "pgadmin"
           image = "dpage/pgadmin4:latest"
           resources {
-            requests = {
-              cpu    = "100m"
-              memory = "256Mi"
-            }
-            limits = {
-              cpu    = "500m"
-              memory = "256Mi"
-            }
+            requests = var.pgadmin_resources_requests
+            limits   = var.pgadmin_resources_limits
           }
           env {
             name  = "PGADMIN_DEFAULT_EMAIL"

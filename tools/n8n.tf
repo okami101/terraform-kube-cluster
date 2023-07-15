@@ -41,14 +41,8 @@ resource "kubernetes_deployment_v1" "n8n" {
           image             = "n8nio/n8n"
           image_pull_policy = "Always"
           resources {
-            requests = {
-              cpu    = "100m"
-              memory = "256Mi"
-            }
-            limits = {
-              cpu    = "1000m"
-              memory = "256Mi"
-            }
+            requests = var.n8n_resources_requests
+            limits   = var.n8n_resources_limits
           }
           env {
             name  = "N8N_PROTOCOL"

@@ -2,6 +2,20 @@ variable "domain" {
   type = string
 }
 
+variable "registry_resources_requests" {
+  type = object({
+    cpu    = string
+    memory = string
+  })
+}
+
+variable "registry_resources_limits" {
+  type = object({
+    cpu    = string
+    memory = string
+  })
+}
+
 variable "http_basic_username" {
   type = string
 }

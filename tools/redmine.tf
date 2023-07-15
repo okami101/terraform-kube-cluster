@@ -42,14 +42,8 @@ resource "kubernetes_deployment_v1" "redmine" {
           image             = "redmine:5"
           image_pull_policy = "Always"
           resources {
-            requests = {
-              cpu    = "100m"
-              memory = "256Mi"
-            }
-            limits = {
-              cpu    = "100m"
-              memory = "256Mi"
-            }
+            requests = var.redmine_resources_requests
+            limits   = var.redmine_resources_limits
           }
           env {
             name  = "REDMINE_DB_DATABASE"

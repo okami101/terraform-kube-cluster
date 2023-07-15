@@ -56,14 +56,8 @@ resource "kubernetes_stateful_set_v1" "postgresql" {
           image_pull_policy = "Always"
 
           resources {
-            requests = {
-              cpu    = "500m"
-              memory = "2Gi"
-            }
-            limits = {
-              cpu    = "2"
-              memory = "2Gi"
-            }
+            requests = var.postgresql_resources_requests
+            limits   = var.postgresql_resources_limits
           }
 
           args = [
@@ -257,14 +251,8 @@ resource "kubernetes_stateful_set_v1" "postgresql_replica" {
           image_pull_policy = "Always"
 
           resources {
-            requests = {
-              cpu    = "500m"
-              memory = "2Gi"
-            }
-            limits = {
-              cpu    = "2"
-              memory = "2Gi"
-            }
+            requests = var.postgresql_resources_requests
+            limits   = var.postgresql_resources_limits
           }
 
           args = [
