@@ -34,6 +34,10 @@ resource "kubernetes_manifest" "longhorn_ingress" {
           middlewares = [
             {
               namespace = "traefik"
+              name      = "middleware-ip"
+            },
+            {
+              namespace = "traefik"
               name      = "middleware-auth"
             }
           ]
