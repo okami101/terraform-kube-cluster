@@ -97,11 +97,11 @@ resource "kubernetes_deployment_v1" "registry" {
           }
         }
         toleration {
-          key      = "node-role.kubernetes.io/data"
+          key      = "node-role.kubernetes.io/storage"
           operator = "Exists"
         }
         node_selector = {
-          "node-role.kubernetes.io/data" = "true"
+          "node-role.kubernetes.io/storage" = "true"
         }
       }
     }

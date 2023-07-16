@@ -38,3 +38,10 @@ postgresql:
 
 memcached:
   enabled: false
+
+tolerations:
+  - key: node-role.kubernetes.io/storage
+    effect: NoSchedule
+
+nodeSelector:
+  node-role.kubernetes.io/storage: "true"

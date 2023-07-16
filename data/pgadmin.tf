@@ -55,6 +55,13 @@ resource "kubernetes_deployment_v1" "pgadmin" {
             claim_name = var.pgadmin_pvc_name
           }
         }
+        toleration {
+          key      = "node-role.kubernetes.io/storage"
+          operator = "Exists"
+        }
+        node_selector = {
+          "node-role.kubernetes.io/storage" = "true"
+        }
       }
     }
   }

@@ -96,6 +96,10 @@ resource "kubernetes_stateful_set_v1" "postgresql" {
               }
             }
           }
+          env {
+            name  = "PGDATA"
+            value = "/var/lib/postgresql/data/pgdata"
+          }
 
           port {
             container_port = 5432
@@ -130,8 +134,9 @@ resource "kubernetes_stateful_set_v1" "postgresql" {
           }
 
           volume_mount {
-            name       = "postgresql-data"
+            name       = "data"
             mount_path = "/var/lib/postgresql/data"
+            sub_path   = "pgdata"
           }
 
           volume_mount {
@@ -162,22 +167,21 @@ resource "kubernetes_stateful_set_v1" "postgresql" {
         }
 
         toleration {
-          key      = "node-role.kubernetes.io/data"
+          key      = "node-role.kubernetes.io/storage"
           operator = "Exists"
         }
         node_selector = {
-          "node-role.kubernetes.io/data" = "true"
+          "node-role.kubernetes.io/storage" = "true"
         }
       }
     }
 
     volume_claim_template {
       metadata {
-        name = "postgresql-data"
+        name = "data"
       }
       spec {
-        access_modes       = ["ReadWriteOnce"]
-        storage_class_name = "local-path"
+        access_modes = ["ReadWriteOnce"]
         resources {
           requests = {
             storage = "8Gi"
@@ -227,6 +231,10 @@ resource "kubernetes_stateful_set_v1" "postgresql_replica" {
             name  = "PRIMARY_HOST_NAME"
             value = kubernetes_service_v1.postgres.metadata[0].name
           }
+          env {
+            name  = "PGDATA"
+            value = "/var/lib/postgresql/data/pgdata"
+          }
 
           command = [
             "bash",
@@ -235,8 +243,9 @@ resource "kubernetes_stateful_set_v1" "postgresql_replica" {
           ]
 
           volume_mount {
-            name       = "postgresql-data"
+            name       = "data"
             mount_path = "/var/lib/postgresql/data"
+            sub_path   = "pgdata"
           }
 
           volume_mount {
@@ -249,7 +258,10 @@ resource "kubernetes_stateful_set_v1" "postgresql_replica" {
           name              = "postgres"
           image             = "postgres:15"
           image_pull_policy = "Always"
-
+          env {
+            name  = "PGDATA"
+            value = "/var/lib/postgresql/data/pgdata"
+          }
           resources {
             requests = var.postgresql_resources_requests
             limits   = var.postgresql_resources_limits
@@ -295,8 +307,9 @@ resource "kubernetes_stateful_set_v1" "postgresql_replica" {
           }
 
           volume_mount {
-            name       = "postgresql-data"
+            name       = "data"
             mount_path = "/var/lib/postgresql/data"
+            sub_path   = "pgdata"
           }
 
           volume_mount {
@@ -321,22 +334,21 @@ resource "kubernetes_stateful_set_v1" "postgresql_replica" {
         }
 
         toleration {
-          key      = "node-role.kubernetes.io/data"
+          key      = "node-role.kubernetes.io/storage"
           operator = "Exists"
         }
         node_selector = {
-          "node-role.kubernetes.io/data" = "true"
+          "node-role.kubernetes.io/storage" = "true"
         }
       }
     }
 
     volume_claim_template {
       metadata {
-        name = "postgresql-data"
+        name = "data"
       }
       spec {
-        access_modes       = ["ReadWriteOnce"]
-        storage_class_name = "local-path"
+        access_modes = ["ReadWriteOnce"]
         resources {
           requests = {
             storage = "8Gi"

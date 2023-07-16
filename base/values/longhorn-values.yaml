@@ -1,0 +1,11 @@
+persistence:
+  defaultClass: false
+  defaultClassReplicaCount: 2
+
+defaultSettings:
+  taintToleration: node-role.kubernetes.io/storage:NoSchedule
+
+longhornManager:
+  tolerations:
+    - key: node-role.kubernetes.io/storage
+      effect: NoSchedule

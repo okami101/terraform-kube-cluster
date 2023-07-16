@@ -49,21 +49,13 @@ resource "kubernetes_stateful_set_v1" "redis" {
             "--requirepass",
             "$(REDIS_PASSWORD)",
           ]
-          volume_mount {
-            name       = "redis-data"
-            mount_path = "/data"
-          }
-        }
-        volume {
-          name = "redis-data"
-          empty_dir {}
         }
         toleration {
-          key      = "node-role.kubernetes.io/data"
+          key      = "node-role.kubernetes.io/storage"
           operator = "Exists"
         }
         node_selector = {
-          "node-role.kubernetes.io/data" = "true"
+          "node-role.kubernetes.io/storage" = "true"
         }
       }
     }

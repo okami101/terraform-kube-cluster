@@ -64,7 +64,7 @@ resource "kubernetes_stateful_set_v1" "mysql" {
           }
 
           volume_mount {
-            name       = "mysql-data"
+            name       = "data"
             mount_path = "/var/lib/mysql"
           }
 
@@ -106,21 +106,20 @@ resource "kubernetes_stateful_set_v1" "mysql" {
         }
 
         toleration {
-          key      = "node-role.kubernetes.io/data"
+          key      = "node-role.kubernetes.io/storage"
           operator = "Exists"
         }
         node_selector = {
-          "node-role.kubernetes.io/data" = "true"
+          "node-role.kubernetes.io/storage" = "true"
         }
       }
     }
     volume_claim_template {
       metadata {
-        name = "mysql-data"
+        name = "data"
       }
       spec {
-        access_modes       = ["ReadWriteOnce"]
-        storage_class_name = "local-path"
+        access_modes = ["ReadWriteOnce"]
         resources {
           requests = {
             storage = "8Gi"

@@ -27,11 +27,11 @@ resource "kubernetes_stateful_set_v1" "influxdb" {
           }
         }
         toleration {
-          key      = "node-role.kubernetes.io/data"
+          key      = "node-role.kubernetes.io/storage"
           operator = "Exists"
         }
         node_selector = {
-          "node-role.kubernetes.io/data" = "true"
+          "node-role.kubernetes.io/storage" = "true"
         }
       }
     }

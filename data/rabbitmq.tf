@@ -42,31 +42,13 @@ resource "kubernetes_stateful_set_v1" "rabbitmq" {
           port {
             container_port = 15672
           }
-          volume_mount {
-            name       = "rabbitmq-data"
-            mount_path = "/var/lib/rabbitmq"
-          }
         }
         toleration {
-          key      = "node-role.kubernetes.io/data"
+          key      = "node-role.kubernetes.io/storage"
           operator = "Exists"
         }
         node_selector = {
-          "node-role.kubernetes.io/data" = "true"
-        }
-      }
-    }
-    volume_claim_template {
-      metadata {
-        name = "rabbitmq-data"
-      }
-      spec {
-        access_modes       = ["ReadWriteOnce"]
-        storage_class_name = "local-path"
-        resources {
-          requests = {
-            storage = "1Gi"
-          }
+          "node-role.kubernetes.io/storage" = "true"
         }
       }
     }

@@ -12,10 +12,9 @@ resource "helm_release" "longhorn" {
   name      = "longhorn"
   namespace = kubernetes_namespace_v1.longhorn.metadata[0].name
 
-  set {
-    name  = "persistence.defaultClass"
-    value = "false"
-  }
+  values = [
+    file("${path.module}/values/longhorn-values.yaml")
+  ]
 }
 
 resource "kubernetes_manifest" "longhorn_ingress" {
@@ -33,10 +32,6 @@ resource "kubernetes_manifest" "longhorn_ingress" {
           match = "Host(`longhorn.${var.domain}`)"
           kind  = "Rule"
           middlewares = [
-            {
-              namespace = "traefik"
-              name      = "middleware-ip"
-            },
             {
               namespace = "traefik"
               name      = "middleware-auth"
