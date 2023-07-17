@@ -14,3 +14,9 @@ serviceMonitor:
 sidecar:
   dashboards:
     enabled: true
+
+tolerations:
+  - key: "node-role.kubernetes.io/storage"
+    operator: "Exists"
+nodeSelector:
+  node-role.kubernetes.io/storage: "true"
