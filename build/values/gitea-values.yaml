@@ -49,3 +49,6 @@ tolerations:
 
 nodeSelector:
   node-role.kubernetes.io/storage: "true"
+
+strategy:
+  type: Recreate
