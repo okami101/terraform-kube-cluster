@@ -12,7 +12,7 @@ resource "kubernetes_manifest" "server_plan" {
       nodeSelector = {
         matchExpressions = [
           {
-            key      = "node-role.kubernetes.io/master"
+            key      = "node-role.kubernetes.io/control-plane"
             operator = "Exists"
           }
         ]
@@ -46,7 +46,7 @@ resource "kubernetes_manifest" "agent_plan" {
       nodeSelector = {
         matchExpressions = [
           {
-            key      = "node-role.kubernetes.io/master"
+            key      = "node-role.kubernetes.io/control-plane"
             operator = "DoesNotExist"
           }
         ]

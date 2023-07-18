@@ -9,16 +9,7 @@ This Terraform project is intended to be used as a template for deploying an opi
 * Complete CI solution with Gitea and Concourse, as well as custom private docker registry
 * Some additional tools for my own needs (umami and redmine)
 
-For proper install, it should be used on top of [Terraform Hcloud K0S](https://github.com/adr1enbe4udou1n/terraform-hcloud-k0s).
-
-Give some labels after installation in order to identify node roles properly.
-
-```sh
-kubectl label nodes kube-storage-01 node-role.kubernetes.io/storage=true
-kubectl label nodes kube-storage-02 node-role.kubernetes.io/storage=true
-kubectl label nodes kube-monitor-01 node-role.kubernetes.io/monitor=true
-kubectl label nodes kube-runner-01 node-role.kubernetes.io/runner=true
-```
+For proper install, it should be used on top of [Terraform Hcloud K3s](https://github.com/adr1enbe4udou1n/terraform-hcloud-k3s).
 
 ## Usage
 
