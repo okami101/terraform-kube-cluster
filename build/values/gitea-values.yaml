@@ -6,7 +6,7 @@ gitea:
   config:
     server:
       SSH_PORT: 22
-      SSH_LISTEN_PORT: 11022
+      SSH_LISTEN_PORT: 2222
       DOMAIN: gitea.${domain}
       ROOT_URL: https://gitea.${domain}
     database:
