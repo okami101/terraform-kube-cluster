@@ -33,11 +33,15 @@ gitea:
     webhook:
       ALLOWED_HOST_LIST: "*"
 
-postgresql:
+redis-cluster:
   enabled: false
 
-memcached:
+postgresql-ha:
   enabled: false
+
+persistence:
+  create: false
+  claimName: ${pvc_name}
 
 tolerations:
   - key: node-role.kubernetes.io/storage
