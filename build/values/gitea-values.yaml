@@ -20,9 +20,12 @@ gitea:
     mailer:
       ENABLED: true
       FROM: gitea@${domain}
-      HOST: ${smtp_host}:${smtp_port}
+      SMTP_ADDR: ${smtp_host}
+      SMTP_PORT: ${smtp_port}
       USER: ${smtp_user}
       PASSWD: ${smtp_password}
+    session:
+      PROVIDER: memory
     service:
       DISABLE_REGISTRATION: true
     repository:
