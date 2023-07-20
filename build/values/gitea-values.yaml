@@ -25,7 +25,7 @@ gitea:
       USER: ${smtp_user}
       PASSWD: ${smtp_password}
     session:
-      PROVIDER: memory
+      PROVIDER: db
     service:
       DISABLE_REGISTRATION: true
     repository:
