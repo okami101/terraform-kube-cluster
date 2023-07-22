@@ -103,7 +103,7 @@ resource "kubernetes_manifest" "phpmyadmin" {
       namespace = kubernetes_namespace_v1.mysql.metadata[0].name
     }
     spec = {
-      entryPoints = ["web"]
+      entryPoints = ["websecure"]
       routes = [
         {
           match = "Host(`pma.${var.domain}`)"

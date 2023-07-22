@@ -133,7 +133,7 @@ resource "kubernetes_manifest" "redmine_ingress" {
       namespace = kubernetes_namespace_v1.redmine.metadata[0].name
     }
     spec = {
-      entryPoints = ["web"]
+      entryPoints = ["websecure"]
       routes = [
         {
           match = "Host(`redmine.${var.domain}`)"

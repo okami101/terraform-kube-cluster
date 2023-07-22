@@ -2,6 +2,15 @@ variable "domain" {
   type = string
 }
 
+variable "cloudflare_api_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "acme_email" {
+  type = string
+}
+
 variable "http_basic_auth" {
   type      = string
   sensitive = true

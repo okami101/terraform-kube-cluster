@@ -139,7 +139,7 @@ resource "kubernetes_manifest" "registry_ingress" {
       namespace = kubernetes_namespace_v1.registry.metadata[0].name
     }
     spec = {
-      entryPoints = ["web"]
+      entryPoints = ["websecure"]
       routes = [
         {
           match = "Host(`registry.${var.domain}`)"

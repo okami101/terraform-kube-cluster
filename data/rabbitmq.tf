@@ -94,7 +94,7 @@ resource "kubernetes_manifest" "rabbitmq_ingress" {
       namespace = kubernetes_namespace_v1.rabbitmq.metadata[0].name
     }
     spec = {
-      entryPoints = ["web"]
+      entryPoints = ["websecure"]
       routes = [
         {
           match = "Host(`rmq.${var.domain}`)"

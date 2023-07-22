@@ -18,6 +18,9 @@ For proper install, it should be used on top of [Terraform Hcloud K3s](https://g
 Next you need to install some helm charts as well as CRDs.
 
 ```sh
+# add cert-manager crds
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.2/cert-manager.crds.yaml
+
 # add csi drivers
 kubectl -n kube-system create secret generic hcloud --from-literal=token=xxx
 kubectl apply -f https://raw.githubusercontent.com/hetznercloud/csi-driver/v2.3.2/deploy/kubernetes/hcloud-csi.yml

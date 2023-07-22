@@ -15,6 +15,11 @@ resource "helm_release" "traefik" {
   values = [
     file("${path.module}/values/traefik-values.yaml")
   ]
+
+  set {
+    name  = "tlsStore.default.defaultCertificate.secretName"
+    value = local.certificate_secret_name
+  }
 }
 
 resource "kubernetes_secret_v1" "traefik_auth_secret" {
@@ -69,7 +74,7 @@ resource "kubernetes_manifest" "traefik_ingress" {
       namespace = kubernetes_namespace_v1.traefik.metadata[0].name
     }
     spec = {
-      entryPoints = ["web"]
+      entryPoints = ["websecure"]
       routes = [
         {
           match = "Host(`traefik.${var.domain}`)"

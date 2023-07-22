@@ -1,6 +1,3 @@
-image:
-  tag: "1.20"
-
 gitea:
   metrics:
     enabled: true
@@ -38,9 +35,6 @@ gitea:
       ENABLED_ISSUE_BY_LABEL: true
     webhook:
       ALLOWED_HOST_LIST: "*"
-  additionalConfigFromEnvs:
-    - name: GITEA__security__INSTALL_LOCK
-      value: "true"
 
 redis-cluster:
   enabled: false
