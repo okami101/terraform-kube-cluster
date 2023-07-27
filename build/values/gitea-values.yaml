@@ -8,6 +8,7 @@ gitea:
       SSH_PORT: 22
       SSH_LISTEN_PORT: 2222
       DOMAIN: gitea.${domain}
+      SSH_DOMAIN: ssh.${domain}
       ROOT_URL: https://gitea.${domain}
     database:
       DB_TYPE: postgres
