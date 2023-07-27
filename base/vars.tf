@@ -2,11 +2,6 @@ variable "domain" {
   type = string
 }
 
-variable "cloudflare_api_token" {
-  type      = string
-  sensitive = true
-}
-
 variable "acme_email" {
   type = string
 }
@@ -30,5 +25,9 @@ variable "chart_kured_version" {
 }
 
 variable "chart_traefik_version" {
+  type = string
+}
+
+variable "chart_cert_manager_version" {
   type = string
 }
