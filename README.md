@@ -19,7 +19,7 @@ Next you need to install some helm charts as well as CRDs.
 
 ```sh
 # add cert-manager crds
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.2/cert-manager.crds.yaml
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.3/cert-manager.crds.yaml
 
 # add csi drivers
 kubectl -n kube-system create secret generic hcloud --from-literal=token=xxx
