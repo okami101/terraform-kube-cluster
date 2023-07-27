@@ -96,23 +96,6 @@ variable "concourse_webhook_token" {
   sensitive = true
 }
 
-variable "flux_git_url" {
-  type = string
-}
-
-variable "flux_git_branch" {
-  type = string
-}
-
-variable "flux_ssh_username" {
-  type = string
-}
-
-variable "flux_ssh_private_key" {
-  type      = string
-  sensitive = true
-}
-
 variable "s3_endpoint" {
   type = string
 }
