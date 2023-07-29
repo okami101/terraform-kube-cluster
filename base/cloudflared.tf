@@ -97,6 +97,7 @@ ingress:
   - service: https://traefik.traefik
     originRequest:
       noTLSVerify: true
+      http2Origin: true
 EOF
   }
 }
