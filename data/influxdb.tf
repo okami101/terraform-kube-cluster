@@ -21,3 +21,36 @@ resource "helm_release" "influxdb" {
     value = var.influxdb_admin_password
   }
 }
+
+resource "kubernetes_manifest" "influxdb_ingress" {
+  manifest = {
+    apiVersion = "traefik.io/v1alpha1"
+    kind       = "IngressRoute"
+    metadata = {
+      name      = "influxdb"
+      namespace = kubernetes_namespace_v1.influxdb.metadata[0].name
+    }
+    spec = {
+      entryPoints = ["websecure"]
+      routes = [
+        {
+          match = "Host(`influxdb.${var.domain}`)"
+          kind  = "Rule"
+          middlewares = [
+            {
+              namespace = "traefik"
+              name      = "middleware-ip"
+            }
+          ]
+          services = [
+            {
+              name = "influxdb"
+              kind = "Service"
+              port = 8086
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
