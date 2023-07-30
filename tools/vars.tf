@@ -2,11 +2,6 @@ variable "domain" {
   type = string
 }
 
-variable "redis_password" {
-  type      = string
-  sensitive = true
-}
-
 variable "redmine_db_password" {
   type      = string
   sensitive = true

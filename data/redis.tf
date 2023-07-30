@@ -4,67 +4,9 @@ resource "kubernetes_namespace_v1" "redis" {
   }
 }
 
-resource "kubernetes_stateful_set_v1" "redis" {
+resource "kubernetes_secret_v1" "redis_auth" {
   metadata {
-    name      = "redis"
-    namespace = kubernetes_namespace_v1.redis.metadata[0].name
-  }
-
-  spec {
-    service_name = "redis"
-    selector {
-      match_labels = {
-        app = "redis"
-      }
-    }
-    template {
-      metadata {
-        labels = {
-          app = "redis"
-        }
-      }
-      spec {
-        container {
-          name              = "redis"
-          image             = "redis:7"
-          image_pull_policy = "Always"
-          resources {
-            requests = var.redis_resources_requests
-            limits   = var.redis_resources_limits
-          }
-          env {
-            name = "REDIS_PASSWORD"
-            value_from {
-              secret_key_ref {
-                name = kubernetes_secret_v1.redis_secret.metadata[0].name
-                key  = "redis-password"
-              }
-            }
-          }
-          port {
-            container_port = 6379
-          }
-          args = [
-            "redis-server",
-            "--requirepass",
-            "$(REDIS_PASSWORD)",
-          ]
-        }
-        toleration {
-          key      = "node-role.kubernetes.io/storage"
-          operator = "Exists"
-        }
-        node_selector = {
-          "node-role.kubernetes.io/storage" = "true"
-        }
-      }
-    }
-  }
-}
-
-resource "kubernetes_secret_v1" "redis_secret" {
-  metadata {
-    name      = "redis-secret"
+    name      = "redis-auth"
     namespace = kubernetes_namespace_v1.redis.metadata[0].name
   }
   data = {
@@ -72,33 +14,15 @@ resource "kubernetes_secret_v1" "redis_secret" {
   }
 }
 
-resource "kubernetes_service_v1" "redis" {
-  metadata {
-    name      = "db"
-    namespace = kubernetes_namespace_v1.redis.metadata[0].name
-  }
-  spec {
-    selector = {
-      app = "redis"
-    }
-    port {
-      port        = 6379
-      target_port = 6379
-    }
-  }
-}
+resource "helm_release" "redis" {
+  chart      = "redis"
+  version    = var.chart_redis_version
+  repository = "https://charts.bitnami.com/bitnami"
 
-resource "helm_release" "redis_exporter" {
-  chart      = "prometheus-redis-exporter"
-  version    = var.chart_prometheus_redis_exporter_version
-  repository = "https://prometheus-community.github.io/helm-charts"
-
-  name      = "redis-exporter"
+  name      = "redis"
   namespace = kubernetes_namespace_v1.redis.metadata[0].name
 
   values = [
-    templatefile("${path.module}/values/redis-exporter-values.yaml", {
-      redis_address = "redis://${kubernetes_service_v1.redis.metadata[0].name}:6379"
-    })
+    file("${path.module}/values/redis-values.yaml")
   ]
 }

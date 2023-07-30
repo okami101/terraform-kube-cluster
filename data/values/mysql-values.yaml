@@ -1,6 +1,8 @@
 auth:
   existingSecret: mysql-auth
 
+architecture: standalone
+
 metrics:
   enabled: true
   serviceMonitor:

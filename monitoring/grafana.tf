@@ -71,16 +71,6 @@ resource "helm_release" "grafana" {
     name  = "env.GF_DATABASE_PASSWORD"
     value = var.grafana_db_password
   }
-
-  set {
-    name  = "env.GF_REMOTE_CACHE_TYPE"
-    value = "redis"
-  }
-
-  set {
-    name  = "env.GF_REMOTE_CACHE_CONNSTR"
-    value = "addr=db.redis"
-  }
 }
 
 resource "kubernetes_manifest" "grafana_ingress" {

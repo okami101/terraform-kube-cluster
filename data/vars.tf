@@ -144,18 +144,6 @@ variable "chart_mysql_version" {
   type = string
 }
 
-variable "chart_prometheus_mongodb_exporter_version" {
-  type = string
-}
-
-variable "chart_prometheus_mysql_exporter_version" {
-  type = string
-}
-
-variable "chart_prometheus_postgres_exporter_version" {
-  type = string
-}
-
-variable "chart_prometheus_redis_exporter_version" {
+variable "chart_redis_version" {
   type = string
 }
