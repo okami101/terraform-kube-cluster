@@ -27,7 +27,7 @@ resource "kubernetes_deployment_v1" "phpmyadmin" {
             name = "MYSQL_ROOT_PASSWORD"
             value_from {
               secret_key_ref {
-                name = kubernetes_secret_v1.mysql_secret.metadata[0].name
+                name = kubernetes_secret_v1.mysql_auth.metadata[0].name
                 key  = "mysql-root-password"
               }
             }
@@ -35,7 +35,7 @@ resource "kubernetes_deployment_v1" "phpmyadmin" {
 
           env {
             name  = "PMA_HOST"
-            value = kubernetes_service_v1.mysql.metadata[0].name
+            value = "mysql.mysql"
           }
 
           env {

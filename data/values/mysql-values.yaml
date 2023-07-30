@@ -1,0 +1,14 @@
+auth:
+  existingSecret: mysql-auth
+
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+
+primary:
+  tolerations:
+    - key: node-role.kubernetes.io/storage
+      effect: NoSchedule
+  nodeSelector:
+    node-role.kubernetes.io/primary: "true"

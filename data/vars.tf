@@ -40,6 +40,15 @@ variable "mongo_password" {
   sensitive = true
 }
 
+variable "mysql_root_password" {
+  type      = string
+  sensitive = true
+}
+
+variable "mysql_user" {
+  type = string
+}
+
 variable "mysql_password" {
   type      = string
   sensitive = true
@@ -128,6 +137,10 @@ variable "rabbitmq_default_password" {
 }
 
 variable "chart_postgresql_version" {
+  type = string
+}
+
+variable "chart_mysql_version" {
   type = string
 }
 
