@@ -74,7 +74,7 @@ resource "kubernetes_deployment_v1" "n8n" {
           }
           env {
             name  = "DB_POSTGRESDB_HOST"
-            value = "db.postgres"
+            value = "postgresql-primary.postgres"
           }
           env {
             name  = "DB_POSTGRESDB_USER"

@@ -36,8 +36,8 @@ resource "kubernetes_cron_job_v1" "postgres_backup" {
                 name = "PG_PASSWORD"
                 value_from {
                   secret_key_ref {
-                    name = kubernetes_secret_v1.postgres_secret.metadata[0].name
-                    key  = "pgsql-password"
+                    name = kubernetes_secret_v1.postgresql_auth.metadata[0].name
+                    key  = "password"
                   }
                 }
               }
@@ -49,7 +49,7 @@ resource "kubernetes_cron_job_v1" "postgres_backup" {
 
               env {
                 name  = "PG_HOST"
-                value = kubernetes_service_v1.postgres.metadata[0].name
+                value = "postgresql-primary.postgres"
               }
 
               env {

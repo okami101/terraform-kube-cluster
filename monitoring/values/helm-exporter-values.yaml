@@ -9,7 +9,7 @@ config:
       - sstarcher
       - kured
       - longhorn
-      - bitnami-labs
+      - bitnami
       - cert-manager
 tolerations:
   - key: "node-role.kubernetes.io/monitor"

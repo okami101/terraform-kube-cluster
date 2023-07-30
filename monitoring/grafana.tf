@@ -54,7 +54,7 @@ resource "helm_release" "grafana" {
 
   set {
     name  = "env.GF_DATABASE_HOST"
-    value = "db.postgres"
+    value = "postgresql-primary.postgres"
   }
 
   set {

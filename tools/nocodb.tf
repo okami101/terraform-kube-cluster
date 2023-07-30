@@ -11,7 +11,7 @@ resource "kubernetes_secret_v1" "nocodb_secret" {
   }
 
   data = {
-    database-url = "postgresql://nocodb:${urlencode(var.nocodb_db_password)}@db.postgres/nocodb"
+    database-url = "postgresql://nocodb:${urlencode(var.nocodb_db_password)}@postgresql-primary.postgres/nocodb"
     jwt-secret   = var.nocodb_jwt_secret
   }
 }

@@ -68,6 +68,11 @@ variable "phpmyadmin_resources_limits" {
   })
 }
 
+variable "pgsql_admin_password" {
+  type      = string
+  sensitive = true
+}
+
 variable "pgsql_user" {
   type = string
 }
@@ -120,6 +125,10 @@ variable "rabbitmq_default_user" {
 variable "rabbitmq_default_password" {
   type      = string
   sensitive = true
+}
+
+variable "chart_postgresql_version" {
+  type = string
 }
 
 variable "chart_prometheus_mongodb_exporter_version" {

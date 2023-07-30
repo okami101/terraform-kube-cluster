@@ -12,7 +12,7 @@ gitea:
       ROOT_URL: https://gitea.${domain}
     database:
       DB_TYPE: postgres
-      HOST: db.postgres
+      HOST: postgresql-primary.postgres
       NAME: gitea
       USER: gitea
       PASSWD: ${db_password}

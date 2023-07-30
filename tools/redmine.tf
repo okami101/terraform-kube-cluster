@@ -64,7 +64,7 @@ resource "kubernetes_deployment_v1" "redmine" {
           }
           env {
             name  = "REDMINE_DB_POSTGRES"
-            value = "db.postgres"
+            value = "postgresql-primary.postgres"
           }
           env {
             name = "REDMINE_SECRET_KEY_BASE"
