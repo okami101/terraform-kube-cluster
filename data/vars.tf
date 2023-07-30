@@ -59,10 +59,6 @@ variable "mysql_exporter_password" {
   sensitive = true
 }
 
-variable "mysql_backup_pvc_name" {
-  type = string
-}
-
 variable "phpmyadmin_resources_requests" {
   type = object({
     cpu    = string
@@ -96,10 +92,6 @@ variable "pgsql_replication_password" {
   sensitive = true
 }
 
-variable "pgsql_backup_pvc_name" {
-  type = string
-}
-
 variable "pgadmin_default_email" {
   type = string
 }
@@ -127,11 +119,16 @@ variable "pgadmin_resources_limits" {
   })
 }
 
-variable "rabbitmq_default_user" {
+variable "rabbitmq_user" {
   type = string
 }
 
-variable "rabbitmq_default_password" {
+variable "rabbitmq_password" {
+  type      = string
+  sensitive = true
+}
+
+variable "influxdb_admin_password" {
   type      = string
   sensitive = true
 }
@@ -145,5 +142,13 @@ variable "chart_mysql_version" {
 }
 
 variable "chart_redis_version" {
+  type = string
+}
+
+variable "chart_rabbitmq_version" {
+  type = string
+}
+
+variable "chart_influxdb_version" {
   type = string
 }

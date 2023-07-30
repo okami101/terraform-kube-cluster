@@ -50,7 +50,6 @@ variable "s3_secret_key" {
   sensitive = true
 }
 
-
 variable "chart_grafana_version" {
   type = string
 }

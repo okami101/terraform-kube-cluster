@@ -1,0 +1,14 @@
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+
+persistence:
+  enabled: false
+
+influxdb:
+  tolerations:
+    - key: node-role.kubernetes.io/storage
+      effect: NoSchedule
+  nodeSelector:
+    node-role.kubernetes.io/primary: "true"
