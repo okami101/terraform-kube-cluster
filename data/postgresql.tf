@@ -38,3 +38,22 @@ resource "helm_release" "postgresql" {
     value = var.pgsql_user
   }
 }
+
+resource "kubernetes_service_v1" "postgresql_lb" {
+  metadata {
+    name      = "postgresql-lb"
+    namespace = kubernetes_namespace_v1.postgres.metadata[0].name
+  }
+  spec {
+    selector = {
+      "app.kubernetes.io/instance" = "postgresql"
+      "app.kubernetes.io/name"     = "postgresql"
+    }
+    port {
+      name        = "tcp-postgresql"
+      port        = 5432
+      protocol    = "TCP"
+      target_port = "tcp-postgresql"
+    }
+  }
+}
