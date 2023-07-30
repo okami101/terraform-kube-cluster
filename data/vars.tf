@@ -35,7 +35,7 @@ variable "redis_resources_limits" {
   })
 }
 
-variable "mongo_password" {
+variable "mongodb_password" {
   type      = string
   sensitive = true
 }
@@ -50,11 +50,6 @@ variable "mysql_user" {
 }
 
 variable "mysql_password" {
-  type      = string
-  sensitive = true
-}
-
-variable "mysql_exporter_password" {
   type      = string
   sensitive = true
 }
@@ -138,6 +133,10 @@ variable "chart_postgresql_version" {
 }
 
 variable "chart_mysql_version" {
+  type = string
+}
+
+variable "chart_mongodb_version" {
   type = string
 }
 

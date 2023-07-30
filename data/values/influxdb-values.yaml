@@ -3,9 +3,6 @@ metrics:
   serviceMonitor:
     enabled: true
 
-persistence:
-  enabled: false
-
 influxdb:
   tolerations:
     - key: node-role.kubernetes.io/storage

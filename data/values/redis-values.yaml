@@ -10,8 +10,6 @@ metrics:
     enabled: true
 
 master:
-  persistence:
-    enabled: false
   tolerations:
     - key: node-role.kubernetes.io/storage
       effect: NoSchedule
@@ -20,8 +18,6 @@ master:
 
 replica:
   replicaCount: 1
-  persistence:
-    enabled: false
   tolerations:
     - key: node-role.kubernetes.io/storage
       effect: NoSchedule
