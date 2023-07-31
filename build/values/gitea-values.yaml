@@ -26,10 +26,10 @@ gitea:
       USER: ${smtp_user}
       PASSWD: ${smtp_password}
     cache:
-      ADAPTER: redis-cluster
+      ADAPTER: redis
       HOST: ${redis_connection}
     session:
-      PROVIDER: redis-cluster
+      PROVIDER: redis
       PROVIDER_CONFIG: ${redis_connection}
     queue:
       TYPE: redis
