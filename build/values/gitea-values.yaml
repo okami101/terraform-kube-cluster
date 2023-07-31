@@ -25,8 +25,15 @@ gitea:
       SMTP_PORT: ${smtp_port}
       USER: ${smtp_user}
       PASSWD: ${smtp_password}
+    cache:
+      ADAPTER: redis-cluster
+      HOST: ${redis_connection}
     session:
-      PROVIDER: db
+      PROVIDER: redis-cluster
+      PROVIDER_CONFIG: ${redis_connection}
+    queue:
+      TYPE: redis
+      CONN_STR: ${redis_connection}
     service:
       DISABLE_REGISTRATION: true
     repository:

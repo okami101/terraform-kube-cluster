@@ -38,6 +38,11 @@ variable "flux_receiver_token" {
   sensitive = true
 }
 
+variable "redis_password" {
+  type      = string
+  sensitive = true
+}
+
 variable "gitea_db_password" {
   type      = string
   sensitive = true
