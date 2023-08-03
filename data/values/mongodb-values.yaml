@@ -1,3 +1,6 @@
+updateStrategy:
+  type: Recreate
+
 metrics:
   enabled: true
   serviceMonitor:
