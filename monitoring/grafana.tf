@@ -87,6 +87,10 @@ resource "kubernetes_manifest" "grafana_ingress" {
         {
           match = "Host(`grafana.${var.domain}`)"
           kind  = "Rule"
+          middlewares = [for middleware in var.middlewares.grafana : {
+            namespace = "traefik"
+            name      = "middleware-${middleware}"
+          }]
           services = [
             {
               name = "grafana"

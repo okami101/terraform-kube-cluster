@@ -6,6 +6,10 @@ variable "entry_point" {
   type = string
 }
 
+variable "middlewares" {
+  type = map(list(string))
+}
+
 variable "postgresql_resources_requests" {
   type = object({
     cpu    = string

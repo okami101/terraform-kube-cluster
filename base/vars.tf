@@ -6,6 +6,10 @@ variable "entry_point" {
   type = string
 }
 
+variable "middlewares" {
+  type = map(list(string))
+}
+
 variable "cloudflare_api_token" {
   type      = string
   sensitive = true

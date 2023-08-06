@@ -31,12 +31,10 @@ resource "kubernetes_manifest" "prometheus_ingress" {
         {
           match = "Host(`prom.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [
-            {
-              namespace = "traefik"
-              name      = "middleware-auth"
-            }
-          ]
+          middlewares = [for middleware in var.middlewares.prometheus : {
+            namespace = "traefik"
+            name      = "middleware-${middleware}"
+          }]
           services = [
             {
               name = "prometheus-operated"

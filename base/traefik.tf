@@ -82,11 +82,10 @@ resource "kubernetes_manifest" "traefik_ingress" {
         {
           match = "Host(`traefik.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [
-            {
-              name = "middleware-auth"
-            }
-          ]
+          middlewares = [for middleware in var.middlewares.traefik : {
+            namespace = "traefik"
+            name      = "middleware-${middleware}"
+          }]
           services = [
             {
               name = "api@internal"

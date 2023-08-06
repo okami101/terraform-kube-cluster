@@ -31,16 +31,10 @@ resource "kubernetes_manifest" "longhorn_ingress" {
         {
           match = "Host(`longhorn.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [
-            {
-              namespace = "traefik"
-              name      = "middleware-ip"
-            },
-            {
-              namespace = "traefik"
-              name      = "middleware-auth"
-            }
-          ]
+          middlewares = [for middleware in var.middlewares.longhorn : {
+            namespace = "traefik"
+            name      = "middleware-${middleware}"
+          }]
           services = [
             {
               name = "longhorn-frontend"

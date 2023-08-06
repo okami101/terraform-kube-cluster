@@ -41,12 +41,10 @@ resource "kubernetes_manifest" "rabbitmq_ingress" {
         {
           match = "Host(`rmq.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [
-            {
-              namespace = "traefik"
-              name      = "middleware-ip"
-            }
-          ]
+          middlewares = [for middleware in var.middlewares.rabbitmq : {
+            namespace = "traefik"
+            name      = "middleware-${middleware}"
+          }]
           services = [
             {
               name = "rabbitmq"

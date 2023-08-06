@@ -144,12 +144,10 @@ resource "kubernetes_manifest" "registry_ingress" {
         {
           match = "Host(`registry.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [
-            {
-              namespace = "traefik"
-              name      = "middleware-auth"
-            }
-          ]
+          middlewares = [for middleware in var.middlewares.registry : {
+            namespace = "traefik"
+            name      = "middleware-${middleware}"
+          }]
           services = [
             {
               name = kubernetes_service_v1.registry.metadata[0].name

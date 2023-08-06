@@ -36,12 +36,10 @@ resource "kubernetes_manifest" "influxdb_ingress" {
         {
           match = "Host(`influxdb.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [
-            {
-              namespace = "traefik"
-              name      = "middleware-ip"
-            }
-          ]
+          middlewares = [for middleware in var.middlewares.influxdb : {
+            namespace = "traefik"
+            name      = "middleware-${middleware}"
+          }]
           services = [
             {
               name = "influxdb"
