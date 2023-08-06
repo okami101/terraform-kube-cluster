@@ -2,6 +2,10 @@ variable "domain" {
   type = string
 }
 
+variable "entry_point" {
+  type = string
+}
+
 variable "registry_resources_requests" {
   type = object({
     cpu    = string

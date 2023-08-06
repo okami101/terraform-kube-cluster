@@ -2,6 +2,10 @@ variable "domain" {
   type = string
 }
 
+variable "entry_point" {
+  type = string
+}
+
 variable "redmine_db_password" {
   type      = string
   sensitive = true

@@ -131,7 +131,7 @@ resource "kubernetes_manifest" "nocodb_ingress" {
       namespace = kubernetes_namespace_v1.nocodb.metadata[0].name
     }
     spec = {
-      entryPoints = ["websecure"]
+      entryPoints = [var.entry_point]
       routes = [
         {
           match = "Host(`nocodb.${var.domain}`)"

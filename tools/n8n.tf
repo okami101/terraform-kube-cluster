@@ -158,7 +158,7 @@ resource "kubernetes_manifest" "n8n_ingress" {
       namespace = kubernetes_namespace_v1.n8n.metadata[0].name
     }
     spec = {
-      entryPoints = ["websecure"]
+      entryPoints = [var.entry_point]
       routes = [
         {
           match = "Host(`n8n.${var.domain}`)"
