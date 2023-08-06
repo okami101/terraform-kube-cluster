@@ -104,7 +104,6 @@ resource "kubernetes_manifest" "pgadmin_ingress" {
           services = [
             {
               name = kubernetes_service_v1.pgadmin.metadata[0].name
-              kind = "Service"
               port = 80
             }
           ]

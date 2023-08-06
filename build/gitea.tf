@@ -58,7 +58,6 @@ resource "kubernetes_manifest" "gitea_ingress" {
           services = [
             {
               name = "gitea-http"
-              kind = "Service"
               port = 3000
             }
           ]

@@ -141,7 +141,6 @@ resource "kubernetes_manifest" "redmine_ingress" {
           services = [
             {
               name = "redmine"
-              kind = "Service"
               port = 3000
             }
           ]

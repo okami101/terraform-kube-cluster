@@ -151,7 +151,6 @@ resource "kubernetes_manifest" "registry_ingress" {
           services = [
             {
               name = kubernetes_service_v1.registry.metadata[0].name
-              kind = "Service"
               port = 80
             }
           ]

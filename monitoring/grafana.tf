@@ -94,7 +94,6 @@ resource "kubernetes_manifest" "grafana_ingress" {
           services = [
             {
               name = "grafana"
-              kind = "Service"
               port = 80
             }
           ]

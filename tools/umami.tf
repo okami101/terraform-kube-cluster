@@ -92,7 +92,6 @@ resource "kubernetes_manifest" "umami_ingress" {
           services = [
             {
               name = "umami"
-              kind = "Service"
               port = 3000
             }
           ]

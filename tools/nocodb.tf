@@ -139,7 +139,6 @@ resource "kubernetes_manifest" "nocodb_ingress" {
           services = [
             {
               name = "nocodb"
-              kind = "Service"
               port = 8080
             }
           ]

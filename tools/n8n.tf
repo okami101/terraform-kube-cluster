@@ -166,7 +166,6 @@ resource "kubernetes_manifest" "n8n_ingress" {
           services = [
             {
               name = "n8n"
-              kind = "Service"
               port = 5678
             }
           ]

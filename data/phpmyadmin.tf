@@ -114,7 +114,6 @@ resource "kubernetes_manifest" "phpmyadmin" {
           }]
           services = [
             {
-              kind = "Service"
               name = kubernetes_service_v1.phpmyadmin.metadata[0].name
               port = 80
             },

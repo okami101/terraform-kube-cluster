@@ -48,7 +48,6 @@ resource "kubernetes_manifest" "rabbitmq_ingress" {
           services = [
             {
               name = "rabbitmq"
-              kind = "Service"
               port = 15672
             }
           ]

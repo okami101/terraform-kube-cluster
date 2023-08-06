@@ -54,7 +54,6 @@ resource "kubernetes_manifest" "concourse_ingress" {
           services = [
             {
               name = "concourse-web"
-              kind = "Service"
               port = 8080
             }
           ]
