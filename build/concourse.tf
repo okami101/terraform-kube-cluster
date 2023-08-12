@@ -70,9 +70,9 @@ resource "kubernetes_secret_v1" "concourse_registry" {
   }
 
   data = {
-    name     = "registry.${var.domain}"
-    username = var.http_basic_username
-    password = var.http_basic_password
+    name     = "gitea.${var.domain}"
+    username = var.gitea_admin_username
+    password = var.gitea_admin_password
   }
 
   depends_on = [

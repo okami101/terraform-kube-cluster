@@ -91,3 +91,23 @@ resource "kubernetes_manifest" "gitea_ingress_ssh" {
     }
   }
 }
+
+resource "kubernetes_secret_v1" "image_pull_secrets" {
+  for_each = toset(var.image_pull_secret_namespaces)
+  metadata {
+    name      = "dockerconfigjson"
+    namespace = each.value
+  }
+
+  type = "kubernetes.io/dockerconfigjson"
+
+  data = {
+    ".dockerconfigjson" = jsonencode({
+      auths = {
+        "gitea.${var.domain}" = {
+          auth = base64encode("${var.gitea_admin_username}:${var.gitea_admin_password}")
+        }
+      }
+    })
+  }
+}
