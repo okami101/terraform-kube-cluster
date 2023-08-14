@@ -35,6 +35,8 @@ write:
     node-role.kubernetes.io/storage: "true"
 
 monitoring:
+  dashboards:
+    namespace: monitoring
   selfMonitoring:
     enabled: false
     grafanaAgent:

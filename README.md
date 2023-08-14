@@ -48,15 +48,12 @@ kubectl apply -f https://raw.githubusercontent.com/bitnami-labs/sealed-secrets/m
 
 ## Grafana Dashboards
 
-| ID    | App          |
-| ----- | ------------ |
-| 13032 | Longhorn     |
-| 7036  | Concourse    |
-| 4475  | Traefik      |
-| 14055 | Loki         |
-| 13502 | Minio        |
-| 14191 | Elasticseach |
-| 14114 | Postgresql   |
-| 14057 | MySQL        |
-| 10991 | RabbitMQ     |
-| 763   | Reddis       |
+| ID    | App        |
+| ----- | ---------- |
+| 13032 | Longhorn   |
+| 7036  | Concourse  |
+| 4475  | Traefik    |
+| 14114 | Postgresql |
+| 14057 | MySQL      |
+| 10991 | RabbitMQ   |
+| 763   | Reddis     |
