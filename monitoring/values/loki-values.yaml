@@ -1,34 +1,42 @@
 loki:
   auth_enabled: false
-  commonConfig:
-    replication_factor: 1
   compactor:
     retention_enabled: true
   limits_config:
     retention_period: 24h
   storage:
-    type: filesystem
-  rulerConfig:
-    storage:
-      type: local
+    bucketNames:
+      chunks: ${bucket}
+      ruler: ${bucket}
+      admin: ${bucket}
+    s3:
+      endpoint: ${endpoint}
+      region: ${region}
+      accessKeyId: ${access_key}
+      secretAccessKey: ${secret_key}
 
-singleBinary:
+read:
+  replicas: 1
+
+backend:
   replicas: 1
   tolerations:
-    - key: node-role.kubernetes.io/monitor
+    - key: node-role.kubernetes.io/storage
       operator: Exists
   nodeSelector:
-    node-role.kubernetes.io/monitor: "true"
-  persistence:
-    storageClass: local-path
+    node-role.kubernetes.io/storage: "true"
+
+write:
+  replicas: 2
+  tolerations:
+    - key: node-role.kubernetes.io/storage
+      operator: Exists
+  nodeSelector:
+    node-role.kubernetes.io/storage: "true"
 
 monitoring:
   selfMonitoring:
     enabled: false
-
-    lokiCanary:
-      enabled: false
-
     grafanaAgent:
       installOperator: false
 

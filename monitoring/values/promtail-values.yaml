@@ -1,7 +1,3 @@
-config:
-  clients:
-    - url: http://loki.logging:3100/loki/api/v1/push
-
 tolerations:
   - effect: NoSchedule
     operator: Exists

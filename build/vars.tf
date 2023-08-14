@@ -72,6 +72,11 @@ variable "concourse_password" {
   sensitive = true
 }
 
+variable "concourse_webhook_token" {
+  type      = string
+  sensitive = true
+}
+
 variable "chart_concourse_version" {
   type = string
 }

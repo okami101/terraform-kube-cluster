@@ -13,7 +13,13 @@ resource "helm_release" "loki" {
   namespace = kubernetes_namespace_v1.logging.metadata[0].name
 
   values = [
-    file("${path.module}/values/loki-values.yaml")
+    templatefile("${path.module}/values/loki-values.yaml", {
+      bucket : var.s3_bucket
+      endpoint : var.s3_endpoint
+      region : var.s3_region
+      access_key : var.s3_access_key
+      secret_key : var.s3_secret_key
+    })
   ]
 }
 
