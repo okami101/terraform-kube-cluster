@@ -1,0 +1,17 @@
+tolerations:
+  - key: node-role.kubernetes.io/runner
+    operator: Exists
+nodeSelector:
+  node-role.kubernetes.io/runner: "true"
+
+prometheusMonitoring:
+  podMonitor:
+    enabled: true
+
+jdbcOverwrite:
+  enable: true
+  jdbcUrl: jdbc:postgresql://postgresql-primary.postgres/sonarqube
+  jdbcUsername: sonarqube
+
+postgresql:
+  enabled: false
