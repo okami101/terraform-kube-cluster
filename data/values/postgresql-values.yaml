@@ -10,6 +10,8 @@ metrics:
     enabled: true
 
 primary:
+  extendedConfiguration: |
+    max_connections = 200
   tolerations:
     - key: node-role.kubernetes.io/storage
       effect: NoSchedule
@@ -17,6 +19,8 @@ primary:
     node-role.kubernetes.io/primary: "true"
 
 readReplicas:
+  extendedConfiguration: |
+    max_connections = 200
   tolerations:
     - key: node-role.kubernetes.io/storage
       effect: NoSchedule
