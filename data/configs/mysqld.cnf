@@ -1,2 +1,0 @@
-[mysqld]
-local_infile = 1
