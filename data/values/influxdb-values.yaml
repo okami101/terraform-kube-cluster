@@ -4,6 +4,8 @@ metrics:
     enabled: true
 
 influxdb:
+  updateStrategy:
+    type: OnDelete
   tolerations:
     - key: node-role.kubernetes.io/storage
       effect: NoSchedule
