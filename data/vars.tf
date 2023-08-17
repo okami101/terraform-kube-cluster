@@ -136,6 +136,11 @@ variable "influxdb_admin_password" {
   sensitive = true
 }
 
+variable "influxdb_admin_token" {
+  type      = string
+  sensitive = true
+}
+
 variable "chart_postgresql_version" {
   type = string
 }

@@ -20,6 +20,11 @@ resource "helm_release" "influxdb" {
     name  = "auth.admin.password"
     value = var.influxdb_admin_password
   }
+
+  set {
+    name  = "auth.admin.token"
+    value = var.influxdb_admin_token
+  }
 }
 
 resource "kubernetes_manifest" "influxdb_ingress" {
