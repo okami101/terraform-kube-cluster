@@ -25,7 +25,9 @@ resource "helm_release" "postgresql" {
   namespace = kubernetes_namespace_v1.postgres.metadata[0].name
 
   values = [
-    file("${path.module}/values/postgresql-values.yaml")
+    templatefile("${path.module}/values/postgresql-values.yaml", {
+      auth_secret = kubernetes_secret_v1.postgresql_auth.metadata[0].name
+    })
   ]
 
   set {

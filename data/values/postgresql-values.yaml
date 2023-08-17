@@ -1,5 +1,5 @@
 auth:
-  existingSecret: postgresql-auth
+  existingSecret: ${auth_secret}
   replicationUsername: replication
 
 architecture: replication

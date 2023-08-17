@@ -1,5 +1,5 @@
 auth:
-  existingSecret: mysql-auth
+  existingSecret: ${auth_secret}
 
 architecture: standalone
 

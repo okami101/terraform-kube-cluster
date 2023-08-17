@@ -24,7 +24,9 @@ resource "helm_release" "mysql" {
   namespace = kubernetes_namespace_v1.mysql.metadata[0].name
 
   values = [
-    file("${path.module}/values/mysql-values.yaml")
+    templatefile("${path.module}/values/mysql-values.yaml", {
+      auth_secret = kubernetes_secret_v1.mysql_auth.metadata[0].name
+    })
   ]
 
   set {

@@ -1,4 +1,4 @@
-existingSecret: redis-auth
+existingSecret: ${auth_secret}
 existingSecretPasswordKey: redis-password
 
 cluster:

@@ -23,6 +23,8 @@ resource "helm_release" "redis" {
   namespace = kubernetes_namespace_v1.redis.metadata[0].name
 
   values = [
-    file("${path.module}/values/redis-values.yaml")
+    templatefile("${path.module}/values/redis-values.yaml", {
+      auth_secret = kubernetes_secret_v1.redis_auth.metadata[0].name
+    })
   ]
 }
