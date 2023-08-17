@@ -138,6 +138,7 @@ variable "influxdb_admin_password" {
 
 variable "influxdb_admin_token" {
   type      = string
+  default   = ""
   sensitive = true
 }
 
