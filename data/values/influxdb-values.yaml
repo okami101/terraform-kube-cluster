@@ -5,7 +5,7 @@ metrics:
 
 influxdb:
   updateStrategy:
-    type: OnDelete
+    type: Recreate
   tolerations:
     - key: node-role.kubernetes.io/storage
       effect: NoSchedule
