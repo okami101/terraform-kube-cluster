@@ -22,12 +22,6 @@ concourse:
 web:
   enabled: true
 
-  tolerations:
-    - key: node-role.kubernetes.io/runner
-      operator: Exists
-  nodeSelector:
-    node-role.kubernetes.io/runner: "true"
-
 worker:
   enabled: true
 
