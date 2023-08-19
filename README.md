@@ -18,6 +18,9 @@ For proper install, it should be used on top of [Terraform Hcloud K3s](https://g
 Next you need to install some helm charts as well as CRDs.
 
 ```sh
+# automatic upgrade
+kubectl apply -k github.com/rancher/system-upgrade-controller
+
 # add cert-manager crds
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.3/cert-manager.crds.yaml
 
@@ -25,9 +28,6 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 kubectl -n kube-system create secret generic hcloud --from-literal=token=xxx
 kubectl apply -f https://raw.githubusercontent.com/hetznercloud/csi-driver/v2.3.2/deploy/kubernetes/hcloud-csi.yml
 kubectl patch sc hcloud-volumes -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
-
-# automatic upgrade
-kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/download/v0.13.0/system-upgrade-controller.yaml
 
 # install CRDs
 kubectl apply --server-side --force-conflicts -k https://github.com/traefik/traefik-helm-chart/traefik/crds/
