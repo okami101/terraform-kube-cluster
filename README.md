@@ -19,7 +19,7 @@ Next you need to install some helm charts as well as CRDs.
 
 ```sh
 # automatic upgrade
-kubectl apply -k github.com/rancher/system-upgrade-controller
+kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/latest/download/system-upgrade-controller.yaml
 
 # add cert-manager crds
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/latest/cert-manager.crds.yaml
