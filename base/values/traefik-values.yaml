@@ -16,13 +16,9 @@ ports:
     redirectTo: websecure
   websecure:
     forwardedHeaders:
-      trustedIPs:
-        - 127.0.0.1/32
-        - 10.0.0.0/8
+      insecure: true
     proxyProtocol:
-      trustedIPs:
-        - 127.0.0.1/32
-        - 10.0.0.0/8
+      insecure: true
 
 logs:
   access:
