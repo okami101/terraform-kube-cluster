@@ -1,9 +1,10 @@
-resource "helm_release" "kubereboot" {
+resource "helm_release" "kured" {
   chart      = "kured"
   version    = var.chart_kured_version
   repository = "https://kubereboot.github.io/charts"
 
-  name = "kured"
+  name      = "kured"
+  namespace = "kube-system"
 
   set {
     name  = "configuration.period"
