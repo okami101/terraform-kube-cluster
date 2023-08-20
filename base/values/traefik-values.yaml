@@ -3,7 +3,11 @@ deployment:
 
 ingressRoute:
   dashboard:
-    enabled: false
+    entryPoints:
+      - websecure
+    matchRule: Host(`traefik.${domain}`)
+    middlewares:
+      - name: middleware-auth
 
 ports:
   ssh:
@@ -29,14 +33,6 @@ logs:
       headers:
         names:
           X-B3-TraceId: keep
-
-metrics:
-  prometheus:
-    serviceMonitor:
-      namespaceSelector: {}
-
-hub:
-  enabled: true
 
 tracing:
   zipkin:

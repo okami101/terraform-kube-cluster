@@ -13,7 +13,9 @@ resource "helm_release" "traefik" {
   namespace = kubernetes_namespace_v1.traefik.metadata[0].name
 
   values = [
-    file("${path.module}/values/traefik-values.yaml")
+    templatefile("${path.module}/values/traefik-values.yaml", {
+      domain = var.domain
+    })
   ]
 
   set {
@@ -64,36 +66,6 @@ resource "kubernetes_manifest" "traefik_middleware_ip" {
           depth = 1
         }
       }
-    }
-  }
-}
-
-resource "kubernetes_manifest" "traefik_ingress" {
-  manifest = {
-    apiVersion = "traefik.io/v1alpha1"
-    kind       = "IngressRoute"
-    metadata = {
-      name      = "traefik"
-      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
-    }
-    spec = {
-      entryPoints = [var.entry_point]
-      routes = [
-        {
-          match = "Host(`traefik.${var.domain}`)"
-          kind  = "Rule"
-          middlewares = [for middleware in var.middlewares.traefik : {
-            namespace = "traefik"
-            name      = "middleware-${middleware}"
-          }]
-          services = [
-            {
-              name = "api@internal"
-              kind = "TraefikService"
-            }
-          ]
-        }
-      ]
     }
   }
 }
