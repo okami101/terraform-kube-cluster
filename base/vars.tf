@@ -29,6 +29,10 @@ variable "whitelisted_ips" {
   sensitive = true
 }
 
+variable "trusted_ips" {
+  type = list(string)
+}
+
 variable "chart_longhorn_version" {
   type = string
 }

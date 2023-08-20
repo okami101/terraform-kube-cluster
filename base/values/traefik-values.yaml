@@ -14,11 +14,6 @@ ports:
     protocol: TCP
   web:
     redirectTo: websecure
-  websecure:
-    forwardedHeaders:
-      insecure: true
-    proxyProtocol:
-      insecure: true
 
 logs:
   access:

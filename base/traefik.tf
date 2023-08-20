@@ -19,6 +19,16 @@ resource "helm_release" "traefik" {
   ]
 
   set {
+    name  = "ports.websecure.forwardedHeaders.trustedIPs"
+    value = "{${join(",", var.trusted_ips)}}"
+  }
+
+  set {
+    name  = "ports.websecure.proxyProtocol.trustedIPs"
+    value = "{${join(",", var.trusted_ips)}}"
+  }
+
+  set {
     name  = "tlsStore.default.defaultCertificate.secretName"
     value = local.certificate_secret_name
   }
