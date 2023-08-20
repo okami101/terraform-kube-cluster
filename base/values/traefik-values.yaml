@@ -1,6 +1,3 @@
-deployment:
-  kind: DaemonSet
-
 ingressRoute:
   dashboard:
     entryPoints:
