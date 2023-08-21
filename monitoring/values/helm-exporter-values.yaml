@@ -1,17 +1,55 @@
 config:
   helmRegistries:
     registryNames:
-      - prometheus-community
-      - traefik
-      - grafana
-      - gitea
-      - concourse
-      - sstarcher
-      - kured
-      - longhorn
       - bitnami
-      - cert-manager
-      - sonarqube
+    override:
+      - registry:
+          url: "https://concourse-charts.storage.googleapis.com"
+        charts:
+          - concourse
+      - registry:
+          url: "https://dl.gitea.io/charts"
+        charts:
+          - gitea
+      - registry:
+          url: "https://grafana.github.io/helm-charts"
+        charts:
+          - grafana
+          - loki
+          - promtail
+          - tempo
+      - registry:
+          url: "https://charts.longhorn.io"
+        charts:
+          - longhorn
+      - registry:
+          url: "https://charts.jetstack.io"
+        charts:
+          - cert-manager
+      - registry:
+          url: "https://traefik.github.io/charts"
+        charts:
+          - traefik
+      - registry:
+          url: "https://bitnami-labs.github.io/sealed-secrets"
+        charts:
+          - sealed-secrets
+      - registry:
+          url: "https://prometheus-community.github.io/helm-charts"
+        charts:
+          - kube-prometheus-stack
+      - registry:
+          url: "https://SonarSource.github.io/helm-chart-sonarqube"
+        charts:
+          - sonarqube
+      - registry:
+          url: "https://kubereboot.github.io/charts"
+        charts:
+          - kured
+      - registry:
+          url: "https://shanestarcher.com/helm-charts"
+        charts:
+          - helm-exporter
 tolerations:
   - key: "node-role.kubernetes.io/monitor"
     operator: "Exists"
