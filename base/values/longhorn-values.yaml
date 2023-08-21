@@ -3,6 +3,7 @@ persistence:
   defaultClassReplicaCount: 2
 
 defaultSettings:
+  defaultReplicaCount: 2
   taintToleration: node-role.kubernetes.io/storage:NoSchedule
 
 longhornManager:
