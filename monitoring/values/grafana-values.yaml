@@ -12,6 +12,8 @@ serviceMonitor:
   enabled: true
 
 sidecar:
+  datasources:
+    enabled: true
   dashboards:
     enabled: true
 
