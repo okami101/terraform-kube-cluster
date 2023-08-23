@@ -1,3 +1,7 @@
+grafanaDashboard:
+  enabled: true
+  grafanaDashboard:
+    namespace: monitoring
 config:
   helmRegistries:
     registryNames:

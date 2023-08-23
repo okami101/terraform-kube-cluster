@@ -35,3 +35,25 @@ resource "helm_release" "promtail" {
     file("${path.module}/values/promtail-values.yaml")
   ]
 }
+
+resource "kubernetes_config_map_v1" "loki_grafana_datasource" {
+  metadata {
+    name      = "loki-grafana-datasource"
+    namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
+    labels = {
+      grafana_datasource = "1"
+    }
+  }
+
+  data = {
+    "datasource.yaml" = <<EOF
+apiVersion: 1
+datasources:
+- name: Loki
+  type: loki
+  uid: loki
+  url: http://loki-gateway.logging/
+  access: proxy
+EOF
+  }
+}
