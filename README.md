@@ -52,7 +52,7 @@ kubectl apply -f https://raw.githubusercontent.com/bitnami-labs/sealed-secrets/m
 | ----- | ---------- |
 | 13032 | Longhorn   |
 | 7036  | Concourse  |
-| 4475  | Traefik    |
+| 17346 | Traefik    |
 | 14114 | Postgresql |
 | 14057 | MySQL      |
 | 10991 | RabbitMQ   |
