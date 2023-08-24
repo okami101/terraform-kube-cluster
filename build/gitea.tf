@@ -43,7 +43,7 @@ resource "kubernetes_manifest" "gitea_ingress" {
           services = [
             {
               name = "gitea-http"
-              port = 3000
+              port = "http"
             }
           ]
         }
@@ -68,7 +68,7 @@ resource "kubernetes_manifest" "gitea_ingress_ssh" {
           services = [
             {
               name = "gitea-ssh"
-              port = 22
+              port = "ssh"
             }
           ]
         }

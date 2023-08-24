@@ -48,7 +48,7 @@ resource "kubernetes_manifest" "influxdb_ingress" {
           services = [
             {
               name = "influxdb"
-              port = 8086
+              port = "http"
             }
           ]
         }

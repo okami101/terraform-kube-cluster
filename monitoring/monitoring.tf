@@ -38,7 +38,7 @@ resource "kubernetes_manifest" "prometheus_ingress" {
           services = [
             {
               name = "prometheus-operated"
-              port = 9090
+              port = "http-web"
             }
           ]
         }

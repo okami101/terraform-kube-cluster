@@ -39,7 +39,7 @@ resource "kubernetes_manifest" "sonarqube_ingress" {
           services = [
             {
               name = "sonarqube-sonarqube"
-              port = 9000
+              port = "http"
             }
           ]
         }
