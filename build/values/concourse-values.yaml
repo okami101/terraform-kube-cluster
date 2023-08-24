@@ -27,8 +27,6 @@ worker:
     node-role.kubernetes.io/runner: "true"
 
 persistence:
-  enabled: true
-
   worker:
     storageClass: local-path
 
