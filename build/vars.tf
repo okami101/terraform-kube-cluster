@@ -19,6 +19,19 @@ variable "redis_password" {
   sensitive = true
 }
 
+variable "gitea_admin_username" {
+  type = string
+}
+
+variable "gitea_admin_password" {
+  type      = string
+  sensitive = true
+}
+
+variable "gitea_admin_email" {
+  type = string
+}
+
 variable "gitea_db_password" {
   type      = string
   sensitive = true

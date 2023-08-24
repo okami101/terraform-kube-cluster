@@ -12,6 +12,21 @@ resource "helm_release" "gitea" {
   name      = "gitea"
   namespace = kubernetes_namespace_v1.gitea.metadata[0].name
 
+  set {
+    name  = "gitea.admin.username"
+    value = var.gitea_admin_username
+  }
+
+  set {
+    name  = "gitea.admin.password"
+    value = var.gitea_admin_password
+  }
+
+  set {
+    name  = "gitea.admin.email"
+    value = var.gitea_admin_email
+  }
+
   values = [
     templatefile("${path.module}/values/gitea-values.yaml", {
       domain           = var.domain,
