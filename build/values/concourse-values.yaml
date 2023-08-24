@@ -4,9 +4,6 @@ concourse:
       host: postgresql-primary.postgres
       database: concourse
 
-    localAuth:
-      enabled: true
-
     auth:
       cookieSecure: true
 
@@ -19,12 +16,7 @@ concourse:
   worker:
     runtime: containerd
 
-web:
-  enabled: true
-
 worker:
-  enabled: true
-
   replicas: 1
   minAvailable: 0
 
