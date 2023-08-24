@@ -24,17 +24,13 @@ variable "gitea_db_password" {
   sensitive = true
 }
 
-variable "gitea_admin_username" {
+variable "container_registry_username" {
   type = string
 }
 
-variable "gitea_admin_password" {
+variable "container_registry_password" {
   type      = string
   sensitive = true
-}
-
-variable "gitea_admin_email" {
-  type = string
 }
 
 variable "gitea_pvc_name" {

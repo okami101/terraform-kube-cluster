@@ -24,21 +24,6 @@ resource "helm_release" "gitea" {
       pvc_name         = var.gitea_pvc_name,
     })
   ]
-
-  set {
-    name  = "gitea.admin.username"
-    value = var.gitea_admin_username
-  }
-
-  set {
-    name  = "gitea.admin.password"
-    value = var.gitea_admin_password
-  }
-
-  set {
-    name  = "gitea.admin.email"
-    value = var.gitea_admin_email
-  }
 }
 
 resource "kubernetes_manifest" "gitea_ingress" {
@@ -105,7 +90,7 @@ resource "kubernetes_secret_v1" "image_pull_secrets" {
     ".dockerconfigjson" = jsonencode({
       auths = {
         "gitea.${var.domain}" = {
-          auth = base64encode("${var.gitea_admin_username}:${var.gitea_admin_password}")
+          auth = base64encode("${var.container_registry_username}:${var.container_registry_password}")
         }
       }
     })
