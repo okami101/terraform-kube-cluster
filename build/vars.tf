@@ -73,7 +73,21 @@ variable "concourse_password" {
   sensitive = true
 }
 
+variable "concourse_git_username" {
+  type = string
+}
+
+variable "concourse_git_password" {
+  type      = string
+  sensitive = true
+}
+
 variable "concourse_webhook_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "concourse_aspnet_token" {
   type      = string
   sensitive = true
 }

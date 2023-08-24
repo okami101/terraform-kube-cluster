@@ -71,8 +71,42 @@ resource "kubernetes_secret_v1" "concourse_registry" {
 
   data = {
     name     = "gitea.${var.domain}"
-    username = var.container_registry_username
-    password = var.container_registry_password
+    username = var.concourse_git_username
+    password = var.concourse_git_password
+  }
+
+  depends_on = [
+    helm_release.concourse
+  ]
+}
+
+resource "kubernetes_secret_v1" "concourse_git" {
+  metadata {
+    name      = "git"
+    namespace = "concourse-main"
+  }
+
+  data = {
+    username       = var.concourse_git_username
+    password       = var.concourse_git_password
+    git-user       = "Concourse CI <concourse@okami101.io>"
+    commit-message = "bump to %version% [ci skip]"
+  }
+
+  depends_on = [
+    helm_release.concourse
+  ]
+}
+
+resource "kubernetes_secret_v1" "concourse_sonarqube" {
+  metadata {
+    name      = "sonarqube"
+    namespace = "concourse-main"
+  }
+
+  data = {
+    url                         = "https://sonarqube.${var.domain}"
+    aspnet-core-realworld-token = var.concourse_aspnet_token
   }
 
   depends_on = [
