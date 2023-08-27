@@ -54,6 +54,13 @@ datasources:
   uid: loki
   url: http://loki-gateway.logging/
   access: proxy
+  jsonData:
+    derivedFields:
+      - datasourceName: Tempo
+        matcherRegex: "\\|(\\w+)\\|"
+        name: TraceID
+        url: "$$${__value.raw}"
+        datasourceUid: tempo
 EOF
   }
 }
