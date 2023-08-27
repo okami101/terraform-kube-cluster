@@ -105,8 +105,8 @@ resource "kubernetes_secret_v1" "concourse_sonarqube" {
   }
 
   data = {
-    url                         = "https://sonarqube.${var.domain}"
-    aspnet-core-realworld-token = var.concourse_aspnet_token
+    url            = "https://sonarqube.${var.domain}"
+    analysis-token = var.concourse_analysis_token
   }
 
   depends_on = [

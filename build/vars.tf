@@ -100,7 +100,7 @@ variable "concourse_webhook_token" {
   sensitive = true
 }
 
-variable "concourse_aspnet_token" {
+variable "concourse_analysis_token" {
   type      = string
   sensitive = true
 }
