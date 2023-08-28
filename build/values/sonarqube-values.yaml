@@ -1,3 +1,7 @@
+sonarProperties:
+  sonar.web.javaOpts: -Xmx512m
+  sonar.ce.javaOpts: -Xmx512m
+
 tolerations:
   - key: node-role.kubernetes.io/runner
     operator: Exists
