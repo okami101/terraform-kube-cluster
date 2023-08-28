@@ -1,8 +1,0 @@
-influxdb:
-  updateStrategy:
-    type: Recreate
-  tolerations:
-    - key: node-role.kubernetes.io/storage
-      effect: NoSchedule
-  nodeSelector:
-    node-role.kubernetes.io/primary: "true"

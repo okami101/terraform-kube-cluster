@@ -90,17 +90,6 @@ variable "rabbitmq_password" {
   sensitive = true
 }
 
-variable "influxdb_admin_password" {
-  type      = string
-  sensitive = true
-}
-
-variable "influxdb_admin_token" {
-  type      = string
-  default   = ""
-  sensitive = true
-}
-
 variable "chart_postgresql_version" {
   type = string
 }
@@ -118,9 +107,5 @@ variable "chart_redis_version" {
 }
 
 variable "chart_rabbitmq_version" {
-  type = string
-}
-
-variable "chart_influxdb_version" {
   type = string
 }
