@@ -46,21 +46,3 @@ resource "kubernetes_manifest" "prometheus_ingress" {
     }
   }
 }
-
-resource "helm_release" "helm_exporter" {
-  chart      = "helm-exporter"
-  version    = var.chart_helm_exporter_version
-  repository = "https://shanestarcher.com/helm-charts"
-
-  name      = "helm-exporter"
-  namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
-
-  values = [
-    file("${path.module}/values/helm-exporter-values.yaml")
-  ]
-
-  set {
-    name  = "serviceMonitor.create"
-    value = "true"
-  }
-}
