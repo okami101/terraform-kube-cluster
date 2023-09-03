@@ -54,8 +54,3 @@ config:
           url: "https://shanestarcher.com/helm-charts"
         charts:
           - helm-exporter
-tolerations:
-  - key: "node-role.kubernetes.io/monitor"
-    operator: "Exists"
-nodeSelector:
-  node-role.kubernetes.io/monitor: "true"
