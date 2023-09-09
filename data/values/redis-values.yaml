@@ -1,21 +1,8 @@
-auth:
-  existingSecret: ${auth_secret}
-  existingSecretPasswordKey: redis-password
+existingSecret: ${auth_secret}
+existingSecretPasswordKey: redis-password
 
-master:
-  tolerations:
-    - key: node-role.kubernetes.io/storage
-      effect: NoSchedule
-  nodeSelector:
-    node-role.kubernetes.io/storage: "true"
-
-replica:
-  replicaCount: 1
-  tolerations:
-    - key: node-role.kubernetes.io/storage
-      effect: NoSchedule
-  nodeSelector:
-    node-role.kubernetes.io/storage: "true"
+cluster:
+  nodes: 3
 
 metrics:
   enabled: true

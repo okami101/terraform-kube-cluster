@@ -15,11 +15,11 @@ resource "kubernetes_secret_v1" "redis_auth" {
 }
 
 resource "helm_release" "redis" {
-  chart      = "redis"
+  chart      = "redis-cluster"
   version    = var.chart_redis_version
   repository = "https://charts.bitnami.com/bitnami"
 
-  name      = "redis"
+  name      = "redis-cluster"
   namespace = kubernetes_namespace_v1.redis.metadata[0].name
 
   values = [
