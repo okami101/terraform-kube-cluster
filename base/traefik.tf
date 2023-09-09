@@ -72,9 +72,6 @@ resource "kubernetes_manifest" "traefik_middleware_ip" {
     spec = {
       ipWhiteList = {
         sourceRange = var.whitelisted_ips
-        ipStrategy = {
-          depth = 1
-        }
       }
     }
   }
