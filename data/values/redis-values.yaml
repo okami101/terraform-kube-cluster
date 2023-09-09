@@ -1,8 +1,14 @@
-existingSecret: ${auth_secret}
-existingSecretPasswordKey: redis-password
+auth:
+  existingSecret: ${auth_secret}
+  existingSecretPasswordKey: redis-password
 
-cluster:
-  nodes: 3
+replica:
+  persistence:
+    enabled: false
+  replicaCount: 3
+
+sentinel:
+  enabled: true
 
 metrics:
   enabled: true
