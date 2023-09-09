@@ -81,12 +81,11 @@ resource "kubernetes_storage_class_v1" "longhorn_fast" {
   volume_binding_mode    = "Immediate"
 
   parameters = {
-    numberOfReplicas    = "1"
+    numberOfReplicas    = "2"
     staleReplicaTimeout = "30"
     fromBackup          = ""
     fsType              = "ext4"
     diskSelector        = "fast"
-    dataLocality        = "strict-local"
   }
 }
 
