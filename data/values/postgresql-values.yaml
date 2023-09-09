@@ -19,6 +19,8 @@ primary:
     node-role.kubernetes.io/primary: "true"
 
 readReplicas:
+  persistence:
+    storageClass: local-path
   extendedConfiguration: |
     max_connections = 200
   tolerations:
