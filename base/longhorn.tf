@@ -119,7 +119,7 @@ resource "kubernetes_manifest" "longhorn_jobs" {
     spec = {
       concurrency = 1
       cron        = each.value.cron
-      groups      = ["default"]
+      groups      = ["backup"]
       name        = each.key
       retain      = each.value.retain
       task        = "backup"
