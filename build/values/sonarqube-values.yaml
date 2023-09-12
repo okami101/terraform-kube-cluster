@@ -3,12 +3,6 @@ sonarProperties:
   sonar.ce.javaOpts: -Xmx256m
   sonar.search.javaOpts: -Xmx512m -Xms512m
 
-tolerations:
-  - key: node-role.kubernetes.io/monitor
-    operator: Exists
-nodeSelector:
-  node-role.kubernetes.io/monitor: "true"
-
 prometheusMonitoring:
   podMonitor:
     enabled: true

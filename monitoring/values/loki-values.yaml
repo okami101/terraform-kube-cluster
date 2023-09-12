@@ -17,14 +17,19 @@ loki:
 
 read:
   replicas: 1
+  tolerations:
+    - key: node-role.kubernetes.io/monitor
+      operator: Exists
+  nodeSelector:
+    node-role.kubernetes.io/monitor: "true"
 
 backend:
   replicas: 1
   tolerations:
-    - key: node-role.kubernetes.io/storage
+    - key: node-role.kubernetes.io/monitor
       operator: Exists
   nodeSelector:
-    node-role.kubernetes.io/storage: "true"
+    node-role.kubernetes.io/monitor: "true"
 
 write:
   replicas: 2
