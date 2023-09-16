@@ -37,6 +37,11 @@ resource "helm_release" "gitea" {
       smtp_user        = var.smtp_user,
       smtp_password    = var.smtp_password,
       pvc_name         = var.gitea_pvc_name,
+      bucket           = var.s3_bucket
+      endpoint         = var.s3_endpoint
+      region           = var.s3_region
+      access_key       = var.s3_access_key
+      secret_key       = var.s3_secret_key
     })
   ]
 }
