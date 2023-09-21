@@ -81,3 +81,7 @@ variable "chart_tempo_version" {
 variable "chart_helm_exporter_version" {
   type = string
 }
+
+variable "server_ips" {
+  type = list(string)
+}
