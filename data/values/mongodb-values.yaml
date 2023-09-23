@@ -1,5 +1,4 @@
-updateStrategy:
-  type: Recreate
+architecture: replicaset
 
 metrics:
   enabled: true
