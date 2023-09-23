@@ -2,14 +2,13 @@ auth:
   existingSecret: ${auth_secret}
   existingSecretPasswordKey: redis-password
 
-master:
-  persistence:
-    enabled: false
-
 replica:
   persistence:
     enabled: false
-  replicaCount: 1
+  replicaCount: 3
+
+sentinel:
+  enabled: true
 
 metrics:
   enabled: true
