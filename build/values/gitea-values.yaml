@@ -64,7 +64,7 @@ tolerations:
     effect: NoSchedule
 
 nodeSelector:
-  node-role.kubernetes.io/storage: "true"
+  node-role.kubernetes.io/primary: "true"
 
 strategy:
   type: Recreate
