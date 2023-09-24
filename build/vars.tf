@@ -89,11 +89,6 @@ variable "s3_secret_key" {
   sensitive = true
 }
 
-variable "sonarqube_db_password" {
-  type      = string
-  sensitive = true
-}
-
 variable "concourse_db_password" {
   type      = string
   sensitive = true
@@ -132,9 +127,5 @@ variable "chart_concourse_version" {
 }
 
 variable "chart_gitea_version" {
-  type = string
-}
-
-variable "chart_sonarqube_version" {
   type = string
 }
