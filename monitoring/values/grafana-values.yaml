@@ -8,7 +8,7 @@ sidecar:
     enabled: true
 
 tolerations:
-  - key: node-role.kubernetes.io/monitor
+  - key: node-role.kubernetes.io/storage
     operator: Exists
 nodeSelector:
-  node-role.kubernetes.io/monitor: "true"
+  node-role.kubernetes.io/primary: "true"
