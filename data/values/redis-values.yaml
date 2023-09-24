@@ -3,8 +3,6 @@ auth:
   existingSecretPasswordKey: redis-password
 
 master:
-  persistence:
-    enabled: false
   tolerations:
     - key: node-role.kubernetes.io/storage
       effect: NoSchedule
@@ -12,8 +10,6 @@ master:
     node-role.kubernetes.io/primary: "true"
 
 replica:
-  persistence:
-    enabled: false
   replicaCount: 1
   tolerations:
     - key: node-role.kubernetes.io/storage
