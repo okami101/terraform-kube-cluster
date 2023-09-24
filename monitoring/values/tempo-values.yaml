@@ -19,8 +19,8 @@ serviceMonitor:
   enabled: true
 
 tolerations:
-  - key: node-role.kubernetes.io/storage
+  - key: node-role.kubernetes.io/runner
     operator: Exists
 
 nodeSelector:
-  node-role.kubernetes.io/read: "true"
+  node-role.kubernetes.io/runner: "true"
