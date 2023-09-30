@@ -25,7 +25,7 @@ resource "kubernetes_stateful_set_v1" "postgres_test" {
       spec {
         container {
           name              = "postgres"
-          image             = "postgres:15"
+          image             = "postgres:16"
           image_pull_policy = "Always"
           env {
             name  = "POSTGRES_USER"
