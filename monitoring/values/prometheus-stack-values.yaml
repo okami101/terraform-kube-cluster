@@ -19,7 +19,13 @@ prometheus:
         operator: Exists
     nodeSelector:
       node-role.kubernetes.io/monitor: "true"
-
+    resources:
+      requests:
+        memory: 2.5Gi
+        cpu: 1
+      limits:
+        memory: 2.5Gi
+        cpu: 2
 alertmanager:
   enabled: false
 
