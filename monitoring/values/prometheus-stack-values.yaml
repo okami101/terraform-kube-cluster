@@ -1,7 +1,7 @@
 prometheus:
   prometheusSpec:
-    retention: 15d
-    retentionSize: 5GB
+    retention: 7d
+    retentionSize: 3GB
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     enableRemoteWriteReceiver: true
@@ -21,10 +21,10 @@ prometheus:
       node-role.kubernetes.io/monitor: "true"
     resources:
       requests:
-        memory: 2.5Gi
+        memory: 2.75Gi
         cpu: 1
       limits:
-        memory: 2.5Gi
+        memory: 2.75Gi
         cpu: 2
 alertmanager:
   enabled: false
