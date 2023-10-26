@@ -13,7 +13,8 @@ ports:
     exposedPort: 22
     protocol: TCP
   web:
-    redirectTo: websecure
+    redirectTo:
+      port: websecure
 
 logs:
   access:
