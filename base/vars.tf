@@ -1,3 +1,7 @@
+variable "k3s_version" {
+  type = string
+}
+
 variable "domain" {
   type = string
 }
