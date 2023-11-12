@@ -6,10 +6,6 @@ variable "entry_point" {
   type = string
 }
 
-variable "middlewares" {
-  type = map(list(string))
-}
-
 variable "image_pull_secret_namespaces" {
   type = list(string)
 }

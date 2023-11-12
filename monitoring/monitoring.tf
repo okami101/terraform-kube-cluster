@@ -49,7 +49,7 @@ resource "kubernetes_manifest" "prometheus_ingress" {
       entryPoints = [var.entry_point]
       routes = [
         {
-          match = "Host(`prom.${var.domain}`)"
+          match = "Host(`prom.cp.${var.domain}`)"
           kind  = "Rule"
           middlewares = [for middleware in var.middlewares.prometheus : {
             namespace = "traefik"

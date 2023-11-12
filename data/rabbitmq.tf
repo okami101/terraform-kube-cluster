@@ -39,7 +39,7 @@ resource "kubernetes_manifest" "rabbitmq_ingress" {
       entryPoints = [var.entry_point]
       routes = [
         {
-          match = "Host(`rmq.${var.domain}`)"
+          match = "Host(`rmq.cp.${var.domain}`)"
           kind  = "Rule"
           middlewares = [for middleware in var.middlewares.rabbitmq : {
             namespace = "traefik"

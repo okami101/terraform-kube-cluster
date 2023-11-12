@@ -83,7 +83,7 @@ resource "kubernetes_manifest" "grafana_ingress" {
       entryPoints = [var.entry_point]
       routes = [
         {
-          match = "Host(`grafana.${var.domain}`)"
+          match = "Host(`grafana.cp.${var.domain}`)"
           kind  = "Rule"
           middlewares = [for middleware in var.middlewares.grafana : {
             namespace = "traefik"

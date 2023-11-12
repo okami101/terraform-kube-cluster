@@ -2,7 +2,7 @@ ingressRoute:
   dashboard:
     entryPoints:
       - websecure
-    matchRule: Host(`traefik.${domain}`)
+    matchRule: Host(`traefik.cp.${domain}`)
     middlewares:
       - name: middleware-auth
 

@@ -29,7 +29,7 @@ resource "kubernetes_manifest" "longhorn_ingress" {
       entryPoints = [var.entry_point]
       routes = [
         {
-          match = "Host(`longhorn.${var.domain}`)"
+          match = "Host(`longhorn.cp.${var.domain}`)"
           kind  = "Rule"
           middlewares = [for middleware in var.middlewares.longhorn : {
             namespace = "traefik"

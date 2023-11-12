@@ -57,6 +57,7 @@ resource "kubernetes_manifest" "tls_certificate" {
       dnsNames = [
         var.domain,
         "*.${var.domain}",
+        "*.cp.${var.domain}",
       ]
       issuerRef = {
         kind = kubernetes_manifest.letsencrypt_production_issuer.manifest.kind
