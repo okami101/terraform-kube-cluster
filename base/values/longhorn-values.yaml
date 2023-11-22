@@ -4,6 +4,7 @@ persistence:
 
 defaultSettings:
   defaultReplicaCount: 2
+  nodeDrainPolicy: always-allow
   taintToleration: node-role.kubernetes.io/storage:NoSchedule
 
 longhornManager:
