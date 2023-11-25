@@ -4,6 +4,8 @@ persistence:
 
 defaultSettings:
   defaultReplicaCount: 2
+  backupTargetCredentialSecret: longhorn-backup-credential
+  backupTarget: ${backup_target}
   nodeDrainPolicy: always-allow
   taintToleration: node-role.kubernetes.io/storage:NoSchedule
 
