@@ -80,15 +80,11 @@ resource "kubernetes_manifest" "grafana_ingress" {
       namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
     }
     spec = {
-      entryPoints = [var.entry_point]
+      entryPoints = ["internal"]
       routes = [
         {
           match = "Host(`grafana.cp.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [for middleware in var.middlewares.grafana : {
-            namespace = "traefik"
-            name      = "middleware-${middleware}"
-          }]
           services = [
             {
               name = "grafana"

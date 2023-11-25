@@ -46,15 +46,17 @@ resource "kubernetes_manifest" "prometheus_ingress" {
       namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
     }
     spec = {
-      entryPoints = [var.entry_point]
+      entryPoints = ["internal"]
       routes = [
         {
           match = "Host(`prom.cp.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [for middleware in var.middlewares.prometheus : {
-            namespace = "traefik"
-            name      = "middleware-${middleware}"
-          }]
+          middlewares = [
+            {
+              namespace = "traefik"
+              name      = "middleware-auth"
+            }
+          ]
           services = [
             {
               name = "prometheus-operated"

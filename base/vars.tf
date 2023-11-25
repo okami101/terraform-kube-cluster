@@ -10,10 +10,6 @@ variable "entry_point" {
   type = string
 }
 
-variable "middlewares" {
-  type = map(list(string))
-}
-
 variable "cloudflare_api_token" {
   type      = string
   sensitive = true
@@ -25,11 +21,6 @@ variable "acme_email" {
 
 variable "http_basic_auth" {
   type      = string
-  sensitive = true
-}
-
-variable "whitelisted_ips" {
-  type      = list(string)
   sensitive = true
 }
 

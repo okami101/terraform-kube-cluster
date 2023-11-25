@@ -41,15 +41,17 @@ resource "kubernetes_manifest" "longhorn_ingress" {
       namespace = kubernetes_namespace_v1.longhorn.metadata[0].name
     }
     spec = {
-      entryPoints = [var.entry_point]
+      entryPoints = ["internal"]
       routes = [
         {
           match = "Host(`longhorn.cp.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [for middleware in var.middlewares.longhorn : {
-            namespace = "traefik"
-            name      = "middleware-${middleware}"
-          }]
+          middlewares = [
+            {
+              namespace = "traefik"
+              name      = "middleware-auth"
+            }
+          ]
           services = [
             {
               name = "longhorn-frontend"

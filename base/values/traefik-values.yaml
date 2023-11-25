@@ -1,7 +1,7 @@
 ingressRoute:
   dashboard:
     entryPoints:
-      - websecure
+      - internal
     matchRule: Host(`traefik.cp.${domain}`)
     middlewares:
       - name: middleware-auth
@@ -15,6 +15,12 @@ ports:
   web:
     redirectTo:
       port: websecure
+      cure: false
+  internal:
+    port: 9443
+    expose: true
+    exposedPort: 8443
+    protocol: TCP
 
 logs:
   access:

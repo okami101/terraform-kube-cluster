@@ -6,10 +6,6 @@ variable "entry_point" {
   type = string
 }
 
-variable "middlewares" {
-  type = map(list(string))
-}
-
 variable "smtp_host" {
   type = string
 }

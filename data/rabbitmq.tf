@@ -36,15 +36,11 @@ resource "kubernetes_manifest" "rabbitmq_ingress" {
       namespace = kubernetes_namespace_v1.rabbitmq.metadata[0].name
     }
     spec = {
-      entryPoints = [var.entry_point]
+      entryPoints = ["internal"]
       routes = [
         {
           match = "Host(`rmq.cp.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [for middleware in var.middlewares.rabbitmq : {
-            namespace = "traefik"
-            name      = "middleware-${middleware}"
-          }]
           services = [
             {
               name = "rabbitmq"
