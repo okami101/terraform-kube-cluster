@@ -15,7 +15,6 @@ ports:
   web:
     redirectTo:
       port: websecure
-      cure: false
   internal:
     port: 9443
     expose: true
