@@ -15,10 +15,7 @@ concourse:
 
   worker:
     runtime: containerd
-    containerd:
-      dnsServers:
-        - 1.1.1.1
-        - 1.0.0.1
+
 worker:
   replicas: 1
   minAvailable: 0
