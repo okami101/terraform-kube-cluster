@@ -30,4 +30,9 @@ resource "helm_release" "kured" {
     name  = "configuration.forceReboot"
     value = "true"
   }
+
+  set {
+    name  = "configuration.drainTimeout"
+    value = "1m"
+  }
 }
