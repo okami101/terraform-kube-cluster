@@ -6,9 +6,3 @@ sidecar:
     enabled: true
   dashboards:
     enabled: true
-
-tolerations:
-  - key: node-role.kubernetes.io/monitor
-    operator: Exists
-nodeSelector:
-  node-role.kubernetes.io/monitor: "true"
