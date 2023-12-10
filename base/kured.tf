@@ -25,4 +25,9 @@ resource "helm_release" "kured" {
     name  = "metrics.create"
     value = "true"
   }
+
+  set {
+    name  = "configuration.forceReboot"
+    value = "true"
+  }
 }
