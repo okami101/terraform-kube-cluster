@@ -59,12 +59,5 @@ persistence:
   create: false
   claimName: ${pvc_name}
 
-tolerations:
-  - key: node-role.kubernetes.io/storage
-    effect: NoSchedule
-
-nodeSelector:
-  node-role.kubernetes.io/primary: "true"
-
 strategy:
   type: Recreate
