@@ -12,12 +12,12 @@ resource "helm_release" "grafana" {
 
   set {
     name  = "env.GF_SERVER_DOMAIN"
-    value = var.domain
+    value = "grafana.cp.${var.domain}"
   }
 
   set {
     name  = "env.GF_SERVER_ROOT_URL"
-    value = "https://grafana.${var.domain}"
+    value = "https://grafana.cp.${var.domain}"
   }
 
   set {
