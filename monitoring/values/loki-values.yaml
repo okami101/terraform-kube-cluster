@@ -3,7 +3,7 @@ loki:
   compactor:
     retention_enabled: true
   limits_config:
-    retention_period: 24h
+    retention_period: ${retention_period}
   storage:
     bucketNames:
       chunks: ${bucket}

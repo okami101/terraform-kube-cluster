@@ -14,6 +14,7 @@ resource "helm_release" "loki" {
 
   values = [
     templatefile("${path.module}/values/loki-values.yaml", {
+      retention_period = var.loki_retention_period
       bucket : var.s3_bucket
       endpoint : var.s3_endpoint
       region : var.s3_region

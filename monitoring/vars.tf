@@ -28,6 +28,16 @@ variable "grafana_db_password" {
   sensitive = true
 }
 
+variable "loki_retention_period" {
+  type    = string
+  default = "744h"
+}
+
+variable "tempo_retention_period" {
+  type    = string
+  default = "24h"
+}
+
 variable "s3_endpoint" {
   type = string
 }
