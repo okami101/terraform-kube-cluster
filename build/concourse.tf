@@ -105,7 +105,7 @@ resource "kubernetes_secret_v1" "concourse_sonarqube" {
   }
 
   data = {
-    url            = "https://sonarqube.cp.${var.domain}"
+    url            = "http://sonarqube-sonarqube.sonarqube:9000"
     analysis-token = var.concourse_analysis_token
   }
 

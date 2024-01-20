@@ -39,7 +39,7 @@ resource "kubernetes_manifest" "rabbitmq_ingress" {
       entryPoints = ["internal"]
       routes = [
         {
-          match = "Host(`rmq.cp.${var.domain}`)"
+          match = "Host(`rmq.int.${var.domain}`)"
           kind  = "Rule"
           services = [
             {

@@ -12,12 +12,12 @@ resource "helm_release" "grafana" {
 
   set {
     name  = "env.GF_SERVER_DOMAIN"
-    value = "grafana.cp.${var.domain}"
+    value = "grafana.int.${var.domain}"
   }
 
   set {
     name  = "env.GF_SERVER_ROOT_URL"
-    value = "https://grafana.cp.${var.domain}"
+    value = "https://grafana.int.${var.domain}"
   }
 
   set {
@@ -83,7 +83,7 @@ resource "kubernetes_manifest" "grafana_ingress" {
       entryPoints = ["internal"]
       routes = [
         {
-          match = "Host(`grafana.cp.${var.domain}`)"
+          match = "Host(`grafana.int.${var.domain}`)"
           kind  = "Rule"
           services = [
             {

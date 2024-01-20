@@ -49,7 +49,7 @@ resource "kubernetes_manifest" "prometheus_ingress" {
       entryPoints = ["internal"]
       routes = [
         {
-          match = "Host(`prom.cp.${var.domain}`)"
+          match = "Host(`prom.int.${var.domain}`)"
           kind  = "Rule"
           middlewares = [
             {

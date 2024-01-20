@@ -2,7 +2,7 @@ ingressRoute:
   dashboard:
     entryPoints:
       - internal
-    matchRule: Host(`traefik.cp.${domain}`)
+    matchRule: Host(`traefik.int.${domain}`)
     middlewares:
       - name: middleware-auth
 
