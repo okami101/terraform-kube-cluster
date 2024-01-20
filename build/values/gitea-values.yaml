@@ -1,3 +1,6 @@
+image:
+  tag: "1.21.4"
+
 gitea:
   metrics:
     enabled: true
