@@ -26,7 +26,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 
 # add csi drivers
 kubectl -n kube-system create secret generic hcloud --from-literal=token=xxx
-kubectl apply -f https://raw.githubusercontent.com/hetznercloud/csi-driver/v2.3.2/deploy/kubernetes/hcloud-csi.yml
+kubectl apply -f https://raw.githubusercontent.com/hetznercloud/csi-driver/v2.6.0/deploy/kubernetes/hcloud-csi.yml
 kubectl patch sc hcloud-volumes -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 
 # install CRDs
