@@ -5,9 +5,9 @@ gitea:
       enabled: true
   config:
     server:
-      DOMAIN: gitea.int.${domain}
-      SSH_DOMAIN: ssh.int.${domain}
-      ROOT_URL: https://gitea.int.${domain}
+      DOMAIN: gitea.${domain}
+      SSH_DOMAIN: ssh.${domain}
+      ROOT_URL: https://gitea.${domain}
     database:
       DB_TYPE: postgres
       HOST: postgresql-primary.postgres

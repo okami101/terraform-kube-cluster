@@ -55,10 +55,10 @@ resource "kubernetes_manifest" "gitea_ingress" {
       namespace = kubernetes_namespace_v1.gitea.metadata[0].name
     }
     spec = {
-      entryPoints = ["internal"]
+      entryPoints = ["websecure"]
       routes = [
         {
-          match = "Host(`gitea.int.${var.domain}`)"
+          match = "Host(`gitea.${var.domain}`)"
           kind  = "Rule"
           services = [
             {
@@ -109,7 +109,7 @@ resource "kubernetes_secret_v1" "image_pull_secrets" {
   data = {
     ".dockerconfigjson" = jsonencode({
       auths = {
-        "gitea.int.${var.domain}" = {
+        "gitea.${var.domain}" = {
           auth = base64encode("${var.container_registry_username}:${var.container_registry_password}")
         }
       }
