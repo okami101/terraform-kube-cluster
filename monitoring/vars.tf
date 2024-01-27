@@ -2,10 +2,6 @@ variable "domain" {
   type = string
 }
 
-variable "entry_point" {
-  type = string
-}
-
 variable "smtp_host" {
   type = string
 }

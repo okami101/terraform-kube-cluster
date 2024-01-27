@@ -2,10 +2,6 @@ variable "domain" {
   type = string
 }
 
-variable "entry_point" {
-  type = string
-}
-
 variable "image_pull_secret_namespaces" {
   type = list(string)
 }

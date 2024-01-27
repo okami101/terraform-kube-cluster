@@ -6,10 +6,6 @@ variable "domain" {
   type = string
 }
 
-variable "entry_point" {
-  type = string
-}
-
 variable "cloudflare_api_token" {
   type      = string
   sensitive = true
