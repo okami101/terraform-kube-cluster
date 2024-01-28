@@ -18,7 +18,7 @@ resource "helm_release" "concourse" {
 
   set {
     name  = "concourse.web.externalUrl"
-    value = "https://concourse.${var.domain}"
+    value = "https://concourse.int.${var.domain}"
   }
 
   set {
@@ -46,10 +46,10 @@ resource "kubernetes_manifest" "concourse_ingress" {
       namespace = kubernetes_namespace_v1.concourse.metadata[0].name
     }
     spec = {
-      entryPoints = ["websecure"]
+      entryPoints = ["internal"]
       routes = [
         {
-          match = "Host(`concourse.${var.domain}`)"
+          match = "Host(`concourse.int.${var.domain}`)"
           kind  = "Rule"
           services = [
             {
@@ -70,7 +70,7 @@ resource "kubernetes_secret_v1" "concourse_registry" {
   }
 
   data = {
-    name     = "gitea.${var.domain}"
+    name     = "gitea.int.${var.domain}"
     username = var.concourse_git_username
     password = var.concourse_git_password
   }
