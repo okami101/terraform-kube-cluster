@@ -113,18 +113,3 @@ resource "kubernetes_secret_v1" "concourse_sonarqube" {
     helm_release.concourse
   ]
 }
-
-resource "kubernetes_secret_v1" "concourse_webhook" {
-  metadata {
-    name      = "webhook-token"
-    namespace = "concourse-main"
-  }
-
-  data = {
-    value = var.concourse_webhook_token
-  }
-
-  depends_on = [
-    helm_release.concourse
-  ]
-}
