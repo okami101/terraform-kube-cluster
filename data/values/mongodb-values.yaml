@@ -3,6 +3,9 @@ architecture: replicaset
 arbiter:
   enabled: false
 
+networkPolicy:
+  enabled: false
+
 metrics:
   enabled: true
   serviceMonitor:
