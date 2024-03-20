@@ -13,3 +13,4 @@ tolerations:
     effect: NoSchedule
 nodeSelector:
   node-role.kubernetes.io/storage: "true"
+resourcesPreset: none

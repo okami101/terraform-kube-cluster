@@ -8,6 +8,7 @@ master:
       effect: NoSchedule
   nodeSelector:
     node-role.kubernetes.io/primary: "true"
+  resourcesPreset: none
 
 replica:
   replicaCount: 1
@@ -16,6 +17,7 @@ replica:
       effect: NoSchedule
   nodeSelector:
     node-role.kubernetes.io/read: "true"
+  resourcesPreset: none
 
 metrics:
   enabled: true

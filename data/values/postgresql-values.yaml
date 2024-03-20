@@ -17,6 +17,7 @@ primary:
       effect: NoSchedule
   nodeSelector:
     node-role.kubernetes.io/primary: "true"
+  resourcesPreset: none
 
 readReplicas:
   extendedConfiguration: |
@@ -26,3 +27,4 @@ readReplicas:
       effect: NoSchedule
   nodeSelector:
     node-role.kubernetes.io/read: "true"
+  resourcesPreset: none
