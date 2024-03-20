@@ -2,37 +2,9 @@ variable "domain" {
   type = string
 }
 
-variable "postgresql_resources_requests" {
-  type = object({
-    cpu    = string
-    memory = string
-  })
-}
-
-variable "postgresql_resources_limits" {
-  type = object({
-    cpu    = string
-    memory = string
-  })
-}
-
 variable "redis_password" {
   type      = string
   sensitive = true
-}
-
-variable "redis_resources_requests" {
-  type = object({
-    cpu    = string
-    memory = string
-  })
-}
-
-variable "redis_resources_limits" {
-  type = object({
-    cpu    = string
-    memory = string
-  })
 }
 
 variable "mongodb_password" {
