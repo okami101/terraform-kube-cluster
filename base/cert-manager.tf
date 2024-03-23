@@ -12,8 +12,7 @@ resource "helm_release" "cert_manager" {
   name      = "cert-manager"
   namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name
 
-  set {
-    name  = "prometheus.servicemonitor.enabled"
-    value = true
-  }
+  values = [
+    file("${path.module}/values/cert-manager-values.yaml")
+  ]
 }

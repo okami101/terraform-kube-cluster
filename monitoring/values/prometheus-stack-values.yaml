@@ -21,11 +21,11 @@ prometheus:
       node-role.kubernetes.io/monitor: "true"
     resources:
       requests:
-        memory: 2.75Gi
-        cpu: 1
+        cpu: 1000m
+        memory: 2Gi
       limits:
-        memory: 2.75Gi
-        cpu: 2
+        cpu: 2000m
+        memory: 2Gi
 alertmanager:
   enabled: false
 

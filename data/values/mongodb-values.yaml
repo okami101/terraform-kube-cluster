@@ -13,4 +13,10 @@ tolerations:
     effect: NoSchedule
 nodeSelector:
   node-role.kubernetes.io/storage: "true"
-resourcesPreset: none
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    cpu: 2000m
+    memory: 512Mi

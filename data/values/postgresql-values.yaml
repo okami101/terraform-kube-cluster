@@ -17,7 +17,13 @@ primary:
       effect: NoSchedule
   nodeSelector:
     node-role.kubernetes.io/primary: "true"
-  resourcesPreset: none
+  resources:
+    requests:
+      cpu: 100m
+      memory: 768Mi
+    limits:
+      cpu: 2000m
+      memory: 768Mi
 
 readReplicas:
   extendedConfiguration: |
@@ -27,4 +33,10 @@ readReplicas:
       effect: NoSchedule
   nodeSelector:
     node-role.kubernetes.io/read: "true"
-  resourcesPreset: none
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+    limits:
+      cpu: 2000m
+      memory: 512Mi

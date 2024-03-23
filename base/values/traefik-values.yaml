@@ -58,3 +58,11 @@ metrics:
 providers:
   kubernetesCRD:
     allowCrossNamespace: true
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 2000m
+    memory: 128Mi

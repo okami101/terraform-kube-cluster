@@ -15,6 +15,13 @@ tempo:
   metricsGenerator:
     enabled: true
     remoteWriteUrl: http://prometheus-operated.monitoring:9090/api/v1/write
+  resources:
+    requests:
+      cpu: 500m
+      memory: 384Mi
+    limits:
+      cpu: 2000m
+      memory: 384Mi
 
 serviceMonitor:
   enabled: true

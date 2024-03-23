@@ -8,7 +8,13 @@ master:
       effect: NoSchedule
   nodeSelector:
     node-role.kubernetes.io/primary: "true"
-  resourcesPreset: none
+  resources:
+    requests:
+      cpu: 100m
+      memory: 64Mi
+    limits:
+      cpu: 2000m
+      memory: 64Mi
 
 replica:
   replicaCount: 1
@@ -17,7 +23,13 @@ replica:
       effect: NoSchedule
   nodeSelector:
     node-role.kubernetes.io/read: "true"
-  resourcesPreset: none
+  resources:
+    requests:
+      cpu: 100m
+      memory: 64Mi
+    limits:
+      cpu: 2000m
+      memory: 64Mi
 
 metrics:
   enabled: true

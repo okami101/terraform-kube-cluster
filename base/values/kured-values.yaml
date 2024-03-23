@@ -1,0 +1,19 @@
+configuration:
+  period: 1m
+  forceReboot: true
+  drainTimeout: 1m
+
+tolerations:
+  - operator: "Exists"
+    effect: "NoSchedule"
+
+metrics:
+  create: true
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 32Mi
+  limits:
+    cpu: 100m
+    memory: 32Mi

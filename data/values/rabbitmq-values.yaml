@@ -8,3 +8,10 @@ tolerations:
     effect: NoSchedule
 nodeSelector:
   node-role.kubernetes.io/primary: "true"
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 2000m
+    memory: 256Mi

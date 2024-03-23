@@ -16,6 +16,15 @@ concourse:
   worker:
     runtime: containerd
 
+web:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 2000m
+      memory: 128Mi
+
 worker:
   replicas: 1
   minAvailable: 0
@@ -25,6 +34,14 @@ worker:
       operator: Exists
   nodeSelector:
     node-role.kubernetes.io/runner: "true"
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+    limits:
+      cpu: 2000m
+      memory: 4Gi
 
 persistence:
   worker:

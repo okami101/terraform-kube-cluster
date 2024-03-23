@@ -14,4 +14,10 @@ primary:
       effect: NoSchedule
   nodeSelector:
     node-role.kubernetes.io/primary: "true"
-  resourcesPreset: none
+  resources:
+    requests:
+      cpu: 100m
+      memory: 768Mi
+    limits:
+      cpu: 2000m
+      memory: 768Mi

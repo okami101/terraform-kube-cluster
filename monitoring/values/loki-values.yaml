@@ -17,6 +17,15 @@ loki:
   commonConfig:
     replication_factor: 1
 
+gateway:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 32Mi
+    limits:
+      cpu: 1000m
+      memory: 32Mi
+
 read:
   replicas: 1
   tolerations:
@@ -24,6 +33,13 @@ read:
       operator: Exists
   nodeSelector:
     node-role.kubernetes.io/monitor: "true"
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 1000m
+      memory: 128Mi
 
 backend:
   replicas: 1
@@ -32,6 +48,13 @@ backend:
       operator: Exists
   nodeSelector:
     node-role.kubernetes.io/monitor: "true"
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 256Mi
 
 write:
   replicas: 2
@@ -40,6 +63,13 @@ write:
       operator: Exists
   nodeSelector:
     node-role.kubernetes.io/storage: "true"
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 1000m
+      memory: 128Mi
 
 monitoring:
   dashboards:
