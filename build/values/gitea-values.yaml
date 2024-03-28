@@ -72,3 +72,9 @@ resources:
   limits:
     cpu: 2000m
     memory: 384Mi
+
+tolerations:
+  - key: node-role.kubernetes.io/storage
+    operator: Exists
+nodeSelector:
+  node-role.kubernetes.io/read: "true"
