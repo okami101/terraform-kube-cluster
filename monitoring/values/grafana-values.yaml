@@ -14,9 +14,3 @@ resources:
   limits:
     cpu: 1000m
     memory: 384Mi
-
-tolerations:
-  - key: node-role.kubernetes.io/monitor
-    operator: Exists
-nodeSelector:
-  node-role.kubernetes.io/monitor: "true"
