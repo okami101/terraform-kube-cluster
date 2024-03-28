@@ -18,10 +18,17 @@ tempo:
   resources:
     requests:
       cpu: 500m
-      memory: 512Mi
+      memory: 1Gi
     limits:
       cpu: 2000m
-      memory: 512Mi
+      memory: 1Gi
 
 serviceMonitor:
   enabled: true
+
+tolerations:
+  - key: node-role.kubernetes.io/runner
+    operator: Exists
+
+nodeSelector:
+  node-role.kubernetes.io/runner: "true"
