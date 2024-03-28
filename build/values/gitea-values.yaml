@@ -1,5 +1,5 @@
 image:
-  tag: "1.21.9"
+  tag: "1.21.10"
 
 gitea:
   metrics:
