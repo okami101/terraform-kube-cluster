@@ -18,7 +18,7 @@ resource "helm_release" "concourse" {
 
   set {
     name  = "concourse.web.externalUrl"
-    value = "https://concourse.int.${var.domain}"
+    value = "https://concourse.${var.domain}"
   }
 
   set {
@@ -46,10 +46,10 @@ resource "kubernetes_manifest" "concourse_ingress" {
       namespace = kubernetes_namespace_v1.concourse.metadata[0].name
     }
     spec = {
-      entryPoints = ["internal"]
+      entryPoints = ["websecure"]
       routes = [
         {
-          match = "Host(`concourse.int.${var.domain}`)"
+          match = "Host(`concourse.${var.domain}`)"
           kind  = "Rule"
           services = [
             {
