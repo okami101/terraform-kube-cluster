@@ -12,7 +12,8 @@ ingressRoute:
 ports:
   ssh:
     port: 2222
-    expose: true
+    expose:
+      default: true
     exposedPort: 22
     protocol: TCP
   web:
@@ -23,7 +24,8 @@ ports:
       - traefik-middleware-compress@kubernetescrd
   internal:
     port: 9443
-    expose: true
+    expose:
+      default: true
     exposedPort: 8443
     protocol: TCP
     tls:
