@@ -2,6 +2,7 @@ loki:
   auth_enabled: false
   compactor:
     retention_enabled: true
+    delete_request_store: s3
   limits_config:
     retention_period: ${retention_period}
   storage:
@@ -16,6 +17,15 @@ loki:
       secretAccessKey: ${secret_key}
   commonConfig:
     replication_factor: 1
+  schemaConfig:
+    configs:
+      - from: 2024-01-01
+        store: tsdb
+        object_store: filesystem
+        schema: v13
+        index:
+          prefix: index_
+          period: 24h
 
 gateway:
   resources:
@@ -82,4 +92,10 @@ monitoring:
     enabled: false
 
 test:
+  enabled: false
+
+chunksCache:
+  enabled: false
+
+resultsCache:
   enabled: false
