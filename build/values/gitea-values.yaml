@@ -68,10 +68,10 @@ strategy:
 resources:
   requests:
     cpu: 100m
-    memory: 384Mi
+    memory: 512Mi
   limits:
     cpu: 2000m
-    memory: 384Mi
+    memory: 512Mi
 
 tolerations:
   - key: node-role.kubernetes.io/storage
