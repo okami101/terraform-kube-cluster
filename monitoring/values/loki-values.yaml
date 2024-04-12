@@ -5,6 +5,8 @@ loki:
     delete_request_store: s3
   limits_config:
     retention_period: ${retention_period}
+  storage_config:
+    object_prefix: loki
   storage:
     bucketNames:
       chunks: ${bucket}

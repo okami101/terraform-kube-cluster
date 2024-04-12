@@ -5,6 +5,7 @@ tempo:
       backend: s3
       s3:
         bucket: ${bucket}
+        prefix: tempo
         endpoint: ${endpoint}
         region: ${region}
         access_key: ${access_key}
