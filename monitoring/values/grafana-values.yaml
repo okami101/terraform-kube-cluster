@@ -1,6 +1,9 @@
 serviceMonitor:
   enabled: true
 
+deploymentStrategy:
+  type: Recreate
+
 sidecar:
   datasources:
     enabled: true
