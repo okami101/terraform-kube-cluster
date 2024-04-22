@@ -1,3 +1,14 @@
+deploymentMode: SingleBinary
+
+read:
+  replicas: 0
+
+backend:
+  replicas: 0
+
+write:
+  replicas: 0
+
 loki:
   auth_enabled: false
   compactor:
@@ -38,43 +49,13 @@ gateway:
       cpu: 1000m
       memory: 32Mi
 
-read:
+singleBinary:
   replicas: 1
   tolerations:
     - key: node-role.kubernetes.io/monitor
       operator: Exists
   nodeSelector:
     node-role.kubernetes.io/monitor: "true"
-  resources:
-    requests:
-      cpu: 100m
-      memory: 128Mi
-    limits:
-      cpu: 1000m
-      memory: 128Mi
-
-backend:
-  replicas: 1
-  tolerations:
-    - key: node-role.kubernetes.io/monitor
-      operator: Exists
-  nodeSelector:
-    node-role.kubernetes.io/monitor: "true"
-  resources:
-    requests:
-      cpu: 100m
-      memory: 256Mi
-    limits:
-      cpu: 1000m
-      memory: 256Mi
-
-write:
-  replicas: 2
-  tolerations:
-    - key: node-role.kubernetes.io/storage
-      operator: Exists
-  nodeSelector:
-    node-role.kubernetes.io/storage: "true"
   resources:
     requests:
       cpu: 100m
