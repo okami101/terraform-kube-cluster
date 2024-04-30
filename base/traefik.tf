@@ -84,7 +84,7 @@ resource "kubernetes_manifest" "traefik_middleware_internal_ip" {
       namespace = kubernetes_namespace_v1.traefik.metadata[0].name
     }
     spec = {
-      ipWhiteList = {
+      ipAllowList = {
         sourceRange = var.internal_ip_whitelist
       }
     }
