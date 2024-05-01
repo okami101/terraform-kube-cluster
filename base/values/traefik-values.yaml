@@ -22,6 +22,7 @@ ports:
   websecure:
     middlewares:
       - traefik-middleware-compress@kubernetescrd
+      - crowdsec-middleware-bouncer@kubernetescrd
   internal:
     port: 9443
     expose:
@@ -59,3 +60,9 @@ resources:
   limits:
     cpu: 2000m
     memory: 256Mi
+
+experimental:
+  plugins:
+    bouncer:
+      moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
+      version: v1.3.0

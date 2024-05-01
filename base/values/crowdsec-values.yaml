@@ -1,0 +1,45 @@
+container_runtime: containerd
+
+lapi:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+    limits:
+      cpu: 1000m
+      memory: 100Mi
+  persistentVolume:
+    data:
+      existingClaim: crowdsec-db
+    config:
+      existingClaim: crowdsec-config
+
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+agent:
+  acquisition:
+    - namespace: traefik
+      podName: traefik-*
+      program: traefik
+
+  env:
+    - name: PARSERS
+      value: crowdsecurity/cri-logs
+    - name: COLLECTIONS
+      value: crowdsecurity/traefik crowdsecurity/http-cve
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+    limits:
+      cpu: 1000m
+      memory: 100Mi
+
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true

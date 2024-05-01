@@ -40,6 +40,10 @@ variable "chart_traefik_version" {
   type = string
 }
 
+variable "chart_crowdsec_version" {
+  type = string
+}
+
 variable "chart_cert_manager_version" {
   type = string
 }
@@ -62,6 +66,11 @@ variable "s3_access_key" {
 }
 
 variable "s3_secret_key" {
+  type      = string
+  sensitive = true
+}
+
+variable "bouncer_api_key" {
   type      = string
   sensitive = true
 }
