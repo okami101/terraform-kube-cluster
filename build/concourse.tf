@@ -70,7 +70,7 @@ resource "kubernetes_secret_v1" "concourse_registry" {
   }
 
   data = {
-    name     = "gitea.${var.domain}"
+    name     = "gitea-http.gitea:3000"
     username = var.concourse_git_username
     password = var.concourse_git_password
   }
