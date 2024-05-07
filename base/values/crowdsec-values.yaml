@@ -4,10 +4,10 @@ lapi:
   resources:
     requests:
       cpu: 100m
-      memory: 256Mi
+      memory: 384Mi
     limits:
       cpu: 1000m
-      memory: 256Mi
+      memory: 384Mi
   persistentVolume:
     data:
       existingClaim: crowdsec-db
