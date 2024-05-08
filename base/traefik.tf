@@ -101,7 +101,7 @@ resource "kubernetes_manifest" "traefik_middleware_noindex" {
     }
     spec = {
       headers = {
-        customRequestHeaders = {
+        customResponseHeaders = {
           "X-Robots-Tag" = "noindex"
         }
       }
