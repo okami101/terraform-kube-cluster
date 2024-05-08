@@ -90,3 +90,21 @@ resource "kubernetes_manifest" "traefik_middleware_internal_ip" {
     }
   }
 }
+
+resource "kubernetes_manifest" "traefik_middleware_noindex" {
+  manifest = {
+    apiVersion = "traefik.io/v1alpha1"
+    kind       = "Middleware"
+    metadata = {
+      name      = "middleware-noindex"
+      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
+    }
+    spec = {
+      headers = {
+        customRequestHeaders = {
+          "X-Robots-Tag" = "noindex"
+        }
+      }
+    }
+  }
+}
