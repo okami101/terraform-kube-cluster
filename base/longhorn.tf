@@ -110,15 +110,15 @@ resource "kubernetes_storage_class_v1" "longhorn_fast" {
 locals {
   job_backups = {
     daily = {
-      cron   = "15 0 * * *"
+      cron   = "0 0 * * *"
       retain = 7
     },
     weekly = {
-      cron   = "30 0 * * 1"
+      cron   = "3 0 * * 1"
       retain = 4
     }
     monthly = {
-      cron   = "45 0 1 * *"
+      cron   = "6 0 1 * *"
       retain = 3
     }
   }
