@@ -114,11 +114,11 @@ locals {
       retain = 7
     },
     weekly = {
-      cron   = "3 0 * * 1"
+      cron   = "0 3 * * 1"
       retain = 4
     }
     monthly = {
-      cron   = "6 0 1 * *"
+      cron   = "0 6 1 * *"
       retain = 3
     }
   }
