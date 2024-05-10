@@ -43,6 +43,9 @@ ports:
     middlewares:
       - traefik-middleware-internal-ip@kubernetescrd
 
+service:
+  ipFamilyPolicy: PreferDualStack
+
 logs:
   access:
     enabled: true
