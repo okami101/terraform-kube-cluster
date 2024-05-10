@@ -23,6 +23,8 @@ ports:
     middlewares:
       - traefik-middleware-compress@kubernetescrd
       - crowdsec-middleware-bouncer@kubernetescrd
+  http3:
+    enabled: true
   internal:
     port: 9443
     expose:
