@@ -63,7 +63,7 @@ resource "helm_release" "kube_prometheus_stack" {
 
   set {
     name  = "alertmanager.config.receivers[0].name"
-    value = null
+    value = "null"
     type  = "string"
   }
 
