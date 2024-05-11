@@ -57,7 +57,7 @@ resource "helm_release" "kube_prometheus_stack" {
   }
 
   set {
-    name  = "alertmanager.config.global.smtp_smarthost"
+    name  = "alertmanager.config.global.smtp_require_tls"
     value = "false"
   }
 
