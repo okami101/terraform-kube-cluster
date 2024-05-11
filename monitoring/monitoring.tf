@@ -62,17 +62,7 @@ resource "helm_release" "kube_prometheus_stack" {
   }
 
   set {
-    name  = "alertmanager.config.receivers[0].name"
-    value = "\\'null\\'"
-  }
-
-  set {
-    name  = "alertmanager.config.receivers[1].name"
-    value = "email"
-  }
-
-  set {
-    name  = "alertmanager.config.receivers[1].email_configs[0].to"
+    name  = "alertmanager.config.receivers[0].email_configs[0].to"
     value = var.alert_email
   }
 }
