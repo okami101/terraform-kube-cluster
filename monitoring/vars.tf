@@ -19,6 +19,10 @@ variable "smtp_password" {
   sensitive = true
 }
 
+variable "alert_email" {
+  type = string
+}
+
 variable "grafana_db_password" {
   type      = string
   sensitive = true
