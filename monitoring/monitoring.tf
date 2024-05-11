@@ -68,3 +68,35 @@ resource "kubernetes_manifest" "prometheus_ingress" {
     }
   }
 }
+
+resource "kubernetes_manifest" "alertmanager_ingress" {
+  manifest = {
+    apiVersion = "traefik.io/v1alpha1"
+    kind       = "IngressRoute"
+    metadata = {
+      name      = "alertmanager"
+      namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
+    }
+    spec = {
+      entryPoints = ["internal"]
+      routes = [
+        {
+          match = "Host(`alert.int.${var.domain}`)"
+          kind  = "Rule"
+          middlewares = [
+            {
+              namespace = "traefik"
+              name      = "middleware-auth"
+            }
+          ]
+          services = [
+            {
+              name = "alertmanager-operated"
+              port = "http-web"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
