@@ -27,7 +27,7 @@ agent:
 
   env:
     - name: COLLECTIONS
-      value: crowdsecurity/traefik crowdsecurity/http-cve
+      value: crowdsecurity/traefik
 
   resources:
     requests:
