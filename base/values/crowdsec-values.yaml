@@ -26,8 +26,6 @@ agent:
       program: traefik
 
   env:
-    - name: PARSERS
-      value: crowdsecurity/cri-logs
     - name: COLLECTIONS
       value: crowdsecurity/traefik crowdsecurity/http-cve
 
