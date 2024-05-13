@@ -10,9 +10,9 @@ lapi:
       memory: 384Mi
   persistentVolume:
     data:
-      existingClaim: crowdsec-db
+      enabled: false
     config:
-      existingClaim: crowdsec-config
+      enabled: false
 
   metrics:
     enabled: true

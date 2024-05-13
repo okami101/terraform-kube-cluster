@@ -15,6 +15,11 @@ resource "helm_release" "crowdsec" {
   values = [
     file("${path.module}/values/crowdsec-values.yaml")
   ]
+
+  set {
+    name  = "env.BOUNCER_KEY_traefik"
+    value = var.bouncer_api_key
+  }
 }
 
 resource "kubernetes_manifest" "traefik_middleware_bouncer" {
