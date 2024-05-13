@@ -17,7 +17,12 @@ resource "helm_release" "crowdsec" {
   ]
 
   set {
-    name  = "env.BOUNCER_KEY_traefik"
+    name  = "lapi.env[0].name"
+    value = "BOUNCER_KEY_traefik"
+  }
+
+  set {
+    name  = "lapi.env[0].value"
     value = var.bouncer_api_key
   }
 }
