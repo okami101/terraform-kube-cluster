@@ -35,4 +35,9 @@ resource "helm_release" "cloudflared" {
     name  = "cloudflared.ingress[1].originRequest.originServerName"
     value = var.domain
   }
+
+  set {
+    name  = "managed.token"
+    value = var.cloudflared_managed_token
+  }
 }

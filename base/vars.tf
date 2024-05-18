@@ -11,6 +11,11 @@ variable "cloudflare_api_token" {
   sensitive = true
 }
 
+variable "cloudflared_managed_token" {
+  type      = string
+  sensitive = true
+}
+
 variable "acme_email" {
   type = string
 }
