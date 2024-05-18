@@ -40,4 +40,9 @@ resource "helm_release" "cloudflared" {
     name  = "metrics.enabled"
     value = "true"
   }
+
+  set {
+    name  = "metrics.port"
+    value = "2000"
+  }
 }
