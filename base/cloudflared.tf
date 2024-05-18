@@ -9,7 +9,7 @@ resource "helm_release" "cloudflared" {
   repository = "https://charts.kubito.dev"
   chart      = "cloudflared"
   namespace  = kubernetes_namespace_v1.cloudflared.metadata[0].name
-  version    = "1.3.0"
+  version    = var.chart_cloudflared_version
 
   set {
     name  = "cloudflared.ingress[0].hostname"
