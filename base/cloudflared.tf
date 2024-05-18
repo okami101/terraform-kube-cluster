@@ -7,7 +7,7 @@ resource "kubernetes_namespace_v1" "cloudflared" {
 resource "helm_release" "cloudflared" {
   name       = "cloudflared"
   repository = "https://charts.kubito.dev"
-  chart      = "kubitodev/cloudflared"
+  chart      = "cloudflared"
   namespace  = kubernetes_namespace_v1.cloudflared.metadata[0].name
   version    = "1.3.0"
 
