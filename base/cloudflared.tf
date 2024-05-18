@@ -35,14 +35,4 @@ resource "helm_release" "cloudflared" {
     name  = "cloudflared.ingress[1].originRequest.originServerName"
     value = var.domain
   }
-
-  set {
-    name  = "metrics.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "metrics.port"
-    value = "2000"
-  }
 }
