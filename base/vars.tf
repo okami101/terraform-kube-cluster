@@ -45,10 +45,6 @@ variable "chart_traefik_version" {
   type = string
 }
 
-variable "chart_cloudflared_version" {
-  type = string
-}
-
 variable "chart_crowdsec_version" {
   type = string
 }
