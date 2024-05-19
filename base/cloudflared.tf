@@ -90,13 +90,18 @@ resource "kubernetes_manifest" "cloudflared_service_monitor" {
     spec = {
       endpoints = [
         {
-          targetPort = "metrics"
+          name = "metrics"
         }
       ]
       selector = {
         matchLabels = {
           app = "cloudflared"
         }
+      }
+      namespaceSelector = {
+        matchNames = [
+          kubernetes_namespace_v1.cloudflared.metadata[0].name
+        ]
       }
     }
   }
