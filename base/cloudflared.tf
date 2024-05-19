@@ -44,9 +44,6 @@ resource "kubernetes_deployment_v1" "cloudflared" {
             "--token",
             "$(CF_MANAGED_TUNNEL_TOKEN)"
           ]
-          port {
-            container_port = 2000
-          }
         }
       }
     }
@@ -68,6 +65,9 @@ resource "kubernetes_service_v1" "cloudflared" {
   metadata {
     name      = "cloudflared"
     namespace = kubernetes_namespace_v1.cloudflared.metadata[0].name
+    labels = {
+      app = "cloudflared"
+    }
   }
 
   spec {
