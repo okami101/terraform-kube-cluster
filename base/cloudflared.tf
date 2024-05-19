@@ -90,7 +90,7 @@ resource "kubernetes_manifest" "cloudflared_service_monitor" {
     spec = {
       endpoints = [
         {
-          port = "metrics"
+          targetPort = "metrics"
         }
       ]
       selector = {
