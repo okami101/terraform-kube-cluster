@@ -38,11 +38,11 @@ resource "kubernetes_deployment_v1" "cloudflared" {
           args = [
             "tunnel",
             "--no-autoupdate",
-            "--token",
-            "$(CF_MANAGED_TUNNEL_TOKEN)",
             "--metrics",
             "0.0.0.0:2000",
-            "run"
+            "run",
+            "--token",
+            "$(CF_MANAGED_TUNNEL_TOKEN)"
           ]
         }
       }
