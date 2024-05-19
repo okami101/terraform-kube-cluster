@@ -6,7 +6,8 @@ resource "kubernetes_namespace_v1" "cloudflared" {
 
 resource "kubernetes_deployment_v1" "cloudflared" {
   metadata {
-    name = "cloudflared"
+    name      = "cloudflared"
+    namespace = kubernetes_namespace_v1.cloudflared.metadata[0].name
   }
 
   spec {
