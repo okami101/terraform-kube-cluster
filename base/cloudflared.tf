@@ -44,6 +44,9 @@ resource "kubernetes_deployment_v1" "cloudflared" {
             "--token",
             "$(CF_MANAGED_TUNNEL_TOKEN)"
           ]
+          port {
+            container_port = 2000
+          }
         }
       }
     }
@@ -91,18 +94,12 @@ resource "kubernetes_manifest" "cloudflared_service_monitor" {
       endpoints = [
         {
           port = "metrics"
-          path = "/metrics"
         }
       ]
       selector = {
         matchLabels = {
           app = "cloudflared"
         }
-      }
-      namespaceSelector = {
-        matchNames = [
-          kubernetes_namespace_v1.cloudflared.metadata[0].name
-        ]
       }
     }
   }
