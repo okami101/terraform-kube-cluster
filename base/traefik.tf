@@ -61,20 +61,6 @@ resource "kubernetes_manifest" "traefik_middleware_auth" {
   }
 }
 
-resource "kubernetes_manifest" "traefik_middleware_compress" {
-  manifest = {
-    apiVersion = "traefik.io/v1alpha1"
-    kind       = "Middleware"
-    metadata = {
-      name      = "middleware-compress"
-      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
-    }
-    spec = {
-      compress = {}
-    }
-  }
-}
-
 resource "kubernetes_manifest" "traefik_middleware_internal_ip" {
   manifest = {
     apiVersion = "traefik.io/v1alpha1"

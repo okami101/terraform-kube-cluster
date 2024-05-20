@@ -18,7 +18,6 @@ ports:
       port: websecure
   websecure:
     middlewares:
-      - traefik-middleware-compress@kubernetescrd
       - crowdsec-middleware-bouncer@kubernetescrd
   internal:
     port: 9443
@@ -53,10 +52,10 @@ providers:
 resources:
   requests:
     cpu: 100m
-    memory: 512Mi
+    memory: 256Mi
   limits:
     cpu: 2000m
-    memory: 512Mi
+    memory: 256Mi
 experimental:
   plugins:
     bouncer:
