@@ -39,7 +39,6 @@ ports:
 logs:
   access:
     enabled: true
-    format: json
 
 metrics:
   prometheus:
