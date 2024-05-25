@@ -4,9 +4,9 @@ auth:
 architecture: standalone
 
 metrics:
-  enabled: true
+  enabled: false
   serviceMonitor:
-    enabled: true
+    enabled: false
 
 primary:
   tolerations:
