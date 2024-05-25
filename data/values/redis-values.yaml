@@ -2,12 +2,10 @@ auth:
   existingSecret: ${auth_secret}
   existingSecretPasswordKey: redis-password
 
-master:
-  tolerations:
-    - key: node-role.kubernetes.io/storage
-      effect: NoSchedule
-  nodeSelector:
-    node-role.kubernetes.io/primary: "true"
+replica:
+  persistence:
+    enabled: false
+  replicaCount: 3
   resources:
     requests:
       cpu: 100m
@@ -16,20 +14,8 @@ master:
       cpu: 2000m
       memory: 64Mi
 
-replica:
-  replicaCount: 1
-  tolerations:
-    - key: node-role.kubernetes.io/storage
-      effect: NoSchedule
-  nodeSelector:
-    node-role.kubernetes.io/read: "true"
-  resources:
-    requests:
-      cpu: 100m
-      memory: 64Mi
-    limits:
-      cpu: 2000m
-      memory: 64Mi
+sentinel:
+  enabled: true
 
 metrics:
   enabled: true
