@@ -27,21 +27,6 @@ resource "helm_release" "crowdsec" {
   }
 
   set {
-    name  = "config.parsers.s02-enrich.whitelists.name"
-    value = "crowdsecurity/whitelists"
-  }
-
-  set {
-    name  = "config.parsers.s02-enrich.whitelists.description"
-    value = "Trused IPs"
-  }
-
-  set {
-    name  = "config.parsers.s02-enrich.whitelists.whitelist.reason"
-    value = "Trused IPs"
-  }
-
-  set {
     name  = "config.parsers.s02-enrich.whitelists.yaml"
     value = var.crowdsec_whitelistes_config
   }
