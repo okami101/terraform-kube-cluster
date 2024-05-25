@@ -80,6 +80,6 @@ variable "bouncer_api_key" {
   sensitive = true
 }
 
-variable "crowdsec_whitelisted_ips" {
-  type = list(string)
+variable "crowdsec_whitelistes_config" {
+  type = string
 }
