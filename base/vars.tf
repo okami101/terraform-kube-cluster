@@ -79,3 +79,7 @@ variable "bouncer_api_key" {
   type      = string
   sensitive = true
 }
+
+variable "crowdsec_whitelisted_ips" {
+  type = list(string)
+}
