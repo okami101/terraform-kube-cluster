@@ -25,6 +25,11 @@ resource "helm_release" "crowdsec" {
     name  = "lapi.env[0].value"
     value = var.bouncer_api_key
   }
+
+  set {
+    name  = "config.parsers.s02-enrich.whitelists.yaml"
+    value = var.crowdsec_whitelistes_config
+  }
 }
 
 resource "kubernetes_manifest" "traefik_middleware_bouncer" {
