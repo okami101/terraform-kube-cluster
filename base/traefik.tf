@@ -18,14 +18,14 @@ resource "helm_release" "traefik" {
     })
   ]
 
-  set {
+  set_list {
     name  = "ports.websecure.forwardedHeaders.trustedIPs"
-    value = "{${join(",", var.trusted_ips)}}"
+    value = var.trusted_ips
   }
 
-  set {
+  set_list {
     name  = "ports.websecure.proxyProtocol.trustedIPs"
-    value = "{${join(",", var.trusted_ips)}}"
+    value = var.trusted_ips
   }
 
   set {

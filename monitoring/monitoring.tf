@@ -16,24 +16,24 @@ resource "helm_release" "kube_prometheus_stack" {
     file("${path.module}/values/prometheus-stack-values.yaml")
   ]
 
-  set {
+  set_list {
     name  = "kubeControllerManager.endpoints"
-    value = "{${join(",", var.server_ips)}}"
+    value = var.server_ips
   }
 
-  set {
+  set_list {
     name  = "kubeScheduler.endpoints"
-    value = "{${join(",", var.server_ips)}}"
+    value = var.server_ips
   }
 
-  set {
+  set_list {
     name  = "kubeProxy.endpoints"
-    value = "{${join(",", var.server_ips)}}"
+    value = var.server_ips
   }
 
-  set {
+  set_list {
     name  = "kubeEtcd.endpoints"
-    value = "{${join(",", var.server_ips)}}"
+    value = var.server_ips
   }
 
   set {
