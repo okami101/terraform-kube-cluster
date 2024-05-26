@@ -21,21 +21,11 @@ variable "mysql_password" {
   sensitive = true
 }
 
-variable "pgsql_admin_password" {
-  type      = string
-  sensitive = true
-}
-
 variable "pgsql_user" {
   type = string
 }
 
 variable "pgsql_password" {
-  type      = string
-  sensitive = true
-}
-
-variable "pgsql_replication_password" {
   type      = string
   sensitive = true
 }
