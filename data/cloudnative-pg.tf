@@ -21,6 +21,26 @@ resource "helm_release" "cnpg" {
     name  = "monitoring.grafanaDashboard.create"
     value = "true"
   }
+
+  set {
+    name  = "resources.requests.memory"
+    value = "256Mi"
+  }
+
+  set {
+    name  = "resources.limits.memory"
+    value = "256Mi"
+  }
+
+  set {
+    name  = "resources.requests.cpu"
+    value = "100m"
+  }
+
+  set {
+    name  = "resources.limits.cpu"
+    value = "1000m"
+  }
 }
 
 resource "kubernetes_secret_v1" "cluster_auth" {
