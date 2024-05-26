@@ -63,6 +63,7 @@ resource "kubernetes_secret_v1" "cluster_s3" {
   data = {
     ACCESS_KEY_ID     = var.s3_access_key
     ACCESS_SECRET_KEY = var.s3_secret_key
+    REGION            = var.s3_region
   }
 }
 
@@ -139,7 +140,10 @@ resource "kubernetes_manifest" "cnpg_cluster" {
               name = kubernetes_secret_v1.cluster_s3.metadata[0].name
               key  = "ACCESS_SECRET_KEY"
             }
-            region = var.s3_region
+            region = {
+              name = kubernetes_secret_v1.cluster_s3.metadata[0].name
+              key  = "REGION"
+            }
           }
         }
       }
