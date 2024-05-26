@@ -129,7 +129,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         retentionPolicy = "30d"
         barmanObjectStore = {
           endpointURL     = var.s3_endpoint
-          destinationPath = "s3://${var.s3_bucket}@${var.s3_region}/cnpg"
+          destinationPath = "s3://${var.s3_bucket}@${var.s3_region}/cnpg/"
           s3Credentials = {
             accessKeyId = {
               name = kubernetes_secret_v1.cluster_s3.metadata[0].name
