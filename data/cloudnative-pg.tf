@@ -5,7 +5,7 @@ resource "kubernetes_namespace_v1" "cnpg" {
 }
 
 resource "helm_release" "cnpg" {
-  chart      = "cnpg"
+  chart      = "cloudnative-pg"
   version    = var.chart_cnpg_version
   repository = "https://cloudnative-pg.github.io/charts"
 
