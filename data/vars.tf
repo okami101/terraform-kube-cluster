@@ -67,3 +67,8 @@ variable "s3_secret_key" {
   type      = string
   sensitive = true
 }
+
+variable "pgsql_recovery_target_time" {
+  type    = string
+  default = null
+}
