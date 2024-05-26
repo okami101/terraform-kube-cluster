@@ -130,7 +130,8 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         retentionPolicy = "30d"
         barmanObjectStore = {
           endpointURL     = "https://${var.s3_endpoint}"
-          destinationPath = "s3://${var.s3_bucket}/cnpg/"
+          destinationPath = "s3://${var.s3_bucket}/"
+          serverName      = "pgbackup"
           data = {
             compression = "bzip2"
           }
