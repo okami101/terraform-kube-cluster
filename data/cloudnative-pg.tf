@@ -1,3 +1,31 @@
+locals {
+  barman_object_store = {
+    endpointURL     = "https://${var.s3_endpoint}"
+    destinationPath = "s3://${var.s3_bucket}"
+    serverName      = "pgbackup"
+    data = {
+      compression = "bzip2"
+    }
+    wal = {
+      compression = "bzip2"
+    }
+    s3Credentials = {
+      accessKeyId = {
+        name = kubernetes_secret_v1.cluster_s3.metadata[0].name
+        key  = "ACCESS_KEY_ID"
+      }
+      secretAccessKey = {
+        name = kubernetes_secret_v1.cluster_s3.metadata[0].name
+        key  = "ACCESS_SECRET_KEY"
+      }
+      region = {
+        name = kubernetes_secret_v1.cluster_s3.metadata[0].name
+        key  = "REGION"
+      }
+    }
+  }
+}
+
 resource "kubernetes_namespace_v1" "cnpg" {
   metadata {
     name = "cnpg"
@@ -126,33 +154,14 @@ resource "kubernetes_manifest" "cnpg_cluster" {
       }
 
       backup = {
-        target          = "prefer-standby"
-        retentionPolicy = "30d"
-        barmanObjectStore = {
-          endpointURL     = "https://${var.s3_endpoint}"
-          destinationPath = "s3://${var.s3_bucket}"
-          serverName      = "pgbackup"
-          data = {
-            compression = "bzip2"
-          }
-          wal = {
-            compression = "bzip2"
-          }
-          s3Credentials = {
-            accessKeyId = {
-              name = kubernetes_secret_v1.cluster_s3.metadata[0].name
-              key  = "ACCESS_KEY_ID"
-            }
-            secretAccessKey = {
-              name = kubernetes_secret_v1.cluster_s3.metadata[0].name
-              key  = "ACCESS_SECRET_KEY"
-            }
-            region = {
-              name = kubernetes_secret_v1.cluster_s3.metadata[0].name
-              key  = "REGION"
-            }
-          }
-        }
+        target            = "prefer-standby"
+        retentionPolicy   = "30d"
+        barmanObjectStore = local.barman_object_store
+      }
+
+      externalClusters = {
+        name              = "clusterBackup"
+        barmanObjectStore = local.barman_object_store
       }
     }
   }
