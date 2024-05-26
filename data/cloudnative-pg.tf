@@ -131,6 +131,12 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         barmanObjectStore = {
           endpointURL     = "https://${var.s3_endpoint}"
           destinationPath = "s3://${var.s3_bucket}/cnpg/"
+          data = {
+            compression = "bzip2"
+          }
+          wal = {
+            compression = "bzip2"
+          }
           s3Credentials = {
             accessKeyId = {
               name = kubernetes_secret_v1.cluster_s3.metadata[0].name
