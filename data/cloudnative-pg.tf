@@ -162,7 +162,7 @@ resource "kubernetes_manifest" "cnpg_scheduled_backup" {
       schedule             = "0 0 22 * * *"
       backupOwnerReference = "self"
       cluster = {
-        name = kubernetes_manifest.cnpg_cluster.metadata[0].name
+        name = kubernetes_manifest.cnpg_cluster.manifest.metadata[0].name
       }
     }
   }
