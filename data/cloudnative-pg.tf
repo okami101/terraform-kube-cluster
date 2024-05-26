@@ -131,11 +131,11 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         destinationPath = "s3://${var.s3_bucket}@${var.s3_region}/cnpg"
         s3Credentials = {
           accessKeyId = {
-            name = "cluster-s3"
+            name = kubernetes_secret_v1.cluster_s3.metadata[0].name
             key  = "ACCESS_KEY_ID"
           }
           secretAccessKey = {
-            name = "cluster-s3"
+            name = kubernetes_secret_v1.cluster_s3.metadata[0].name
             key  = "ACCESS_SECRET_KEY"
           }
         }
