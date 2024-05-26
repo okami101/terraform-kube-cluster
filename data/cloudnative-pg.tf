@@ -109,11 +109,11 @@ resource "kubernetes_manifest" "cnpg_cluster" {
       instances   = 2
 
       bootstrap = {
-        recovery = {
-          source = "clusterBackup"
-          recoveryTarget = {
-            targetTime = var.pgsql_recovery_target_time
-          }
+        initdb = {
+          # source = "clusterBackup"
+          # recoveryTarget = {
+          #   targetTime = var.pgsql_recovery_target_time
+          # }
           database = var.pgsql_user
           owner    = var.pgsql_user
           secret = {
