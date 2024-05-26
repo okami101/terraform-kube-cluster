@@ -187,7 +187,7 @@ resource "kubernetes_manifest" "cnpg_scheduled_backup" {
       namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
     }
     spec = {
-      schedule             = "0 0 22 * * *"
+      schedule             = "0 0 0 * * *"
       backupOwnerReference = "self"
       immediate            = true
       cluster = {
