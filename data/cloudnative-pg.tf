@@ -122,6 +122,12 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         }
       }
 
+      postgresql = {
+        parameters = {
+          max_connections = "500"
+        }
+      }
+
       enableSuperuserAccess = true
 
       storage = {
