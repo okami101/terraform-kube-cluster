@@ -141,6 +141,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
           }
         }
         retentionPolicy = "30d"
+        compression     = "bzip2"
       }
     }
   }
