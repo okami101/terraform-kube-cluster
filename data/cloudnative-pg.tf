@@ -11,4 +11,14 @@ resource "helm_release" "cnpg" {
 
   name      = "cnpg"
   namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
+
+  set {
+    name  = "monitoring.podMonitorEnabled"
+    value = "true"
+  }
+
+  set {
+    name  = "monitoring.grafanaDashboard.create"
+    value = "true"
+  }
 }
