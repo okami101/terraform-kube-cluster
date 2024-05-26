@@ -125,6 +125,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
       }
 
       backup = {
+        target = "prefer-standby"
         barmanObjectStore = {
           endpointURL     = var.s3_endpoint
           destinationPath = "s3://${var.s3_bucket}@${var.s3_region}/cnpg"
