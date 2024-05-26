@@ -10,7 +10,7 @@ gitea:
       ROOT_URL: https://gitea.${domain}
     database:
       DB_TYPE: postgres
-      HOST: postgresql-primary.postgres
+      HOST: cluster-rw.cnpg
       NAME: gitea
       USER: gitea
       PASSWD: ${db_password}

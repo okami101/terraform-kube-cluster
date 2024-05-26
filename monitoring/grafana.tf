@@ -52,7 +52,7 @@ resource "helm_release" "grafana" {
 
   set {
     name  = "env.GF_DATABASE_HOST"
-    value = "postgresql-primary.postgres"
+    value = "cluster-rw.cnpg"
   }
 
   set {
