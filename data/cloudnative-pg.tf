@@ -140,7 +140,12 @@ resource "kubernetes_manifest" "cnpg_cluster" {
               key  = "ACCESS_SECRET_KEY"
             }
           }
-          compression = "bzip2"
+          data = {
+            compression = "bzip2"
+          }
+          wal = {
+            compression = "bzip2"
+          }
         }
       }
     }
