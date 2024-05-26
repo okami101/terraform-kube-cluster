@@ -22,3 +22,79 @@ resource "helm_release" "cnpg" {
     value = "true"
   }
 }
+
+resource "kubernetes_secret_v1" "cluster_auth" {
+  metadata {
+    name      = "cluster-auth"
+    namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
+  }
+  type = "kubernetes.io/basic-auth"
+  data = {
+    "username" = var.pgsql_user
+    "password" = var.pgsql_password
+  }
+}
+
+resource "kubernetes_manifest" "cnpg_cluster" {
+  manifest = {
+    apiVersion = "postgresql.cnpg.io/v1"
+    kind       = "Cluster"
+    metadata = {
+      name      = "cluster"
+      namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
+    }
+    spec = {
+      imageName   = "ghcr.io/cloudnative-pg/postgresql:16"
+      description = "PostgreSQL Okami101"
+      instances   = 1
+
+      bootstrap = {
+        initdb = {
+          database = var.pgsql_user
+          owner    = var.pgsql_user
+          secret = {
+            name = kubernetes_secret_v1.cluster_auth.metadata[0].name
+          }
+        }
+      }
+
+      storage = {
+        size         = "8Gi"
+        storageClass = "longhorn-fast"
+      }
+
+      resources = {
+        requests = {
+          memory = "1Gi"
+          cpu    = "500m"
+        }
+        limits = {
+          memory = "1Gi"
+          cpu    = "2000m"
+        }
+      }
+
+      affinity = {
+        tolerations = [
+          {
+            key      = "node-role.kubernetes.io/storage"
+            operator = "Exists"
+            effect   = "NoSchedule"
+          }
+        ]
+        nodeSelector = {
+          "node-role.kubernetes.io/storage" = "true"
+        }
+      }
+
+      monitoring = {
+        enablePodMonitor = true
+      }
+    }
+  }
+
+  depends_on = [
+    helm_release.cnpg,
+    kubernetes_secret_v1.cluster_auth
+  ]
+}
