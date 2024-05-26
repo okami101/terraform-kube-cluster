@@ -127,7 +127,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
 
     backup = {
       barmanObjectStore = {
-        destinationPath = "s3://${var.s3_bucket}@${var.s3_region}/"
+        destinationPath = "s3://${var.s3_bucket}@${var.s3_region}/cnpg"
         s3Credentials = {
           accessKeyId = {
             name = "cluster-s3"
