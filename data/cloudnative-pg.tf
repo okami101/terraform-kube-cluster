@@ -129,7 +129,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         target          = "prefer-standby"
         retentionPolicy = "30d"
         barmanObjectStore = {
-          endpointURL     = var.s3_endpoint
+          endpointURL     = "https://${var.s3_endpoint}"
           destinationPath = "s3://${var.s3_bucket}/cnpg/"
           s3Credentials = {
             accessKeyId = {
