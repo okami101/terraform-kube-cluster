@@ -78,6 +78,8 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         }
       }
 
+      enableSuperuserAccess = true
+
       storage = {
         size         = "8Gi"
         storageClass = "longhorn-fast"
