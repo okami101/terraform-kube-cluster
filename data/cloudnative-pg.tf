@@ -125,7 +125,8 @@ resource "kubernetes_manifest" "cnpg_cluster" {
       }
 
       backup = {
-        target = "prefer-standby"
+        target          = "prefer-standby"
+        retentionPolicy = "30d"
         barmanObjectStore = {
           endpointURL     = var.s3_endpoint
           destinationPath = "s3://${var.s3_bucket}@${var.s3_region}/cnpg"
@@ -139,9 +140,8 @@ resource "kubernetes_manifest" "cnpg_cluster" {
               key  = "ACCESS_SECRET_KEY"
             }
           }
+          compression = "bzip2"
         }
-        retentionPolicy = "30d"
-        compression     = "bzip2"
       }
     }
   }
