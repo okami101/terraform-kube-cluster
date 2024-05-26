@@ -35,47 +35,6 @@ resource "helm_release" "kube_prometheus_stack" {
     name  = "kubeEtcd.endpoints"
     value = var.server_ips
   }
-
-  set {
-    name  = "alertmanager.config.global.smtp_from"
-    value = "prom@${var.domain}"
-  }
-
-  set {
-    name  = "alertmanager.config.global.smtp_smarthost"
-    value = "${var.smtp_host}:${var.smtp_port}"
-  }
-
-  set {
-    name  = "alertmanager.config.global.smtp_auth_username"
-    value = var.smtp_user
-  }
-
-  set {
-    name  = "alertmanager.config.global.smtp_auth_password"
-    value = var.smtp_password
-  }
-
-  set {
-    name  = "alertmanager.config.global.smtp_require_tls"
-    value = "false"
-  }
-
-  set {
-    name  = "alertmanager.config.receivers[0].name"
-    value = "null"
-    type  = "string"
-  }
-
-  set {
-    name  = "alertmanager.config.receivers[1].name"
-    value = "email"
-  }
-
-  set {
-    name  = "alertmanager.config.receivers[1].email_configs[0].to"
-    value = var.alert_email
-  }
 }
 
 resource "kubernetes_manifest" "prometheus_ingress" {
