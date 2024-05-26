@@ -50,8 +50,19 @@ resource "kubernetes_secret_v1" "cluster_auth" {
   }
   type = "kubernetes.io/basic-auth"
   data = {
-    "username" = var.pgsql_user
-    "password" = var.pgsql_password
+    username = var.pgsql_user
+    password = var.pgsql_password
+  }
+}
+
+resource "kubernetes_secret_v1" "cluster_s3" {
+  metadata {
+    name      = "cluster-s3"
+    namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
+  }
+  data = {
+    ACCESS_KEY_ID     = var.s3_access_key
+    ACCESS_SECRET_KEY = var.s3_secret_key
   }
 }
 
@@ -113,10 +124,45 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         enablePodMonitor = true
       }
     }
+
+    backup = {
+      barmanObjectStore = {
+        destinationPath = "s3://${var.s3_bucket}@${var.s3_region}/"
+        s3Credentials = {
+          accessKeyId = {
+            name = "cluster-s3"
+            key  = "ACCESS_KEY_ID"
+          }
+          secretAccessKey = {
+            name = "cluster-s3"
+            key  = "ACCESS_SECRET_KEY"
+          }
+        }
+      }
+      retentionPolicy = "30d"
+    }
   }
 
   depends_on = [
     helm_release.cnpg,
     kubernetes_secret_v1.cluster_auth
   ]
+}
+
+resource "kubernetes_manifest" "cnpg_scheduled_backup" {
+  manifest = {
+    apiVersion = "postgresql.cnpg.io/v1"
+    kind       = "ScheduledBackup"
+    metadata = {
+      name      = "backup-cluster"
+      namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
+    }
+    spec = {
+      schedule             = "0 0 22 * * *"
+      backupOwnerReference = "self"
+      cluster = {
+        name = kubernetes_manifest.cnpg_cluster.metadata[0].name
+      }
+    }
+  }
 }
