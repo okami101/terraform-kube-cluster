@@ -48,7 +48,10 @@ variable "chart_mysql_version" {
   type = string
 }
 
-
 variable "chart_redis_version" {
+  type = string
+}
+
+variable "chart_cnpg_version" {
   type = string
 }
