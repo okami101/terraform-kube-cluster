@@ -69,6 +69,11 @@ resource "helm_release" "grafana" {
     name  = "env.GF_DATABASE_PASSWORD"
     value = var.grafana_db_password
   }
+
+  set {
+    name  = "sidecar.dashboards.searchNamespace"
+    value = "ALL"
+  }
 }
 
 resource "kubernetes_manifest" "grafana_ingress" {

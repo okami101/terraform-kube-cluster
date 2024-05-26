@@ -21,9 +21,4 @@ resource "helm_release" "cnpg" {
     name  = "monitoring.grafanaDashboard.create"
     value = "true"
   }
-
-  set {
-    name  = "monitoring.grafanaDashboard.namespace"
-    value = "monitoring"
-  }
 }
