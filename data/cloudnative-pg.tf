@@ -159,10 +159,12 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         barmanObjectStore = local.barman_object_store
       }
 
-      externalClusters = {
-        name              = "clusterBackup"
-        barmanObjectStore = local.barman_object_store
-      }
+      externalClusters = [
+        {
+          name              = "clusterBackup"
+          barmanObjectStore = local.barman_object_store
+        }
+      ]
     }
   }
 
