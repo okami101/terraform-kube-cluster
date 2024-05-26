@@ -70,7 +70,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         }
         limits = {
           memory = "1Gi"
-          cpu    = "2000m"
+          cpu    = "2"
         }
       }
 
