@@ -206,10 +206,17 @@ resource "kubernetes_manifest" "cnpg_pooler" {
       namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
     }
     spec = {
-      instances = 2
-      type      = "rw"
       cluster = {
         name = kubernetes_manifest.cnpg_cluster.manifest.metadata.name
+      }
+      instances = 2
+      type      = "rw"
+      pgbouncer = {
+        poolMode = "transaction"
+        parameters = {
+          max_client_conn   = "1000"
+          default_pool_size = "10"
+        }
       }
     }
   }
