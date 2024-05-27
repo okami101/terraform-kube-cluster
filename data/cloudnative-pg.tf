@@ -211,6 +211,9 @@ resource "kubernetes_manifest" "cnpg_pooler" {
       }
       instances = 2
       type      = "rw"
+      monitoring = {
+        enablePodMonitor = true
+      }
       pgbouncer = {
         poolMode = "transaction"
         parameters = {
