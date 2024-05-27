@@ -240,8 +240,8 @@ resource "kubernetes_manifest" "cnpg_pooler" {
       pgbouncer = {
         poolMode = "session"
         parameters = {
-          max_client_conn   = "100"
-          default_pool_size = "5"
+          max_client_conn   = "1000"
+          default_pool_size = "10"
         }
       }
     }
