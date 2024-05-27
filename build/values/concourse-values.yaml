@@ -4,6 +4,9 @@ concourse:
       host: pooler-cluster-rw.cnpg
       database: concourse
 
+    apiMaxConns: 1
+    backendMaxConns: 5
+
     auth:
       cookieSecure: true
 
