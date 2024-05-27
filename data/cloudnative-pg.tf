@@ -215,7 +215,7 @@ resource "kubernetes_manifest" "cnpg_pooler" {
         enablePodMonitor = true
       }
       pgbouncer = {
-        poolMode = "transaction"
+        poolMode = "session"
         parameters = {
           max_client_conn   = "1000"
           default_pool_size = "10"
