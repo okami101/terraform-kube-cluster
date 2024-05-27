@@ -52,7 +52,7 @@ resource "helm_release" "grafana" {
 
   set {
     name  = "env.GF_DATABASE_HOST"
-    value = "cluster-rw.cnpg"
+    value = "pooler-cluster-rw.cnpg"
   }
 
   set {
