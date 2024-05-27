@@ -159,11 +159,11 @@ resource "kubernetes_manifest" "cnpg_cluster" {
 
       resources = {
         requests = {
-          memory = "1Gi"
+          memory = "2Gi"
           cpu    = "500m"
         }
         limits = {
-          memory = "1Gi"
+          memory = "2Gi"
           cpu    = "2"
         }
       }
