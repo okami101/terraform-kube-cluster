@@ -25,8 +25,8 @@ serviceMonitor:
   enabled: true
 
 tolerations:
-  - key: node-role.kubernetes.io/monitoring
+  - key: node-role.kubernetes.io/monitor
     operator: Exists
 
 nodeSelector:
-  node-role.kubernetes.io/monitoring: "true"
+  node-role.kubernetes.io/monitor: "true"
