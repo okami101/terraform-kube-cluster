@@ -202,7 +202,7 @@ resource "kubernetes_manifest" "cnpg_pooler" {
     apiVersion = "postgresql.cnpg.io/v1"
     kind       = "Pooler"
     metadata = {
-      name      = "pooler-pooler-cluster-rw"
+      name      = "pooler-cluster-rw"
       namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
     }
     spec = {
