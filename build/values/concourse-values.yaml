@@ -1,7 +1,7 @@
 concourse:
   web:
     postgres:
-      host: pooler-cluster-rw.cnpg
+      host: cluster-rw.cnpg
       database: concourse
 
     auth:
