@@ -241,7 +241,7 @@ resource "kubernetes_manifest" "cnpg_pooler" {
         poolMode = "session"
         parameters = {
           max_client_conn   = "1000"
-          default_pool_size = "10"
+          default_pool_size = "20"
         }
       }
     }
