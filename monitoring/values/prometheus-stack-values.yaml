@@ -27,9 +27,6 @@ prometheus:
         cpu: 2000m
         memory: 2.5Gi
 
-alertmanager:
-  enabled: false
-
 grafana:
   enabled: false
   forceDeployDatasources: true
