@@ -7,20 +7,6 @@ variable "redis_password" {
   sensitive = true
 }
 
-variable "mysql_root_password" {
-  type      = string
-  sensitive = true
-}
-
-variable "mysql_user" {
-  type = string
-}
-
-variable "mysql_password" {
-  type      = string
-  sensitive = true
-}
-
 variable "pgsql_user" {
   type = string
 }
