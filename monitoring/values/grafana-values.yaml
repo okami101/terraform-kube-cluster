@@ -5,6 +5,8 @@ deploymentStrategy:
   type: Recreate
 
 sidecar:
+  alerts:
+    enabled: true
   datasources:
     enabled: true
   dashboards:

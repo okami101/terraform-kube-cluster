@@ -62,7 +62,7 @@ resource "helm_release" "grafana" {
 
   set {
     name  = "env.GF_DATABASE_USER"
-    value = "grafana"
+    value = "grafanatest"
   }
 
   set {
