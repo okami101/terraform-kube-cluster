@@ -31,3 +31,8 @@ grafana:
   enabled: false
   forceDeployDatasources: true
   forceDeployDashboards: true
+
+alertmanager:
+  alertmanagerSpec:
+    alertmanagerConfigMatcherStrategy:
+      type: None
