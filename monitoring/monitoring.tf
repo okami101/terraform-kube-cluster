@@ -81,7 +81,7 @@ resource "kubernetes_manifest" "alertmanager_ingress" {
       entryPoints = ["internal"]
       routes = [
         {
-          match = "Host(`alert.int.${var.domain}`)"
+          match = "Host(`am.int.${var.domain}`)"
           kind  = "Rule"
           middlewares = [
             {
