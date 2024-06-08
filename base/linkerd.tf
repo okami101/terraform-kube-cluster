@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "linkerd" {
 
 resource "helm_release" "linkerd_crds" {
   chart      = "linkerd-crds"
-  version    = "1.8.0"
+  version    = var.chart_linkerd_crds_version
   repository = "https://helm.linkerd.io/stable"
 
   name      = "linkerd-crds"
@@ -15,7 +15,7 @@ resource "helm_release" "linkerd_crds" {
 
 resource "helm_release" "linkerd_control_plane" {
   chart      = "linkerd-control-plane"
-  version    = "1.16.11"
+  version    = var.chart_linkerd_control_plane_version
   repository = "https://helm.linkerd.io/stable"
 
   name      = "linkerd-control-plane"

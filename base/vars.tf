@@ -53,6 +53,14 @@ variable "chart_cert_manager_version" {
   type = string
 }
 
+variable "chart_linkerd_crds_version" {
+  type = string
+}
+
+variable "chart_linkerd_control_plane_version" {
+  type = string
+}
+
 variable "s3_endpoint" {
   type = string
 }
