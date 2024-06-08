@@ -36,5 +36,10 @@ resource "helm_release" "linkerd_control_plane" {
     value = var.linkerd_issuer_key
   }
 
+  set {
+    name  = "podMonitor.enabled"
+    value = "true"
+  }
+
   depends_on = [helm_release.linkerd_crds]
 }
