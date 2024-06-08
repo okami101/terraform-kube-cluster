@@ -43,3 +43,16 @@ resource "helm_release" "linkerd_control_plane" {
 
   depends_on = [helm_release.linkerd_crds]
 }
+
+
+resource "helm_release" "linkerd_viz" {
+  chart = "linkerd-viz"
+  # version    = var.chart_linkerd_viz
+  version    = "30.12.11"
+  repository = "https://helm.linkerd.io/stable"
+
+  name      = "linkerd-viz"
+  namespace = kubernetes_namespace_v1.linkerd.metadata[0].name
+
+  depends_on = [helm_release.linkerd_control_plane]
+}
