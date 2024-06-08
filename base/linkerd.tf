@@ -13,7 +13,7 @@ resource "helm_release" "linkerd_crds" {
   namespace = kubernetes_namespace_v1.linkerd.metadata[0].name
 }
 
-resource "helm_release" "linkerd" {
+resource "helm_release" "linkerd_control_plane" {
   chart      = "linkerd-control-plane"
   version    = "1.16.11"
   repository = "https://helm.linkerd.io/stable"
