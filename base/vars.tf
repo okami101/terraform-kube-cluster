@@ -61,6 +61,10 @@ variable "chart_linkerd_control_plane_version" {
   type = string
 }
 
+variable "chart_linkerd_viz_version" {
+  type = string
+}
+
 variable "s3_endpoint" {
   type = string
 }

@@ -47,12 +47,17 @@ resource "helm_release" "linkerd_control_plane" {
 
 resource "helm_release" "linkerd_viz" {
   chart = "linkerd-viz"
-  # version    = var.chart_linkerd_viz
+  # version    = var.chart_linkerd_viz_version
   version    = "30.12.11"
   repository = "https://helm.linkerd.io/stable"
 
   name      = "linkerd-viz"
   namespace = kubernetes_namespace_v1.linkerd.metadata[0].name
+
+  set {
+    name  = "prometheus.enabled"
+    value = "false"
+  }
 
   depends_on = [helm_release.linkerd_control_plane]
 }
