@@ -46,9 +46,8 @@ resource "helm_release" "linkerd_control_plane" {
 
 
 resource "helm_release" "linkerd_viz" {
-  chart = "linkerd-viz"
-  # version    = var.chart_linkerd_viz_version
-  version    = "30.12.11"
+  chart      = "linkerd-viz"
+  version    = var.chart_linkerd_viz_version
   repository = "https://helm.linkerd.io/stable"
 
   name      = "linkerd-viz"
