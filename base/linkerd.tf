@@ -58,5 +58,10 @@ resource "helm_release" "linkerd_viz" {
     value = "false"
   }
 
+  set {
+    name  = "prometheusUrl"
+    value = "http://kube-prometheus-stack-prometheus.monitoring:9090/"
+  }
+
   depends_on = [helm_release.linkerd_control_plane]
 }
