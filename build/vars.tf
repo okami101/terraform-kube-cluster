@@ -25,15 +25,6 @@ variable "gitea_db_password" {
   sensitive = true
 }
 
-variable "container_registry_username" {
-  type = string
-}
-
-variable "container_registry_password" {
-  type      = string
-  sensitive = true
-}
-
 variable "gitea_pvc_name" {
   type = string
 }
