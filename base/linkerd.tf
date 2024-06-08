@@ -43,25 +43,3 @@ resource "helm_release" "linkerd_control_plane" {
 
   depends_on = [helm_release.linkerd_crds]
 }
-
-
-resource "helm_release" "linkerd_viz" {
-  chart      = "linkerd-viz"
-  version    = var.chart_linkerd_viz_version
-  repository = "https://helm.linkerd.io/stable"
-
-  name      = "linkerd-viz"
-  namespace = kubernetes_namespace_v1.linkerd.metadata[0].name
-
-  set {
-    name  = "prometheus.enabled"
-    value = "false"
-  }
-
-  set {
-    name  = "prometheusUrl"
-    value = "http://kube-prometheus-stack-prometheus.monitoring:9090/"
-  }
-
-  depends_on = [helm_release.linkerd_control_plane]
-}
