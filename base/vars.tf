@@ -80,6 +80,6 @@ variable "bouncer_api_key" {
   sensitive = true
 }
 
-variable "crowdsec_whitelistes_config" {
+variable "crowdsec_whitelists_config" {
   type = string
 }
