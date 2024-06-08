@@ -2,6 +2,9 @@ tolerations:
   - effect: NoSchedule
     operator: Exists
 
+service:
+  enabled: true
+
 serviceMonitor:
   enabled: true
 
