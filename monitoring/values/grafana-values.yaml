@@ -20,12 +20,6 @@ resources:
     cpu: 1000m
     memory: 384Mi
 
-tolerations:
-  - key: node-role.kubernetes.io/storage
-    operator: Exists
-nodeSelector:
-  node-role.kubernetes.io/storage: "true"
-
 dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
