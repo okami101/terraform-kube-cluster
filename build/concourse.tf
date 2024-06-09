@@ -70,10 +70,9 @@ resource "kubernetes_secret_v1" "concourse_registry" {
   }
 
   data = {
-    name          = "gitea.${var.domain}"
-    username      = var.concourse_git_username
-    password      = var.concourse_git_password
-    webhook-token = var.concourse_webhook_token
+    name     = "gitea.${var.domain}"
+    username = var.concourse_git_username
+    password = var.concourse_git_password
   }
 
   depends_on = [
@@ -90,6 +89,7 @@ resource "kubernetes_secret_v1" "concourse_git" {
   data = {
     username       = var.concourse_git_username
     password       = var.concourse_git_password
+    webhook-token  = var.concourse_webhook_token
     git-user       = "Concourse CI <concourse@okami101.io>"
     commit-message = "bump to %version% [ci skip]"
   }
