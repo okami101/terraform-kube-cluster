@@ -5,7 +5,7 @@ auth:
 replica:
   persistence:
     enabled: false
-  replicaCount: 3
+  replicaCount: 2
   resources:
     requests:
       cpu: 100m
