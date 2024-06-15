@@ -110,7 +110,7 @@ dashboards:
     cloudflared:
       gnetId: 17457
       revision: 6
-      datasource: prometheus
+      DS_PROMETHEUS: prometheus
     certmanager:
       gnetId: 20842
       revision: 2
@@ -129,7 +129,7 @@ dashboards:
     redis:
       gnetId: 763
       revision: 6
-      datasource: prometheus
+      DS_PROM: prometheus
     longhorn:
       gnetId: 16888
       revision: 9
