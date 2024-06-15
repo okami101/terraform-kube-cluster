@@ -2,16 +2,6 @@ tolerations:
   - effect: NoSchedule
     operator: Exists
 
-service:
-  enabled: true
-  labels:
-    fix: "6.16.0"
-  annotations:
-    fix: "6.16.0"
-
-serviceMonitor:
-  enabled: true
-
 resources:
   requests:
     cpu: 100m
