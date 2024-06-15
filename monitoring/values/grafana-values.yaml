@@ -107,3 +107,7 @@ dashboards:
       gnetId: 15488
       revision: 3
       datasource: prometheus
+    traefik:
+      gnetId: 17347
+      revision: 8
+      datasource: prometheus
