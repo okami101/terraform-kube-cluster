@@ -113,7 +113,6 @@ dashboards:
     traefik:
       gnetId: 17347
       revision: 8
-      datasource: prometheus
     crowdsec:
       url: https://raw.githubusercontent.com/crowdsecurity/grafana-dashboards/master/dashboards_v5/Crowdsec%20Overview.json
       datasource: prometheus
