@@ -122,3 +122,11 @@ dashboards:
       gnetId: 16888
       revision: 9
       datasource: prometheus
+    # cloudflared:
+    #   gnetId: 17457
+    #   revision: 6
+    #   datasource: prometheus
+    redis:
+      gnetId: 763
+      revision: 6
+      prom: prometheus
