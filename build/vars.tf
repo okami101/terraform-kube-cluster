@@ -68,43 +68,6 @@ variable "s3_secret_key" {
   sensitive = true
 }
 
-variable "concourse_db_password" {
-  type      = string
-  sensitive = true
-}
-
-variable "concourse_user" {
-  type = string
-}
-
-variable "concourse_password" {
-  type      = string
-  sensitive = true
-}
-
-variable "concourse_git_username" {
-  type = string
-}
-
-variable "concourse_git_password" {
-  type      = string
-  sensitive = true
-}
-
-variable "concourse_webhook_token" {
-  type      = string
-  sensitive = true
-}
-
-variable "concourse_analysis_token" {
-  type      = string
-  sensitive = true
-}
-
-variable "chart_concourse_version" {
-  type = string
-}
-
 variable "chart_gitea_version" {
   type = string
 }

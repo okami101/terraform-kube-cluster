@@ -6,7 +6,7 @@ This Terraform project is intended to be used as a template for deploying an opi
 * Ingress routing via Traefik (load balanced mode) and certificates managed by cert-manager
 * Many types of DB, including Redis, MySQL, PostgresSQL (cluster mode), Elasticseach
 * UI web managers, as Portainer, PHPMyAdmin, PgAdmin
-* Complete CI solution with Gitea and Concourse, as well as custom private docker registry
+* Complete CI solution with Gitea, as well as custom private docker registry
 * Some additional tools for my own needs (umami and redmine)
 
 For proper install, it should be used on top of [Terraform Hcloud K3s](https://github.com/adr1enbe4udou1n/terraform-hcloud-k3s).
@@ -50,16 +50,3 @@ Generate mTLS for linkerd.
 step certificate create root.linkerd.cluster.local ca.crt ca.key --profile root-ca --no-password --insecure
 step certificate create identity.linkerd.cluster.local issuer.crt issuer.key --profile intermediate-ca --not-after 8760h --no-password --insecure --ca ca.crt --ca-key ca.key
 ```
-
-## Grafana Dashboards
-
-| ID    | App        |
-| ----- | ---------- |
-| 16888 | Longhorn   |
-| 7036  | Concourse  |
-| 17802 | Gitea      |
-| 17346 | Traefik    |
-| 9628  | Postgresql |
-| 14057 | MySQL      |
-| 10991 | RabbitMQ   |
-| 763   | Reddis     |
