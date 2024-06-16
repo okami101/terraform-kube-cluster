@@ -110,7 +110,6 @@ dashboards:
     certmanager:
       gnetId: 20842
       revision: 2
-      datasource: prometheus
     traefik:
       gnetId: 17347
       revision: 8
@@ -129,4 +128,4 @@ dashboards:
     redis:
       gnetId: 763
       revision: 6
-      prom: prometheus
+      prometheus: prometheus
