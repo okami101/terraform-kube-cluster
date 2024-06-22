@@ -28,6 +28,10 @@ variable "chart_pgadmin_version" {
   type = string
 }
 
+variable "chart_gitea_version" {
+  type = string
+}
+
 variable "s3_endpoint" {
   type = string
 }
@@ -63,4 +67,43 @@ variable "pgadmin_email" {
 variable "pgadmin_password" {
   type    = string
   default = null
+}
+
+variable "gitea_admin_username" {
+  type = string
+}
+
+variable "gitea_admin_password" {
+  type      = string
+  sensitive = true
+}
+
+variable "gitea_admin_email" {
+  type = string
+}
+
+variable "gitea_db_password" {
+  type      = string
+  sensitive = true
+}
+
+variable "gitea_pvc_name" {
+  type = string
+}
+
+variable "smtp_host" {
+  type = string
+}
+
+variable "smtp_port" {
+  type = string
+}
+
+variable "smtp_user" {
+  type = string
+}
+
+variable "smtp_password" {
+  type      = string
+  sensitive = true
 }

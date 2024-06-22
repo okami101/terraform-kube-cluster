@@ -44,6 +44,8 @@ resource "helm_release" "gitea" {
       secret_key       = var.s3_secret_key
     })
   ]
+
+  depends_on = [kubernetes_manifest.cnpg_cluster]
 }
 
 resource "kubernetes_manifest" "gitea_ingress" {
