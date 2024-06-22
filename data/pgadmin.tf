@@ -69,7 +69,7 @@ resource "kubernetes_manifest" "pgadmin_ingress" {
           kind  = "Rule"
           services = [
             {
-              name = "pgadmin"
+              name = "pgadmin-pgadmin4"
               port = "http"
             }
           ]
