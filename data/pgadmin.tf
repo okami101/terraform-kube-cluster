@@ -46,6 +46,11 @@ resource "helm_release" "pgadmin" {
     name  = "persistentVolume.storageClass"
     value = "longhorn"
   }
+
+  set {
+    name  = "persistentVolume.size"
+    value = "1Gi"
+  }
 }
 
 resource "kubernetes_manifest" "pgadmin_ingress" {
