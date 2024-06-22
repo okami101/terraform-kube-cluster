@@ -5,7 +5,7 @@ resource "kubernetes_namespace_v1" "pgadmin" {
 }
 
 resource "helm_release" "pgadmin" {
-  chart      = "pgadmin"
+  chart      = "pgadmin4"
   version    = "1.26.0"
   repository = "https://helm.runix.net"
 
