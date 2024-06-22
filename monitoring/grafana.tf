@@ -46,31 +46,6 @@ resource "helm_release" "grafana" {
   }
 
   set {
-    name  = "env.GF_DATABASE_TYPE"
-    value = "postgres"
-  }
-
-  set {
-    name  = "env.GF_DATABASE_HOST"
-    value = "pooler-cluster-rw.cnpg"
-  }
-
-  set {
-    name  = "env.GF_DATABASE_NAME"
-    value = "grafana"
-  }
-
-  set {
-    name  = "env.GF_DATABASE_USER"
-    value = "grafana"
-  }
-
-  set {
-    name  = "env.GF_DATABASE_PASSWORD"
-    value = var.grafana_db_password
-  }
-
-  set {
     name  = "sidecar.dashboards.searchNamespace"
     value = "ALL"
   }

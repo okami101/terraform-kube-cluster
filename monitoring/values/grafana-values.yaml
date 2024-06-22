@@ -4,6 +4,11 @@ serviceMonitor:
 deploymentStrategy:
   type: Recreate
 
+persistence:
+  enabled: true
+  size: 1Gi
+  storageClassName: longhorn
+
 sidecar:
   alerts:
     enabled: true

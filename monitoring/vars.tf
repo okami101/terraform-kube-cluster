@@ -19,11 +19,6 @@ variable "smtp_password" {
   sensitive = true
 }
 
-variable "grafana_db_password" {
-  type      = string
-  sensitive = true
-}
-
 variable "loki_retention_period" {
   type    = string
   default = "744h"
