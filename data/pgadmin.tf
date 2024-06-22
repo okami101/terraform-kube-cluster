@@ -41,6 +41,11 @@ resource "helm_release" "pgadmin" {
     name  = "env.password"
     value = var.pgadmin_password
   }
+
+  set {
+    name  = "persistentVolume.storageClass"
+    value = "longhorn"
+  }
 }
 
 resource "kubernetes_manifest" "pgadmin_ingress" {
