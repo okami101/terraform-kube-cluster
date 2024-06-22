@@ -50,3 +50,13 @@ variable "pgsql_recovery_target_time" {
   type    = string
   default = null
 }
+
+variable "pgadmin_email" {
+  type    = string
+  default = null
+}
+
+variable "pgadmin_password" {
+  type    = string
+  default = null
+}
