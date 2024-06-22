@@ -6,7 +6,7 @@ resource "kubernetes_namespace_v1" "pgadmin" {
 
 resource "helm_release" "pgadmin" {
   chart      = "pgadmin4"
-  version    = "1.26.0"
+  version    = var.chart_pgadmin_version
   repository = "https://helm.runix.net"
 
   name      = "pgadmin"
