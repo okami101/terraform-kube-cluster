@@ -68,12 +68,6 @@ monitoring:
   dashboards:
     enabled: true
     namespace: monitoring
-  selfMonitoring:
-    enabled: false
-    grafanaAgent:
-      installOperator: false
-  lokiCanary:
-    enabled: false
   serviceMonitor:
     enabled: true
 
