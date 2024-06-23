@@ -56,8 +56,8 @@ postgresql-ha:
   enabled: false
 
 persistence:
-  create: false
-  claimName: ${pvc_name}
+  volumeName: gitea
+  storageClass: longhorn-static
 
 strategy:
   type: Recreate

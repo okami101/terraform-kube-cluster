@@ -87,10 +87,6 @@ variable "gitea_db_password" {
   sensitive = true
 }
 
-variable "gitea_pvc_name" {
-  type = string
-}
-
 variable "smtp_host" {
   type = string
 }
