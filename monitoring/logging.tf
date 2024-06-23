@@ -53,7 +53,7 @@ datasources:
 - name: Loki
   type: loki
   uid: loki
-  url: http://loki.logging/
+  url: http://loki-gateway.logging/
   access: proxy
   jsonData:
     derivedFields:

@@ -40,9 +40,6 @@ loki:
           prefix: index_
           period: 24h
 
-gateway:
-  enabled: false
-
 chunksCache:
   enabled: false
 
