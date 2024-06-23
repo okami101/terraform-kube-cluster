@@ -74,6 +74,8 @@ monitoring:
       installOperator: false
   lokiCanary:
     enabled: false
+  serviceMonitor:
+    enabled: true
 
 test:
   enabled: false
