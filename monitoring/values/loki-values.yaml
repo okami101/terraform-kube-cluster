@@ -71,14 +71,8 @@ monitoring:
   serviceMonitor:
     enabled: true
 
-test:
-  enabled: false
-
 chunksCache:
   enabled: false
 
 resultsCache:
-  enabled: false
-
-lokiCanary:
   enabled: false
