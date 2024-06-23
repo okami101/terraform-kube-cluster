@@ -41,13 +41,13 @@ loki:
           period: 24h
 
 gateway:
-  resources:
-    requests:
-      cpu: 100m
-      memory: 32Mi
-    limits:
-      cpu: 1000m
-      memory: 32Mi
+  enabled: false
+
+chunksCache:
+  enabled: false
+
+resultsCache:
+  enabled: false
 
 singleBinary:
   replicas: 1
@@ -63,9 +63,3 @@ singleBinary:
     limits:
       cpu: 1000m
       memory: 512Mi
-
-chunksCache:
-  enabled: false
-
-resultsCache:
-  enabled: false
