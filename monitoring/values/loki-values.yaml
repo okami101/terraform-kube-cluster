@@ -60,3 +60,10 @@ singleBinary:
     limits:
       cpu: 1000m
       memory: 512Mi
+
+monitoring:
+  dashboards:
+    enabled: true
+    namespace: monitoring
+  serviceMonitor:
+    enabled: true

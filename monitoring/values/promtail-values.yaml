@@ -9,3 +9,6 @@ resources:
   limits:
     cpu: 500m
     memory: 96Mi
+
+serviceMonitor:
+  enabled: true
