@@ -9,6 +9,9 @@ backend:
 write:
   replicas: 0
 
+gateway:
+  enabled: false
+
 loki:
   auth_enabled: false
   compactor:
