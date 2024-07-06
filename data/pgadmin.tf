@@ -53,7 +53,7 @@ resource "helm_release" "pgadmin" {
   }
 
   set {
-    name  = "strategy"
+    name  = "strategy.type"
     value = "Recreate"
   }
 }
