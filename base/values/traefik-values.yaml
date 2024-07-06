@@ -1,5 +1,6 @@
 ingressRoute:
   dashboard:
+    enabled: true
     entryPoints:
       - internal
     matchRule: Host(`traefik.int.${domain}`)
