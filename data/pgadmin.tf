@@ -51,6 +51,11 @@ resource "helm_release" "pgadmin" {
     name  = "persistentVolume.size"
     value = "1Gi"
   }
+
+  set {
+    name  = "strategy"
+    value = "Recreate"
+  }
 }
 
 resource "kubernetes_manifest" "pgadmin_ingress" {
