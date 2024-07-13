@@ -8,19 +8,6 @@ ingressRoute:
       - name: middleware-auth
 
 ports:
-  ssh:
-    port: 2222
-    expose:
-      default: true
-    exposedPort: 22
-    protocol: TCP
-  web:
-    redirectTo:
-      port: :443
-  websecure:
-    exposedPort: 8443
-    middlewares:
-      - crowdsec-middleware-bouncer@kubernetescrd
   internal:
     port: 9443
     expose:
@@ -31,6 +18,10 @@ ports:
       enabled: true
     middlewares:
       - traefik-middleware-internal-ip@kubernetescrd
+  websecure:
+    exposedPort: 8443
+    middlewares:
+      - crowdsec-middleware-bouncer@kubernetescrd
 
 logs:
   access:
