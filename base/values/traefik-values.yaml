@@ -19,6 +19,7 @@ ports:
     middlewares:
       - traefik-middleware-internal-ip@kubernetescrd
   websecure:
+    asDefault: true
     exposedPort: 8443
     middlewares:
       - crowdsec-middleware-bouncer@kubernetescrd
