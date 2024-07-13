@@ -2,25 +2,24 @@ ingressRoute:
   dashboard:
     enabled: true
     entryPoints:
-      - internal
+      - websecure
     matchRule: Host(`traefik.int.${domain}`)
     middlewares:
       - name: middleware-auth
 
 ports:
-  internal:
+  websecure:
+    middlewares:
+      - traefik-middleware-internal-ip@kubernetescrd
+  external:
+    asDefault: true
     port: 9443
     expose:
       default: true
-    exposedPort: 443
+    exposedPort: 8443
     protocol: TCP
     tls:
       enabled: true
-    middlewares:
-      - traefik-middleware-internal-ip@kubernetescrd
-  websecure:
-    asDefault: true
-    exposedPort: 8443
     middlewares:
       - crowdsec-middleware-bouncer@kubernetescrd
 

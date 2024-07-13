@@ -67,7 +67,7 @@ resource "kubernetes_manifest" "pgadmin_ingress" {
       namespace = kubernetes_namespace_v1.pgadmin.metadata[0].name
     }
     spec = {
-      entryPoints = ["internal"]
+      entryPoints = ["websecure"]
       routes = [
         {
           match = "Host(`pga.int.${var.domain}`)"
