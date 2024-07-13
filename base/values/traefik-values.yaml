@@ -16,24 +16,19 @@ ports:
     protocol: TCP
   web:
     redirectTo:
-      port: websecure
+      port: :443
   websecure:
+    exposedPort: 8443
     middlewares:
       - crowdsec-middleware-bouncer@kubernetescrd
   internal:
     port: 9443
     expose:
       default: true
-    exposedPort: 8443
+    exposedPort: 443
     protocol: TCP
     tls:
       enabled: true
-    forwardedHeaders:
-      trustedIPs:
-        - "10.0.0.0/8"
-    proxyProtocol:
-      trustedIPs:
-        - "10.0.0.0/8"
     middlewares:
       - traefik-middleware-internal-ip@kubernetescrd
 
