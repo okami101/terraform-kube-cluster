@@ -19,12 +19,12 @@ resource "helm_release" "traefik" {
   ]
 
   set_list {
-    name  = "ports.websecure.forwardedHeaders.trustedIPs"
+    name  = "ports.tunnel.forwardedHeaders.trustedIPs"
     value = var.trusted_ips
   }
 
   set_list {
-    name  = "ports.websecure.proxyProtocol.trustedIPs"
+    name  = "ports.tunnel.proxyProtocol.trustedIPs"
     value = var.trusted_ips
   }
 
