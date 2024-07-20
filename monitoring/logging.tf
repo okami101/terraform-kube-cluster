@@ -13,15 +13,48 @@ resource "helm_release" "loki" {
   namespace = kubernetes_namespace_v1.logging.metadata[0].name
 
   values = [
-    templatefile("${path.module}/values/loki-values.yaml", {
-      retention_period = var.loki_retention_period
-      bucket : var.s3_bucket
-      endpoint : var.s3_endpoint
-      region : var.s3_region
-      access_key : var.s3_access_key
-      secret_key : var.s3_secret_key
-    })
+    file("${path.module}/values/loki-values.yaml")
   ]
+
+  set {
+    name  = "loki.storage.bucketNames.chunks"
+    value = var.s3_bucket
+  }
+
+  set {
+    name  = "loki.storage.bucketNames.ruler"
+    value = var.s3_bucket
+  }
+
+  set {
+    name  = "loki.storage.bucketNames.admin"
+    value = var.s3_bucket
+  }
+
+  set {
+    name  = "loki.storage.s3.endpoint"
+    value = var.s3_endpoint
+  }
+
+  set {
+    name  = "loki.storage.s3.region"
+    value = var.s3_region
+  }
+
+  set {
+    name  = "loki.storage.s3.accessKeyId"
+    value = var.s3_access_key
+  }
+
+  set {
+    name  = "loki.storage.s3.secretAccessKey"
+    value = var.s3_secret_key
+  }
+
+  set {
+    name  = "loki.limits_config.retention_period"
+    value = var.loki_retention_period
+  }
 }
 
 resource "helm_release" "promtail" {

@@ -3,7 +3,6 @@ ingressRoute:
     enabled: true
     entryPoints:
       - websecure
-    matchRule: Host(`traefik.int.${domain}`)
     middlewares:
       - name: middleware-auth
 
@@ -43,8 +42,3 @@ resources:
   limits:
     cpu: 2000m
     memory: 256Mi
-experimental:
-  plugins:
-    bouncer:
-      moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
-      version: v1.3.2

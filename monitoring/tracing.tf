@@ -13,15 +13,38 @@ resource "helm_release" "tempo" {
   namespace = kubernetes_namespace_v1.tracing.metadata[0].name
 
   values = [
-    templatefile("${path.module}/values/tempo-values.yaml", {
-      retention_period = var.tempo_retention_period
-      bucket           = var.s3_bucket
-      endpoint         = var.s3_endpoint
-      region           = var.s3_region
-      access_key       = var.s3_access_key
-      secret_key       = var.s3_secret_key
-    })
+    file("${path.module}/values/tempo-values.yaml")
   ]
+
+  set {
+    name  = "tempo.storage.trace.s3.bucket"
+    value = var.s3_bucket
+  }
+
+  set {
+    name  = "tempo.storage.trace.s3.endpoint"
+    value = var.s3_endpoint
+  }
+
+  set {
+    name  = "tempo.storage.trace.s3.region"
+    value = var.s3_region
+  }
+
+  set {
+    name  = "tempo.storage.trace.s3.access_key"
+    value = var.s3_access_key
+  }
+
+  set {
+    name  = "tempo.storage.trace.s3.secret_key"
+    value = var.s3_secret_key
+  }
+
+  set {
+    name  = "tempo.retention"
+    value = var.tempo_retention_period
+  }
 }
 
 resource "kubernetes_config_map_v1" "tempo_grafana_datasource" {

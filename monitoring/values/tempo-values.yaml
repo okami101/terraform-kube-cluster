@@ -1,15 +1,9 @@
 tempo:
-  retention: ${retention_period}
   storage:
     trace:
       backend: s3
       s3:
-        bucket: ${bucket}
         prefix: tempo
-        endpoint: ${endpoint}
-        region: ${region}
-        access_key: ${access_key}
-        secret_key: ${secret_key}
   metricsGenerator:
     enabled: true
     remoteWriteUrl: http://prometheus-operated.monitoring:9090/api/v1/write

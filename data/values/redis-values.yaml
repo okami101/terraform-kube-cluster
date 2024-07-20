@@ -1,5 +1,4 @@
 auth:
-  existingSecret: ${auth_secret}
   existingSecretPasswordKey: redis-password
 
 replica:

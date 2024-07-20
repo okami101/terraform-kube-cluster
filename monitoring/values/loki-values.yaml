@@ -17,20 +17,8 @@ loki:
   compactor:
     retention_enabled: true
     delete_request_store: s3
-  limits_config:
-    retention_period: ${retention_period}
   storage_config:
     object_prefix: loki
-  storage:
-    bucketNames:
-      chunks: ${bucket}
-      ruler: ${bucket}
-      admin: ${bucket}
-    s3:
-      endpoint: ${endpoint}
-      region: ${region}
-      accessKeyId: ${access_key}
-      secretAccessKey: ${secret_key}
   commonConfig:
     replication_factor: 1
   schemaConfig:

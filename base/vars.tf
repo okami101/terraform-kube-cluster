@@ -106,3 +106,7 @@ variable "linkerd_issuer_key" {
   type      = string
   sensitive = true
 }
+
+variable "crowdsec_bouncer_traefik_plugin_version" {
+  type = string
+}
