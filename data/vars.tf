@@ -28,6 +28,10 @@ variable "chart_pgadmin_version" {
   type = string
 }
 
+variable "app_pgadmin_version" {
+  type = string
+}
+
 variable "s3_endpoint" {
   type = string
 }
