@@ -13,11 +13,6 @@ resource "helm_release" "pgadmin" {
   namespace = kubernetes_namespace_v1.pgadmin.metadata[0].name
 
   set {
-    name  = "image.tag"
-    value = var.app_pgadmin_version
-  }
-
-  set {
     name  = "resources.requests.memory"
     value = "384Mi"
   }
