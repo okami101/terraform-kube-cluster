@@ -106,7 +106,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
     spec = {
       imageName   = "ghcr.io/cloudnative-pg/postgresql:16"
       description = "PostgreSQL Okami101"
-      instances   = 1
+      instances   = 2
 
       bootstrap = {
         initdb = {
@@ -172,7 +172,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
           }
         ]
         nodeSelector = {
-          "node-role.kubernetes.io/storage" = "false"
+          "node-role.kubernetes.io/storage" = "true"
         }
       }
 
