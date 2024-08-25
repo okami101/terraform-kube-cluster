@@ -109,7 +109,8 @@ resource "kubernetes_manifest" "cnpg_cluster" {
       instances   = 2
 
       bootstrap = {
-        initdb = {
+        recovery = {
+          source   = "clusterBackup"
           database = var.pgsql_user
           owner    = var.pgsql_user
           secret = {
