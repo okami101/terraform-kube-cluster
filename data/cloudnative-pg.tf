@@ -2,7 +2,6 @@ locals {
   barman_object_store = {
     endpointURL     = "https://${var.s3_endpoint}"
     destinationPath = "s3://${var.s3_bucket}"
-    serverName      = "pgbackup"
     data = {
       compression = "bzip2"
     }
@@ -182,15 +181,19 @@ resource "kubernetes_manifest" "cnpg_cluster" {
       }
 
       backup = {
-        target            = "prefer-standby"
-        retentionPolicy   = "30d"
-        barmanObjectStore = local.barman_object_store
+        target          = "prefer-standby"
+        retentionPolicy = "30d"
+        barmanObjectStore = merge(local.barman_object_store, {
+          serverName = "pgrestored"
+        })
       }
 
       externalClusters = [
         {
-          name              = "clusterBackup"
-          barmanObjectStore = local.barman_object_store
+          name = "clusterBackup"
+          barmanObjectStore = merge(local.barman_object_store, {
+            serverName = "pgbackup"
+          })
         }
       ]
     }
