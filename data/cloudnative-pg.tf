@@ -184,7 +184,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         target          = "prefer-standby"
         retentionPolicy = "30d"
         barmanObjectStore = merge(local.barman_object_store, {
-          serverName = "pgrestored"
+          serverName = "pgactive"
         })
       }
 
