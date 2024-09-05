@@ -149,7 +149,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
 
       storage = {
         size         = "8Gi"
-        storageClass = "longhorn-fast"
+        storageClass = "local-path"
       }
 
       resources = {

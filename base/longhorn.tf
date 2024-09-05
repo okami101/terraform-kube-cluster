@@ -87,26 +87,6 @@ resource "kubernetes_manifest" "longhorn_service_monitor" {
   }
 }
 
-resource "kubernetes_storage_class_v1" "longhorn_fast" {
-  metadata {
-    name = "longhorn-fast"
-  }
-
-  storage_provisioner    = "driver.longhorn.io"
-  allow_volume_expansion = true
-  reclaim_policy         = "Delete"
-  volume_binding_mode    = "Immediate"
-
-  parameters = {
-    numberOfReplicas    = "1"
-    staleReplicaTimeout = "30"
-    fromBackup          = ""
-    fsType              = "ext4"
-    diskSelector        = "fast"
-    dataLocality        = "strict-local"
-  }
-}
-
 locals {
   job_backups = {
     daily = {
