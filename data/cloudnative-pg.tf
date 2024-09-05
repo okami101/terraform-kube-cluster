@@ -184,7 +184,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         target          = "prefer-standby"
         retentionPolicy = "30d"
         barmanObjectStore = merge(local.barman_object_store, {
-          serverName = "pgactive"
+          serverName = var.cnpg_backup
         })
       }
 
@@ -192,7 +192,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
         {
           name = "clusterBackup"
           barmanObjectStore = merge(local.barman_object_store, {
-            serverName = "pgbackup"
+            serverName = var.cnpg_recovery
           })
         }
       ]

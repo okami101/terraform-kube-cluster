@@ -65,3 +65,10 @@ variable "pgadmin_password" {
   default = null
 }
 
+variable "cnpg_backup" {
+  type = string
+}
+
+variable "cnpg_recovery" {
+  type = string
+}
