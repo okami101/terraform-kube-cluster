@@ -2,8 +2,10 @@ prometheus:
   prometheusSpec:
     retention: 7d
     retentionSize: 8GB
-    serviceMonitorSelectorNilUsesHelmValues: false
-    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector:
+      matchLabels: null
+    podMonitorSelector:
+      matchLabels: null
     enableRemoteWriteReceiver: true
     storageSpec:
       volumeClaimTemplate:
