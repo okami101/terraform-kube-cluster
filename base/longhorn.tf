@@ -86,3 +86,44 @@ resource "kubernetes_manifest" "longhorn_service_monitor" {
     }
   }
 }
+
+locals {
+  job_backups = {
+    daily = {
+      cron   = "0 0 * * *"
+      retain = 7
+    },
+    weekly = {
+      cron   = "0 3 * * 1"
+      retain = 4
+    }
+    monthly = {
+      cron   = "0 6 1 * *"
+      retain = 3
+    }
+  }
+}
+
+resource "kubernetes_manifest" "longhorn_jobs" {
+  for_each = local.job_backups
+  manifest = {
+    apiVersion = "longhorn.io/v1beta2"
+    kind       = "RecurringJob"
+    metadata = {
+      name      = each.key
+      namespace = kubernetes_namespace_v1.longhorn.metadata[0].name
+    }
+    spec = {
+      concurrency = 1
+      cron        = each.value.cron
+      groups      = ["backup"]
+      name        = each.key
+      retain      = each.value.retain
+      task        = "backup"
+    }
+  }
+
+  depends_on = [
+    helm_release.longhorn
+  ]
+}
