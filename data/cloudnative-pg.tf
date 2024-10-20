@@ -169,7 +169,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
           {
             key      = "node-role.kubernetes.io/storage"
             operator = "Exists"
-            effect   = "NoSchedule"
+            effect   = "NoExecute"
           }
         ]
         nodeSelector = {
