@@ -7,9 +7,9 @@ defaultSettings:
   backupTargetCredentialSecret: longhorn-backup-credential
   backupTarget: ${backup_target}
   nodeDrainPolicy: always-allow
-  taintToleration: node-role.kubernetes.io/storage:NoSchedule
+  taintToleration: node-role.kubernetes.io/storage:NoExecute
 
 longhornManager:
   tolerations:
     - key: node-role.kubernetes.io/storage
-      effect: NoSchedule
+      effect: NoExecute
