@@ -144,6 +144,7 @@ resource "kubernetes_manifest" "cnpg_cluster" {
           wal_log_hints              = "on"
           wal_receiver_timeout       = "5s"
           wal_sender_timeout         = "5s"
+          full_page_writes           = "on"
         }
       }
 
