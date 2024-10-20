@@ -92,21 +92,6 @@ variable "crowdsec_whitelists_config" {
   type = string
 }
 
-variable "linkerd_ca" {
-  type      = string
-  sensitive = true
-}
-
-variable "linkerd_issuer" {
-  type      = string
-  sensitive = true
-}
-
-variable "linkerd_issuer_key" {
-  type      = string
-  sensitive = true
-}
-
 variable "crowdsec_bouncer_traefik_plugin_version" {
   type = string
 }
