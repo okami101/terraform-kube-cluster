@@ -19,8 +19,8 @@ ports:
     protocol: TCP
     tls:
       enabled: true
-    middlewares:
-      - crowdsec-middleware-bouncer@kubernetescrd
+    # middlewares:
+    #   - crowdsec-middleware-bouncer@kubernetescrd
 
 logs:
   access:
