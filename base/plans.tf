@@ -20,7 +20,7 @@ resource "kubernetes_manifest" "server_plan" {
       tolerations = [
         {
           operator = "Exists"
-          effect   = "NoSchedule"
+          effect   = "NoExecute"
         }
       ]
       serviceAccountName = "system-upgrade"
@@ -54,7 +54,7 @@ resource "kubernetes_manifest" "agent_plan" {
       tolerations = [
         {
           operator = "Exists"
-          effect   = "NoSchedule"
+          effect   = "NoExecute"
         }
       ]
       prepare = {
