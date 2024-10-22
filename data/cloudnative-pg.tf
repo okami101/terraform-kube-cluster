@@ -94,16 +94,16 @@ resource "kubernetes_secret_v1" "cluster_s3" {
   }
 }
 
-resource "kubernetes_manifest" "cnpg_cluster" {
+resource "kubernetes_manifest" "cnpg_cluster_pg17" {
   manifest = {
     apiVersion = "postgresql.cnpg.io/v1"
     kind       = "Cluster"
     metadata = {
-      name      = "cluster"
+      name      = "cluster-pg17"
       namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
     }
     spec = {
-      imageName   = "ghcr.io/cloudnative-pg/postgresql:16"
+      imageName   = "ghcr.io/cloudnative-pg/postgresql:17"
       description = "PostgreSQL Okami101"
       instances   = 2
 
@@ -206,135 +206,12 @@ resource "kubernetes_manifest" "cnpg_cluster" {
   ]
 }
 
-resource "kubernetes_manifest" "cnpg_cluster_pg17" {
-  manifest = {
-    apiVersion = "postgresql.cnpg.io/v1"
-    kind       = "Cluster"
-    metadata = {
-      name      = "cluster-pg17"
-      namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
-    }
-    spec = {
-      imageName   = "ghcr.io/cloudnative-pg/postgresql:17"
-      description = "PostgreSQL Okami101"
-      instances   = 1
-
-      bootstrap = {
-        initdb = {
-          postInitSQL = [
-            "CREATE ROLE cnpg_pooler_pgbouncer WITH LOGIN;"
-          ]
-          import = {
-            type      = "monolith"
-            databases = ["*"]
-            roles     = ["*"]
-            source = {
-              externalCluster = "cluster-pg16"
-            }
-          }
-        }
-      }
-
-      enableSuperuserAccess = true
-      postgresql = {
-        parameters = {
-          archive_mode               = "on"
-          archive_timeout            = "5min"
-          dynamic_shared_memory_type = "posix"
-          log_destination            = "csvlog"
-          log_directory              = "/controller/log"
-          log_filename               = "postgres"
-          log_rotation_age           = "0"
-          log_rotation_size          = "0"
-          log_truncate_on_rotation   = "false"
-          logging_collector          = "on"
-          max_connections            = "200"
-          max_parallel_workers       = "32"
-          max_replication_slots      = "32"
-          max_worker_processes       = "32"
-          shared_memory_type         = "mmap"
-          shared_preload_libraries   = ""
-          ssl_max_protocol_version   = "TLSv1.3"
-          ssl_min_protocol_version   = "TLSv1.3"
-          wal_keep_size              = "512MB"
-          wal_level                  = "logical"
-          wal_log_hints              = "on"
-          wal_receiver_timeout       = "5s"
-          wal_sender_timeout         = "5s"
-          full_page_writes           = "on"
-        }
-      }
-
-      storage = {
-        size         = "8Gi"
-        storageClass = "local-path"
-      }
-
-      resources = {
-        requests = {
-          memory = "2Gi"
-          cpu    = "500m"
-        }
-        limits = {
-          memory = "2Gi"
-          cpu    = "2"
-        }
-      }
-
-      affinity = {
-        tolerations = [
-          {
-            key      = "node-role.kubernetes.io/master"
-            operator = "Exists"
-            effect   = "NoSchedule"
-          }
-        ]
-        nodeSelector = {
-          "node-role.kubernetes.io/master" = "true"
-        }
-      }
-
-      monitoring = {
-        enablePodMonitor = true
-      }
-
-      backup = {
-        target          = "prefer-standby"
-        retentionPolicy = "30d"
-        barmanObjectStore = merge(local.barman_object_store, {
-          serverName = "cluster-pg17-backup"
-        })
-      }
-
-      externalClusters = [
-        {
-          name = "cluster-pg16"
-          connectionParameters = {
-            host   = "cluster-rw.cnpg"
-            user   = "postgres"
-            dbname = "postgres"
-          }
-          password = {
-            name = "cluster-superuser"
-            key  = "password"
-          }
-        }
-      ]
-    }
-  }
-
-  depends_on = [
-    helm_release.cnpg,
-    kubernetes_secret_v1.cluster_auth
-  ]
-}
-
-resource "kubernetes_manifest" "cnpg_scheduled_backup" {
+resource "kubernetes_manifest" "cnpg_scheduled_backup_pg17" {
   manifest = {
     apiVersion = "postgresql.cnpg.io/v1"
     kind       = "ScheduledBackup"
     metadata = {
-      name      = "backup-cluster"
+      name      = "backup-cluster-pg17"
       namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
     }
     spec = {
@@ -348,17 +225,17 @@ resource "kubernetes_manifest" "cnpg_scheduled_backup" {
   }
 }
 
-resource "kubernetes_manifest" "cnpg_pooler" {
+resource "kubernetes_manifest" "cnpg_pooler_pg17" {
   manifest = {
     apiVersion = "postgresql.cnpg.io/v1"
     kind       = "Pooler"
     metadata = {
-      name      = "pooler-cluster-rw"
+      name      = "pooler-cluster-pg17-rw"
       namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
     }
     spec = {
       cluster = {
-        name = kubernetes_manifest.cnpg_cluster.manifest.metadata.name
+        name = kubernetes_manifest.cnpg_cluster_pg17.manifest.metadata.name
       }
       instances = 2
       type      = "rw"
