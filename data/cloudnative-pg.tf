@@ -221,6 +221,9 @@ resource "kubernetes_manifest" "cnpg_cluster_pg17" {
 
       bootstrap = {
         initdb = {
+          postInitSQL = [
+            "CREATE ROLE cnpg_pooler_pgbouncer WITH LOGIN;"
+          ]
           import = {
             type      = "monolith"
             databases = ["*"]
