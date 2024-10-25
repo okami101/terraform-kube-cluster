@@ -19,10 +19,8 @@ ports:
     exposedPort: 22
     protocol: TCP
   private:
-    asDefault: true
     port: 9443
     exposedPort: 443
-    protocol: TCP
     tls:
       enabled: true
     middlewares:
