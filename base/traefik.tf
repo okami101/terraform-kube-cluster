@@ -22,6 +22,16 @@ resource "helm_release" "traefik" {
   }
 
   set_list {
+    name  = "ports.web.forwardedHeaders.trustedIPs"
+    value = var.trusted_ips
+  }
+
+  set_list {
+    name  = "ports.web.proxyProtocol.trustedIPs"
+    value = var.trusted_ips
+  }
+
+  set_list {
     name  = "ports.websecure.forwardedHeaders.trustedIPs"
     value = var.trusted_ips
   }
