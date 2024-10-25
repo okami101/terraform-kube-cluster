@@ -7,20 +7,16 @@ ingressRoute:
       - name: middleware-auth
 
 ports:
+  web:
+    exposedPort: 8000
   websecure:
-    middlewares:
-      - traefik-middleware-internal-ip@kubernetescrd
-  tunnel:
     asDefault: true
-    port: 9443
-    expose:
-      default: true
     exposedPort: 8443
-    protocol: TCP
-    tls:
-      enabled: true
     middlewares:
       - crowdsec-middleware-bouncer@kubernetescrd
+  private:
+    middlewares:
+      - traefik-middleware-internal-ip@kubernetescrd
 
 logs:
   access:

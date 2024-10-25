@@ -56,7 +56,7 @@ resource "kubernetes_manifest" "prometheus_ingress" {
       namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
     }
     spec = {
-      entryPoints = ["websecure"]
+      entryPoints = ["private"]
       routes = [
         {
           match = "Host(`prom.int.${var.domain}`)"
@@ -88,7 +88,7 @@ resource "kubernetes_manifest" "alertmanager_ingress" {
       namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
     }
     spec = {
-      entryPoints = ["websecure"]
+      entryPoints = ["private"]
       routes = [
         {
           match = "Host(`am.int.${var.domain}`)"
