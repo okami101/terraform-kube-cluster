@@ -21,8 +21,6 @@ ports:
   private:
     asDefault: true
     port: 9443
-    expose:
-      default: true
     exposedPort: 443
     protocol: TCP
     tls:
