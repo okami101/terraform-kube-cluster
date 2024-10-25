@@ -15,7 +15,7 @@ ports:
     middlewares:
       - crowdsec-middleware-bouncer@kubernetescrd
   ssh:
-    port: 22
+    port: 2222
     exposedPort: 22
     protocol: TCP
   private:
