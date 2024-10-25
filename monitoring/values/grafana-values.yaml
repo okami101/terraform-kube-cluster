@@ -124,12 +124,6 @@ dashboards:
     longhorn:
       gnetId: 16888
       revision: 9
-    cloudflared:
-      gnetId: 17457
-      revision: 6
-      datasource:
-        - name: DS_PROMETHEUS
-          value: prometheus
     redis:
       gnetId: 763
       revision: 6

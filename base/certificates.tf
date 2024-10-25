@@ -2,17 +2,6 @@ locals {
   certificate_secret_name = "tls-cert"
 }
 
-resource "kubernetes_secret_v1" "cloudflare_api_token" {
-  metadata {
-    name      = "cloudflare-api-token-secret"
-    namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name
-  }
-
-  data = {
-    "api-token" = var.cloudflare_api_token
-  }
-}
-
 resource "kubernetes_manifest" "letsencrypt_production_issuer" {
   manifest = {
     apiVersion = "cert-manager.io/v1"
@@ -30,11 +19,9 @@ resource "kubernetes_manifest" "letsencrypt_production_issuer" {
         solvers = [
           {
             dns01 = {
-              cloudflare = {
-                apiTokenSecretRef = {
-                  name = "cloudflare-api-token-secret"
-                  key  = "api-token"
-                }
+              webhook = {
+                groupName  = "acme.scaleway.com"
+                solverName = "scaleway"
               }
             }
           }

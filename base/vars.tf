@@ -6,16 +6,6 @@ variable "domain" {
   type = string
 }
 
-variable "cloudflare_api_token" {
-  type      = string
-  sensitive = true
-}
-
-variable "cloudflared_managed_token" {
-  type      = string
-  sensitive = true
-}
-
 variable "acme_email" {
   type = string
 }
@@ -51,6 +41,20 @@ variable "chart_crowdsec_version" {
 
 variable "chart_cert_manager_version" {
   type = string
+}
+
+variable "chart_cert_manager_webhook_scaleway_version" {
+  type = string
+}
+
+variable "scaleway_dns_access_key" {
+  type      = string
+  sensitive = true
+}
+
+variable "scaleway_dns_secret_key" {
+  type      = string
+  sensitive = true
 }
 
 variable "s3_endpoint" {

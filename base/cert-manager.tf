@@ -16,3 +16,22 @@ resource "helm_release" "cert_manager" {
     file("${path.module}/values/cert-manager-values.yaml")
   ]
 }
+
+resource "helm_release" "cert_manager_webhook_scaleway" {
+  chart      = "scaleway-certmanager-webhook"
+  version    = var.chart_cert_manager_webhook_scaleway_version
+  repository = "https://helm.scw.cloud"
+
+  name      = "cert-manager-webhook-scaleway"
+  namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name
+
+  set {
+    name  = "secret.accessKey"
+    value = var.scaleway_dns_access_key
+  }
+
+  set {
+    name  = "secret.accessKey"
+    value = var.scaleway_dns_secret_key
+  }
+}
