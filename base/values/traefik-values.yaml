@@ -17,6 +17,8 @@ ports:
   ssh:
     port: 2222
     exposedPort: 22
+    expose:
+      default: true
   private:
     port: 9443
     expose:
