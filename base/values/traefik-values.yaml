@@ -14,7 +14,19 @@ ports:
     exposedPort: 8443
     middlewares:
       - crowdsec-middleware-bouncer@kubernetescrd
+  ssh:
+    port: 22
+    exposedPort: 22
+    protocol: TCP
   private:
+    asDefault: true
+    port: 9443
+    expose:
+      default: true
+    exposedPort: 8443
+    protocol: TCP
+    tls:
+      enabled: true
     middlewares:
       - traefik-middleware-internal-ip@kubernetescrd
 
