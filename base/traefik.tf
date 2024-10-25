@@ -51,6 +51,16 @@ resource "helm_release" "traefik" {
     value = var.trusted_ips
   }
 
+  set_list {
+    name  = "ports.private.forwardedHeaders.trustedIPs"
+    value = var.trusted_ips
+  }
+
+  set_list {
+    name  = "ports.private.proxyProtocol.trustedIPs"
+    value = var.trusted_ips
+  }
+
   set {
     name  = "tlsStore.default.defaultCertificate.secretName"
     value = local.certificate_secret_name
