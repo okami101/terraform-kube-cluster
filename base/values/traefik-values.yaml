@@ -10,7 +10,8 @@ ports:
   web:
     exposedPort: 8000
     redirectTo:
-      port: websecure
+      port: :443
+    targetPort: 8000
   websecure:
     asDefault: true
     exposedPort: 8443
