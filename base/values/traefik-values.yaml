@@ -2,7 +2,7 @@ ingressRoute:
   dashboard:
     enabled: true
     entryPoints:
-      - websecure
+      - private
     middlewares:
       - name: middleware-auth
 
