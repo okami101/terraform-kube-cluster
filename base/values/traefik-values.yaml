@@ -9,6 +9,7 @@ ingressRoute:
 ports:
   web:
     exposedPort: 8000
+    redirectTo: websecure
   websecure:
     asDefault: true
     exposedPort: 8443
