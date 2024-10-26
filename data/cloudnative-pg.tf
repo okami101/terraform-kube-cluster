@@ -176,6 +176,10 @@ resource "kubernetes_manifest" "cnpg_cluster_pg17" {
     helm_release.cnpg,
     kubernetes_secret_v1.cluster_auth
   ]
+
+  field_manager {
+    force_conflicts = true
+  }
 }
 
 resource "kubernetes_manifest" "cnpg_scheduled_backup_pg17" {
