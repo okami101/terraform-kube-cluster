@@ -5,6 +5,8 @@ config:
 tolerations:
   - effect: NoExecute
     operator: Exists
+  - effect: NoSchedule
+    operator: Exists
 
 resources:
   requests:

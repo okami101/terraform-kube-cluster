@@ -21,6 +21,10 @@ resource "kubernetes_manifest" "server_plan" {
         {
           operator = "Exists"
           effect   = "NoExecute"
+        },
+        {
+          operator = "Exists"
+          effect   = "NoSchedule"
         }
       ]
       serviceAccountName = "system-upgrade"
@@ -55,6 +59,10 @@ resource "kubernetes_manifest" "agent_plan" {
         {
           operator = "Exists"
           effect   = "NoExecute"
+        },
+        {
+          operator = "Exists"
+          effect   = "NoSchedule"
         }
       ]
       prepare = {
