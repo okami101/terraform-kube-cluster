@@ -34,10 +34,6 @@ resource "kubernetes_manifest" "server_plan" {
       version = var.k3s_version
     }
   }
-
-  field_manager {
-    force_conflicts = true
-  }
 }
 
 resource "kubernetes_manifest" "agent_plan" {
