@@ -26,6 +26,8 @@ agent:
       program: traefik
 
   env:
+    - name: PARSERS
+      value: crowdsecurity/whitelists
     - name: COLLECTIONS
       value: crowdsecurity/traefik
 
