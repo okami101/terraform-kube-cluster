@@ -27,7 +27,7 @@ resource "helm_release" "crowdsec" {
   }
 
   set {
-    name  = "config.parsers.s02-enrich.whitelists\\.yaml"
+    name  = "config.parsers.s02-enrich.01-my-whitelist\\.yaml"
     value = var.crowdsec_whitelists_config
   }
 }
