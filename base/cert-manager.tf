@@ -31,7 +31,7 @@ resource "helm_release" "cert_manager_webhook_scaleway" {
   }
 
   set {
-    name  = "secret.accessKey"
+    name  = "secret.secretKey"
     value = var.scaleway_dns_secret_key
   }
 }
