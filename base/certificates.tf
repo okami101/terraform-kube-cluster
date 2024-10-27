@@ -7,19 +7,18 @@ resource "kubernetes_manifest" "letsencrypt_production_issuer" {
     apiVersion = "cert-manager.io/v1"
     kind       = "ClusterIssuer"
     metadata = {
-      name = "letsencrypt-staging"
+      name = "letsencrypt-production"
     }
     spec = {
       acme = {
         email = var.acme_email
         privateKeySecretRef = {
-          name = "letsencrypt-staging"
+          name = "letsencrypt-production"
         }
-        server = "https://acme-staging-v02.api.letsencrypt.org/directory"
+        server = "https://acme-v02.api.letsencrypt.org/directory"
         solvers = [
           {
             dns01 = {
-              cnameStrategy = "Follow"
               webhook = {
                 groupName  = "acme.scaleway.com"
                 solverName = "scaleway"
