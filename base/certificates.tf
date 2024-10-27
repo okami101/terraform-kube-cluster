@@ -19,6 +19,7 @@ resource "kubernetes_manifest" "letsencrypt_production_issuer" {
         solvers = [
           {
             dns01 = {
+              cnameStrategy = "Follow"
               webhook = {
                 groupName  = "acme.scaleway.com"
                 solverName = "scaleway"
