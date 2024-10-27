@@ -7,15 +7,15 @@ resource "kubernetes_manifest" "letsencrypt_production_issuer" {
     apiVersion = "cert-manager.io/v1"
     kind       = "ClusterIssuer"
     metadata = {
-      name = "letsencrypt-production"
+      name = "letsencrypt-staging"
     }
     spec = {
       acme = {
         email = var.acme_email
         privateKeySecretRef = {
-          name = "letsencrypt-production"
+          name = "letsencrypt-staging"
         }
-        server = "https://acme-v02.api.letsencrypt.org/directory"
+        server = "https://acme-staging-v02.api.letsencrypt.org/directory"
         solvers = [
           {
             dns01 = {
