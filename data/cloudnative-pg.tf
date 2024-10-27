@@ -45,6 +45,11 @@ resource "helm_release" "cnpg" {
   }
 
   set {
+    name  = "crds.create"
+    value = "false"
+  }
+
+  set {
     name  = "monitoring.grafanaDashboard.create"
     value = "true"
   }
