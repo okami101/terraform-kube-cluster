@@ -45,5 +45,5 @@ kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-oper
 kubectl apply --server-side -k https://github.com/traefik/traefik-helm-chart/traefik/crds/
 
 # cnpg CRDs
-kubectl apply -k https://github.com/cloudnative-pg/cloudnative-pg/config/crd/ --server-side
+kubectl apply --server-side -k https://github.com/cloudnative-pg/cloudnative-pg/config/crd/
 ```
