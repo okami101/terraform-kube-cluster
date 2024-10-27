@@ -48,5 +48,5 @@ kubectl apply --server-side -k https://github.com/traefik/traefik-helm-chart/tra
 kubectl apply --server-side -k https://github.com/cloudnative-pg/cloudnative-pg/config/crd/
 
 # sealed CRDs
-https://raw.githubusercontent.com/bitnami-labs/sealed-secrets/refs/heads/main/helm/sealed-secrets/crds/bitnami.com_sealedsecrets.yaml
+kubectl apply -f https://raw.githubusercontent.com/bitnami-labs/sealed-secrets/refs/heads/main/helm/sealed-secrets/crds/bitnami.com_sealedsecrets.yaml
 ```
