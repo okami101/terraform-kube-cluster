@@ -41,6 +41,9 @@ kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-oper
 kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.77.1/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
 kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.77.1/example/prometheus-operator-crd/monitoring.coreos.com_thanosrulers.yaml
 
+# traefik CRDs
+kubectl apply --server-side -k https://github.com/traefik/traefik-helm-chart/traefik/crds/
+
 # cnpg CRDs
-kubectl apply -k https://github.com/cloudnative-pg/cloudnative-pg/config/crd?ref=v1.24.1 --server-side
+kubectl apply -k https://github.com/cloudnative-pg/cloudnative-pg/config/crd/ --server-side
 ```
