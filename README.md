@@ -41,12 +41,5 @@ kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-oper
 kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.74.0/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
 kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.74.0/example/prometheus-operator-crd/monitoring.coreos.com_thanosrulers.yaml
 
-kubectl apply -f https://raw.githubusercontent.com/bitnami-labs/sealed-secrets/main/helm/sealed-secrets/crds/bitnami.com_sealedsecrets.yaml
-```
-
-Generate mTLS for linkerd.
-
-```sh
-step certificate create root.linkerd.cluster.local ca.crt ca.key --profile root-ca --no-password --insecure
-step certificate create identity.linkerd.cluster.local issuer.crt issuer.key --profile intermediate-ca --not-after 8760h --no-password --insecure --ca ca.crt --ca-key ca.key
+kubectl apply -k https://github.com/cloudnative-pg/cloudnative-pg/config/crd?ref=v1.24.1 --server-side
 ```
