@@ -23,6 +23,10 @@ variable "internal_ip_whitelist" {
   type = list(string)
 }
 
+variable "chart_hccm_version" {
+  type = string
+}
+
 variable "chart_longhorn_version" {
   type = string
 }
@@ -45,6 +49,11 @@ variable "chart_cert_manager_version" {
 
 variable "chart_cert_manager_webhook_scaleway_version" {
   type = string
+}
+
+variable "hcloud_token" {
+  type      = string
+  sensitive = true
 }
 
 variable "scaleway_dns_access_key" {
