@@ -18,7 +18,7 @@ resource "helm_release" "hccm" {
   namespace = "kube-system"
 
   set {
-    name  = "env.HCLOUD_LOAD_BALANCERS_LOCATION"
+    name  = "env.HCLOUD_LOAD_BALANCERS_LOCATION.value"
     value = var.hcloud_lb_location
   }
 }
