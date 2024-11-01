@@ -51,15 +51,6 @@ variable "chart_cert_manager_webhook_scaleway_version" {
   type = string
 }
 
-variable "hcloud_token" {
-  type      = string
-  sensitive = true
-}
-
-variable "hcloud_lb_location" {
-  type = string
-}
-
 variable "scaleway_dns_access_key" {
   type      = string
   sensitive = true
