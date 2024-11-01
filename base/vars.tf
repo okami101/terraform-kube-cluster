@@ -56,6 +56,10 @@ variable "hcloud_token" {
   sensitive = true
 }
 
+variable "hcloud_lb_location" {
+  type = string
+}
+
 variable "scaleway_dns_access_key" {
   type      = string
   sensitive = true
