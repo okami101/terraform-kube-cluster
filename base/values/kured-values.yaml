@@ -4,8 +4,10 @@ configuration:
   drainTimeout: 1m
 
 tolerations:
-  - operator: "Exists"
-    effect: "NoExecute"
+  - operator: Exists
+    effect: NoExecute
+  - operator: Exists
+    effect: NoSchedule
 
 metrics:
   create: true
