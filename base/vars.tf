@@ -23,10 +23,6 @@ variable "internal_ip_whitelist" {
   type = list(string)
 }
 
-variable "chart_hccm_version" {
-  type = string
-}
-
 variable "chart_longhorn_version" {
   type = string
 }
