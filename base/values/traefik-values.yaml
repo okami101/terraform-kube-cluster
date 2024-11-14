@@ -20,7 +20,7 @@ ports:
     expose:
       default: true
   private:
-    port: 9443
+    port: 443
     expose:
       default: false
       internal: true
