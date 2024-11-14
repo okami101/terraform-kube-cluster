@@ -21,7 +21,6 @@ ports:
       default: true
   private:
     port: 8443
-    exposedPort: 8443
     tls:
       enabled: true
     middlewares:
@@ -55,3 +54,6 @@ service:
       spec:
         ports:
           - name: private
+            port: 443
+            targetPort: 8443
+            protocol: TCP
