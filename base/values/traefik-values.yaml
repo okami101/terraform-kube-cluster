@@ -21,7 +21,6 @@ ports:
       default: true
   private:
     port: 8443
-    exposedPort: 443
     tls:
       enabled: true
     middlewares:
@@ -49,14 +48,12 @@ resources:
     memory: 256Mi
 
 service:
-  additionalServices: {}
-  ## -- An additional and optional internal Service.
-  ## Same parameters as external Service
-  # internal:
-  #   type: ClusterIP
-  #   # labels: {}
-  #   # annotations: {}
-  #   # spec: {}
-  #   # loadBalancerSourceRanges: []
-  #   # externalIPs: []
-  #   # ipFamilies: [ "IPv4","IPv6" ]
+  additionalServices:
+    internal:
+      type: ClusterIP
+      spec:
+        ports:
+          - name: private
+            port: 443
+            targetPort: private
+            protocol: TCP
