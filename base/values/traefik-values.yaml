@@ -21,6 +21,9 @@ ports:
       default: true
   private:
     port: 8443
+    expose:
+      default: false
+      internal: true
     tls:
       enabled: true
     middlewares:
@@ -51,9 +54,5 @@ service:
   additionalServices:
     internal:
       type: ClusterIP
-      spec:
-        ports:
-          - name: private
-            port: 443
-            targetPort: 8443
-            protocol: TCP
+      labels:
+        traefik-service-label: internal
