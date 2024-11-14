@@ -3,8 +3,6 @@ ingressRoute:
     enabled: true
     entryPoints:
       - private
-    middlewares:
-      - name: middleware-auth
 
 ports:
   web:

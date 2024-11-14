@@ -10,11 +10,6 @@ variable "acme_email" {
   type = string
 }
 
-variable "http_basic_auth" {
-  type      = string
-  sensitive = true
-}
-
 variable "trusted_ips" {
   type = list(string)
 }

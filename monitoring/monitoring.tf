@@ -61,12 +61,6 @@ resource "kubernetes_manifest" "prometheus_ingress" {
         {
           match = "Host(`prom.int.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [
-            {
-              namespace = "traefik"
-              name      = "middleware-auth"
-            }
-          ]
           services = [
             {
               name = "prometheus-operated"
@@ -93,12 +87,6 @@ resource "kubernetes_manifest" "alertmanager_ingress" {
         {
           match = "Host(`am.int.${var.domain}`)"
           kind  = "Rule"
-          middlewares = [
-            {
-              namespace = "traefik"
-              name      = "middleware-auth"
-            }
-          ]
           services = [
             {
               name = "alertmanager-operated"

@@ -76,30 +76,3 @@ resource "helm_release" "traefik" {
     value = var.crowdsec_bouncer_traefik_plugin_version
   }
 }
-
-resource "kubernetes_secret_v1" "traefik_auth_secret" {
-  metadata {
-    name      = "auth-secret"
-    namespace = kubernetes_namespace_v1.traefik.metadata[0].name
-  }
-
-  data = {
-    "users" = var.http_basic_auth
-  }
-}
-
-resource "kubernetes_manifest" "traefik_middleware_auth" {
-  manifest = {
-    apiVersion = "traefik.io/v1alpha1"
-    kind       = "Middleware"
-    metadata = {
-      name      = "middleware-auth"
-      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
-    }
-    spec = {
-      basicAuth = {
-        secret = kubernetes_secret_v1.traefik_auth_secret.metadata[0].name
-      }
-    }
-  }
-}
