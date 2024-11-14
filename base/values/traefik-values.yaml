@@ -27,8 +27,6 @@ ports:
       internal: true
     tls:
       enabled: true
-    middlewares:
-      - traefik-middleware-internal-ip@kubernetescrd
 
 logs:
   access:

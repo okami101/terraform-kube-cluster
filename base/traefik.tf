@@ -103,19 +103,3 @@ resource "kubernetes_manifest" "traefik_middleware_auth" {
     }
   }
 }
-
-resource "kubernetes_manifest" "traefik_middleware_internal_ip" {
-  manifest = {
-    apiVersion = "traefik.io/v1alpha1"
-    kind       = "Middleware"
-    metadata = {
-      name      = "middleware-internal-ip"
-      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
-    }
-    spec = {
-      ipAllowList = {
-        sourceRange = var.internal_ip_whitelist
-      }
-    }
-  }
-}
