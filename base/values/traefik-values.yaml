@@ -21,6 +21,7 @@ ports:
       default: true
   private:
     port: 8443
+    exposedPort: 8443
     expose:
       default: false
       internal: true
