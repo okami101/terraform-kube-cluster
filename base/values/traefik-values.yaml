@@ -52,4 +52,5 @@ resources:
 
 service:
   additionalServices:
-    internal: {}
+    internal:
+      type: ClusterIP
