@@ -52,7 +52,4 @@ resources:
 
 service:
   additionalServices:
-    internal:
-      type: ClusterIP
-      labels:
-        traefik-service-label: internal
+    internal: {}
