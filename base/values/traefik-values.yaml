@@ -21,7 +21,7 @@ ports:
       default: true
   private:
     port: 9443
-    exposePort: 443
+    exposedPort: 443
     expose:
       default: false
       internal: true
