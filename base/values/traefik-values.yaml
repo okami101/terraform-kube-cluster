@@ -23,6 +23,7 @@ ports:
     port: 9443
     expose:
       default: false
+      internal: true
     tls:
       enabled: true
     middlewares:
@@ -51,5 +52,5 @@ resources:
 
 service:
   additionalServices:
-    private:
+    internal:
       type: ClusterIP
