@@ -1,4 +1,4 @@
-resource "helm_release" "kured" {
+resource "helm_release" "hccm" {
   chart      = "hcloud-cloud-controller-manager"
   version    = var.chart_hccm_version
   repository = "https://charts.hetzner.cloud"

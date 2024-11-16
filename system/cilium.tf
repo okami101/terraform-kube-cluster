@@ -1,4 +1,4 @@
-resource "helm_release" "kured" {
+resource "helm_release" "cilium" {
   chart      = "cilium"
   version    = var.chart_cilium_version
   repository = "https://helm.cilium.io"
