@@ -1,0 +1,92 @@
+operator:
+  rollOutPods: true
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+resources:
+  limits:
+    cpu: 1000m
+    memory: 384Mi
+  requests:
+    cpu: 100m
+    memory: 384Mi
+rollOutCiliumPods: true
+encryption:
+  enabled: true
+  type: wireguard
+kubeProxyReplacement: true
+kubeProxyReplacementHealthzBindAddr: "0.0.0.0:10256"
+k8sServiceHost: "127.0.0.1"
+k8sServicePort: 6444
+k8s:
+  requireIPv4PodCIDR: true
+ipam:
+  mode: kubernetes
+MTU: 1450
+endpointRoutes:
+  enabled: true
+loadBalancer:
+  acceleration: native
+bpf:
+  masquerade: true
+envoy:
+  rollOutPods: true
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+hubble:
+  relay:
+    enabled: true
+    rollOutPods: true
+    prometheus:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+  ui:
+    enabled: true
+    rollOutPods: true
+    backend:
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 64Mi
+        requests:
+          cpu: 100m
+          memory: 64Mi
+    frontend:
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 64Mi
+        requests:
+          cpu: 100m
+          memory: 64Mi
+  metrics:
+    enabled:
+      # - "dns:query;ignoreAAAA"
+      # - drop
+      # - tcp
+      # - flow
+      # - icmp
+      # - http
+      - policy:sourceContext=app|workload-name|pod|reserved-identity;destinationContext=app|workload-name|pod|dns|reserved-identity;labelsContext=source_namespace,destination_namespace
+    dashboards:
+      enabled: true
+routingMode: native
+ipv4NativeRoutingCIDR: ${network_cluster_cidr}
+installNoConntrackIptablesRules: true

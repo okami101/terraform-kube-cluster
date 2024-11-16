@@ -1,0 +1,14 @@
+env:
+  HCLOUD_LOAD_BALANCERS_LOCATION:
+    value: ${load_balancers_location}
+  HCLOUD_LOAD_BALANCERS_USE_PRIVATE_IP:
+    value: "true"
+  HCLOUD_LOAD_BALANCERS_DISABLE_PRIVATE_INGRESS:
+    value: "true"
+monitoring:
+  enabled: true
+  podMonitor:
+    enabled: true
+networking:
+  enabled: true
+  clusterCIDR: ${network_cluster_cidr}
