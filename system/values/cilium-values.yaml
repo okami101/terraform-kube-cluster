@@ -30,7 +30,7 @@ MTU: 1450
 endpointRoutes:
   enabled: true
 loadBalancer:
-  acceleration: native
+  acceleration: best-effort
 bpf:
   masquerade: true
 envoy:
@@ -90,3 +90,5 @@ hubble:
 routingMode: native
 ipv4NativeRoutingCIDR: ${network_cluster_cidr}
 installNoConntrackIptablesRules: true
+cni:
+  customConf: true
