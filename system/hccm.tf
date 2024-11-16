@@ -1,3 +1,14 @@
+resource "kubernetes_secret_v1" "hcloud" {
+  metadata {
+    name      = "hcloud"
+    namespace = "kube-system"
+  }
+  data = {
+    token   = var.hcloud_token
+    network = var.hcloud_network_name
+  }
+}
+
 resource "helm_release" "hccm" {
   chart      = "hcloud-cloud-controller-manager"
   version    = var.chart_hccm_version

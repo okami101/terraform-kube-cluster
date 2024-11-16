@@ -21,3 +21,12 @@ variable "network_cluster_cidr" {
 variable "load_balancers_location" {
   type = string
 }
+
+variable "hcloud_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "hcloud_network_name" {
+  type = string
+}
