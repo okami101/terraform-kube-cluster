@@ -34,4 +34,6 @@ resource "helm_release" "cert_manager_webhook_scaleway" {
     name  = "secret.secretKey"
     value = var.scaleway_dns_secret_key
   }
+
+  depends_on = [helm_release.cert_manager]
 }
