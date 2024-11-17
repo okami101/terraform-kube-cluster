@@ -32,29 +32,29 @@ resource "kubernetes_manifest" "letsencrypt_production_issuer" {
   depends_on = [helm_release.cert_manager_webhook_scaleway]
 }
 
-resource "kubernetes_manifest" "tls_certificate" {
-  manifest = {
-    apiVersion = "cert-manager.io/v1"
-    kind       = "Certificate"
-    metadata = {
-      name      = "default-certificate"
-      namespace = kubernetes_namespace_v1.traefik.metadata[0].name
-    }
-    spec = {
-      commonName = var.domain
-      dnsNames = [
-        var.domain,
-        "*.${var.domain}",
-        "*.${var.internal_domain}",
-      ]
-      issuerRef = {
-        kind = kubernetes_manifest.letsencrypt_production_issuer.manifest.kind
-        name = kubernetes_manifest.letsencrypt_production_issuer.manifest.metadata.name
-      }
-      secretName = local.certificate_secret_name
-      privateKey = {
-        rotationPolicy = "Always"
-      }
-    }
-  }
-}
+# resource "kubernetes_manifest" "tls_certificate" {
+#   manifest = {
+#     apiVersion = "cert-manager.io/v1"
+#     kind       = "Certificate"
+#     metadata = {
+#       name      = "default-certificate"
+#       namespace = kubernetes_namespace_v1.traefik.metadata[0].name
+#     }
+#     spec = {
+#       commonName = var.domain
+#       dnsNames = [
+#         var.domain,
+#         "*.${var.domain}",
+#         "*.${var.internal_domain}",
+#       ]
+#       issuerRef = {
+#         kind = kubernetes_manifest.letsencrypt_production_issuer.manifest.kind
+#         name = kubernetes_manifest.letsencrypt_production_issuer.manifest.metadata.name
+#       }
+#       secretName = local.certificate_secret_name
+#       privateKey = {
+#         rotationPolicy = "Always"
+#       }
+#     }
+#   }
+# }
