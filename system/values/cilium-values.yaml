@@ -3,6 +3,9 @@ operator:
   dashboards:
     enabled: true
     namespace: monitoring
+  prometheus:
+    serviceMonitor:
+      enabled: true
   resources:
     limits:
       cpu: 1000m
@@ -38,6 +41,9 @@ bpf:
   masquerade: true
 envoy:
   rollOutPods: true
+  prometheus:
+    serviceMonitor:
+      enabled: true
   resources:
     limits:
       cpu: 1000m
@@ -91,6 +97,8 @@ hubble:
     dashboards:
       enabled: true
       namespace: monitoring
+    serviceMonitor:
+      enabled: true
 routingMode: native
 ipv4NativeRoutingCIDR: ${network_cluster_cidr}
 installNoConntrackIptablesRules: true
@@ -99,3 +107,7 @@ cni:
 dashboards:
   enabled: true
   namespace: monitoring
+prometheus:
+  enabled: true
+  serviceMonitor:
+    enabled: true
