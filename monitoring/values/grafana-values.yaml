@@ -108,13 +108,13 @@ dashboards:
       gnetId: 15490
       revision: 2
       datasource: prometheus
-    multicluster:
-      gnetId: 15488
-      revision: 3
-      datasource: prometheus
-    certmanager:
-      gnetId: 20842
-      revision: 2
+    # multicluster:
+    #   gnetId: 15488
+    #   revision: 3
+    #   datasource: prometheus
+    # certmanager:
+    #   gnetId: 20842
+    #   revision: 2
     # traefik:
     #   gnetId: 17347
     #   revision: 8
