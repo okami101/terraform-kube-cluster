@@ -43,7 +43,7 @@ singleBinary:
     - key: node-role.kubernetes.io/monitor
       operator: Exists
   nodeSelector:
-    node.kubernetes.io/role: "monitor"
+    node.kubernetes.io/role: "storage"
   resources:
     requests:
       cpu: 100m
