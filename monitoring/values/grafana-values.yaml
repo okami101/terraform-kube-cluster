@@ -115,9 +115,9 @@ dashboards:
     certmanager:
       gnetId: 20842
       revision: 2
-    traefik:
-      gnetId: 17347
-      revision: 8
+    # traefik:
+    #   gnetId: 17347
+    #   revision: 8
     # longhorn:
     #   gnetId: 16888
     #   revision: 9
