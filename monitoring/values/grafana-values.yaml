@@ -43,12 +43,15 @@ dashboards:
     certmanager:
       gnetId: 20842
       revision: 2
+      datasource: prometheus
     traefik:
       gnetId: 17347
       revision: 8
+      datasource: prometheus
     longhorn:
       gnetId: 16888
       revision: 9
+      datasource: prometheus
     redis:
       gnetId: 763
       revision: 6
