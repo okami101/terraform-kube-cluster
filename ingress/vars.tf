@@ -2,6 +2,10 @@ variable "domain" {
   type = string
 }
 
+variable "internal_sub_domain" {
+  type = string
+}
+
 variable "acme_email" {
   type = string
 }

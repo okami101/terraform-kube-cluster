@@ -108,7 +108,7 @@ resource "kubernetes_manifest" "cnpg_cluster_pg17" {
       namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
     }
     spec = {
-      imageName   = "ghcr.io/cloudnative-pg/postgresql:17"
+      imageName   = "ghcr.io/cloudnative-pg/postgresql:17.1"
       description = "PostgreSQL Okami101"
       instances   = 2
 
