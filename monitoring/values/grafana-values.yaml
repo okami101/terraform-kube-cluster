@@ -100,3 +100,24 @@ dashboards:
       gnetId: 15492
       revision: 4
       datasource: prometheus
+    prometheus:
+      gnetId: 15489
+      revision: 2
+      datasource: prometheus
+    prometheus-benchmark:
+      gnetId: 15490
+      revision: 2
+      datasource: prometheus
+    multicluster:
+      gnetId: 15488
+      revision: 3
+      datasource: prometheus
+    certmanager:
+      gnetId: 20842
+      revision: 2
+    traefik:
+      gnetId: 17347
+      revision: 8
+    crowdsec:
+      url: https://raw.githubusercontent.com/crowdsecurity/grafana-dashboards/master/dashboards_v5/Crowdsec%20Overview.json
+      datasource: prometheus
