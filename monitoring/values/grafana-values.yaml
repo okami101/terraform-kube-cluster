@@ -5,9 +5,9 @@ deploymentStrategy:
   type: Recreate
 
 persistence:
-  enabled: true
-  size: 1Gi
-  storageClassName: longhorn
+  enabled: false
+  # size: 1Gi
+  # storageClassName: longhorn
 
 sidecar:
   alerts:
