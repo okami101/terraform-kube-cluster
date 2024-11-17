@@ -27,3 +27,5 @@ cainjector:
     limits:
       cpu: 100m
       memory: 256Mi
+
+hostNetwork: true
