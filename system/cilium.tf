@@ -12,3 +12,29 @@ resource "helm_release" "cilium" {
     })
   ]
 }
+
+resource "kubernetes_manifest" "cilium_ingress" {
+  manifest = {
+    apiVersion = "traefik.io/v1alpha1"
+    kind       = "IngressRoute"
+    metadata = {
+      name      = "hubble-ui"
+      namespace = "kube-system"
+    }
+    spec = {
+      entryPoints = ["private"]
+      routes = [
+        {
+          match = "Host(`hubble.${var.internal_domain}`)"
+          kind  = "Rule"
+          services = [
+            {
+              name = "hubble-ui"
+              port = "http"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,3 +1,7 @@
+variable "internal_domain" {
+  type = string
+}
+
 variable "chart_kured_version" {
   type = string
 }

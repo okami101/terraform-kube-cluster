@@ -48,6 +48,14 @@ resources:
     memory: 256Mi
 
 service:
+  annotations:
+    load-balancer.hetzner.cloud/name: ${load_balancer_name}
+    load-balancer.hetzner.cloud/type: ${load_balancer_type}
+    load-balancer.hetzner.cloud/uses-proxyprotocol: "true"
+    load-balancer.hetzner.cloud/algorithm-type: round_robin
+    load-balancer.hetzner.cloud/health-check-interval: 15s
+    load-balancer.hetzner.cloud/health-check-timeout: 10s
+    load-balancer.hetzner.cloud/health-check-retries: "3"
   additionalServices:
     internal:
       type: ClusterIP

@@ -38,12 +38,12 @@ resource "helm_release" "kube_prometheus_stack" {
 
   set {
     name  = "prometheus.prometheusSpec.externalUrl"
-    value = "https://prom.int.${var.domain}"
+    value = "https://prom.${var.internal_domain}"
   }
 
   set {
     name  = "alertmanager.alertmanagerSpec.externalUrl"
-    value = "https://am.int.${var.domain}"
+    value = "https://am.${var.internal_domain}"
   }
 }
 
@@ -59,7 +59,7 @@ resource "kubernetes_manifest" "prometheus_ingress" {
       entryPoints = ["private"]
       routes = [
         {
-          match = "Host(`prom.int.${var.domain}`)"
+          match = "Host(`prom.${var.internal_domain}`)"
           kind  = "Rule"
           services = [
             {
@@ -85,7 +85,7 @@ resource "kubernetes_manifest" "alertmanager_ingress" {
       entryPoints = ["private"]
       routes = [
         {
-          match = "Host(`am.int.${var.domain}`)"
+          match = "Host(`am.${var.internal_domain}`)"
           kind  = "Rule"
           services = [
             {

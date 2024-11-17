@@ -1,4 +1,4 @@
-variable "domain" {
+variable "internal_domain" {
   type = string
 }
 

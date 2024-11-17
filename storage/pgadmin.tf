@@ -70,7 +70,7 @@ resource "kubernetes_manifest" "pgadmin_ingress" {
       entryPoints = ["private"]
       routes = [
         {
-          match = "Host(`pga.int.${var.domain}`)"
+          match = "Host(`pga.${var.internal_domain}`)"
           kind  = "Rule"
           services = [
             {

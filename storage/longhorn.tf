@@ -44,7 +44,7 @@ resource "kubernetes_manifest" "longhorn_ingress" {
       entryPoints = ["private"]
       routes = [
         {
-          match = "Host(`longhorn.int.${var.domain}`)"
+          match = "Host(`longhorn.${var.internal_domain}`)"
           kind  = "Rule"
           services = [
             {

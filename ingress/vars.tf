@@ -2,8 +2,17 @@ variable "domain" {
   type = string
 }
 
-variable "internal_sub_domain" {
+variable "internal_domain" {
   type = string
+}
+
+variable "load_balancer_name" {
+  type = string
+}
+
+variable "load_balancer_type" {
+  type    = string
+  default = "lb11"
 }
 
 variable "acme_email" {
@@ -11,7 +20,8 @@ variable "acme_email" {
 }
 
 variable "trusted_ips" {
-  type = list(string)
+  type    = list(string)
+  default = ["127.0.0.1/32", "10.0.0.0/8"]
 }
 
 variable "chart_traefik_version" {

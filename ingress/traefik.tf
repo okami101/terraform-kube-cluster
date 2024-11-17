@@ -13,12 +13,15 @@ resource "helm_release" "traefik" {
   namespace = kubernetes_namespace_v1.traefik.metadata[0].name
 
   values = [
-    file("${path.module}/values/traefik-values.yaml")
+    templatefile("${path.module}/values/traefik-values.yaml", {
+      load_balancer_name = var.load_balancer_name
+      load_balancer_type = var.load_balancer_type
+    })
   ]
 
   set {
     name  = "ingressRoute.dashboard.matchRule"
-    value = "Host(`traefik.int.${var.domain}`)"
+    value = "Host(`traefik.${var.internal_domain}`)"
   }
 
   set_list {
