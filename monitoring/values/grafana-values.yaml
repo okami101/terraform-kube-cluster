@@ -121,12 +121,12 @@ dashboards:
     # longhorn:
     #   gnetId: 16888
     #   revision: 9
-    redis:
-      gnetId: 763
-      revision: 6
-      datasource:
-        - name: DS_PROM
-          value: prometheus
+    # redis:
+    #   gnetId: 763
+    #   revision: 6
+    #   datasource:
+    #     - name: DS_PROM
+    #       value: prometheus
     # crowdsec:
     #   url: https://raw.githubusercontent.com/crowdsecurity/grafana-dashboards/master/dashboards_v5/Crowdsec%20Overview.json
     #   datasource: prometheus
