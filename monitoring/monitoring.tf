@@ -27,6 +27,11 @@ resource "helm_release" "kube_prometheus_stack" {
   }
 
   set_list {
+    name  = "kubeProxy.endpoints"
+    value = []
+  }
+
+  set_list {
     name  = "kubeEtcd.endpoints"
     value = var.server_ips
   }
