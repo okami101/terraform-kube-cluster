@@ -33,7 +33,7 @@ logs:
 metrics:
   prometheus:
     serviceMonitor:
-      namespaceSelector: {}
+      enabled: true
 
 providers:
   kubernetesCRD:
