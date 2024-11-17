@@ -58,6 +58,6 @@ dashboards:
       datasource:
         - name: DS_PROM
           value: prometheus
-    # crowdsec:
-    #   url: https://raw.githubusercontent.com/crowdsecurity/grafana-dashboards/master/dashboards_v5/Crowdsec%20Overview.json
-    #   datasource: prometheus
+    crowdsec:
+      url: https://raw.githubusercontent.com/crowdsecurity/grafana-dashboards/master/dashboards_v5/Crowdsec%20Overview.json
+      datasource: prometheus
