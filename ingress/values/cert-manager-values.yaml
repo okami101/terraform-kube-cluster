@@ -11,7 +11,6 @@ resources:
     memory: 128Mi
 
 webhook:
-  hostNetwork: true
   resources:
     requests:
       cpu: 100m
