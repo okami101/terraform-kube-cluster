@@ -23,4 +23,4 @@ tolerations:
     operator: Exists
 
 nodeSelector:
-  node-role.kubernetes.io/monitor: "true"
+  node.kubernetes.io/role: "monitor"

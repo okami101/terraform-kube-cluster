@@ -150,7 +150,7 @@ resource "kubernetes_manifest" "cnpg_cluster_pg17" {
           }
         ]
         nodeSelector = {
-          "node-role.kubernetes.io/storage" = "true"
+          "node.kubernetes.io/role" = "storage"
         }
       }
 
