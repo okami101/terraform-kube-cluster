@@ -1,5 +1,8 @@
 operator:
   rollOutPods: true
+  dashboards:
+    enabled: true
+    namespace: monitoring
   resources:
     limits:
       cpu: 1000m
@@ -87,8 +90,12 @@ hubble:
       - policy:sourceContext=app|workload-name|pod|reserved-identity;destinationContext=app|workload-name|pod|dns|reserved-identity;labelsContext=source_namespace,destination_namespace
     dashboards:
       enabled: true
+      namespace: monitoring
 routingMode: native
 ipv4NativeRoutingCIDR: ${network_cluster_cidr}
 installNoConntrackIptablesRules: true
 cni:
   customConf: true
+dashboards:
+  enabled: true
+  namespace: monitoring
