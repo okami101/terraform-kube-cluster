@@ -40,7 +40,7 @@ resultsCache:
 singleBinary:
   replicas: 1
   tolerations:
-    - key: node-role.kubernetes.io/monitor
+    - key: node-role.kubernetes.io/storage
       operator: Exists
   nodeSelector:
     node.kubernetes.io/role: "storage"
