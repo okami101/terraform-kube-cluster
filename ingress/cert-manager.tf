@@ -22,7 +22,7 @@ resource "helm_release" "cert_manager_webhook_scaleway" {
   version    = var.chart_cert_manager_webhook_scaleway_version
   repository = "https://helm.scw.cloud"
 
-  name      = "scaleway"
+  name      = "swc"
   namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name
 
   set {
