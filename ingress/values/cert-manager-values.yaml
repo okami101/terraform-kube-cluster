@@ -7,7 +7,7 @@ resources:
     cpu: 100m
     memory: 128Mi
   limits:
-    cpu: 100m
+    cpu: 1000m
     memory: 128Mi
 
 webhook:
@@ -16,7 +16,7 @@ webhook:
       cpu: 100m
       memory: 32Mi
     limits:
-      cpu: 100m
+      cpu: 1000m
       memory: 32Mi
 
 cainjector:
@@ -25,5 +25,5 @@ cainjector:
       cpu: 100m
       memory: 256Mi
     limits:
-      cpu: 100m
+      cpu: 1000m
       memory: 256Mi
