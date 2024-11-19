@@ -32,6 +32,13 @@ prometheus:
 kubeProxy:
   enabled: false
 
+prometheus-node-exporter:
+  tolerations:
+    - operator: Exists
+      effect: NoExecute
+    - operator: Exists
+      effect: NoSchedule
+
 grafana:
   enabled: false
   forceDeployDatasources: true
