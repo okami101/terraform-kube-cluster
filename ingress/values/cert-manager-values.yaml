@@ -10,13 +10,6 @@ resources:
     cpu: 100m
     memory: 128Mi
 
-tolerations:
-  - key: node-role.kubernetes.io/control-plane
-    operator: Exists
-    effect: NoSchedule
-nodeSelector:
-  node-role.kubernetes.io/control-plane: "true"
-
 webhook:
   resources:
     requests:
@@ -25,12 +18,6 @@ webhook:
     limits:
       cpu: 100m
       memory: 32Mi
-  tolerations:
-    - key: node-role.kubernetes.io/control-plane
-      operator: Exists
-      effect: NoSchedule
-  nodeSelector:
-    node-role.kubernetes.io/control-plane: "true"
 
 cainjector:
   resources:
@@ -40,9 +27,3 @@ cainjector:
     limits:
       cpu: 100m
       memory: 256Mi
-  tolerations:
-    - key: node-role.kubernetes.io/control-plane
-      operator: Exists
-      effect: NoSchedule
-  nodeSelector:
-    node-role.kubernetes.io/control-plane: "true"
