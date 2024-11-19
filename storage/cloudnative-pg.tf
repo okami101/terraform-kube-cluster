@@ -136,7 +136,7 @@ resource "kubernetes_manifest" "cnpg_cluster_pg17" {
           cpu    = "500m"
         }
         limits = {
-          memory = "1.5Gi"
+          memory = "1536Mi"
           cpu    = "2"
         }
       }
