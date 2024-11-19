@@ -40,17 +40,7 @@ loadBalancer:
 bpf:
   masquerade: true
 envoy:
-  rollOutPods: true
-  prometheus:
-    serviceMonitor:
-      enabled: true
-  resources:
-    limits:
-      cpu: 1000m
-      memory: 128Mi
-    requests:
-      cpu: 100m
-      memory: 128Mi
+  enabled: false
 hubble:
   relay:
     enabled: true
