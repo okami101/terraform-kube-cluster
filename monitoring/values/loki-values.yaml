@@ -37,6 +37,11 @@ write:
       cpu: 1000m
       memory: 128Mi
 
+gateway:
+  service:
+    labels:
+      prometheus.io/service-monitor: "false"
+
 loki:
   auth_enabled: false
   compactor:
