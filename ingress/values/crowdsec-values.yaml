@@ -28,7 +28,7 @@ agent:
 
   env:
     - name: COLLECTIONS
-      value: crowdsecurity/traefik
+      value: "crowdsecurity/traefik crowdsecurity/modsecurity"
 
   resources:
     requests:
