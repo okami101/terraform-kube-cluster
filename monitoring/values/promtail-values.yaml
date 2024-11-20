@@ -1,7 +1,3 @@
-config:
-  clients:
-    - url: http://loki:3100/loki/api/v1/push
-
 tolerations:
   - effect: NoExecute
     operator: Exists
