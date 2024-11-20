@@ -45,7 +45,7 @@ resource "kubernetes_manifest" "traefik_middleware_bouncer" {
         bouncer = {
           enabled                        = true
           crowdsecAppsecEnabled          = true
-          crowdsecAppsecHost             = "crowdsec:7422"
+          crowdsecAppsecHost             = "crowdsec-appsec-service.crowdsec:7422"
           crowdsecAppsecFailureBlock     = true
           crowdsecAppsecUnreachableBlock = true
           crowdsecLapiKey                = var.bouncer_api_key
