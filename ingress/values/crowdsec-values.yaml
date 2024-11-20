@@ -56,7 +56,7 @@ appsec:
     - name: COLLECTIONS
       value: crowdsecurity/appsec-virtual-patching
     - name: APPSEC_CONFIGS
-      value: "crowdsecurity/appsec-default"
+      value: crowdsecurity/appsec-default
   resources:
     requests:
       cpu: 100m
