@@ -18,6 +18,8 @@ webhook:
     limits:
       cpu: 1000m
       memory: 32Mi
+  readinessProbe:
+    timeoutSeconds: 5
 
 cainjector:
   resources:
