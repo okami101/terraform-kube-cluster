@@ -13,6 +13,7 @@ lapi:
       enabled: false
     config:
       enabled: false
+  storeCAPICredentialsInSecret: true
 
   metrics:
     enabled: true

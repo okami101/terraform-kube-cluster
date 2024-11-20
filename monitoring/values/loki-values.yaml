@@ -1,16 +1,43 @@
 deploymentMode: SingleBinary
 
 read:
-  replicas: 0
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 1000m
+      memory: 128Mi
 
 backend:
-  replicas: 0
+  replicas: 1
+  persistence:
+    storageClass: longhorn
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 256Mi
 
 write:
-  replicas: 0
-
-gateway:
-  enabled: false
+  replicas: 2
+  persistence:
+    storageClass: longhorn
+  tolerations:
+    - key: node-role.kubernetes.io/storage
+      operator: Exists
+  nodeSelector:
+    node-role.kubernetes.io/storage: "true"
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 1000m
+      memory: 128Mi
 
 loki:
   auth_enabled: false
@@ -36,21 +63,6 @@ chunksCache:
 
 resultsCache:
   enabled: false
-
-singleBinary:
-  replicas: 1
-  tolerations:
-    - key: node-role.kubernetes.io/storage
-      operator: Exists
-  nodeSelector:
-    node.kubernetes.io/role: "storage"
-  resources:
-    requests:
-      cpu: 100m
-      memory: 512Mi
-    limits:
-      cpu: 1000m
-      memory: 512Mi
 
 monitoring:
   dashboards:
