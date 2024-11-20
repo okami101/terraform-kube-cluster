@@ -54,7 +54,7 @@ appsec:
         type: appsec
   env:
     - name: COLLECTIONS
-      value: crowdsecurity/appsec-virtual-patching
+      value: "crowdsecurity/appsec-virtual-patching crowdsecurity/appsec-generic-rules"
   resources:
     requests:
       cpu: 100m
