@@ -42,3 +42,20 @@ agent:
     enabled: true
     serviceMonitor:
       enabled: true
+
+appsec:
+  env:
+    - name: COLLECTIONS
+      value: "crowdsecurity/appsec-virtual-patching"
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 256Mi
+  enabled: true
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
