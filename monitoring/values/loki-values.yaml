@@ -56,6 +56,12 @@ loki:
           prefix: index_
           period: 24h
 
+chunksCache:
+  enabled: false
+
+resultsCache:
+  enabled: false
+
 monitoring:
   dashboards:
     enabled: true
