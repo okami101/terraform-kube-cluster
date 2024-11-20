@@ -1,5 +1,3 @@
-deploymentMode: SingleBinary
-
 read:
   replicas: 1
   resources:
