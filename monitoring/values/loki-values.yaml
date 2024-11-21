@@ -51,8 +51,6 @@ loki:
     delete_request_store: s3
   storage_config:
     object_prefix: loki
-  commonConfig:
-    replication_factor: 1
   schemaConfig:
     configs:
       - from: 2024-01-01
