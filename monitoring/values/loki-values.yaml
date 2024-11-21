@@ -12,6 +12,7 @@ backend:
   replicas: 1
   persistence:
     storageClass: longhorn
+    size: 2Gi
   resources:
     requests:
       cpu: 100m
@@ -24,6 +25,7 @@ write:
   replicas: 2
   persistence:
     storageClass: longhorn
+    size: 2Gi
   tolerations:
     - key: node-role.kubernetes.io/storage
       operator: Exists

@@ -20,10 +20,10 @@ sidecar:
 resources:
   requests:
     cpu: 100m
-    memory: 384Mi
+    memory: 512Mi
   limits:
     cpu: 1000m
-    memory: 384Mi
+    memory: 512Mi
 
 dashboardProviders:
   dashboardproviders.yaml:
