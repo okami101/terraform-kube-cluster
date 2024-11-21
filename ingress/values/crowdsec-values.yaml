@@ -10,7 +10,8 @@ lapi:
       memory: 256Mi
   persistentVolume:
     data:
-      enabled: false
+      storageClassName: longhorn
+      size: 1Gi
     config:
       enabled: false
   storeCAPICredentialsInSecret: true
