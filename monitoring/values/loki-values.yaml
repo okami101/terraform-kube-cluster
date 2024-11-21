@@ -51,9 +51,6 @@ loki:
     delete_request_store: s3
   storage_config:
     object_prefix: loki
-  distributor:
-    ingester_client:
-      remote_timeout: 10s
   schemaConfig:
     configs:
       - from: 2024-01-01
