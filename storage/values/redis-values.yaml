@@ -16,7 +16,7 @@ replica:
     - key: node-role.kubernetes.io/storage
       operator: Exists
   nodeSelector:
-    node.kubernetes.io/role: "storage"
+    node.kubernetes.io/role: storage
 
 sentinel:
   enabled: true

@@ -20,7 +20,7 @@ prometheus:
       - key: node-role.kubernetes.io/monitor
         operator: Exists
     nodeSelector:
-      node.kubernetes.io/role: "monitor"
+      node.kubernetes.io/role: monitor
     resources:
       requests:
         cpu: 1000m
