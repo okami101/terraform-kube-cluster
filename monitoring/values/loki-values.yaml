@@ -45,6 +45,8 @@ gateway:
       prometheus.io/service-monitor: "false"
 
 loki:
+  readinessProbe:
+    timeoutSeconds: 10
   structuredConfig:
     auth_enabled: false
     compactor:
