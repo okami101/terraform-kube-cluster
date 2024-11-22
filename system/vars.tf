@@ -49,7 +49,7 @@ variable "network_cluster_cidr" {
 }
 
 variable "k8s_service_port" {
-  type    = string
+  type    = number
   default = 6444
 }
 
