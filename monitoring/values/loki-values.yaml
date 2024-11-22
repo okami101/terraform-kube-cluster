@@ -34,10 +34,10 @@ write:
   resources:
     requests:
       cpu: 100m
-      memory: 128Mi
+      memory: 256Mi
     limits:
       cpu: 1000m
-      memory: 128Mi
+      memory: 256Mi
 
 gateway:
   service:
