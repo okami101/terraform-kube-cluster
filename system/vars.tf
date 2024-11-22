@@ -48,6 +48,11 @@ variable "network_cluster_cidr" {
   type = string
 }
 
+variable "k8s_service_port" {
+  type    = string
+  default = 6444
+}
+
 variable "load_balancers_location" {
   type = string
 }

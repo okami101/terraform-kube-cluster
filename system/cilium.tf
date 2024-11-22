@@ -7,10 +7,18 @@ resource "helm_release" "cilium" {
   namespace = "kube-system"
 
   values = [
-    templatefile("${path.module}/values/cilium-values.yaml", {
-      network_cluster_cidr = var.network_cluster_cidr
-    })
+    file("${path.module}/values/cilium-values.yaml")
   ]
+
+  set {
+    name  = "ipv4NativeRoutingCIDR"
+    value = var.network_cluster_cidr
+  }
+
+  set {
+    name  = "k8sServicePort"
+    value = var.k8s_service_port
+  }
 }
 
 resource "kubernetes_manifest" "cilium_ingress" {

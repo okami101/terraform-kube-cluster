@@ -27,7 +27,6 @@ encryption:
 kubeProxyReplacement: true
 kubeProxyReplacementHealthzBindAddr: "0.0.0.0:10256"
 k8sServiceHost: "127.0.0.1"
-k8sServicePort: 6444
 k8s:
   requireIPv4PodCIDR: true
 ipam:
@@ -90,7 +89,6 @@ hubble:
     serviceMonitor:
       enabled: true
 routingMode: native
-ipv4NativeRoutingCIDR: ${network_cluster_cidr}
 installNoConntrackIptablesRules: true
 cni:
   customConf: true
