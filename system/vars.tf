@@ -2,10 +2,6 @@ variable "internal_domain" {
   type = string
 }
 
-variable "chart_kured_version" {
-  type = string
-}
-
 variable "chart_hccm_version" {
   type = string
 }
@@ -38,10 +34,6 @@ variable "s3_access_key" {
 variable "s3_secret_key" {
   type      = string
   sensitive = true
-}
-
-variable "k3s_version" {
-  type = string
 }
 
 variable "network_cluster_cidr" {
