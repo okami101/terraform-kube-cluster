@@ -14,10 +14,10 @@ webhook:
   resources:
     requests:
       cpu: 100m
-      memory: 32Mi
+      memory: 64Mi
     limits:
       cpu: 1000m
-      memory: 32Mi
+      memory: 64Mi
   readinessProbe:
     timeoutSeconds: 5
 
