@@ -13,7 +13,6 @@ lapi:
       enabled: false
     config:
       storageClassName: longhorn
-  storeCAPICredentialsInSecret: true
 
   metrics:
     enabled: true
