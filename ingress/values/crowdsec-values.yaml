@@ -11,6 +11,9 @@ lapi:
   persistentVolume:
     data:
       enabled: false
+    config:
+      storageClassName: longhorn
+  storeCAPICredentialsInSecret: true
 
   metrics:
     enabled: true
