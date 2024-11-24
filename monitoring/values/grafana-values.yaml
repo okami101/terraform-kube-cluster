@@ -1,9 +1,6 @@
 serviceMonitor:
   enabled: true
 
-deploymentStrategy:
-  type: Recreate
-
 persistence:
   enabled: true
   size: 1Gi
