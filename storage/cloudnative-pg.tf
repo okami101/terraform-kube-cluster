@@ -216,6 +216,18 @@ resource "kubernetes_manifest" "cnpg_pooler_pg17" {
       }
       instances = 2
       type      = "rw"
+      template = {
+        resources = {
+          requests = {
+            memory = "128Mi"
+            cpu    = "100m"
+          }
+          limits = {
+            memory = "128Mi"
+            cpu    = "1000m"
+          }
+        }
+      }
       monitoring = {
         enablePodMonitor = true
       }
