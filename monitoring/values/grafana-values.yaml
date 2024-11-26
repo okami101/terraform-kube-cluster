@@ -7,7 +7,8 @@ deploymentStrategy:
 persistence:
   enabled: true
   size: 1Gi
-  storageClassName: longhorn
+  volumeName: grafana
+  storageClassName: longhorn-static
 
 sidecar:
   alerts:
@@ -24,19 +25,18 @@ resources:
   limits:
     cpu: 1000m
     memory: 512Mi
-
-dashboardProviders:
-  dashboardproviders.yaml:
-    apiVersion: 1
-    providers:
-      - name: "default"
-        orgId: 1
-        folder: ""
-        type: file
-        disableDeletion: false
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/default
+# dashboardProviders:
+#   dashboardproviders.yaml:
+#     apiVersion: 1
+#     providers:
+#       - name: "default"
+#         orgId: 1
+#         folder: ""
+#         type: file
+#         disableDeletion: false
+#         editable: true
+#         options:
+#           path: /var/lib/grafana/dashboards/default
 # dashboards:
 #   default:
 #     certmanager:
