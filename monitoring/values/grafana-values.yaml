@@ -25,35 +25,3 @@ resources:
   limits:
     cpu: 1000m
     memory: 512Mi
-# dashboardProviders:
-#   dashboardproviders.yaml:
-#     apiVersion: 1
-#     providers:
-#       - name: "default"
-#         orgId: 1
-#         folder: ""
-#         type: file
-#         disableDeletion: false
-#         editable: true
-#         options:
-#           path: /var/lib/grafana/dashboards/default
-# dashboards:
-#   default:
-#     certmanager:
-#       gnetId: 20842
-#       revision: 2
-#     traefik:
-#       gnetId: 17347
-#       revision: 8
-#     longhorn:
-#       gnetId: 16888
-#       revision: 9
-#     redis:
-#       gnetId: 763
-#       revision: 6
-#       datasource:
-#         - name: DS_PROM
-#           value: prometheus
-#     crowdsec:
-#       url: https://raw.githubusercontent.com/crowdsecurity/grafana-dashboards/master/dashboards_v5/Crowdsec%20Overview.json
-#       datasource: prometheus
