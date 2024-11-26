@@ -62,7 +62,7 @@ resource "helm_release" "pgadmin" {
 
   set {
     name  = "persistentVolume.existingClaim"
-    value = "pgadmin"
+    value = "pgadmin-data"
   }
 
   set {
