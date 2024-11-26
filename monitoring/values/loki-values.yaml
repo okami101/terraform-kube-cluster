@@ -56,6 +56,8 @@ loki:
       object_prefix: loki
     ingester_client:
       remote_timeout: 10s
+    analytics:
+      reporting_enabled: false
     schema_config:
       configs:
         - from: 2024-01-01
