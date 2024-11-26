@@ -1,3 +1,21 @@
+resource "kubernetes_persistent_volume_claim_v1" "grafana" {
+  metadata {
+    name      = "pgadmin-data"
+    namespace = kubernetes_namespace_v1.pgadmin.metadata[0].name
+  }
+
+  spec {
+    access_modes       = ["ReadWriteOnce"]
+    volume_name        = "pgadmin"
+    storage_class_name = "longhorn-static"
+    resources {
+      requests = {
+        storage = "1Gi"
+      }
+    }
+  }
+}
+
 resource "kubernetes_namespace_v1" "pgadmin" {
   metadata {
     name = "pgadmin"
@@ -43,8 +61,8 @@ resource "helm_release" "pgadmin" {
   }
 
   set {
-    name  = "persistentVolume.storageClass"
-    value = "longhorn"
+    name  = "persistentVolume.existingClaim"
+    value = "pgadmin"
   }
 
   set {

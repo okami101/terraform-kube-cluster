@@ -1,3 +1,21 @@
+resource "kubernetes_persistent_volume_claim_v1" "grafana" {
+  metadata {
+    name      = "grafana-data"
+    namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
+  }
+
+  spec {
+    access_modes       = ["ReadWriteOnce"]
+    volume_name        = "grafana"
+    storage_class_name = "longhorn-static"
+    resources {
+      requests = {
+        storage = "1Gi"
+      }
+    }
+  }
+}
+
 resource "helm_release" "grafana" {
   chart      = "grafana"
   version    = var.chart_grafana_version
@@ -9,6 +27,11 @@ resource "helm_release" "grafana" {
   values = [
     file("${path.module}/values/grafana-values.yaml")
   ]
+
+  set {
+    name  = "persistence.existingClaim"
+    value = "grafana-data"
+  }
 
   set {
     name  = "env.GF_SERVER_DOMAIN"
