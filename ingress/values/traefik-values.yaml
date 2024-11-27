@@ -7,6 +7,8 @@ ingressRoute:
 deployment:
   kind: DaemonSet
 
+priorityClassName: system-cluster-critical
+
 ports:
   web:
     redirectTo:
