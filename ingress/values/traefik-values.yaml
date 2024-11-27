@@ -11,6 +11,8 @@ podDisruptionBudget:
   enabled: true
   minAvailable: 1
 
+priorityClassName: system-cluster-critical
+
 ports:
   web:
     redirectTo:
