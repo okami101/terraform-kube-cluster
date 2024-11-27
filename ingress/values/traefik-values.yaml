@@ -5,13 +5,7 @@ ingressRoute:
       - private
 
 deployment:
-  replicas: 2
-
-podDisruptionBudget:
-  enabled: true
-  minAvailable: 1
-
-priorityClassName: system-cluster-critical
+  kind: Daemon
 
 ports:
   web:
