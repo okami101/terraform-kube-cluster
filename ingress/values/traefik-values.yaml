@@ -4,7 +4,9 @@ ingressRoute:
     entryPoints:
       - private
 
-priorityClassName: system-cluster-critical
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
 
 ports:
   web:
