@@ -5,7 +5,7 @@ ingressRoute:
       - private
 
 deployment:
-  kind: Daemon
+  kind: DaemonSet
 
 ports:
   web:
