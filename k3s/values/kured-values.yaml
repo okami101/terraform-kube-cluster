@@ -1,7 +1,5 @@
 configuration:
   period: 1m
-  forceReboot: true
-  drainTimeout: 1m
 
 tolerations:
   - operator: Exists
