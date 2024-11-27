@@ -45,7 +45,7 @@ resource "kubernetes_manifest" "traefik_middleware_bouncer" {
         bouncer = {
           enabled          = true
           crowdsecMode     = "stream"
-          updateMaxFailure = -1
+          updateMaxFailure = 10
           crowdsecLapiHost = "crowdsec-service.crowdsec:8080"
           crowdsecLapiKey  = var.bouncer_api_key
         }
