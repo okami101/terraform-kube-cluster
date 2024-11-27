@@ -4,6 +4,8 @@ ingressRoute:
     entryPoints:
       - private
 
+priorityClassName: system-cluster-critical
+
 ports:
   web:
     redirectTo:
