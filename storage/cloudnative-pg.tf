@@ -201,31 +201,3 @@ resource "kubernetes_manifest" "cnpg_scheduled_backup_pg17" {
     }
   }
 }
-
-resource "kubernetes_manifest" "cnpg_pooler_pg17" {
-  manifest = {
-    apiVersion = "postgresql.cnpg.io/v1"
-    kind       = "Pooler"
-    metadata = {
-      name      = "pooler-cluster-pg17-rw"
-      namespace = kubernetes_namespace_v1.cnpg.metadata[0].name
-    }
-    spec = {
-      cluster = {
-        name = kubernetes_manifest.cnpg_cluster_pg17.manifest.metadata.name
-      }
-      instances = 2
-      type      = "rw"
-      monitoring = {
-        enablePodMonitor = true
-      }
-      pgbouncer = {
-        poolMode = "session"
-        parameters = {
-          max_client_conn   = "1000"
-          default_pool_size = "10"
-        }
-      }
-    }
-  }
-}
