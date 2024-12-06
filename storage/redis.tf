@@ -17,7 +17,7 @@ resource "kubernetes_secret_v1" "redis_auth" {
 resource "helm_release" "redis" {
   chart      = "redis"
   version    = var.chart_redis_version
-  repository = "https://registry-1.docker.io/bitnamicharts"
+  repository = "oci://registry-1.docker.io/bitnamicharts"
 
   name      = "redis"
   namespace = kubernetes_namespace_v1.redis.metadata[0].name
