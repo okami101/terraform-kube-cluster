@@ -11,14 +11,13 @@ podDisruptionBudget:
   enabled: true
   minAvailable: 1
 
-affinity:
-  podAntiAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: traefik
-            app.kubernetes.io/instance: traefik-traefik
-        topologyKey: kubernetes.io/hostname
+topologySpreadConstraints:
+  - labelSelector:
+      matchLabels:
+        app.kubernetes.io/name: traefik
+    maxSkew: 1
+    topologyKey: kubernetes.io/hostname
+    whenUnsatisfiable: DoNotSchedule
 
 priorityClassName: system-cluster-critical
 
