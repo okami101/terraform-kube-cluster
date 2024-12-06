@@ -17,7 +17,7 @@ topologySpreadConstraints:
         app.kubernetes.io/name: traefik
     maxSkew: 1
     topologyKey: kubernetes.io/hostname
-    whenUnsatisfiable: DoNotSchedule
+    whenUnsatisfiable: ScheduleAnyway
 
 priorityClassName: system-cluster-critical
 
