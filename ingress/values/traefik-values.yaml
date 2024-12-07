@@ -5,7 +5,20 @@ ingressRoute:
       - private
 
 deployment:
-  kind: DaemonSet
+  replicas: 2
+
+updateStrategy:
+  rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 0
+
+topologySpreadConstraints:
+  - labelSelector:
+      matchLabels:
+        app.kubernetes.io/name: traefik
+    maxSkew: 1
+    topologyKey: kubernetes.io/hostname
+    whenUnsatisfiable: DoNotSchedule
 
 priorityClassName: system-cluster-critical
 
