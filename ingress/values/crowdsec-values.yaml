@@ -1,7 +1,7 @@
 container_runtime: containerd
 
 config:
-  config.yaml.local:
+  config.yaml.local: |
     api:
       server:
         auto_registration: true
