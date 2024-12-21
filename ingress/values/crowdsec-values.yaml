@@ -9,8 +9,6 @@ lapi:
       cpu: 1000m
       memory: 256Mi
   persistentVolume:
-    data:
-      storageClassName: longhorn
     config:
       storageClassName: longhorn
 
