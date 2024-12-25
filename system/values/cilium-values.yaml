@@ -92,8 +92,6 @@ hubble:
       enabled: true
 routingMode: native
 installNoConntrackIptablesRules: true
-cni:
-  customConf: true
 dashboards:
   enabled: true
   namespace: monitoring
