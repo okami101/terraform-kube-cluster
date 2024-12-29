@@ -23,7 +23,7 @@ lapi:
       memory: 256Mi
   persistentVolume:
     data:
-      enabled: false
+      storageClassName: longhorn
     config:
       enabled: false
 
