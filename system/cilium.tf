@@ -3,8 +3,9 @@ resource "helm_release" "cilium" {
   version    = var.chart_cilium_version
   repository = "https://helm.cilium.io"
 
-  name      = "cilium"
-  namespace = "kube-system"
+  name        = "cilium"
+  namespace   = "kube-system"
+  max_history = 2
 
   values = [
     file("${path.module}/values/cilium-values.yaml")

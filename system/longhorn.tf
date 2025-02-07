@@ -22,8 +22,9 @@ resource "helm_release" "longhorn" {
   version    = var.chart_longhorn_version
   repository = "https://charts.longhorn.io"
 
-  name      = "longhorn"
-  namespace = kubernetes_namespace_v1.longhorn.metadata[0].name
+  name        = "longhorn"
+  namespace   = kubernetes_namespace_v1.longhorn.metadata[0].name
+  max_history = 2
 
   values = [
     templatefile("${path.module}/values/longhorn-values.yaml", {

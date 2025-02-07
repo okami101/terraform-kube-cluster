@@ -9,8 +9,9 @@ resource "helm_release" "traefik" {
   version    = var.chart_traefik_version
   repository = "https://traefik.github.io/charts"
 
-  name      = "traefik"
-  namespace = kubernetes_namespace_v1.traefik.metadata[0].name
+  name        = "traefik"
+  namespace   = kubernetes_namespace_v1.traefik.metadata[0].name
+  max_history = 2
 
   values = [
     templatefile("${path.module}/values/traefik-values.yaml", {

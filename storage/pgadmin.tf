@@ -27,8 +27,9 @@ resource "helm_release" "pgadmin" {
   version    = var.chart_pgadmin_version
   repository = "https://helm.runix.net"
 
-  name      = "pgadmin"
-  namespace = kubernetes_namespace_v1.pgadmin.metadata[0].name
+  name        = "pgadmin"
+  namespace   = kubernetes_namespace_v1.pgadmin.metadata[0].name
+  max_history = 2
 
   set {
     name  = "resources.requests.memory"

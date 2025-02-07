@@ -9,8 +9,9 @@ resource "helm_release" "cert_manager" {
   version    = var.chart_cert_manager_version
   repository = "https://charts.jetstack.io"
 
-  name      = "cert-manager"
-  namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name
+  name        = "cert-manager"
+  namespace   = kubernetes_namespace_v1.cert_manager.metadata[0].name
+  max_history = 2
 
   values = [
     file("${path.module}/values/cert-manager-values.yaml")
@@ -22,8 +23,9 @@ resource "helm_release" "cert_manager_webhook_scaleway" {
   version    = var.chart_cert_manager_webhook_scaleway_version
   repository = "https://helm.scw.cloud"
 
-  name      = "scw"
-  namespace = kubernetes_namespace_v1.cert_manager.metadata[0].name
+  name        = "scw"
+  namespace   = kubernetes_namespace_v1.cert_manager.metadata[0].name
+  max_history = 2
 
   values = [
     file("${path.module}/values/scw-values.yaml")

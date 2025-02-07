@@ -19,8 +19,9 @@ resource "helm_release" "redis" {
   version    = var.chart_redis_version
   repository = "oci://registry-1.docker.io/bitnamicharts"
 
-  name      = "redis"
-  namespace = kubernetes_namespace_v1.redis.metadata[0].name
+  name        = "redis"
+  namespace   = kubernetes_namespace_v1.redis.metadata[0].name
+  max_history = 2
 
   values = [
     file("${path.module}/values/redis-values.yaml")

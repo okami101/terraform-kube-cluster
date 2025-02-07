@@ -9,8 +9,9 @@ resource "helm_release" "kube_prometheus_stack" {
   version    = var.chart_kube_prometheus_stack_version
   repository = "https://prometheus-community.github.io/helm-charts"
 
-  name      = "kube-prometheus-stack"
-  namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
+  name        = "kube-prometheus-stack"
+  namespace   = kubernetes_namespace_v1.monitoring.metadata[0].name
+  max_history = 2
 
   values = [
     file("${path.module}/values/prometheus-stack-values.yaml")

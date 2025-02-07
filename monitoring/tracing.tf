@@ -9,8 +9,9 @@ resource "helm_release" "tempo" {
   version    = var.chart_tempo_version
   repository = "https://grafana.github.io/helm-charts"
 
-  name      = "tempo"
-  namespace = kubernetes_namespace_v1.tracing.metadata[0].name
+  name        = "tempo"
+  namespace   = kubernetes_namespace_v1.tracing.metadata[0].name
+  max_history = 2
 
   values = [
     file("${path.module}/values/tempo-values.yaml")

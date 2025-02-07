@@ -14,8 +14,9 @@ resource "helm_release" "hccm" {
   version    = var.chart_hccm_version
   repository = "https://charts.hetzner.cloud"
 
-  name      = "hccm"
-  namespace = "kube-system"
+  name        = "hccm"
+  namespace   = "kube-system"
+  max_history = 2
 
   values = [
     templatefile("${path.module}/values/hccm-values.yaml", {

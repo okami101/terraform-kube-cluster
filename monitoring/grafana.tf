@@ -21,8 +21,9 @@ resource "helm_release" "grafana" {
   version    = var.chart_grafana_version
   repository = "https://grafana.github.io/helm-charts"
 
-  name      = "grafana"
-  namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
+  name        = "grafana"
+  namespace   = kubernetes_namespace_v1.monitoring.metadata[0].name
+  max_history = 2
 
   values = [
     file("${path.module}/values/grafana-values.yaml")

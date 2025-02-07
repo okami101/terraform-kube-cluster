@@ -9,8 +9,9 @@ resource "helm_release" "crowdsec" {
   version    = var.chart_crowdsec_version
   repository = "https://crowdsecurity.github.io/helm-charts"
 
-  name      = "crowdsec"
-  namespace = kubernetes_namespace_v1.crowdsec.metadata[0].name
+  name        = "crowdsec"
+  namespace   = kubernetes_namespace_v1.crowdsec.metadata[0].name
+  max_history = 2
 
   values = [
     file("${path.module}/values/crowdsec-values.yaml")
