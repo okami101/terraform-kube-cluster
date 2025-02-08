@@ -37,7 +37,7 @@ MTU: 1450
 endpointRoutes:
   enabled: true
 loadBalancer:
-  acceleration: best-effort
+  acceleration: native
 bpf:
   masquerade: true
 envoy:
