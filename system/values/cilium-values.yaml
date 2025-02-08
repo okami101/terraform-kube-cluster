@@ -27,7 +27,6 @@ encryption:
 kubeProxyReplacement: true
 kubeProxyReplacementHealthzBindAddr: "0.0.0.0:10256"
 k8sServiceHost: "127.0.0.1"
-k8sServicePort: "6444"
 socketLB:
   hostNamespaceOnly: true
 k8s:
