@@ -31,8 +31,8 @@ ports:
         permanent: true
   websecure:
     asDefault: true
-    # middlewares:
-    #   - crowdsec-middleware-bouncer@kubernetescrd
+    middlewares:
+      - crowdsec-middleware-bouncer@kubernetescrd
   ssh:
     port: 2222
     exposedPort: 22

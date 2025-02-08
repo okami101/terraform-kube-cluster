@@ -70,13 +70,13 @@ resource "helm_release" "traefik" {
     value = local.certificate_secret_name
   }
 
-  # set {
-  #   name  = "experimental.plugins.bouncer.moduleName"
-  #   value = "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin"
-  # }
+  set {
+    name  = "experimental.plugins.bouncer.moduleName"
+    value = "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin"
+  }
 
-  # set {
-  #   name  = "experimental.plugins.bouncer.version"
-  #   value = var.crowdsec_bouncer_traefik_plugin_version
-  # }
+  set {
+    name  = "experimental.plugins.bouncer.version"
+    value = var.crowdsec_bouncer_traefik_plugin_version
+  }
 }
