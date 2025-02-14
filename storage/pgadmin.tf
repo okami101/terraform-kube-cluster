@@ -32,6 +32,11 @@ resource "helm_release" "pgadmin" {
   max_history = 2
 
   set {
+    name  = "image.tag"
+    value = var.pgadmin_version
+  }
+
+  set {
     name  = "resources.requests.memory"
     value = "384Mi"
   }

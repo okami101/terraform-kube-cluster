@@ -28,6 +28,10 @@ variable "chart_pgadmin_version" {
   type = string
 }
 
+variable "pgadmin_version" {
+  type = string
+}
+
 variable "pg_version" {
   type = string
 }
