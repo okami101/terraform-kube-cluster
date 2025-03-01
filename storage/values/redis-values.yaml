@@ -1,5 +1,6 @@
 auth:
   existingSecretPasswordKey: redis-password
+  usePasswordFiles: false
 
 replica:
   persistence:
